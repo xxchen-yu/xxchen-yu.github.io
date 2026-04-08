@@ -6,7 +6,16 @@
         <description>Recent content in Categories on ChenOvo</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <copyright>ChenOvo</copyright><atom:link href="https://xxchen-yu.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <copyright>ChenOvo</copyright>
+        <lastBuildDate>Tue, 07 Apr 2026 08:52:16 +0800</lastBuildDate><atom:link href="https://xxchen-yu.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>靶场</title>
+        <link>https://xxchen-yu.github.io/categories/%E9%9D%B6%E5%9C%BA/</link>
+        <pubDate>Tue, 07 Apr 2026 08:52:16 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/categories/%E9%9D%B6%E5%9C%BA/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Test</title>
         <link>https://xxchen-yu.github.io/categories/test/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

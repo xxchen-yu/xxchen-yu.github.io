@@ -1,0 +1,11 @@
+/* 设置全局字体为 Consolas，并包含常用的回退字体 */
+body {
+    font-family: "Consolas", "Courier New", Courier, monospace !important;
+}
+
+/* 如果你只想让代码块使用 Consolas，可以用下面这段代码代替上面的 */
+/*
+code, pre, kbd {
+    font-family: "Consolas", "Courier New", Courier, monospace !important;
+}
+*/

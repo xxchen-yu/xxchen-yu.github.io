@@ -6,6 +6,23 @@
         <description>Recent content in Tags on ChenOvo</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <copyright>ChenOvo</copyright><atom:link href="https://xxchen-yu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>ChenOvo</copyright>
+        <lastBuildDate>Tue, 07 Apr 2026 08:52:16 +0800</lastBuildDate><atom:link href="https://xxchen-yu.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Web</title>
+        <link>https://xxchen-yu.github.io/tags/web/</link>
+        <pubDate>Tue, 07 Apr 2026 08:52:16 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/tags/web/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Wp</title>
+        <link>https://xxchen-yu.github.io/tags/wp/</link>
+        <pubDate>Tue, 07 Apr 2026 08:52:16 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/tags/wp/</guid>
+        <description></description>
+        </item>
+        
     </channel>
 </rss>
