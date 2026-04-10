@@ -24,8 +24,6 @@
 	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/1_hu_3654eb1278347982.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/1_hu_dd4657fc548193bd.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;BASIC&#34;
-	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;121&#34;
@@ -39,8 +37,6 @@
 	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/2_hu_5c838b1964b043c5.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/2_hu_9278918497e4be53.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;BASIC&#34;
-	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;283&#34;
@@ -48,7 +44,98 @@
 	
 &gt;&lt;br&gt;&lt;/p&gt;
 &lt;p&gt;发现flag&lt;/p&gt;
-</description>
+&lt;h3 id=&#34;basic_1&#34;&gt;BASIC_1
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/3.png&#34;
+	width=&#34;1630&#34;
+	height=&#34;1210&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/3_hu_1718316993ec4274.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/3_hu_72ce379b1b03ad1e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;134&#34;
+		data-flex-basis=&#34;323px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;尝试f12查看源码，结果给封了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/4.png&#34;
+	width=&#34;338&#34;
+	height=&#34;778&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/4_hu_c184764186453586.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/4_hu_6b42f8c6134f7c64.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;43&#34;
+		data-flex-basis=&#34;104px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;shift+ctrl+i打开开发者工具或者右上角的更多工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/5.png&#34;
+	width=&#34;600&#34;
+	height=&#34;257&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/5_hu_f68fdda6484b7e4c.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/5_hu_6615d7526ac356cb.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;233&#34;
+		data-flex-basis=&#34;560px&#34;
+	
+&gt;
+发现flag&lt;/p&gt;
+&lt;h3 id=&#34;basic_2&#34;&gt;BASIC_2
+&lt;/h3&gt;&lt;p&gt;打开网页发现只有“提交反馈”和“返回官网”能够交互“返回官网”内没有有效信息，查看源码也没有发现有用内容&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/6.png&#34;
+	width=&#34;1146&#34;
+	height=&#34;879&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/6_hu_b748dd4f5ef7e278.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/6_hu_f41956625a73857a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;130&#34;
+		data-flex-basis=&#34;312px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;使用抓包工具抓取提交反馈的请求，发现请求体中有个is_admin=0&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/7.png&#34;
+	width=&#34;750&#34;
+	height=&#34;466&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/7_hu_8fad55730ed81cb9.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/7_hu_28fa26d15e442414.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;386px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;尝试修改is_admin=1，进行发包，返回flag&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/8.png&#34;
+	width=&#34;735&#34;
+	height=&#34;304&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/8_hu_8ac1ae4b77a46540.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/8_hu_ed510a0a175c9862.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;241&#34;
+		data-flex-basis=&#34;580px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;basic_3&#34;&gt;BASIC_3
+&lt;/h3&gt;&lt;h3 id=&#34;basic_4&#34;&gt;BASIC_4
+&lt;/h3&gt;&lt;h3 id=&#34;basic_5&#34;&gt;BASIC_5
+&lt;/h3&gt;&lt;h3 id=&#34;basic_6&#34;&gt;BASIC_6
+&lt;/h3&gt;&lt;h3 id=&#34;basic_7&#34;&gt;BASIC_7
+&lt;/h3&gt;&lt;h3 id=&#34;basic_8&#34;&gt;BASIC_8
+&lt;/h3&gt;&lt;h3 id=&#34;basic_9&#34;&gt;BASIC_9
+&lt;/h3&gt;&lt;h3 id=&#34;basic_10&#34;&gt;BASIC_10
+&lt;/h3&gt;&lt;h3 id=&#34;basic_11&#34;&gt;BASIC_11
+&lt;/h3&gt;&lt;h3 id=&#34;basic_12&#34;&gt;BASIC_12
+&lt;/h3&gt;&lt;h3 id=&#34;basic_13&#34;&gt;BASIC_13
+&lt;/h3&gt;</description>
         </item>
         <item>
         <title>Archives</title>

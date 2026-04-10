@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。\n靶场地址：https://ctf.qingcen.net/\nBASIC BASIC 根据题目提示，f12查看源码\n发现flag\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。\n靶场地址：https://ctf.qingcen.net/\nBASIC BASIC 根据题目提示，f12查看源码\n发现flag\nBASIC_1 尝试f12查看源码，结果给封了\nshift+ctrl+i打开开发者工具或者右上角的更多工具\n发现flag\nBASIC_2 打开网页发现只有“提交反馈”和“返回官网”能够交互“返回官网”内没有有效信息，查看源码也没有发现有用内容\n使用抓包工具抓取提交反馈的请求，发现请求体中有个is_admin=0\n尝试修改is_admin=1，进行发包，返回flag\nBASIC_3 BASIC_4 BASIC_5 BASIC_6 BASIC_7 BASIC_8 BASIC_9 BASIC_10 BASIC_11 BASIC_12 BASIC_13 ">
 <title>QingCen靶场Web入门wp</title>
 
 <link rel='canonical' href='https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/'>
 
 <link rel="stylesheet" href="/scss/style.min.b0e76e98cdd4f7082d1fc36f7af7e0843a81201db2197c03ca426751dc923735.css"><meta property='og:title' content="QingCen靶场Web入门wp">
-<meta property='og:description' content="前言 最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。\n靶场地址：https://ctf.qingcen.net/\nBASIC BASIC 根据题目提示，f12查看源码\n发现flag\n">
+<meta property='og:description' content="前言 最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。\n靶场地址：https://ctf.qingcen.net/\nBASIC BASIC 根据题目提示，f12查看源码\n发现flag\nBASIC_1 尝试f12查看源码，结果给封了\nshift+ctrl+i打开开发者工具或者右上角的更多工具\n发现flag\nBASIC_2 打开网页发现只有“提交反馈”和“返回官网”能够交互“返回官网”内没有有效信息，查看源码也没有发现有用内容\n使用抓包工具抓取提交反馈的请求，发现请求体中有个is_admin=0\n尝试修改is_admin=1，进行发包，返回flag\nBASIC_3 BASIC_4 BASIC_5 BASIC_6 BASIC_7 BASIC_8 BASIC_9 BASIC_10 BASIC_11 BASIC_12 BASIC_13 ">
 <meta property='og:url' content='https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/'>
 <meta property='og:site_name' content='ChenOvo'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='wp' /><meta property='article:tag' content='web' /><meta property='article:published_time' content='2026-04-07T08:52:16&#43;08:00'/><meta property='article:modified_time' content='2026-04-07T08:52:16&#43;08:00'/>
 <meta name="twitter:title" content="QingCen靶场Web入门wp">
-<meta name="twitter:description" content="前言 最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。\n靶场地址：https://ctf.qingcen.net/\nBASIC BASIC 根据题目提示，f12查看源码\n发现flag\n">
+<meta name="twitter:description" content="前言 最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。\n靶场地址：https://ctf.qingcen.net/\nBASIC BASIC 根据题目提示，f12查看源码\n发现flag\nBASIC_1 尝试f12查看源码，结果给封了\nshift+ctrl+i打开开发者工具或者右上角的更多工具\n发现flag\nBASIC_2 打开网页发现只有“提交反馈”和“返回官网”能够交互“返回官网”内没有有效信息，查看源码也没有发现有用内容\n使用抓包工具抓取提交反馈的请求，发现请求体中有个is_admin=0\n尝试修改is_admin=1，进行发包，返回flag\nBASIC_3 BASIC_4 BASIC_5 BASIC_6 BASIC_7 BASIC_8 BASIC_9 BASIC_10 BASIC_11 BASIC_12 BASIC_13 ">
     </head>
     <body class="
     article-page
@@ -269,6 +269,19 @@
     <li><a href="#basic">BASIC</a>
       <ol>
         <li><a href="#basic-1">BASIC</a></li>
+        <li><a href="#basic_1">BASIC_1</a></li>
+        <li><a href="#basic_2">BASIC_2</a></li>
+        <li><a href="#basic_3">BASIC_3</a></li>
+        <li><a href="#basic_4">BASIC_4</a></li>
+        <li><a href="#basic_5">BASIC_5</a></li>
+        <li><a href="#basic_6">BASIC_6</a></li>
+        <li><a href="#basic_7">BASIC_7</a></li>
+        <li><a href="#basic_8">BASIC_8</a></li>
+        <li><a href="#basic_9">BASIC_9</a></li>
+        <li><a href="#basic_10">BASIC_10</a></li>
+        <li><a href="#basic_11">BASIC_11</a></li>
+        <li><a href="#basic_12">BASIC_12</a></li>
+        <li><a href="#basic_13">BASIC_13</a></li>
       </ol>
     </li>
   </ol>
@@ -361,8 +374,6 @@
 	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/1_hu_3654eb1278347982.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/1_hu_dd4657fc548193bd.png 1024w"
 	loading="lazy"
 	
-		alt="BASIC"
-	
 	
 		class="gallery-image" 
 		data-flex-grow="121"
@@ -376,8 +387,6 @@
 	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/2_hu_5c838b1964b043c5.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/2_hu_9278918497e4be53.png 1024w"
 	loading="lazy"
 	
-		alt="BASIC"
-	
 	
 		class="gallery-image" 
 		data-flex-grow="283"
@@ -385,7 +394,98 @@
 	
 ><br></p>
 <p>发现flag</p>
-
+<h3 id="basic_1">BASIC_1
+</h3><p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/3.png"
+	width="1630"
+	height="1210"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/3_hu_1718316993ec4274.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/3_hu_72ce379b1b03ad1e.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="134"
+		data-flex-basis="323px"
+	
+></p>
+<p>尝试f12查看源码，结果给封了</p>
+<p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/4.png"
+	width="338"
+	height="778"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/4_hu_c184764186453586.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/4_hu_6b42f8c6134f7c64.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="43"
+		data-flex-basis="104px"
+	
+></p>
+<p>shift+ctrl+i打开开发者工具或者右上角的更多工具</p>
+<p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/5.png"
+	width="600"
+	height="257"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/5_hu_f68fdda6484b7e4c.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/5_hu_6615d7526ac356cb.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="233"
+		data-flex-basis="560px"
+	
+>
+发现flag</p>
+<h3 id="basic_2">BASIC_2
+</h3><p>打开网页发现只有“提交反馈”和“返回官网”能够交互“返回官网”内没有有效信息，查看源码也没有发现有用内容</p>
+<p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/6.png"
+	width="1146"
+	height="879"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/6_hu_b748dd4f5ef7e278.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/6_hu_f41956625a73857a.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="130"
+		data-flex-basis="312px"
+	
+></p>
+<p>使用抓包工具抓取提交反馈的请求，发现请求体中有个is_admin=0</p>
+<p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/7.png"
+	width="750"
+	height="466"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/7_hu_8fad55730ed81cb9.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/7_hu_28fa26d15e442414.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="386px"
+	
+></p>
+<p>尝试修改is_admin=1，进行发包，返回flag</p>
+<p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/8.png"
+	width="735"
+	height="304"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/8_hu_8ac1ae4b77a46540.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/8_hu_ed510a0a175c9862.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="241"
+		data-flex-basis="580px"
+	
+></p>
+<h3 id="basic_3">BASIC_3
+</h3><h3 id="basic_4">BASIC_4
+</h3><h3 id="basic_5">BASIC_5
+</h3><h3 id="basic_6">BASIC_6
+</h3><h3 id="basic_7">BASIC_7
+</h3><h3 id="basic_8">BASIC_8
+</h3><h3 id="basic_9">BASIC_9
+</h3><h3 id="basic_10">BASIC_10
+</h3><h3 id="basic_11">BASIC_11
+</h3><h3 id="basic_12">BASIC_12
+</h3><h3 id="basic_13">BASIC_13
+</h3>
 </section>
 
 
