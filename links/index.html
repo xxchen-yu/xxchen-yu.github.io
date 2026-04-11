@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://xxchen-yu.github.io/links/'>
 
-<link rel="stylesheet" href="/scss/style.min.b0e76e98cdd4f7082d1fc36f7af7e0843a81201db2197c03ca426751dc923735.css"><meta property='og:title' content="Links">
+<link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="Links">
 <meta property='og:description' content="To use this feature, add links section to frontmatter.\nThis page&rsquo;s frontmatter:\n1 2 3 4 5 6 7 8 9 links: - title: GitHub description: GitHub is the world&#39;s largest software development platform. website: https://github.com image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png - title: TypeScript description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. website: https://www.typescriptlang.org image: ts-logo-128.jpg image field accepts both local and external images.\n">
 <meta property='og:url' content='https://xxchen-yu.github.io/links/'>
 <meta property='og:site_name' content='ChenOvo'>
@@ -534,35 +534,31 @@
 function initCollapsibleToc() {
     
     
-    const tocItems = document.querySelectorAll('.widget--toc li');
+    const topLinks = document.querySelectorAll('.widget--toc nav > ol > li');
 
-    tocItems.forEach(item => {
+    topLinks.forEach(li => {
         
-        const subList = item.querySelector('ul');
+        const subList = li.querySelector('ol, ul');
 
         if (subList) {
             
-            const link = item.querySelector('a');
-
-            
-            link.addEventListener('click', function(e) {
+            li.addEventListener('click', function(e) {
+                
+                e.stopPropagation();
                 
                 
-
                 
-                item.classList.toggle('active');
+                li.classList.toggle('expanded');
             });
         }
     });
 }
 
 
-document.addEventListener('DOMContentLoaded', initCollapsibleToc);
-
-
 document.addEventListener('stack:config', initCollapsibleToc);
-</script>
 
+document.addEventListener('DOMContentLoaded', initCollapsibleToc);
+</script>
 <style>
  
 
