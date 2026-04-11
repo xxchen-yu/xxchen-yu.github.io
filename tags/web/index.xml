@@ -16,9 +16,10 @@
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。&lt;/p&gt;
 &lt;p&gt;靶场地址：https://ctf.qingcen.net/&lt;/p&gt;
-&lt;h2 id=&#34;basic&#34;&gt;BASIC
-&lt;/h2&gt;&lt;h3 id=&#34;basic-1&#34;&gt;BASIC
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/1.png&#34;
+&lt;details&gt;
+&lt;summary&gt;BASIC&lt;/summary&gt;
+### BASIC
+&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/1.png&#34;
 	width=&#34;1490&#34;
 	height=&#34;1222&#34;
 	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/1_hu_3654eb1278347982.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/1_hu_dd4657fc548193bd.png 1024w&#34;
@@ -135,6 +136,53 @@
 &lt;/h3&gt;&lt;h3 id=&#34;basic_11&#34;&gt;BASIC_11
 &lt;/h3&gt;&lt;h3 id=&#34;basic_12&#34;&gt;BASIC_12
 &lt;/h3&gt;&lt;h3 id=&#34;basic_13&#34;&gt;BASIC_13
+&lt;/h3&gt;&lt;h3 id=&#34;basic_14&#34;&gt;BASIC_14
+&lt;/h3&gt;&lt;/details&gt;
+&lt;h2 id=&#34;ezrequest&#34;&gt;EZREQUEST
+&lt;/h2&gt;&lt;h3 id=&#34;ezrequest-1&#34;&gt;EZREQUEST
+&lt;/h3&gt;&lt;h3 id=&#34;ezrequest_1&#34;&gt;EZREQUEST_1
+&lt;/h3&gt;&lt;h2 id=&#34;ezphp&#34;&gt;EZPHP
+&lt;/h2&gt;&lt;h3 id=&#34;ezphp-1&#34;&gt;EZPHP
+&lt;/h3&gt;&lt;h3 id=&#34;ezphp_1&#34;&gt;EZPHP_1
+&lt;/h3&gt;&lt;h3 id=&#34;ezphp_2&#34;&gt;EZPHP_2
+&lt;/h3&gt;&lt;h2 id=&#34;ezmd5&#34;&gt;EZMD5
+&lt;/h2&gt;&lt;h3 id=&#34;ezmd5-1&#34;&gt;EZMD5
+&lt;/h3&gt;&lt;h3 id=&#34;ezmd5_1&#34;&gt;EZMD5_1
+&lt;/h3&gt;&lt;h3 id=&#34;ezmd5_2&#34;&gt;EZMD5_2
+&lt;/h3&gt;&lt;h3 id=&#34;ezmd5_3&#34;&gt;EZMD5_3
+&lt;/h3&gt;&lt;h3 id=&#34;ezmd5_4&#34;&gt;EZMD5_4
+&lt;/h3&gt;&lt;h3 id=&#34;ezmd5_5&#34;&gt;EZMD5_5
+&lt;/h3&gt;&lt;h3 id=&#34;ezmd5_6&#34;&gt;EZMD5_6
+&lt;/h3&gt;&lt;h2 id=&#34;ezinfoleak&#34;&gt;EZINFOLEAK
+&lt;/h2&gt;&lt;h3 id=&#34;ezinfoleak-1&#34;&gt;EZINFOLEAK
+&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_1&#34;&gt;EZINFOLEAK_1
+&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_2&#34;&gt;EZINFOLEAK_2
+&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_3&#34;&gt;EZINFOLEAK_3
+&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_4&#34;&gt;EZINFOLEAK_4
+&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_5&#34;&gt;EZINFOLEAK_5
+&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_6&#34;&gt;EZINFOLEAK_6
+&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_7&#34;&gt;EZINFOLEAK_7
+&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_8&#34;&gt;EZINFOLEAK_8
+&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_9&#34;&gt;EZINFOLEAK_9
+&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_10&#34;&gt;EZINFOLEAK_10
+&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_11&#34;&gt;EZINFOLEAK_11
+&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_12&#34;&gt;EZINFOLEAK_12
+&lt;/h3&gt;&lt;h2 id=&#34;ezcmd&#34;&gt;EZCMD
+&lt;/h2&gt;&lt;h3 id=&#34;ezcmd-1&#34;&gt;EZCMD
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_1&#34;&gt;EZCMD_1
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_2&#34;&gt;EZCMD_2
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_3&#34;&gt;EZCMD_3
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_4&#34;&gt;EZCMD_4
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_5&#34;&gt;EZCMD_5
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_6&#34;&gt;EZCMD_6
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_7&#34;&gt;EZCMD_7
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_8&#34;&gt;EZCMD_8
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_9&#34;&gt;EZCMD_9
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_10&#34;&gt;EZCMD_10
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_11&#34;&gt;EZCMD_11
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_12&#34;&gt;EZCMD_12
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_13&#34;&gt;EZCMD_13
+&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_14&#34;&gt;EZCMD_14
 &lt;/h3&gt;</description>
         </item>
         
