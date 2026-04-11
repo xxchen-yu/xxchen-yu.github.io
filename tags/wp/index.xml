@@ -16,10 +16,9 @@
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。&lt;/p&gt;
 &lt;p&gt;靶场地址：https://ctf.qingcen.net/&lt;/p&gt;
-&lt;details&gt;
-&lt;summary&gt;BASIC&lt;/summary&gt;
-### BASIC
-&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/1.png&#34;
+&lt;h2 id=&#34;basic&#34;&gt;BASIC
+&lt;/h2&gt;&lt;h3 id=&#34;basic-1&#34;&gt;BASIC
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/1.png&#34;
 	width=&#34;1490&#34;
 	height=&#34;1222&#34;
 	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/1_hu_3654eb1278347982.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/1_hu_dd4657fc548193bd.png 1024w&#34;
@@ -137,8 +136,7 @@
 &lt;/h3&gt;&lt;h3 id=&#34;basic_12&#34;&gt;BASIC_12
 &lt;/h3&gt;&lt;h3 id=&#34;basic_13&#34;&gt;BASIC_13
 &lt;/h3&gt;&lt;h3 id=&#34;basic_14&#34;&gt;BASIC_14
-&lt;/h3&gt;&lt;/details&gt;
-&lt;h2 id=&#34;ezrequest&#34;&gt;EZREQUEST
+&lt;/h3&gt;&lt;h2 id=&#34;ezrequest&#34;&gt;EZREQUEST
 &lt;/h2&gt;&lt;h3 id=&#34;ezrequest-1&#34;&gt;EZREQUEST
 &lt;/h3&gt;&lt;h3 id=&#34;ezrequest_1&#34;&gt;EZREQUEST_1
 &lt;/h3&gt;&lt;h2 id=&#34;ezphp&#34;&gt;EZPHP
