@@ -457,6 +457,77 @@
     z-index: -1;
   }
 </style>
+<script>
+function initCollapsibleToc() {
+    
+    
+    const tocItems = document.querySelectorAll('.widget--toc li');
 
+    tocItems.forEach(item => {
+        
+        const subList = item.querySelector('ul');
+
+        if (subList) {
+            
+            const link = item.querySelector('a');
+
+            
+            link.addEventListener('click', function(e) {
+                
+                
+
+                
+                item.classList.toggle('active');
+            });
+        }
+    });
+}
+
+
+document.addEventListener('DOMContentLoaded', initCollapsibleToc);
+
+
+document.addEventListener('stack:config', initCollapsibleToc);
+</script>
+
+<style>
+ 
+
+ 
+.widget--toc .toc .nav > li > ul {
+    display: none !important;
+    padding-left: 1rem;  
+    margin-top: 0.5rem;
+}
+
+ 
+.widget--toc .toc .nav > li.active > ul {
+    display: block !important;
+}
+
+ 
+.widget--toc .toc .nav > li > a {
+    position: relative;
+    padding-right: 20px;  
+}
+
+ 
+.widget--toc .toc .nav > li > a::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: #999;
+    transition: transform 0.2s;
+}
+
+ 
+.widget--toc .toc .nav > li.active > a::after {
+    content: '-';
+    color: #333;
+}
+</style>
     </body>
 </html>
