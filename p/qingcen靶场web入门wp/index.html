@@ -351,52 +351,45 @@
     </section>
 
     <style>
+     
     .collapsible-toc nav > ol > li {
         position: relative;
         margin: 6px 0;
         list-style: none;
     }
 
-     
     .collapsible-toc nav > ol > li > a {
         display: inline-flex;
         align-items: center;
-        cursor: pointer;
     }
 
      
-    .collapsible-toc nav > ol > li > .toc-arrow {
-        display: inline-flex;
-        align-items: center;
+    .collapsible-toc nav > ol > li > a::after {
+        content: '▶';
         margin-left: 6px;
-        cursor: pointer;
-        transition: transform 0.2s ease;
+        font-size: 10px;
         opacity: 0.5;
-        font-size: 12px;
-        vertical-align: middle;
+        transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
-    .collapsible-toc nav > ol > li:hover > .toc-arrow {
+    .collapsible-toc nav > ol > li:hover > a::after {
+        transform: rotate(90deg);
         opacity: 1;
-    }
-
-    .collapsible-toc nav > ol > li.collapsed > .toc-arrow {
-        transform: rotate(-90deg);
     }
 
      
     .collapsible-toc nav > ol > li > ol {
+        max-height: 0;
         overflow: hidden;
-        max-height: 2000px;
-        transition: max-height 0.3s ease-out, opacity 0.3s ease;
-        opacity: 1;
+        opacity: 0;
         margin-left: 16px;
-        padding-left: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
     }
 
-    .collapsible-toc nav > ol > li.collapsed > ol {
-        max-height: 0;
-        opacity: 0;
+     
+    .collapsible-toc nav > ol > li:hover > ol {
+        max-height: 2000px;
+        opacity: 1;
     }
 
      
@@ -404,62 +397,12 @@
         list-style: none;
         margin: 4px 0;
     }
+
+     
+    .collapsible-toc nav > ol > li:not(:has(> ol)) > a::after {
+        display: none;
+    }
     </style>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const tocItems = document.querySelectorAll('.collapsible-toc nav > ol > li');
-        
-        tocItems.forEach(item => {
-            const subList = item.querySelector(':scope > ol');
-            if (subList) {
-                
-                const arrow = document.createElement('span');
-                arrow.className = 'toc-arrow';
-                arrow.innerHTML = '▼';
-                arrow.title = '点击展开/折叠';
-                
-                
-                const link = item.querySelector(':scope > a');
-                if (link) {
-                    link.after(arrow);
-                    
-                    
-                    arrow.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        item.classList.toggle('collapsed');
-                        saveTocState(link.getAttribute('href'), item.classList.contains('collapsed'));
-                    });
-                }
-            }
-        });
-        
-        
-        restoreTocState();
-    });
-
-    function saveTocState(href, isCollapsed) {
-        let states = JSON.parse(localStorage.getItem('toc-item-states') || '{}');
-        states[href] = isCollapsed;
-        localStorage.setItem('toc-item-states', JSON.stringify(states));
-    }
-
-    function restoreTocState() {
-        const states = JSON.parse(localStorage.getItem('toc-item-states') || '{}');
-        const tocItems = document.querySelectorAll('.collapsible-toc nav > ol > li');
-        
-        tocItems.forEach(item => {
-            const link = item.querySelector(':scope > a');
-            if (link) {
-                const href = link.getAttribute('href');
-                if (states[href] === true) {
-                    item.classList.add('collapsed');
-                }
-            }
-        });
-    }
-    </script>
 
             
         
