@@ -230,14 +230,14 @@
 		data-flex-basis=&#34;266px&#34;
 	
 &gt;
-这是一段JavaScript混淆代码，利用ASCII码对关键字符串进行编码
-解码后:
-var _0 = [81, 67, 67, 84, 70, 95, 86, 73, 80, 95, 50, 48, 50, 54];  // &amp;ldquo;QCCTF_VIP_2026&amp;rdquo;
-var _1 = [47, 102, 108, 97, 103];  // &amp;ldquo;/flag&amp;rdquo;
-var _2 = [86, 73, 80, 95, 78, 79, 84, 95, 72, 69, 82, 69];  // &amp;ldquo;VIP_NOT_HERE&amp;rdquo;
-代码分析:
-String.fromCharCode()函数:将ASCII数字数组转换为字符串
-逻辑是点击提交按钮-&amp;gt;checkInvite()执行-&amp;gt;获取输入值-&amp;gt;与QCCTF_VIP_2026相同-&amp;gt;执行POST /flag，返回flag&lt;/p&gt;
+这是一段JavaScript混淆代码，利用ASCII码对关键字符串进行编码&lt;/p&gt;
+&lt;p&gt;解码后:&lt;/p&gt;
+&lt;p&gt;var _0 = [81, 67, 67, 84, 70, 95, 86, 73, 80, 95, 50, 48, 50, 54];  // &amp;ldquo;QCCTF_VIP_2026&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;var _1 = [47, 102, 108, 97, 103];  // &amp;ldquo;/flag&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;var _2 = [86, 73, 80, 95, 78, 79, 84, 95, 72, 69, 82, 69];  // &amp;ldquo;VIP_NOT_HERE&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;代码分析:&lt;/p&gt;
+&lt;p&gt;String.fromCharCode()函数:将ASCII数字数组转换为字符串&lt;/p&gt;
+&lt;p&gt;逻辑是点击提交按钮-&amp;gt;checkInvite()执行-&amp;gt;获取输入值-&amp;gt;与QCCTF_VIP_2026相同-&amp;gt;执行POST /flag，返回flag&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/17.png&#34;
 	width=&#34;1701&#34;
 	height=&#34;1090&#34;
