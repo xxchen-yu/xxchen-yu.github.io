@@ -125,9 +125,132 @@
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;basic_3&#34;&gt;BASIC_3
-&lt;/h3&gt;&lt;p&gt;哈哈哈&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;访问靶场
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/9.png&#34;
+	width=&#34;1292&#34;
+	height=&#34;984&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/9_hu_58ef1c8253ac6939.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/9_hu_e63864efc05ac42f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;131&#34;
+		data-flex-basis=&#34;315px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ctrl+u发现可疑的url js/key.js
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/10.png&#34;
+	width=&#34;1087&#34;
+	height=&#34;365&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/10_hu_7dca701652bbce52.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/10_hu_6310002787840109.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;297&#34;
+		data-flex-basis=&#34;714px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;跳转js/key.js，发现是JSfuck编码
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/11.png&#34;
+	width=&#34;2490&#34;
+	height=&#34;628&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/11_hu_b931a1bdc698908.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/11_hu_7a6c3d9495f058a0.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;396&#34;
+		data-flex-basis=&#34;951px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;直接在控制台输入JSfuck编码，解码后发现密码
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/12.png&#34;
+	width=&#34;2464&#34;
+	height=&#34;1063&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/12_hu_da445520a1149a43.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/12_hu_41983d67d8836aca.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;231&#34;
+		data-flex-basis=&#34;556px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;发现flag
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/13.png&#34;
+	width=&#34;1318&#34;
+	height=&#34;490&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/13_hu_27370f8086aeebb8.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/13_hu_955ad49ffeb6e012.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;268&#34;
+		data-flex-basis=&#34;645px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;basic_4&#34;&gt;BASIC_4
-&lt;/h3&gt;&lt;h3 id=&#34;basic_5&#34;&gt;BASIC_5
+&lt;/h3&gt;&lt;p&gt;访问靶场
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/14.png&#34;
+	width=&#34;2157&#34;
+	height=&#34;1085&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/14_hu_600da22eb158812a.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/14_hu_11fd300c5605d70e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;198&#34;
+		data-flex-basis=&#34;477px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;依旧ctrl+u 发现可疑的url
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/15.png&#34;
+	width=&#34;1384&#34;
+	height=&#34;553&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/15_hu_6e981f27cb3d5cdc.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/15_hu_8412db3bcc361e2b.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;250&#34;
+		data-flex-basis=&#34;600px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;跳转/static/main.js
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/16.png&#34;
+	width=&#34;1199&#34;
+	height=&#34;1080&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/16_hu_39f7b8e33a3e7a00.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/16_hu_666df9c7b858accc.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;111&#34;
+		data-flex-basis=&#34;266px&#34;
+	
+&gt;
+这是一段JavaScript混淆代码，利用ASCII码对关键字符串进行编码
+解码后:
+var _0 = [81, 67, 67, 84, 70, 95, 86, 73, 80, 95, 50, 48, 50, 54];  // &amp;ldquo;QCCTF_VIP_2026&amp;rdquo;
+var _1 = [47, 102, 108, 97, 103];  // &amp;ldquo;/flag&amp;rdquo;
+var _2 = [86, 73, 80, 95, 78, 79, 84, 95, 72, 69, 82, 69];  // &amp;ldquo;VIP_NOT_HERE&amp;rdquo;
+代码分析:
+String.fromCharCode()函数:将ASCII数字数组转换为字符串
+逻辑是点击提交按钮-&amp;gt;checkInvite()执行-&amp;gt;获取输入值-&amp;gt;与QCCTF_VIP_2026相同-&amp;gt;执行POST /flag，返回flag&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/17.png&#34;
+	width=&#34;1701&#34;
+	height=&#34;1090&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/17_hu_9db143abf6f20a67.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/17_hu_a9ea58845578c131.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;156&#34;
+		data-flex-basis=&#34;374px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;basic_5&#34;&gt;BASIC_5
 &lt;/h3&gt;&lt;h3 id=&#34;basic_6&#34;&gt;BASIC_6
 &lt;/h3&gt;&lt;h3 id=&#34;basic_7&#34;&gt;BASIC_7
 &lt;/h3&gt;&lt;h3 id=&#34;basic_8&#34;&gt;BASIC_8
