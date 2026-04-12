@@ -251,7 +251,65 @@
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;basic_5&#34;&gt;BASIC_5
-&lt;/h3&gt;&lt;h3 id=&#34;basic_6&#34;&gt;BASIC_6
+&lt;/h3&gt;&lt;p&gt;访问靶场
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/18.png&#34;
+	width=&#34;1548&#34;
+	height=&#34;1139&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/18_hu_f32a7f65ce460237.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/18_hu_c9a5d613cd788030.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;计算器分数提交页面&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;135&#34;
+		data-flex-basis=&#34;326px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;老规矩ctrl+u 发现可疑url /static/main.js&lt;/p&gt;
+&lt;p&gt;关键代码分析
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/19.png&#34;
+	width=&#34;1147&#34;
+	height=&#34;437&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/19_hu_3ec703abcedea258.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/19_hu_ea732ae21b9dbd61.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;262&#34;
+		data-flex-basis=&#34;629px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;分数 currentScore 完全在前端计算和存储，服务端 /claim 接口未验证分数真实性，直接信任前端提交的数据。&lt;/p&gt;
+&lt;p&gt;利用burp抓包，POST请求，发现&amp;quot;data&amp;quot;:&amp;ldquo;eyJzY29yZSI6MH0=&amp;rdquo; 即{&amp;ldquo;score&amp;rdquo;:0} 需要score为1000&lt;/p&gt;
+&lt;p&gt;将{&amp;ldquo;score&amp;rdquo;:1000} 编码为base64 eyJzY29yZSI6MTAwMH0=&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/20.png&#34;
+	width=&#34;1031&#34;
+	height=&#34;724&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/20_hu_e49d2df8ef4ecf79.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/20_hu_5aed0149f286e1ef.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;142&#34;
+		data-flex-basis=&#34;341px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;返回&amp;quot;data&amp;quot;:&amp;ldquo;eyJmbGFnIjogImZsYWd7YWVmNTBmY2QtMmQ2MS00NzM3LTg0YTctYWY5YTc2ZWE5MTExfSJ9&amp;rdquo;
+发现flag
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/21.png&#34;
+	width=&#34;1485&#34;
+	height=&#34;581&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/21_hu_b0a8ebd6f18b816e.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/21_hu_e23e7522cbe0aa28.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;255&#34;
+		data-flex-basis=&#34;613px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;basic_6&#34;&gt;BASIC_6
 &lt;/h3&gt;&lt;h3 id=&#34;basic_7&#34;&gt;BASIC_7
 &lt;/h3&gt;&lt;h3 id=&#34;basic_8&#34;&gt;BASIC_8
 &lt;/h3&gt;&lt;h3 id=&#34;basic_9&#34;&gt;BASIC_9
