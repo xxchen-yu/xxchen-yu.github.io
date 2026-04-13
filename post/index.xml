@@ -14,7 +14,7 @@
         
         <guid>https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言
-&lt;/h2&gt;&lt;p&gt;最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。(含ai成分)&lt;/p&gt;
 &lt;p&gt;靶场地址：https://ctf.qingcen.net/&lt;/p&gt;
 &lt;h2 id=&#34;basic&#34;&gt;BASIC
 &lt;/h2&gt;&lt;h3 id=&#34;basic-1&#34;&gt;BASIC
@@ -395,12 +395,277 @@
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;basic_9&#34;&gt;BASIC_9
-&lt;/h3&gt;&lt;h3 id=&#34;basic_10&#34;&gt;BASIC_10
-&lt;/h3&gt;&lt;h3 id=&#34;basic_11&#34;&gt;BASIC_11
-&lt;/h3&gt;&lt;h3 id=&#34;basic_12&#34;&gt;BASIC_12
-&lt;/h3&gt;&lt;h3 id=&#34;basic_13&#34;&gt;BASIC_13
-&lt;/h3&gt;&lt;h3 id=&#34;basic_14&#34;&gt;BASIC_14
-&lt;/h3&gt;&lt;h2 id=&#34;ezrequest&#34;&gt;EZREQUEST
+&lt;/h3&gt;&lt;p&gt;访问靶场
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/38.png&#34;
+	width=&#34;2056&#34;
+	height=&#34;1390&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/38_hu_3fc79dd9768b8dca.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/38_hu_421e570eafe2bd0a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;147&#34;
+		data-flex-basis=&#34;354px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;根据提示挨个试一试，index.phps没有，robots.txt有信息
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/39.png&#34;
+	width=&#34;447&#34;
+	height=&#34;188&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/39_hu_74885cd5fa5b5fa1.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/39_hu_d5c08f86733d0fb2.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;237&#34;
+		data-flex-basis=&#34;570px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;访问获得flag
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/40.png&#34;
+	width=&#34;1515&#34;
+	height=&#34;882&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/40_hu_f82aa47d81839d0f.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/40_hu_f5e32daf883140e6.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;412px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;basic_10&#34;&gt;BASIC_10
+&lt;/h3&gt;&lt;p&gt;访问靶场
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/41.png&#34;
+	width=&#34;1517&#34;
+	height=&#34;1138&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/41_hu_6065206f3447946.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/41_hu_ce4c9b10dbb2913a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;没发现有用信息，进行目录扫描(这里用的是dirsearch)&lt;/p&gt;
+&lt;p&gt;常用格式：python3 dirsearch.py -u &amp;lt;目标URL&amp;gt; [选项]；&lt;/p&gt;
+&lt;p&gt;-e 指定扩展名（如 -e php,html,txt）；&lt;/p&gt;
+&lt;p&gt;-w 指定字典文件，不指定则用默认字典；&lt;/p&gt;
+&lt;p&gt;-x 排除状态码（如 -x 403,404）可减少无效结果；&lt;/p&gt;
+&lt;p&gt;扫描结果会列出存在的路径与状态码，便于发现隐藏文件或后台。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/42.png&#34;
+	width=&#34;1260&#34;
+	height=&#34;330&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/42_hu_82ab3dcd9ddf3d3e.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/42_hu_11f73043448a6e59.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;381&#34;
+		data-flex-basis=&#34;916px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;扫出[04:18:53] 200 -  177B  - /sitemap.xml 进行访问
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/43.png&#34;
+	width=&#34;1331&#34;
+	height=&#34;534&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/43_hu_e2487bd0fc88123e.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/43_hu_30ec8d52d5cee98e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;249&#34;
+		data-flex-basis=&#34;598px&#34;
+	
+&gt;
+又发现/wqw.php，访问
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/44.png&#34;
+	width=&#34;679&#34;
+	height=&#34;254&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/44_hu_e7b69ef7754efcdf.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/44_hu_4a2d20e8f5556e5e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;267&#34;
+		data-flex-basis=&#34;641px&#34;
+	
+&gt;
+发现不是管理员权限,用hackbar进行修改user=admin,发送请求，获得flag
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/45.png&#34;
+	width=&#34;1720&#34;
+	height=&#34;995&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/45_hu_19b623189f8b9de9.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/45_hu_a797ed3791b208a0.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;172&#34;
+		data-flex-basis=&#34;414px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;basic_11&#34;&gt;BASIC_11
+&lt;/h3&gt;&lt;p&gt;访问靶场
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/46.png&#34;
+	width=&#34;1825&#34;
+	height=&#34;1141&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/46_hu_927441c3d45c790c.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/46_hu_9bb9ca72682e5852.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;159&#34;
+		data-flex-basis=&#34;383px&#34;
+	
+&gt;
+没有发现有用信息，robots.txt里是假的&lt;/p&gt;
+&lt;p&gt;继续目录扫描(这里用的是dirsearch) 字典&lt;a class=&#34;link&#34; href=&#34;https://xxchen-yu.github.io/files/httppath.txt&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;httppath.txt&lt;/a&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/47.png&#34;
+	width=&#34;1252&#34;
+	height=&#34;342&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/47_hu_a8260f525ab7225a.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/47_hu_bde5bd23e563fe18.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;366&#34;
+		data-flex-basis=&#34;878px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;扫出fl4g.php，访问,获得flag&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/48.png&#34;
+	width=&#34;1299&#34;
+	height=&#34;389&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/48_hu_7aebf06b55d0e5f2.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/48_hu_3f5d592a95bdb7e1.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;333&#34;
+		data-flex-basis=&#34;801px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;basic_12&#34;&gt;BASIC_12
+&lt;/h3&gt;&lt;p&gt;访问靶场
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/49.png&#34;
+	width=&#34;1627&#34;
+	height=&#34;762&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/49_hu_96cd213f57617a90.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/49_hu_164018b88ff3629b.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;213&#34;
+		data-flex-basis=&#34;512px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;点击各个文档，可以发现参数id发生变化，对参数id进行爆破
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/50.png&#34;
+	width=&#34;2271&#34;
+	height=&#34;665&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/50_hu_6e9caf11a33936b4.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/50_hu_6951152fa359753e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;341&#34;
+		data-flex-basis=&#34;819px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以发现id=121的长度和别的不一样且不在显示的几个文档中，访问
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/51.png&#34;
+	width=&#34;2496&#34;
+	height=&#34;344&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/51_hu_11cad3df6f0e4484.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/51_hu_c0775ea96fbab3b2.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;725&#34;
+		data-flex-basis=&#34;1741px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;找到flag
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/52.png&#34;
+	width=&#34;1516&#34;
+	height=&#34;492&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/52_hu_83ba098811fb4cf9.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/52_hu_48d246703e5c5ec2.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;308&#34;
+		data-flex-basis=&#34;739px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;basic_13&#34;&gt;BASIC_13
+&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/53.png&#34;
+	width=&#34;861&#34;
+	height=&#34;351&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/53_hu_19d1b5a325d769b7.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/53_hu_68850189b343869b.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;245&#34;
+		data-flex-basis=&#34;588px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;发现需要密码，且username为admin，一般是弱口令，尝试admin123,获得flag
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/54.png&#34;
+	width=&#34;1215&#34;
+	height=&#34;276&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/54_hu_f585975203db0041.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/54_hu_6ccdafcab765d11b.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;440&#34;
+		data-flex-basis=&#34;1056px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;basic_14&#34;&gt;BASIC_14
+&lt;/h3&gt;&lt;p&gt;访问靶场
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/55.png&#34;
+	width=&#34;1939&#34;
+	height=&#34;641&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/55_hu_b45937075f945f76.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/55_hu_c25f6e6e8c9b36e2.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;302&#34;
+		data-flex-basis=&#34;725px&#34;
+	
+&gt;
+虽然指定/admin_secret.txt 就能获得flag，但是长度不满足&amp;lt;17&lt;/p&gt;
+&lt;p&gt;代码中 $flag = fopen(&amp;rsquo;/admin_secret.txt&amp;rsquo;, &amp;lsquo;r&amp;rsquo;) 打开了目标文件，这会在进程中创建一个文件描述符。&lt;/p&gt;
+&lt;p&gt;在 Linux 中： fopen() 打开的文件会分配文件描述符，文件描述符可通过 /proc/self/fd/3~10 目录访问&lt;/p&gt;
+&lt;p&gt;?filename=/proc/self/fd/5 返回flag
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/56.png&#34;
+	width=&#34;1126&#34;
+	height=&#34;426&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/56_hu_fc3c97179d7e62df.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/56_hu_bdc6707804e2e982.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;264&#34;
+		data-flex-basis=&#34;634px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;ezrequest&#34;&gt;EZREQUEST
 &lt;/h2&gt;&lt;h3 id=&#34;ezrequest-1&#34;&gt;EZREQUEST
 &lt;/h3&gt;&lt;p&gt;访问靶场
 &lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/24.png&#34;

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。\n靶场地址：https://ctf.qingcen.net/\nBASIC BASIC 根据题目提示，f12查看源码\n发现flag\nBASIC_1 尝试f12查看源码，结果给封了\nshift+ctrl+i打开开发者工具或者右上角的更多工具\n发现flag\nBASIC_2 打开网页发现只有“提交反馈”和“返回官网”能够交互“返回官网”内没有有效信息，查看源码也没有发现有用内容\n使用抓包工具抓取提交反馈的请求，发现请求体中有个is_admin=0\n尝试修改is_admin=1，进行发包，返回flag\nBASIC_3 访问靶场 ">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。(含ai成分)\n靶场地址：https://ctf.qingcen.net/\nBASIC BASIC 根据题目提示，f12查看源码\n发现flag\nBASIC_1 尝试f12查看源码，结果给封了\nshift+ctrl+i打开开发者工具或者右上角的更多工具\n发现flag\nBASIC_2 打开网页发现只有“提交反馈”和“返回官网”能够交互“返回官网”内没有有效信息，查看源码也没有发现有用内容\n使用抓包工具抓取提交反馈的请求，发现请求体中有个is_admin=0\n尝试修改is_admin=1，进行发包，返回flag\nBASIC_3 访问靶场 ">
 <title>QingCen靶场Web入门wp</title>
 
 <link rel='canonical' href='https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="QingCen靶场Web入门wp">
-<meta property='og:description' content="前言 最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。\n靶场地址：https://ctf.qingcen.net/\nBASIC BASIC 根据题目提示，f12查看源码\n发现flag\nBASIC_1 尝试f12查看源码，结果给封了\nshift+ctrl+i打开开发者工具或者右上角的更多工具\n发现flag\nBASIC_2 打开网页发现只有“提交反馈”和“返回官网”能够交互“返回官网”内没有有效信息，查看源码也没有发现有用内容\n使用抓包工具抓取提交反馈的请求，发现请求体中有个is_admin=0\n尝试修改is_admin=1，进行发包，返回flag\nBASIC_3 访问靶场 ">
+<meta property='og:description' content="前言 最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。(含ai成分)\n靶场地址：https://ctf.qingcen.net/\nBASIC BASIC 根据题目提示，f12查看源码\n发现flag\nBASIC_1 尝试f12查看源码，结果给封了\nshift+ctrl+i打开开发者工具或者右上角的更多工具\n发现flag\nBASIC_2 打开网页发现只有“提交反馈”和“返回官网”能够交互“返回官网”内没有有效信息，查看源码也没有发现有用内容\n使用抓包工具抓取提交反馈的请求，发现请求体中有个is_admin=0\n尝试修改is_admin=1，进行发包，返回flag\nBASIC_3 访问靶场 ">
 <meta property='og:url' content='https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/'>
 <meta property='og:site_name' content='ChenOvo'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='wp' /><meta property='article:tag' content='web' /><meta property='article:published_time' content='2026-04-07T08:52:16&#43;08:00'/><meta property='article:modified_time' content='2026-04-07T08:52:16&#43;08:00'/>
 <meta name="twitter:title" content="QingCen靶场Web入门wp">
-<meta name="twitter:description" content="前言 最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。\n靶场地址：https://ctf.qingcen.net/\nBASIC BASIC 根据题目提示，f12查看源码\n发现flag\nBASIC_1 尝试f12查看源码，结果给封了\nshift+ctrl+i打开开发者工具或者右上角的更多工具\n发现flag\nBASIC_2 打开网页发现只有“提交反馈”和“返回官网”能够交互“返回官网”内没有有效信息，查看源码也没有发现有用内容\n使用抓包工具抓取提交反馈的请求，发现请求体中有个is_admin=0\n尝试修改is_admin=1，进行发包，返回flag\nBASIC_3 访问靶场 ">
+<meta name="twitter:description" content="前言 最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。(含ai成分)\n靶场地址：https://ctf.qingcen.net/\nBASIC BASIC 根据题目提示，f12查看源码\n发现flag\nBASIC_1 尝试f12查看源码，结果给封了\nshift+ctrl+i打开开发者工具或者右上角的更多工具\n发现flag\nBASIC_2 打开网页发现只有“提交反馈”和“返回官网”能够交互“返回官网”内没有有效信息，查看源码也没有发现有用内容\n使用抓包工具抓取提交反馈的请求，发现请求体中有个is_admin=0\n尝试修改is_admin=1，进行发包，返回flag\nBASIC_3 访问靶场 ">
     </head>
     <body class="
     article-page
@@ -571,7 +571,7 @@
     
     
     <h2 id="前言">前言
-</h2><p>最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。</p>
+</h2><p>最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。(含ai成分)</p>
 <p>靶场地址：https://ctf.qingcen.net/</p>
 <h2 id="basic">BASIC
 </h2><h3 id="basic-1">BASIC
@@ -952,12 +952,277 @@
 	
 ></p>
 <h3 id="basic_9">BASIC_9
-</h3><h3 id="basic_10">BASIC_10
-</h3><h3 id="basic_11">BASIC_11
-</h3><h3 id="basic_12">BASIC_12
-</h3><h3 id="basic_13">BASIC_13
-</h3><h3 id="basic_14">BASIC_14
-</h3><h2 id="ezrequest">EZREQUEST
+</h3><p>访问靶场
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/38.png"
+	width="2056"
+	height="1390"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/38_hu_3fc79dd9768b8dca.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/38_hu_421e570eafe2bd0a.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="147"
+		data-flex-basis="354px"
+	
+></p>
+<p>根据提示挨个试一试，index.phps没有，robots.txt有信息
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/39.png"
+	width="447"
+	height="188"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/39_hu_74885cd5fa5b5fa1.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/39_hu_d5c08f86733d0fb2.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="237"
+		data-flex-basis="570px"
+	
+></p>
+<p>访问获得flag
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/40.png"
+	width="1515"
+	height="882"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/40_hu_f82aa47d81839d0f.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/40_hu_f5e32daf883140e6.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="412px"
+	
+></p>
+<h3 id="basic_10">BASIC_10
+</h3><p>访问靶场
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/41.png"
+	width="1517"
+	height="1138"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/41_hu_6065206f3447946.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/41_hu_ce4c9b10dbb2913a.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="319px"
+	
+></p>
+<p>没发现有用信息，进行目录扫描(这里用的是dirsearch)</p>
+<p>常用格式：python3 dirsearch.py -u &lt;目标URL&gt; [选项]；</p>
+<p>-e 指定扩展名（如 -e php,html,txt）；</p>
+<p>-w 指定字典文件，不指定则用默认字典；</p>
+<p>-x 排除状态码（如 -x 403,404）可减少无效结果；</p>
+<p>扫描结果会列出存在的路径与状态码，便于发现隐藏文件或后台。</p>
+<p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/42.png"
+	width="1260"
+	height="330"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/42_hu_82ab3dcd9ddf3d3e.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/42_hu_11f73043448a6e59.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="381"
+		data-flex-basis="916px"
+	
+></p>
+<p>扫出[04:18:53] 200 -  177B  - /sitemap.xml 进行访问
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/43.png"
+	width="1331"
+	height="534"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/43_hu_e2487bd0fc88123e.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/43_hu_30ec8d52d5cee98e.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="249"
+		data-flex-basis="598px"
+	
+>
+又发现/wqw.php，访问
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/44.png"
+	width="679"
+	height="254"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/44_hu_e7b69ef7754efcdf.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/44_hu_4a2d20e8f5556e5e.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="267"
+		data-flex-basis="641px"
+	
+>
+发现不是管理员权限,用hackbar进行修改user=admin,发送请求，获得flag
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/45.png"
+	width="1720"
+	height="995"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/45_hu_19b623189f8b9de9.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/45_hu_a797ed3791b208a0.png 1024w"
+	loading="lazy"
+	
+		alt="flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="172"
+		data-flex-basis="414px"
+	
+></p>
+<h3 id="basic_11">BASIC_11
+</h3><p>访问靶场
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/46.png"
+	width="1825"
+	height="1141"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/46_hu_927441c3d45c790c.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/46_hu_9bb9ca72682e5852.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="159"
+		data-flex-basis="383px"
+	
+>
+没有发现有用信息，robots.txt里是假的</p>
+<p>继续目录扫描(这里用的是dirsearch) 字典<a class="link" href="https://xxchen-yu.github.io/files/httppath.txt"  target="_blank" rel="noopener"
+    >httppath.txt</a>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/47.png"
+	width="1252"
+	height="342"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/47_hu_a8260f525ab7225a.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/47_hu_bde5bd23e563fe18.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="366"
+		data-flex-basis="878px"
+	
+></p>
+<p>扫出fl4g.php，访问,获得flag</p>
+<p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/48.png"
+	width="1299"
+	height="389"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/48_hu_7aebf06b55d0e5f2.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/48_hu_3f5d592a95bdb7e1.png 1024w"
+	loading="lazy"
+	
+		alt="flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="333"
+		data-flex-basis="801px"
+	
+></p>
+<h3 id="basic_12">BASIC_12
+</h3><p>访问靶场
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/49.png"
+	width="1627"
+	height="762"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/49_hu_96cd213f57617a90.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/49_hu_164018b88ff3629b.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="213"
+		data-flex-basis="512px"
+	
+></p>
+<p>点击各个文档，可以发现参数id发生变化，对参数id进行爆破
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/50.png"
+	width="2271"
+	height="665"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/50_hu_6e9caf11a33936b4.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/50_hu_6951152fa359753e.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="341"
+		data-flex-basis="819px"
+	
+></p>
+<p>可以发现id=121的长度和别的不一样且不在显示的几个文档中，访问
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/51.png"
+	width="2496"
+	height="344"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/51_hu_11cad3df6f0e4484.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/51_hu_c0775ea96fbab3b2.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="725"
+		data-flex-basis="1741px"
+	
+></p>
+<p>找到flag
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/52.png"
+	width="1516"
+	height="492"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/52_hu_83ba098811fb4cf9.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/52_hu_48d246703e5c5ec2.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="308"
+		data-flex-basis="739px"
+	
+></p>
+<h3 id="basic_13">BASIC_13
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/53.png"
+	width="861"
+	height="351"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/53_hu_19d1b5a325d769b7.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/53_hu_68850189b343869b.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="245"
+		data-flex-basis="588px"
+	
+></p>
+<p>发现需要密码，且username为admin，一般是弱口令，尝试admin123,获得flag
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/54.png"
+	width="1215"
+	height="276"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/54_hu_f585975203db0041.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/54_hu_6ccdafcab765d11b.png 1024w"
+	loading="lazy"
+	
+		alt="flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="440"
+		data-flex-basis="1056px"
+	
+></p>
+<h3 id="basic_14">BASIC_14
+</h3><p>访问靶场
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/55.png"
+	width="1939"
+	height="641"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/55_hu_b45937075f945f76.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/55_hu_c25f6e6e8c9b36e2.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="302"
+		data-flex-basis="725px"
+	
+>
+虽然指定/admin_secret.txt 就能获得flag，但是长度不满足&lt;17</p>
+<p>代码中 $flag = fopen(&rsquo;/admin_secret.txt&rsquo;, &lsquo;r&rsquo;) 打开了目标文件，这会在进程中创建一个文件描述符。</p>
+<p>在 Linux 中： fopen() 打开的文件会分配文件描述符，文件描述符可通过 /proc/self/fd/3~10 目录访问</p>
+<p>?filename=/proc/self/fd/5 返回flag
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/56.png"
+	width="1126"
+	height="426"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/56_hu_fc3c97179d7e62df.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/56_hu_bdc6707804e2e982.png 1024w"
+	loading="lazy"
+	
+		alt="flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="264"
+		data-flex-basis="634px"
+	
+></p>
+<h2 id="ezrequest">EZREQUEST
 </h2><h3 id="ezrequest-1">EZREQUEST
 </h3><p>访问靶场
 <img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/24.png"
