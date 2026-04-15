@@ -1568,16 +1568,31 @@
 	
 >
 分析条件</p>
-<p>不能用 0e 开头的 MD5 字符串<br>
-$a != $b &amp;&amp; md5($a) == md5($b)<br>
-数组绕过:?a[]=1&amp;b[]=2<br>
-$a = [1]  (数组) $b = [2]   (数组)<br>
-$md5_a = md5([1])  → Warning + NULL<br>
-$md5_b = md5([2])  → Warning + NULL<br>
-substr(NULL, 0, 2)  → &rsquo;&rsquo; (不是 &lsquo;0e&rsquo;)<br>
-$a != $b          → true<br>
-$md5_a == $md5_b   → NULL == NULL → true</p>
-<p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/69.png"
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">不能用 0e 开头的 MD5 字符串  
+</span></span><span class="line"><span class="cl">$a != $b &amp;&amp; md5($a) == md5($b)   
+</span></span><span class="line"><span class="cl">数组绕过:?a[]=1&amp;b[]=2  
+</span></span><span class="line"><span class="cl">$a = [1]  (数组) $b = [2]   (数组)  
+</span></span><span class="line"><span class="cl">$md5_a = md5([1])  → Warning + NULL  
+</span></span><span class="line"><span class="cl">$md5_b = md5([2])  → Warning + NULL  
+</span></span><span class="line"><span class="cl">substr(NULL, 0, 2)  → &#39;&#39; (不是 &#39;0e&#39;)  
+</span></span><span class="line"><span class="cl">$a != $b          → true  
+</span></span><span class="line"><span class="cl">$md5_a == $md5_b   → NULL == NULL → true  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/69.png"
 	width="1115"
 	height="952"
 	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/69_hu_70a0584f6adf645f.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/69_hu_59d08958886c57e6.png 1024w"
