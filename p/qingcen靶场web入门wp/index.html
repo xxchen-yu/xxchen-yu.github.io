@@ -1568,15 +1568,15 @@
 	
 >
 分析条件</p>
-<p>不能用 0e 开头的 MD5 字符串</p>
-<p>$a != $b &amp;&amp; md5($a) == md5($b)</p>
-<p>数组绕过:?a[]=1&amp;b[]=2</p>
-<p>$a = [1]        (数组) $b = [2]        (数组)</p>
-<p>$md5_a = md5([1])  → Warning + NULL</p>
-<p>$md5_b = md5([2])  → Warning + NULL</p>
-<p>substr(NULL, 0, 2)  → &rsquo;&rsquo; (不是 &lsquo;0e&rsquo;)</p>
-<p>$a != $b           → true</p>
-<p>$md5_a == $md5_b   → NULL == NULL → true</p>
+<p>不能用 0e 开头的 MD5 字符串<br>
+$a != $b &amp;&amp; md5($a) == md5($b)<br>
+数组绕过:?a[]=1&amp;b[]=2<br>
+$a = [1]  (数组) $b = [2]   (数组)<br>
+$md5_a = md5([1])  → Warning + NULL<br>
+$md5_b = md5([2])  → Warning + NULL<br>
+substr(NULL, 0, 2)  → &rsquo;&rsquo; (不是 &lsquo;0e&rsquo;)<br>
+$a != $b          → true<br>
+$md5_a == $md5_b   → NULL == NULL → true</p>
 <p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/69.png"
 	width="1115"
 	height="952"

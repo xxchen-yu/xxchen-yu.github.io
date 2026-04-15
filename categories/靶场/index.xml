@@ -1011,15 +1011,15 @@
 	
 &gt;
 分析条件&lt;/p&gt;
-&lt;p&gt;不能用 0e 开头的 MD5 字符串&lt;/p&gt;
-&lt;p&gt;$a != $b &amp;amp;&amp;amp; md5($a) == md5($b)&lt;/p&gt;
-&lt;p&gt;数组绕过:?a[]=1&amp;amp;b[]=2&lt;/p&gt;
-&lt;p&gt;$a = [1]        (数组) $b = [2]        (数组)&lt;/p&gt;
-&lt;p&gt;$md5_a = md5([1])  → Warning + NULL&lt;/p&gt;
-&lt;p&gt;$md5_b = md5([2])  → Warning + NULL&lt;/p&gt;
-&lt;p&gt;substr(NULL, 0, 2)  → &amp;rsquo;&amp;rsquo; (不是 &amp;lsquo;0e&amp;rsquo;)&lt;/p&gt;
-&lt;p&gt;$a != $b           → true&lt;/p&gt;
-&lt;p&gt;$md5_a == $md5_b   → NULL == NULL → true&lt;/p&gt;
+&lt;p&gt;不能用 0e 开头的 MD5 字符串&lt;br&gt;
+$a != $b &amp;amp;&amp;amp; md5($a) == md5($b)&lt;br&gt;
+数组绕过:?a[]=1&amp;amp;b[]=2&lt;br&gt;
+$a = [1]  (数组) $b = [2]   (数组)&lt;br&gt;
+$md5_a = md5([1])  → Warning + NULL&lt;br&gt;
+$md5_b = md5([2])  → Warning + NULL&lt;br&gt;
+substr(NULL, 0, 2)  → &amp;rsquo;&amp;rsquo; (不是 &amp;lsquo;0e&amp;rsquo;)&lt;br&gt;
+$a != $b          → true&lt;br&gt;
+$md5_a == $md5_b   → NULL == NULL → true&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/69.png&#34;
 	width=&#34;1115&#34;
 	height=&#34;952&#34;
