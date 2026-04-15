@@ -1364,9 +1364,110 @@
 ></p>
 <h2 id="ezphp">EZPHP
 </h2><h3 id="ezphp-1">EZPHP
-</h3><h3 id="ezphp_1">EZPHP_1
-</h3><h3 id="ezphp_2">EZPHP_2
-</h3><h2 id="ezmd5">EZMD5
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/57.png"
+	width="877"
+	height="456"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/57_hu_5fcbeca366179b43.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/57_hu_57b17bae94b7e639.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="192"
+		data-flex-basis="461px"
+	
+>
+分析条件 使$a存在且弱类等于0 is_numeric($b)返回false $b&gt;2026</p>
+<p>绕过方法</p>
+<p>$a=&lsquo;a&rsquo;（字符串与0比较转为0）</p>
+<p>$b=&lsquo;2027a&rsquo;（含字母，不是纯数字）</p>
+<p>&lsquo;2027a&rsquo; 与数字比较时转为 2027</p>
+<p>拼接一下 最终Payload : ?a=a&amp;b=2027a</p>
+<p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/58.png"
+	width="949"
+	height="704"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/58_hu_b4b813aed13014d0.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/58_hu_b8348a478cbbb0c5.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="134"
+		data-flex-basis="323px"
+	
+></p>
+<h3 id="ezphp_1">EZPHP_1
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/59.png"
+	width="908"
+	height="415"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/59_hu_5b3aedb4d93c2395.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/59_hu_77c53d507c6f777e.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="218"
+		data-flex-basis="525px"
+	
+>
+分析条件</p>
+<p>array_search(&ldquo;QCCTF&rdquo;, $qc) 使用弱类型比较==(0 == &ldquo;QCCTF&rdquo;)为true</p>
+<p>$key === 1 返回的键名必须全等于1</p>
+<p>构造payload qc=[null,0]</p>
+<p>索引 0：null → null == &ldquo;QCCTF&rdquo; 为 false</p>
+<p>索引 1：0 → 0 == &ldquo;QCCTF&rdquo; 为 true ✓</p>
+<p>返回键名：1</p>
+<p>1 === 1 → true → 输出 flag
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/60.png"
+	width="1234"
+	height="720"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/60_hu_d508dec3a82ae2b6.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/60_hu_c6b7b1850885f880.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="411px"
+	
+></p>
+<h3 id="ezphp_2">EZPHP_2
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/61.png"
+	width="887"
+	height="343"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/61_hu_ff8de04f22b2aba2.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/61_hu_e61d3a5582e0255d.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="258"
+		data-flex-basis="620px"
+	
+>
+分析条件</p>
+<p>$qc[&ldquo;n&rdquo;] 存在、是数组、非空	    &ldquo;n&rdquo;: [0]</p>
+<p>array_search(&ldquo;QCCTF&rdquo;, $qc) 找到值	利用 0 == &ldquo;QCCTF&rdquo; 为 true</p>
+<p>array_search(&ldquo;QCyyds&rdquo;, $qc[&ldquo;n&rdquo;]) 找到值	利用 0 == &ldquo;QCyyds&rdquo; 为 true</p>
+<p>$qc[&ldquo;n&rdquo;] 中不能有真正的 &ldquo;QCyyds&rdquo;	用 0 代替字符串</p>
+<p>构造payload qc={&ldquo;n&rdquo;:[0],&ldquo;a&rdquo;:0}<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/62.png"
+	width="968"
+	height="537"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/62_hu_bf0f97ffb66467f5.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/62_hu_4af4025a39e20c8f.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="180"
+		data-flex-basis="432px"
+	
+></p>
+<h2 id="ezmd5">EZMD5
 </h2><h3 id="ezmd5-1">EZMD5
 </h3><h3 id="ezmd5_1">EZMD5_1
 </h3><h3 id="ezmd5_2">EZMD5_2
