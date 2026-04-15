@@ -912,13 +912,137 @@
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;ezmd5&#34;&gt;EZMD5
 &lt;/h2&gt;&lt;h3 id=&#34;ezmd5-1&#34;&gt;EZMD5
-&lt;/h3&gt;&lt;h3 id=&#34;ezmd5_1&#34;&gt;EZMD5_1
-&lt;/h3&gt;&lt;h3 id=&#34;ezmd5_2&#34;&gt;EZMD5_2
-&lt;/h3&gt;&lt;h3 id=&#34;ezmd5_3&#34;&gt;EZMD5_3
-&lt;/h3&gt;&lt;h3 id=&#34;ezmd5_4&#34;&gt;EZMD5_4
-&lt;/h3&gt;&lt;h3 id=&#34;ezmd5_5&#34;&gt;EZMD5_5
-&lt;/h3&gt;&lt;h3 id=&#34;ezmd5_6&#34;&gt;EZMD5_6
-&lt;/h3&gt;&lt;h2 id=&#34;ezinfoleak&#34;&gt;EZINFOLEAK
+&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/63.png&#34;
+	width=&#34;829&#34;
+	height=&#34;523&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/63_hu_778b6b36987e767a.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/63_hu_6a685c71d65f9d5b.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;158&#34;
+		data-flex-basis=&#34;380px&#34;
+	
+&gt;
+分析条件&lt;/p&gt;
+&lt;p&gt;比较方式 ==弱类型比较&lt;/p&gt;
+&lt;p&gt;$admin_hash	以 0e 开头的字符串&lt;/p&gt;
+&lt;p&gt;弱类型特性	0e&amp;hellip; 被当作科学计数法，值为 0&lt;/p&gt;
+&lt;p&gt;只要找到MD5值以0e开头的字符串&lt;/p&gt;
+&lt;p&gt;payload: QC=QNKCDZO
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/64.png&#34;
+	width=&#34;771&#34;
+	height=&#34;608&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/64_hu_29579a83e92b65ca.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/64_hu_778b31a3a15ab637.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;126&#34;
+		data-flex-basis=&#34;304px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezmd5_1&#34;&gt;EZMD5_1
+&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/65.png&#34;
+	width=&#34;806&#34;
+	height=&#34;477&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/65_hu_f7c7903293b76ddc.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/65_hu_1206ba172727a43f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;168&#34;
+		data-flex-basis=&#34;405px&#34;
+	
+&gt;
+分析条件&lt;/p&gt;
+&lt;p&gt;$a != $b	两个值不相等&lt;/p&gt;
+&lt;p&gt;md5($a) == md5($b)	MD5 弱类型相等&lt;/p&gt;
+&lt;p&gt;1:找到两个0e开头的字符串&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;0e&amp;hellip;&amp;rdquo; == &amp;ldquo;0e&amp;hellip;&amp;rdquo;  → 0 == 0 → true&lt;/p&gt;
+&lt;p&gt;payload: a=QNKCDZO&amp;amp;b=240610708
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66.png&#34;
+	width=&#34;955&#34;
+	height=&#34;754&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66_hu_235106fa476182b6.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66_hu_9903ab3713de2298.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;126&#34;
+		data-flex-basis=&#34;303px&#34;
+	
+&gt;
+2:数组绕过&lt;/p&gt;
+&lt;p&gt;md5(array) 返回 NULL，NULL == NULL 为 true&lt;/p&gt;
+&lt;p&gt;payload:a[]=1&amp;amp;b[]=2
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67.png&#34;
+	width=&#34;1123&#34;
+	height=&#34;835&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67_hu_1cce1149cd584108.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67_hu_5aaa167b7761f782.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;134&#34;
+		data-flex-basis=&#34;322px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezmd5_2&#34;&gt;EZMD5_2
+&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/68.png&#34;
+	width=&#34;1054&#34;
+	height=&#34;590&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/68_hu_d690b6f057d8e832.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/68_hu_91d261282393e2f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;178&#34;
+		data-flex-basis=&#34;428px&#34;
+	
+&gt;
+分析条件&lt;/p&gt;
+&lt;p&gt;不能用 0e 开头的 MD5 字符串&lt;/p&gt;
+&lt;p&gt;$a != $b &amp;amp;&amp;amp; md5($a) == md5($b)&lt;/p&gt;
+&lt;p&gt;数组绕过:?a[]=1&amp;amp;b[]=2&lt;/p&gt;
+&lt;p&gt;$a = [1]        (数组) $b = [2]        (数组)&lt;/p&gt;
+&lt;p&gt;$md5_a = md5([1])  → Warning + NULL&lt;/p&gt;
+&lt;p&gt;$md5_b = md5([2])  → Warning + NULL&lt;/p&gt;
+&lt;p&gt;substr(NULL, 0, 2)  → &amp;rsquo;&amp;rsquo; (不是 &amp;lsquo;0e&amp;rsquo;)&lt;/p&gt;
+&lt;p&gt;$a != $b           → true&lt;/p&gt;
+&lt;p&gt;$md5_a == $md5_b   → NULL == NULL → true&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/69.png&#34;
+	width=&#34;1115&#34;
+	height=&#34;952&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/69_hu_70a0584f6adf645f.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/69_hu_59d08958886c57e6.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;117&#34;
+		data-flex-basis=&#34;281px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezmd5_3&#34;&gt;EZMD5_3
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;/p&gt;
+&lt;h3 id=&#34;ezmd5_4&#34;&gt;EZMD5_4
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;/p&gt;
+&lt;h3 id=&#34;ezmd5_5&#34;&gt;EZMD5_5
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;/p&gt;
+&lt;h3 id=&#34;ezmd5_6&#34;&gt;EZMD5_6
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;/p&gt;
+&lt;h2 id=&#34;ezinfoleak&#34;&gt;EZINFOLEAK
 &lt;/h2&gt;&lt;h3 id=&#34;ezinfoleak-1&#34;&gt;EZINFOLEAK
 &lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_1&#34;&gt;EZINFOLEAK_1
 &lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_2&#34;&gt;EZINFOLEAK_2

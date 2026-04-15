@@ -555,7 +555,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -1469,13 +1469,137 @@
 ></p>
 <h2 id="ezmd5">EZMD5
 </h2><h3 id="ezmd5-1">EZMD5
-</h3><h3 id="ezmd5_1">EZMD5_1
-</h3><h3 id="ezmd5_2">EZMD5_2
-</h3><h3 id="ezmd5_3">EZMD5_3
-</h3><h3 id="ezmd5_4">EZMD5_4
-</h3><h3 id="ezmd5_5">EZMD5_5
-</h3><h3 id="ezmd5_6">EZMD5_6
-</h3><h2 id="ezinfoleak">EZINFOLEAK
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/63.png"
+	width="829"
+	height="523"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/63_hu_778b6b36987e767a.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/63_hu_6a685c71d65f9d5b.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="158"
+		data-flex-basis="380px"
+	
+>
+分析条件</p>
+<p>比较方式 ==弱类型比较</p>
+<p>$admin_hash	以 0e 开头的字符串</p>
+<p>弱类型特性	0e&hellip; 被当作科学计数法，值为 0</p>
+<p>只要找到MD5值以0e开头的字符串</p>
+<p>payload: QC=QNKCDZO
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/64.png"
+	width="771"
+	height="608"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/64_hu_29579a83e92b65ca.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/64_hu_778b31a3a15ab637.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="126"
+		data-flex-basis="304px"
+	
+></p>
+<h3 id="ezmd5_1">EZMD5_1
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/65.png"
+	width="806"
+	height="477"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/65_hu_f7c7903293b76ddc.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/65_hu_1206ba172727a43f.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="168"
+		data-flex-basis="405px"
+	
+>
+分析条件</p>
+<p>$a != $b	两个值不相等</p>
+<p>md5($a) == md5($b)	MD5 弱类型相等</p>
+<p>1:找到两个0e开头的字符串</p>
+<p>&ldquo;0e&hellip;&rdquo; == &ldquo;0e&hellip;&rdquo;  → 0 == 0 → true</p>
+<p>payload: a=QNKCDZO&amp;b=240610708
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66.png"
+	width="955"
+	height="754"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66_hu_235106fa476182b6.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66_hu_9903ab3713de2298.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="126"
+		data-flex-basis="303px"
+	
+>
+2:数组绕过</p>
+<p>md5(array) 返回 NULL，NULL == NULL 为 true</p>
+<p>payload:a[]=1&amp;b[]=2
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67.png"
+	width="1123"
+	height="835"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67_hu_1cce1149cd584108.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67_hu_5aaa167b7761f782.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="134"
+		data-flex-basis="322px"
+	
+></p>
+<h3 id="ezmd5_2">EZMD5_2
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/68.png"
+	width="1054"
+	height="590"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/68_hu_d690b6f057d8e832.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/68_hu_91d261282393e2f.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="178"
+		data-flex-basis="428px"
+	
+>
+分析条件</p>
+<p>不能用 0e 开头的 MD5 字符串</p>
+<p>$a != $b &amp;&amp; md5($a) == md5($b)</p>
+<p>数组绕过:?a[]=1&amp;b[]=2</p>
+<p>$a = [1]        (数组) $b = [2]        (数组)</p>
+<p>$md5_a = md5([1])  → Warning + NULL</p>
+<p>$md5_b = md5([2])  → Warning + NULL</p>
+<p>substr(NULL, 0, 2)  → &rsquo;&rsquo; (不是 &lsquo;0e&rsquo;)</p>
+<p>$a != $b           → true</p>
+<p>$md5_a == $md5_b   → NULL == NULL → true</p>
+<p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/69.png"
+	width="1115"
+	height="952"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/69_hu_70a0584f6adf645f.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/69_hu_59d08958886c57e6.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="117"
+		data-flex-basis="281px"
+	
+></p>
+<h3 id="ezmd5_3">EZMD5_3
+</h3><p>访问靶机</p>
+<h3 id="ezmd5_4">EZMD5_4
+</h3><p>访问靶机</p>
+<h3 id="ezmd5_5">EZMD5_5
+</h3><p>访问靶机</p>
+<h3 id="ezmd5_6">EZMD5_6
+</h3><p>访问靶机</p>
+<h2 id="ezinfoleak">EZINFOLEAK
 </h2><h3 id="ezinfoleak-1">EZINFOLEAK
 </h3><h3 id="ezinfoleak_1">EZINFOLEAK_1
 </h3><h3 id="ezinfoleak_2">EZINFOLEAK_2
