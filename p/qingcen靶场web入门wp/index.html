@@ -1517,12 +1517,23 @@
 	
 >
 分析条件</p>
-<p>$a != $b	两个值不相等</p>
-<p>md5($a) == md5($b)	MD5 弱类型相等</p>
-<p>1:找到两个0e开头的字符串</p>
-<p>&ldquo;0e&hellip;&rdquo; == &ldquo;0e&hellip;&rdquo;  → 0 == 0 → true</p>
-<p>payload: a=QNKCDZO&amp;b=240610708
-<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66.png"
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">$</span><span class="n">a</span> <span class="o">!=</span> <span class="o">$</span><span class="n">b</span>	<span class="err">两个值不相等</span>  
+</span></span><span class="line"><span class="cl"><span class="n">md5</span><span class="p">(</span><span class="o">$</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">md5</span><span class="p">(</span><span class="o">$</span><span class="n">b</span><span class="p">)</span>	<span class="n">MD5</span> <span class="err">弱类型相等</span>  
+</span></span><span class="line"><span class="cl"><span class="mi">1</span><span class="p">:</span><span class="err">找到两个</span><span class="mi">0</span><span class="n">e开头的字符串</span>  
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;0e...&#34;</span> <span class="o">==</span> <span class="s2">&#34;0e...&#34;</span>  <span class="err">→</span> <span class="mi">0</span> <span class="o">==</span> <span class="mi">0</span> <span class="err">→</span> <span class="bp">true</span>  
+</span></span><span class="line"><span class="cl"><span class="n">payload</span><span class="p">:</span> <span class="n">a</span><span class="o">=</span><span class="n">QNKCDZO</span><span class="o">&amp;</span><span class="n">b</span><span class="o">=</span><span class="mi">240610708</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66.png"
 	width="955"
 	height="754"
 	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66_hu_235106fa476182b6.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66_hu_9903ab3713de2298.png 1024w"
@@ -1537,9 +1548,19 @@
 	
 >
 2:数组绕过</p>
-<p>md5(array) 返回 NULL，NULL == NULL 为 true</p>
-<p>payload:a[]=1&amp;b[]=2
-<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67.png"
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">md5</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="err">返回</span> <span class="n">NULL</span><span class="err">，</span><span class="n">NULL</span> <span class="o">==</span> <span class="n">NULL</span> <span class="err">为</span> <span class="bp">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span><span class="p">:</span><span class="n">a</span><span class="p">[]</span><span class="o">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="n">b</span><span class="p">[]</span><span class="o">=</span><span class="mi">2</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67.png"
 	width="1123"
 	height="835"
 	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67_hu_1cce1149cd584108.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67_hu_5aaa167b7761f782.png 1024w"
