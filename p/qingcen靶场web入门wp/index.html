@@ -1661,7 +1661,7 @@ payload: ?a[]=1&amp;b[]=2<br>
 		data-flex-basis="345px"
 	
 >
-分析条件<br>
+分析条件 <br>
 GET 参数 QC<br>
 MD5 值最后6位等于 d54e23</p>
 <p>MD5后六位碰撞</p>
@@ -1718,9 +1718,70 @@ payload: ?QC=gsdj5<br>
 	
 ></p>
 <h3 id="ezmd5_5">EZMD5_5
-</h3><p>访问靶机</p>
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/74.png"
+	width="827"
+	height="519"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/74_hu_659b63ec6ab8430f.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/74_hu_9d47ed2e3e7d067d.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="159"
+		data-flex-basis="382px"
+	
+>
+分析条件<br>
+$a != $b：两个值不相等<br>
+sha1($a) == sha1($b)：两个sha1值相等<br>
+sha1() 处理数组返回 false：当传入数组时，sha1() 函数会报错并返回 false<br>
+依旧可以使用数组绕过  只要两个数组不一样即可，且sha1都返回false<br>
+payload: ?a[]=1&amp;b[]=2<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/75.png"
+	width="1056"
+	height="842"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/75_hu_b3a9878f584bde57.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/75_hu_f95fec634e913a38.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="125"
+		data-flex-basis="300px"
+	
+></p>
 <h3 id="ezmd5_6">EZMD5_6
-</h3><p>访问靶机</p>
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/76.png"
+	width="756"
+	height="594"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/76_hu_45bfba170ee93209.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/76_hu_5424d3b0c3fe3972.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="127"
+		data-flex-basis="305px"
+	
+>
+分析条件<br>
+和上一题类似，只是从弱类型比较变成强类型比较</p>
+<p>payload: ?a[]=1&amp;b[]=2<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/77.png"
+	width="1050"
+	height="838"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/77_hu_12e3129e9e8fecc7.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/77_hu_fce61ec8b3084ed3.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="125"
+		data-flex-basis="300px"
+	
+></p>
 <h2 id="ezinfoleak">EZINFOLEAK
 </h2><h3 id="ezinfoleak-1">EZINFOLEAK
 </h3><h3 id="ezinfoleak_1">EZINFOLEAK_1
