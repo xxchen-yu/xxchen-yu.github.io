@@ -789,11 +789,20 @@
 >
 这是一段JavaScript混淆代码，利用ASCII码对关键字符串进行编码</p>
 <p>解码后:</p>
-<p>var _0 = [81, 67, 67, 84, 70, 95, 86, 73, 80, 95, 50, 48, 50, 54];  // &ldquo;QCCTF_VIP_2026&rdquo;</p>
-<p>var _1 = [47, 102, 108, 97, 103];  // &ldquo;/flag&rdquo;</p>
-<p>var _2 = [86, 73, 80, 95, 78, 79, 84, 95, 72, 69, 82, 69];  // &ldquo;VIP_NOT_HERE&rdquo;</p>
-<p>代码分析:</p>
-<p>String.fromCharCode()函数:将ASCII数字数组转换为字符串</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">var</span> <span class="n">_0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">81</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">54</span><span class="p">];</span>  <span class="o">//</span> <span class="s2">&#34;QCCTF_VIP_2026&#34;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">var</span> <span class="n">_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">47</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">97</span><span class="p">,</span> <span class="mi">103</span><span class="p">];</span>  <span class="o">//</span> <span class="s2">&#34;/flag&#34;</span>  
+</span></span><span class="line"><span class="cl"><span class="k">var</span> <span class="n">_2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">86</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">69</span><span class="p">];</span>  <span class="o">//</span> <span class="s2">&#34;VIP_NOT_HERE&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>代码分析:
+String.fromCharCode()函数:将ASCII数字数组转换为字符串</p>
 <p>逻辑是点击提交按钮-&gt;checkInvite()执行-&gt;获取输入值-&gt;与QCCTF_VIP_2026相同-&gt;执行POST /flag，返回flag</p>
 <p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/17.png"
 	width="1701"
@@ -1517,23 +1526,12 @@
 	
 >
 分析条件</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">$</span><span class="n">a</span> <span class="o">!=</span> <span class="o">$</span><span class="n">b</span>	<span class="err">两个值不相等</span>  
-</span></span><span class="line"><span class="cl"><span class="n">md5</span><span class="p">(</span><span class="o">$</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">md5</span><span class="p">(</span><span class="o">$</span><span class="n">b</span><span class="p">)</span>	<span class="n">MD5</span> <span class="err">弱类型相等</span>  
-</span></span><span class="line"><span class="cl"><span class="mi">1</span><span class="p">:</span><span class="err">找到两个</span><span class="mi">0</span><span class="n">e开头的字符串</span>  
-</span></span><span class="line"><span class="cl"><span class="s2">&#34;0e...&#34;</span> <span class="o">==</span> <span class="s2">&#34;0e...&#34;</span>  <span class="err">→</span> <span class="mi">0</span> <span class="o">==</span> <span class="mi">0</span> <span class="err">→</span> <span class="bp">true</span>  
-</span></span><span class="line"><span class="cl"><span class="n">payload</span><span class="p">:</span> <span class="n">a</span><span class="o">=</span><span class="n">QNKCDZO</span><span class="o">&amp;</span><span class="n">b</span><span class="o">=</span><span class="mi">240610708</span>  
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66.png"
+<p>$a!=$b	两个值不相等<br>
+md5($a)==md5($b) MD5 弱类型相等<br>
+1:找到两个0e开头的字符串<br>
+&ldquo;0e&hellip;&quot;==&ldquo;0e&hellip;&rdquo;  → 0 == 0 → true<br>
+payload: a=QNKCDZO&amp;b=240610708<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66.png"
 	width="955"
 	height="754"
 	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66_hu_235106fa476182b6.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/66_hu_9903ab3713de2298.png 1024w"
@@ -1547,20 +1545,10 @@
 		data-flex-basis="303px"
 	
 >
-2:数组绕过</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">md5</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="err">返回</span> <span class="n">NULL</span><span class="err">，</span><span class="n">NULL</span> <span class="o">==</span> <span class="n">NULL</span> <span class="err">为</span> <span class="bp">true</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">payload</span><span class="p">:</span><span class="n">a</span><span class="p">[]</span><span class="o">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="n">b</span><span class="p">[]</span><span class="o">=</span><span class="mi">2</span>  
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67.png"
+2:数组绕过
+md5(array) 返回 NULL，NULL == NULL 为 true</p>
+<p>payload:a[]=1&amp;b[]=2<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67.png"
 	width="1123"
 	height="835"
 	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67_hu_1cce1149cd584108.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/67_hu_5aaa167b7761f782.png 1024w"
@@ -1628,9 +1616,107 @@
 	
 ></p>
 <h3 id="ezmd5_3">EZMD5_3
-</h3><p>访问靶机</p>
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/70.png"
+	width="762"
+	height="470"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/70_hu_cfe25709b0dcb7cd.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/70_hu_909b311c8f88c083.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="162"
+		data-flex-basis="389px"
+	
+>
+$a != $b	两个值不相等<br>
+md5($a) === md5($b)	MD5 全等比较</p>
+<p>不影响使用数组绕过
+payload: ?a[]=1&amp;b[]=2<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/71.png"
+	width="1054"
+	height="853"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/71_hu_9018d5531d7d4468.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/71_hu_47d4b8b7332abaca.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="123"
+		data-flex-basis="296px"
+	
+></p>
 <h3 id="ezmd5_4">EZMD5_4
-</h3><p>访问靶机</p>
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/72.png"
+	width="690"
+	height="480"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/72_hu_d7b10efbc77ec1e1.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/72_hu_100cbc12a76cd5ac.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="143"
+		data-flex-basis="345px"
+	
+>
+分析条件<br>
+GET 参数 QC<br>
+MD5 值最后6位等于 d54e23</p>
+<p>MD5后六位碰撞</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">import</span> <span class="n">hashlib</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">string</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;d54e23&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">chars</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">length</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">from</span> <span class="n">itertools</span> <span class="n">import</span> <span class="n">product</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">combo</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">chars</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">length</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">combo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">md5_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">md5_hash</span><span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">:]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;Found: {s}&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;MD5: {md5_hash}&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">exit</span><span class="p">()</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>找到字符串：gsdj5<br>
+payload: ?QC=gsdj5<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/73.png"
+	width="842"
+	height="730"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/73_hu_347a68755cafb917.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/73_hu_8592d33a1fd6a179.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="115"
+		data-flex-basis="276px"
+	
+></p>
 <h3 id="ezmd5_5">EZMD5_5
 </h3><p>访问靶机</p>
 <h3 id="ezmd5_6">EZMD5_6
