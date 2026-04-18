@@ -829,12 +829,12 @@ String.fromCharCode()函数:将ASCII数字数组转换为字符串&lt;/p&gt;
 		data-flex-basis=&#34;461px&#34;
 	
 &gt;
-分析条件 使$a存在且弱类等于0 is_numeric($b)返回false $b&amp;gt;2026&lt;/p&gt;
-&lt;p&gt;绕过方法&lt;/p&gt;
-&lt;p&gt;$a=&amp;lsquo;a&amp;rsquo;（字符串与0比较转为0）&lt;/p&gt;
-&lt;p&gt;$b=&amp;lsquo;2027a&amp;rsquo;（含字母，不是纯数字）&lt;/p&gt;
-&lt;p&gt;&amp;lsquo;2027a&amp;rsquo; 与数字比较时转为 2027&lt;/p&gt;
-&lt;p&gt;拼接一下 最终Payload : ?a=a&amp;amp;b=2027a&lt;/p&gt;
+分析条件 使$a存在且弱类等于0 is_numeric($b)返回false $b&amp;gt;2026&lt;br&gt;
+绕过方法&lt;br&gt;
+$a=&amp;lsquo;a&amp;rsquo;（字符串与0比较转为0）&lt;br&gt;
+$b=&amp;lsquo;2027a&amp;rsquo;（含字母，不是纯数字）&lt;br&gt;
+&amp;lsquo;2027a&amp;rsquo; 与数字比较时转为 2027&lt;br&gt;
+拼接一下 最终Payload : ?a=a&amp;amp;b=2027a&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/58.png&#34;
 	width=&#34;949&#34;
 	height=&#34;704&#34;
@@ -955,7 +955,7 @@ String.fromCharCode()函数:将ASCII数字数组转换为字符串&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;ezmd5_1&#34;&gt;EZMD5_1
-&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
 &lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/65.png&#34;
 	width=&#34;806&#34;
 	height=&#34;477&#34;
@@ -967,7 +967,7 @@ String.fromCharCode()函数:将ASCII数字数组转换为字符串&lt;/p&gt;
 		data-flex-grow=&#34;168&#34;
 		data-flex-basis=&#34;405px&#34;
 	
-&gt;
+&gt;&lt;br&gt;
 分析条件&lt;/p&gt;
 &lt;p&gt;$a!=$b	两个值不相等&lt;br&gt;
 md5($a)==md5($b) MD5 弱类型相等&lt;br&gt;
@@ -1006,7 +1006,7 @@ md5(array) 返回 NULL，NULL == NULL 为 true&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;ezmd5_2&#34;&gt;EZMD5_2
-&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
 &lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/68.png&#34;
 	width=&#34;1054&#34;
 	height=&#34;590&#34;
@@ -1059,7 +1059,7 @@ md5(array) 返回 NULL，NULL == NULL 为 true&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;ezmd5_3&#34;&gt;EZMD5_3
-&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
 &lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/70.png&#34;
 	width=&#34;762&#34;
 	height=&#34;470&#34;
@@ -1091,7 +1091,7 @@ payload: ?a[]=1&amp;amp;b[]=2&lt;br&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;ezmd5_4&#34;&gt;EZMD5_4
-&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
 &lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/72.png&#34;
 	width=&#34;690&#34;
 	height=&#34;480&#34;
@@ -1227,13 +1227,324 @@ payload: ?a[]=1&amp;amp;b[]=2&lt;br&gt;
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;ezinfoleak&#34;&gt;EZINFOLEAK
 &lt;/h2&gt;&lt;h3 id=&#34;ezinfoleak-1&#34;&gt;EZINFOLEAK
-&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_1&#34;&gt;EZINFOLEAK_1
-&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_2&#34;&gt;EZINFOLEAK_2
-&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_3&#34;&gt;EZINFOLEAK_3
-&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_4&#34;&gt;EZINFOLEAK_4
-&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_5&#34;&gt;EZINFOLEAK_5
-&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_6&#34;&gt;EZINFOLEAK_6
-&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_7&#34;&gt;EZINFOLEAK_7
+&lt;/h3&gt;&lt;p&gt;访问靶场
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/78.png&#34;
+	width=&#34;1602&#34;
+	height=&#34;886&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/78_hu_b0f37cbafbcce3c9.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/78_hu_b46e263a81356a3c.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;433px&#34;
+	
+&gt;
+依次点开日志查看信息
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/79.png&#34;
+	width=&#34;1382&#34;
+	height=&#34;242&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/79_hu_856b845aae58b601.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/79_hu_7565b9eb840decd3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;571&#34;
+		data-flex-basis=&#34;1370px&#34;
+	
+&gt;
+发现base64编码&lt;br&gt;
+secret_file_b64=Zmw0Zy50eHQ=&lt;br&gt;
+解码后为 secret_file_b64=fl4g.txt&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/80.png&#34;
+	width=&#34;1537&#34;
+	height=&#34;736&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/80_hu_68b707437a404d29.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/80_hu_88c351bf764d9fd8.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;501px&#34;
+	
+&gt;
+路径穿越获得flag ../../../fl4g.txt&lt;/p&gt;
+&lt;h3 id=&#34;ezinfoleak_1&#34;&gt;EZINFOLEAK_1
+&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/81.png&#34;
+	width=&#34;1691&#34;
+	height=&#34;696&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/81_hu_c7adecf3d790da58.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/81_hu_3c9f7396fb8af9bc.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;242&#34;
+		data-flex-basis=&#34;583px&#34;
+	
+&gt;
+和上一题一样
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/82.png&#34;
+	width=&#34;1473&#34;
+	height=&#34;364&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/82_hu_df2d9e13a8fe98ce.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/82_hu_615c0a1e0946bcf0.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;404&#34;
+		data-flex-basis=&#34;971px&#34;
+	
+&gt;
+发现base64编码&lt;br&gt;
+secret_file_b64=Zmw0Zy50eHQ=&lt;br&gt;
+解码后为 secret_file_b64=fl4g.txt&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/83.png&#34;
+	width=&#34;1451&#34;
+	height=&#34;443&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/83_hu_e8f7a81427b82f47.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/83_hu_4272ef044565cb5a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;327&#34;
+		data-flex-basis=&#34;786px&#34;
+	
+&gt;
+路径穿越  ../../../fl4g.txt 但是没有flag回显 发现过滤了../
+利用双写绕过 &amp;hellip;.//&amp;hellip;.//&amp;hellip;.//fl4g.txt
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/84.png&#34;
+	width=&#34;1447&#34;
+	height=&#34;437&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/84_hu_f2f730c1babb049f.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/84_hu_9f8849608f7d6b32.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;331&#34;
+		data-flex-basis=&#34;794px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezinfoleak_2&#34;&gt;EZINFOLEAK_2
+&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/85.png&#34;
+	width=&#34;1628&#34;
+	height=&#34;694&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/85_hu_7ad7a4694e79ea2b.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/85_hu_2c840f1cb77f29ed.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;234&#34;
+		data-flex-basis=&#34;562px&#34;
+	
+&gt;
+没发现有用信息  怀疑flag在环境变量中
+环境变量存储敏感信息：Docker容器常将Flag存放在环境变量中&lt;br&gt;
+/proc/1/environ：存储PID=1进程的环境变量&lt;br&gt;
+利用路径穿越 /../../../../../../proc/1/environ
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/86.png&#34;
+	width=&#34;2505&#34;
+	height=&#34;601&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/86_hu_e49fca65fb5126f9.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/86_hu_e741265f5d7429.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;416&#34;
+		data-flex-basis=&#34;1000px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezinfoleak_3&#34;&gt;EZINFOLEAK_3
+&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/87.png&#34;
+	width=&#34;1602&#34;
+	height=&#34;871&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/87_hu_1acee9d85e027a50.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/87_hu_7cd533893ac2ee64.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;183&#34;
+		data-flex-basis=&#34;441px&#34;
+	
+&gt;
+尝试常见PHP诊断路径 phpinfo.php&lt;br&gt;
+在页面搜索flag&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/88.png&#34;
+	width=&#34;1533&#34;
+	height=&#34;743&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/88_hu_b1af02710cc68108.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/88_hu_7298e2f51ea8cac7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;206&#34;
+		data-flex-basis=&#34;495px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezinfoleak_4&#34;&gt;EZINFOLEAK_4
+&lt;/h3&gt;&lt;p&gt;访问靶场
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/89.png&#34;
+	width=&#34;1775&#34;
+	height=&#34;1110&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/89_hu_d97daa2fdb90be5.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/89_hu_8d3ee7c028b0d031.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;159&#34;
+		data-flex-basis=&#34;383px&#34;
+	
+&gt;
+是一个烟花发射器页面，没有可用信息&lt;br&gt;
+用dirsearch扫描一下&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/90.png&#34;
+	width=&#34;1459&#34;
+	height=&#34;631&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/90_hu_72e7ac90643a3d6c.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/90_hu_6b930a1ff5fd9e7e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;231&#34;
+		data-flex-basis=&#34;554px&#34;
+	
+&gt;
+发现是.git源码泄露  用GitHack还原源码&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/91.png&#34;
+	width=&#34;488&#34;
+	height=&#34;123&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/91_hu_4f711799d37c2402.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/91_hu_c9ee1c16f020712c.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;396&#34;
+		data-flex-basis=&#34;952px&#34;
+	
+&gt;
+获得flag
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/92.png&#34;
+	width=&#34;421&#34;
+	height=&#34;123&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/92_hu_f953a0f29047f3a6.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/92_hu_9d26cc256b58823e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;342&#34;
+		data-flex-basis=&#34;821px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezinfoleak_5&#34;&gt;EZINFOLEAK_5
+&lt;/h3&gt;&lt;p&gt;还是放烟花
+用dirsearch扫描一下&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/93.png&#34;
+	width=&#34;1267&#34;
+	height=&#34;603&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/93_hu_c714cce2bf15af5d.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/93_hu_4afa520169f17b09.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;210&#34;
+		data-flex-basis=&#34;504px&#34;
+	
+&gt;
+感觉还是.git源码泄露&lt;br&gt;
+用GitHack还原源码&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/94.png&#34;
+	width=&#34;533&#34;
+	height=&#34;125&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/94_hu_1589101006cec82d.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/94_hu_b5b4e0d20ec968ae.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;426&#34;
+		data-flex-basis=&#34;1023px&#34;
+	
+&gt;
+发现HKBRLMlv.php
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/95.png&#34;
+	width=&#34;713&#34;
+	height=&#34;258&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/95_hu_a711ccfb2cd32b0f.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/95_hu_e3df25a87f5abc76.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;276&#34;
+		data-flex-basis=&#34;663px&#34;
+	
+&gt;
+用POST请求就可以获得flag
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/96.png&#34;
+	width=&#34;1059&#34;
+	height=&#34;549&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/96_hu_4373b496ca8fccbd.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/96_hu_66f707d5127b2def.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;192&#34;
+		data-flex-basis=&#34;462px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezinfoleak_6&#34;&gt;EZINFOLEAK_6
+&lt;/h3&gt;&lt;p&gt;依旧放烟花
+没信息用dirsearch扫描一下&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/97.png&#34;
+	width=&#34;1473&#34;
+	height=&#34;614&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/97_hu_c2268931a5958403.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/97_hu_54279c0ce52aeaef.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;239&#34;
+		data-flex-basis=&#34;575px&#34;
+	
+&gt;
+发现是.git源码泄露&lt;br&gt;
+由于GitHack只能还原最新版本&lt;br&gt;
+所以用脚本自动还原所有版本&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;1.txt&#34; &gt;脚本&lt;/a&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/98.png&#34;
+	width=&#34;594&#34;
+	height=&#34;424&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/98_hu_440f8bc119dbcf3d.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/98_hu_43a7653419a1ae64.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;140&#34;
+		data-flex-basis=&#34;336px&#34;
+	
+&gt;
+获得flag
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/99.png&#34;
+	width=&#34;465&#34;
+	height=&#34;153&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/99_hu_e543e568fa6de2dd.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/99_hu_bba91946eb8db8ac.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;303&#34;
+		data-flex-basis=&#34;729px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezinfoleak_7&#34;&gt;EZINFOLEAK_7
 &lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_8&#34;&gt;EZINFOLEAK_8
 &lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_9&#34;&gt;EZINFOLEAK_9
 &lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_10&#34;&gt;EZINFOLEAK_10
@@ -1241,7 +1552,69 @@ payload: ?a[]=1&amp;amp;b[]=2&lt;br&gt;
 &lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_12&#34;&gt;EZINFOLEAK_12
 &lt;/h3&gt;&lt;h2 id=&#34;ezcmd&#34;&gt;EZCMD
 &lt;/h2&gt;&lt;h3 id=&#34;ezcmd-1&#34;&gt;EZCMD
-&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_1&#34;&gt;EZCMD_1
+&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd1.png&#34;
+	width=&#34;598&#34;
+	height=&#34;245&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd1_hu_9e646210b5b1b8cd.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd1_hu_317c4b6ff51dc59c.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;244&#34;
+		data-flex-basis=&#34;585px&#34;
+	
+&gt;
+分析条件&lt;br&gt;
+escapeshellcmd() 的局限性:&lt;br&gt;
+该函数用于转义shell元字符，防止命令注入&lt;br&gt;
+但它不阻止执行单个命令&lt;br&gt;
+只转义 ; | &amp;amp; $ ( )  &amp;lt; &amp;gt; 等特殊字符&lt;br&gt;
+不影响ls，cat等命令
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd2.png&#34;
+	width=&#34;599&#34;
+	height=&#34;567&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd2_hu_6f7e7ca15ae7dbb1.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd2_hu_863e32e02499fed.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;105&#34;
+		data-flex-basis=&#34;253px&#34;
+	
+&gt;
+查看根目录
+cmd=ls ../&lt;br&gt;
+cmd=ls ../../&lt;br&gt;
+cmd=ls ../../../&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd3.png&#34;
+	width=&#34;917&#34;
+	height=&#34;589&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd3_hu_93f5f0ae056b917f.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd3_hu_dc02e7db1d10d4da.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;155&#34;
+		data-flex-basis=&#34;373px&#34;
+	
+&gt;
+cmd=cat ../../../flag&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd4.png&#34;
+	width=&#34;736&#34;
+	height=&#34;577&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd4_hu_262d34a8e0421243.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd4_hu_f2d30737cb0d97f7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;127&#34;
+		data-flex-basis=&#34;306px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezcmd_1&#34;&gt;EZCMD_1
 &lt;/h3&gt;&lt;h3 id=&#34;ezcmd_2&#34;&gt;EZCMD_2
 &lt;/h3&gt;&lt;h3 id=&#34;ezcmd_3&#34;&gt;EZCMD_3
 &lt;/h3&gt;&lt;h3 id=&#34;ezcmd_4&#34;&gt;EZCMD_4

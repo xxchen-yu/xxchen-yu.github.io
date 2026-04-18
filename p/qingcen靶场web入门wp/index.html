@@ -555,7 +555,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 4 分钟
                 </time>
             </div>
         
@@ -1386,12 +1386,12 @@ String.fromCharCode()函数:将ASCII数字数组转换为字符串</p>
 		data-flex-basis="461px"
 	
 >
-分析条件 使$a存在且弱类等于0 is_numeric($b)返回false $b&gt;2026</p>
-<p>绕过方法</p>
-<p>$a=&lsquo;a&rsquo;（字符串与0比较转为0）</p>
-<p>$b=&lsquo;2027a&rsquo;（含字母，不是纯数字）</p>
-<p>&lsquo;2027a&rsquo; 与数字比较时转为 2027</p>
-<p>拼接一下 最终Payload : ?a=a&amp;b=2027a</p>
+分析条件 使$a存在且弱类等于0 is_numeric($b)返回false $b&gt;2026<br>
+绕过方法<br>
+$a=&lsquo;a&rsquo;（字符串与0比较转为0）<br>
+$b=&lsquo;2027a&rsquo;（含字母，不是纯数字）<br>
+&lsquo;2027a&rsquo; 与数字比较时转为 2027<br>
+拼接一下 最终Payload : ?a=a&amp;b=2027a</p>
 <p><img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/58.png"
 	width="949"
 	height="704"
@@ -1512,7 +1512,7 @@ String.fromCharCode()函数:将ASCII数字数组转换为字符串</p>
 	
 ></p>
 <h3 id="ezmd5_1">EZMD5_1
-</h3><p>访问靶机
+</h3><p>访问靶机<br>
 <img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/65.png"
 	width="806"
 	height="477"
@@ -1524,7 +1524,7 @@ String.fromCharCode()函数:将ASCII数字数组转换为字符串</p>
 		data-flex-grow="168"
 		data-flex-basis="405px"
 	
->
+><br>
 分析条件</p>
 <p>$a!=$b	两个值不相等<br>
 md5($a)==md5($b) MD5 弱类型相等<br>
@@ -1563,7 +1563,7 @@ md5(array) 返回 NULL，NULL == NULL 为 true</p>
 	
 ></p>
 <h3 id="ezmd5_2">EZMD5_2
-</h3><p>访问靶机
+</h3><p>访问靶机<br>
 <img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/68.png"
 	width="1054"
 	height="590"
@@ -1616,7 +1616,7 @@ md5(array) 返回 NULL，NULL == NULL 为 true</p>
 	
 ></p>
 <h3 id="ezmd5_3">EZMD5_3
-</h3><p>访问靶机
+</h3><p>访问靶机<br>
 <img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/70.png"
 	width="762"
 	height="470"
@@ -1648,7 +1648,7 @@ payload: ?a[]=1&amp;b[]=2<br>
 	
 ></p>
 <h3 id="ezmd5_4">EZMD5_4
-</h3><p>访问靶机
+</h3><p>访问靶机<br>
 <img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/72.png"
 	width="690"
 	height="480"
@@ -1784,13 +1784,324 @@ payload: ?a[]=1&amp;b[]=2<br>
 ></p>
 <h2 id="ezinfoleak">EZINFOLEAK
 </h2><h3 id="ezinfoleak-1">EZINFOLEAK
-</h3><h3 id="ezinfoleak_1">EZINFOLEAK_1
-</h3><h3 id="ezinfoleak_2">EZINFOLEAK_2
-</h3><h3 id="ezinfoleak_3">EZINFOLEAK_3
-</h3><h3 id="ezinfoleak_4">EZINFOLEAK_4
-</h3><h3 id="ezinfoleak_5">EZINFOLEAK_5
-</h3><h3 id="ezinfoleak_6">EZINFOLEAK_6
-</h3><h3 id="ezinfoleak_7">EZINFOLEAK_7
+</h3><p>访问靶场
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/78.png"
+	width="1602"
+	height="886"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/78_hu_b0f37cbafbcce3c9.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/78_hu_b46e263a81356a3c.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="180"
+		data-flex-basis="433px"
+	
+>
+依次点开日志查看信息
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/79.png"
+	width="1382"
+	height="242"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/79_hu_856b845aae58b601.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/79_hu_7565b9eb840decd3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="571"
+		data-flex-basis="1370px"
+	
+>
+发现base64编码<br>
+secret_file_b64=Zmw0Zy50eHQ=<br>
+解码后为 secret_file_b64=fl4g.txt<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/80.png"
+	width="1537"
+	height="736"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/80_hu_68b707437a404d29.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/80_hu_88c351bf764d9fd8.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="208"
+		data-flex-basis="501px"
+	
+>
+路径穿越获得flag ../../../fl4g.txt</p>
+<h3 id="ezinfoleak_1">EZINFOLEAK_1
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/81.png"
+	width="1691"
+	height="696"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/81_hu_c7adecf3d790da58.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/81_hu_3c9f7396fb8af9bc.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="242"
+		data-flex-basis="583px"
+	
+>
+和上一题一样
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/82.png"
+	width="1473"
+	height="364"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/82_hu_df2d9e13a8fe98ce.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/82_hu_615c0a1e0946bcf0.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="404"
+		data-flex-basis="971px"
+	
+>
+发现base64编码<br>
+secret_file_b64=Zmw0Zy50eHQ=<br>
+解码后为 secret_file_b64=fl4g.txt<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/83.png"
+	width="1451"
+	height="443"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/83_hu_e8f7a81427b82f47.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/83_hu_4272ef044565cb5a.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="327"
+		data-flex-basis="786px"
+	
+>
+路径穿越  ../../../fl4g.txt 但是没有flag回显 发现过滤了../
+利用双写绕过 &hellip;.//&hellip;.//&hellip;.//fl4g.txt
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/84.png"
+	width="1447"
+	height="437"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/84_hu_f2f730c1babb049f.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/84_hu_9f8849608f7d6b32.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="331"
+		data-flex-basis="794px"
+	
+></p>
+<h3 id="ezinfoleak_2">EZINFOLEAK_2
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/85.png"
+	width="1628"
+	height="694"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/85_hu_7ad7a4694e79ea2b.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/85_hu_2c840f1cb77f29ed.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="234"
+		data-flex-basis="562px"
+	
+>
+没发现有用信息  怀疑flag在环境变量中
+环境变量存储敏感信息：Docker容器常将Flag存放在环境变量中<br>
+/proc/1/environ：存储PID=1进程的环境变量<br>
+利用路径穿越 /../../../../../../proc/1/environ
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/86.png"
+	width="2505"
+	height="601"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/86_hu_e49fca65fb5126f9.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/86_hu_e741265f5d7429.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="416"
+		data-flex-basis="1000px"
+	
+></p>
+<h3 id="ezinfoleak_3">EZINFOLEAK_3
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/87.png"
+	width="1602"
+	height="871"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/87_hu_1acee9d85e027a50.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/87_hu_7cd533893ac2ee64.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="441px"
+	
+>
+尝试常见PHP诊断路径 phpinfo.php<br>
+在页面搜索flag<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/88.png"
+	width="1533"
+	height="743"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/88_hu_b1af02710cc68108.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/88_hu_7298e2f51ea8cac7.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="206"
+		data-flex-basis="495px"
+	
+></p>
+<h3 id="ezinfoleak_4">EZINFOLEAK_4
+</h3><p>访问靶场
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/89.png"
+	width="1775"
+	height="1110"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/89_hu_d97daa2fdb90be5.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/89_hu_8d3ee7c028b0d031.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="159"
+		data-flex-basis="383px"
+	
+>
+是一个烟花发射器页面，没有可用信息<br>
+用dirsearch扫描一下<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/90.png"
+	width="1459"
+	height="631"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/90_hu_72e7ac90643a3d6c.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/90_hu_6b930a1ff5fd9e7e.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="231"
+		data-flex-basis="554px"
+	
+>
+发现是.git源码泄露  用GitHack还原源码<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/91.png"
+	width="488"
+	height="123"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/91_hu_4f711799d37c2402.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/91_hu_c9ee1c16f020712c.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="396"
+		data-flex-basis="952px"
+	
+>
+获得flag
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/92.png"
+	width="421"
+	height="123"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/92_hu_f953a0f29047f3a6.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/92_hu_9d26cc256b58823e.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="342"
+		data-flex-basis="821px"
+	
+></p>
+<h3 id="ezinfoleak_5">EZINFOLEAK_5
+</h3><p>还是放烟花
+用dirsearch扫描一下<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/93.png"
+	width="1267"
+	height="603"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/93_hu_c714cce2bf15af5d.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/93_hu_4afa520169f17b09.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="210"
+		data-flex-basis="504px"
+	
+>
+感觉还是.git源码泄露<br>
+用GitHack还原源码<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/94.png"
+	width="533"
+	height="125"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/94_hu_1589101006cec82d.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/94_hu_b5b4e0d20ec968ae.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="426"
+		data-flex-basis="1023px"
+	
+>
+发现HKBRLMlv.php
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/95.png"
+	width="713"
+	height="258"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/95_hu_a711ccfb2cd32b0f.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/95_hu_e3df25a87f5abc76.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="276"
+		data-flex-basis="663px"
+	
+>
+用POST请求就可以获得flag
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/96.png"
+	width="1059"
+	height="549"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/96_hu_4373b496ca8fccbd.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/96_hu_66f707d5127b2def.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="192"
+		data-flex-basis="462px"
+	
+></p>
+<h3 id="ezinfoleak_6">EZINFOLEAK_6
+</h3><p>依旧放烟花
+没信息用dirsearch扫描一下<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/97.png"
+	width="1473"
+	height="614"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/97_hu_c2268931a5958403.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/97_hu_54279c0ce52aeaef.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="239"
+		data-flex-basis="575px"
+	
+>
+发现是.git源码泄露<br>
+由于GitHack只能还原最新版本<br>
+所以用脚本自动还原所有版本<br>
+<a class="link" href="1.txt" >脚本</a>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/98.png"
+	width="594"
+	height="424"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/98_hu_440f8bc119dbcf3d.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/98_hu_43a7653419a1ae64.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="140"
+		data-flex-basis="336px"
+	
+>
+获得flag
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/99.png"
+	width="465"
+	height="153"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/99_hu_e543e568fa6de2dd.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/99_hu_bba91946eb8db8ac.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="303"
+		data-flex-basis="729px"
+	
+></p>
+<h3 id="ezinfoleak_7">EZINFOLEAK_7
 </h3><h3 id="ezinfoleak_8">EZINFOLEAK_8
 </h3><h3 id="ezinfoleak_9">EZINFOLEAK_9
 </h3><h3 id="ezinfoleak_10">EZINFOLEAK_10
@@ -1798,7 +2109,69 @@ payload: ?a[]=1&amp;b[]=2<br>
 </h3><h3 id="ezinfoleak_12">EZINFOLEAK_12
 </h3><h2 id="ezcmd">EZCMD
 </h2><h3 id="ezcmd-1">EZCMD
-</h3><h3 id="ezcmd_1">EZCMD_1
+</h3><p>访问靶机
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd1.png"
+	width="598"
+	height="245"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd1_hu_9e646210b5b1b8cd.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd1_hu_317c4b6ff51dc59c.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="244"
+		data-flex-basis="585px"
+	
+>
+分析条件<br>
+escapeshellcmd() 的局限性:<br>
+该函数用于转义shell元字符，防止命令注入<br>
+但它不阻止执行单个命令<br>
+只转义 ; | &amp; $ ( )  &lt; &gt; 等特殊字符<br>
+不影响ls，cat等命令
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd2.png"
+	width="599"
+	height="567"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd2_hu_6f7e7ca15ae7dbb1.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd2_hu_863e32e02499fed.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="105"
+		data-flex-basis="253px"
+	
+>
+查看根目录
+cmd=ls ../<br>
+cmd=ls ../../<br>
+cmd=ls ../../../<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd3.png"
+	width="917"
+	height="589"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd3_hu_93f5f0ae056b917f.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd3_hu_dc02e7db1d10d4da.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="155"
+		data-flex-basis="373px"
+	
+>
+cmd=cat ../../../flag<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd4.png"
+	width="736"
+	height="577"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd4_hu_262d34a8e0421243.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd4_hu_f2d30737cb0d97f7.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="127"
+		data-flex-basis="306px"
+	
+></p>
+<h3 id="ezcmd_1">EZCMD_1
 </h3><h3 id="ezcmd_2">EZCMD_2
 </h3><h3 id="ezcmd_3">EZCMD_3
 </h3><h3 id="ezcmd_4">EZCMD_4
