@@ -1545,11 +1545,251 @@ secret_file_b64=Zmw0Zy50eHQ=&lt;br&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;ezinfoleak_7&#34;&gt;EZINFOLEAK_7
-&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_8&#34;&gt;EZINFOLEAK_8
-&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_9&#34;&gt;EZINFOLEAK_9
-&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_10&#34;&gt;EZINFOLEAK_10
-&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_11&#34;&gt;EZINFOLEAK_11
-&lt;/h3&gt;&lt;h3 id=&#34;ezinfoleak_12&#34;&gt;EZINFOLEAK_12
+&lt;/h3&gt;&lt;p&gt;访问靶场&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/100.png&#34;
+	width=&#34;874&#34;
+	height=&#34;703&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/100_hu_d21a644b99a48023.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/100_hu_6956c10ab53cb641.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;124&#34;
+		data-flex-basis=&#34;298px&#34;
+	
+&gt;&lt;br&gt;
+既然是信息泄露，应该不是sql注入的做法&lt;br&gt;
+没有信息，使用dirsearch扫描一下&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/101.png&#34;
+	width=&#34;772&#34;
+	height=&#34;284&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/101_hu_7616c7389d657793.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/101_hu_3f2075484208cca5.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;271&#34;
+		data-flex-basis=&#34;652px&#34;
+	
+&gt;&lt;br&gt;
+/.svn/entries: 这是老版本 SVN 的特征文件，证明存在泄露。&lt;br&gt;
+存在.svn泄露&lt;br&gt;
+下载wc.db文件，这是一个SQLite数据库&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/102.png&#34;
+	width=&#34;1542&#34;
+	height=&#34;952&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/102_hu_425b3b07d0783b7f.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/102_hu_1e516c7d228a8b5a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;161&#34;
+		data-flex-basis=&#34;388px&#34;
+	
+&gt;
+使用 SQLite Viewer  在线打开 wc.db&lt;br&gt;
+查看 NODES 表，找到文件名和 checksum&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/103.png&#34;
+	width=&#34;1225&#34;
+	height=&#34;444&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/103_hu_cefad7e3a2cb63f2.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/103_hu_de17507e3af8d8bc.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;275&#34;
+		data-flex-basis=&#34;662px&#34;
+	
+&gt;
+SVN pristine 文件路径格式:&lt;br&gt;
+/.svn/pristine/[前2位]/[完整sha1].svn-base&lt;br&gt;
+访问flag.php文件&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/104.png&#34;
+	width=&#34;1235&#34;
+	height=&#34;376&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/104_hu_35c8c2e0b3efec4.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/104_hu_3357d8fa862528b9.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;328&#34;
+		data-flex-basis=&#34;788px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezinfoleak_8&#34;&gt;EZINFOLEAK_8
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/105.png&#34;
+	width=&#34;1455&#34;
+	height=&#34;1009&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/105_hu_ea926ad160df6ff0.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/105_hu_9fc2f8c32d3b7a72.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;346px&#34;
+	
+&gt;
+没什么有用信息，用dirsearch扫描&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/106.png&#34;
+	width=&#34;890&#34;
+	height=&#34;423&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/106_hu_9cb569f5191d1400.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/106_hu_d8c8a2c9f04b3157.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;210&#34;
+		data-flex-basis=&#34;504px&#34;
+	
+&gt;&lt;br&gt;
+发现.hg信息泄露
+Mercurial 是分布式版本控制系统，类似于 Git。当 .hg 目录被意外暴露在 Web 服务器上时，攻击者可以获取源代码。&lt;br&gt;
+使用dvcs-ripper  &lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/107.png&#34;
+	width=&#34;532&#34;
+	height=&#34;469&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/107_hu_6f967e0ac8af3acf.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/107_hu_3c7295bd0dfa3d09.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;113&#34;
+		data-flex-basis=&#34;272px&#34;
+	
+&gt;
+获得flag&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/108.png&#34;
+	width=&#34;574&#34;
+	height=&#34;401&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/108_hu_2cef2ab618368ebc.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/108_hu_e0d6a1b186259de8.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;143&#34;
+		data-flex-basis=&#34;343px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezinfoleak_9&#34;&gt;EZINFOLEAK_9
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/109.png&#34;
+	width=&#34;1292&#34;
+	height=&#34;581&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/109_hu_e6b5667b0b259496.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/109_hu_ec0fada1c1e6c1d7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;222&#34;
+		data-flex-basis=&#34;533px&#34;
+	
+&gt;&lt;br&gt;
+查看注释&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/110.png&#34;
+	width=&#34;993&#34;
+	height=&#34;356&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/110_hu_35a0fb7c0d30f177.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/110_hu_6885daaadfd0913f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;278&#34;
+		data-flex-basis=&#34;669px&#34;
+	
+&gt;&lt;br&gt;
+当使用 vim 编辑文件时，会创建 .filename.swp 交换文件用于崩溃恢复。如果服务器上的交换文件未被删除且可访问，攻击者可以恢复文件内容。
+直接访问&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/111.png&#34;
+	width=&#34;477&#34;
+	height=&#34;182&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/111_hu_d461bc1f4160b561.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/111_hu_cee54be184097d8a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;262&#34;
+		data-flex-basis=&#34;629px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezinfoleak_10&#34;&gt;EZINFOLEAK_10
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/112.png&#34;
+	width=&#34;1404&#34;
+	height=&#34;698&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/112_hu_20d1fc0b4d97ea58.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/112_hu_79133618b947720c.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;201&#34;
+		data-flex-basis=&#34;482px&#34;
+	
+&gt;&lt;br&gt;
+查看注释&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/113.png&#34;
+	width=&#34;1484&#34;
+	height=&#34;408&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/113_hu_6724340fcd8300eb.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/113_hu_5752652b2db572c7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;363&#34;
+		data-flex-basis=&#34;872px&#34;
+	
+&gt;&lt;br&gt;
+虽然 flag.txt 已被删除（访问返回 &amp;ldquo;flag.txt has been deleted&amp;rdquo;），但 vim 的交换文件 .flag.txt.swp 仍然存在于服务器上，包含了被删除文件的原始内容。&lt;br&gt;
+输入http://docker.qingcen.net:42128/.flag.txt.swp  下载flag.txt.swp文件&lt;br&gt;
+利用strings .flag.txt.swp 提取内容&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/114.png&#34;
+	width=&#34;372&#34;
+	height=&#34;181&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/114_hu_7ea1a523a3391655.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/114_hu_d3f4dbb3c9e70ac4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;205&#34;
+		data-flex-basis=&#34;493px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezinfoleak_11&#34;&gt;EZINFOLEAK_11
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/115.png&#34;
+	width=&#34;1615&#34;
+	height=&#34;944&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/115_hu_efe81aedb62fac27.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/115_hu_a4b61bd076bc5167.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;410px&#34;
+	
+&gt;&lt;br&gt;
+当前平台仅支持通过 macOS Finder 进行文件上传&lt;br&gt;
+.DS_Store 是 macOS 系统自动生成的隐藏文件，用于存储文件夹的显示选项和元数据。当用户使用 macOS Finder 上传文件到服务器时，.DS_Store 文件可能被一起上传，导致目录结构泄露&lt;br&gt;
+直接访问&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/116.png&#34;
+	width=&#34;560&#34;
+	height=&#34;327&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/116_hu_967e845797a21350.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/116_hu_7e93ac04241782c8.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;411px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezinfoleak_12&#34;&gt;EZINFOLEAK_12
 &lt;/h3&gt;&lt;h2 id=&#34;ezcmd&#34;&gt;EZCMD
 &lt;/h2&gt;&lt;h3 id=&#34;ezcmd-1&#34;&gt;EZCMD
 &lt;/h3&gt;&lt;p&gt;访问靶机
@@ -1567,10 +1807,10 @@ secret_file_b64=Zmw0Zy50eHQ=&lt;br&gt;
 &gt;
 分析条件&lt;br&gt;
 escapeshellcmd() 的局限性:&lt;br&gt;
-该函数用于转义shell元字符，防止命令注入&lt;br&gt;
-但它不阻止执行单个命令&lt;br&gt;
-只转义 ; | &amp;amp; $ ( )  &amp;lt; &amp;gt; 等特殊字符&lt;br&gt;
-不影响ls，cat等命令
+该函数用于转义shell元字符，防止命令注入 &lt;br&gt;
+但它不阻止执行单个命令 &lt;br&gt;
+只转义 ; | &amp;amp; $ ( )  &amp;lt; &amp;gt; 等特殊字符 &lt;br&gt;
+不影响ls，cat等命令&lt;br&gt;
 &lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd2.png&#34;
 	width=&#34;599&#34;
 	height=&#34;567&#34;
@@ -1582,11 +1822,11 @@ escapeshellcmd() 的局限性:&lt;br&gt;
 		data-flex-grow=&#34;105&#34;
 		data-flex-basis=&#34;253px&#34;
 	
-&gt;
-查看根目录
-cmd=ls ../&lt;br&gt;
-cmd=ls ../../&lt;br&gt;
-cmd=ls ../../../&lt;br&gt;
+&gt;&lt;br&gt;
+查看根目录&lt;br&gt;
+cmd=ls ../ &lt;br&gt;
+cmd=ls ../../ &lt;br&gt;
+cmd=ls ../../../ &lt;br&gt;
 &lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd3.png&#34;
 	width=&#34;917&#34;
 	height=&#34;589&#34;
@@ -1598,8 +1838,8 @@ cmd=ls ../../../&lt;br&gt;
 		data-flex-grow=&#34;155&#34;
 		data-flex-basis=&#34;373px&#34;
 	
-&gt;
-cmd=cat ../../../flag&lt;br&gt;
+&gt;&lt;br&gt;
+cmd=cat ../../../flag &lt;br&gt;
 &lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd4.png&#34;
 	width=&#34;736&#34;
 	height=&#34;577&#34;

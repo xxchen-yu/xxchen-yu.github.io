@@ -2102,11 +2102,251 @@ secret_file_b64=Zmw0Zy50eHQ=<br>
 	
 ></p>
 <h3 id="ezinfoleak_7">EZINFOLEAK_7
-</h3><h3 id="ezinfoleak_8">EZINFOLEAK_8
-</h3><h3 id="ezinfoleak_9">EZINFOLEAK_9
-</h3><h3 id="ezinfoleak_10">EZINFOLEAK_10
-</h3><h3 id="ezinfoleak_11">EZINFOLEAK_11
-</h3><h3 id="ezinfoleak_12">EZINFOLEAK_12
+</h3><p>访问靶场<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/100.png"
+	width="874"
+	height="703"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/100_hu_d21a644b99a48023.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/100_hu_6956c10ab53cb641.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="124"
+		data-flex-basis="298px"
+	
+><br>
+既然是信息泄露，应该不是sql注入的做法<br>
+没有信息，使用dirsearch扫描一下<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/101.png"
+	width="772"
+	height="284"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/101_hu_7616c7389d657793.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/101_hu_3f2075484208cca5.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="271"
+		data-flex-basis="652px"
+	
+><br>
+/.svn/entries: 这是老版本 SVN 的特征文件，证明存在泄露。<br>
+存在.svn泄露<br>
+下载wc.db文件，这是一个SQLite数据库<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/102.png"
+	width="1542"
+	height="952"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/102_hu_425b3b07d0783b7f.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/102_hu_1e516c7d228a8b5a.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="161"
+		data-flex-basis="388px"
+	
+>
+使用 SQLite Viewer  在线打开 wc.db<br>
+查看 NODES 表，找到文件名和 checksum<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/103.png"
+	width="1225"
+	height="444"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/103_hu_cefad7e3a2cb63f2.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/103_hu_de17507e3af8d8bc.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="275"
+		data-flex-basis="662px"
+	
+>
+SVN pristine 文件路径格式:<br>
+/.svn/pristine/[前2位]/[完整sha1].svn-base<br>
+访问flag.php文件<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/104.png"
+	width="1235"
+	height="376"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/104_hu_35c8c2e0b3efec4.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/104_hu_3357d8fa862528b9.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="328"
+		data-flex-basis="788px"
+	
+></p>
+<h3 id="ezinfoleak_8">EZINFOLEAK_8
+</h3><p>访问靶机<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/105.png"
+	width="1455"
+	height="1009"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/105_hu_ea926ad160df6ff0.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/105_hu_9fc2f8c32d3b7a72.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="346px"
+	
+>
+没什么有用信息，用dirsearch扫描<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/106.png"
+	width="890"
+	height="423"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/106_hu_9cb569f5191d1400.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/106_hu_d8c8a2c9f04b3157.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="210"
+		data-flex-basis="504px"
+	
+><br>
+发现.hg信息泄露
+Mercurial 是分布式版本控制系统，类似于 Git。当 .hg 目录被意外暴露在 Web 服务器上时，攻击者可以获取源代码。<br>
+使用dvcs-ripper  <br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/107.png"
+	width="532"
+	height="469"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/107_hu_6f967e0ac8af3acf.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/107_hu_3c7295bd0dfa3d09.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="113"
+		data-flex-basis="272px"
+	
+>
+获得flag<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/108.png"
+	width="574"
+	height="401"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/108_hu_2cef2ab618368ebc.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/108_hu_e0d6a1b186259de8.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="143"
+		data-flex-basis="343px"
+	
+></p>
+<h3 id="ezinfoleak_9">EZINFOLEAK_9
+</h3><p>访问靶机<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/109.png"
+	width="1292"
+	height="581"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/109_hu_e6b5667b0b259496.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/109_hu_ec0fada1c1e6c1d7.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="222"
+		data-flex-basis="533px"
+	
+><br>
+查看注释<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/110.png"
+	width="993"
+	height="356"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/110_hu_35a0fb7c0d30f177.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/110_hu_6885daaadfd0913f.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="278"
+		data-flex-basis="669px"
+	
+><br>
+当使用 vim 编辑文件时，会创建 .filename.swp 交换文件用于崩溃恢复。如果服务器上的交换文件未被删除且可访问，攻击者可以恢复文件内容。
+直接访问<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/111.png"
+	width="477"
+	height="182"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/111_hu_d461bc1f4160b561.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/111_hu_cee54be184097d8a.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="262"
+		data-flex-basis="629px"
+	
+></p>
+<h3 id="ezinfoleak_10">EZINFOLEAK_10
+</h3><p>访问靶机<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/112.png"
+	width="1404"
+	height="698"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/112_hu_20d1fc0b4d97ea58.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/112_hu_79133618b947720c.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="201"
+		data-flex-basis="482px"
+	
+><br>
+查看注释<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/113.png"
+	width="1484"
+	height="408"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/113_hu_6724340fcd8300eb.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/113_hu_5752652b2db572c7.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="363"
+		data-flex-basis="872px"
+	
+><br>
+虽然 flag.txt 已被删除（访问返回 &ldquo;flag.txt has been deleted&rdquo;），但 vim 的交换文件 .flag.txt.swp 仍然存在于服务器上，包含了被删除文件的原始内容。<br>
+输入http://docker.qingcen.net:42128/.flag.txt.swp  下载flag.txt.swp文件<br>
+利用strings .flag.txt.swp 提取内容<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/114.png"
+	width="372"
+	height="181"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/114_hu_7ea1a523a3391655.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/114_hu_d3f4dbb3c9e70ac4.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="205"
+		data-flex-basis="493px"
+	
+></p>
+<h3 id="ezinfoleak_11">EZINFOLEAK_11
+</h3><p>访问靶机<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/115.png"
+	width="1615"
+	height="944"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/115_hu_efe81aedb62fac27.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/115_hu_a4b61bd076bc5167.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="410px"
+	
+><br>
+当前平台仅支持通过 macOS Finder 进行文件上传<br>
+.DS_Store 是 macOS 系统自动生成的隐藏文件，用于存储文件夹的显示选项和元数据。当用户使用 macOS Finder 上传文件到服务器时，.DS_Store 文件可能被一起上传，导致目录结构泄露<br>
+直接访问<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/116.png"
+	width="560"
+	height="327"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/116_hu_967e845797a21350.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/116_hu_7e93ac04241782c8.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="411px"
+	
+></p>
+<h3 id="ezinfoleak_12">EZINFOLEAK_12
 </h3><h2 id="ezcmd">EZCMD
 </h2><h3 id="ezcmd-1">EZCMD
 </h3><p>访问靶机
@@ -2124,10 +2364,10 @@ secret_file_b64=Zmw0Zy50eHQ=<br>
 >
 分析条件<br>
 escapeshellcmd() 的局限性:<br>
-该函数用于转义shell元字符，防止命令注入<br>
-但它不阻止执行单个命令<br>
-只转义 ; | &amp; $ ( )  &lt; &gt; 等特殊字符<br>
-不影响ls，cat等命令
+该函数用于转义shell元字符，防止命令注入 <br>
+但它不阻止执行单个命令 <br>
+只转义 ; | &amp; $ ( )  &lt; &gt; 等特殊字符 <br>
+不影响ls，cat等命令<br>
 <img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd2.png"
 	width="599"
 	height="567"
@@ -2139,11 +2379,11 @@ escapeshellcmd() 的局限性:<br>
 		data-flex-grow="105"
 		data-flex-basis="253px"
 	
->
-查看根目录
-cmd=ls ../<br>
-cmd=ls ../../<br>
-cmd=ls ../../../<br>
+><br>
+查看根目录<br>
+cmd=ls ../ <br>
+cmd=ls ../../ <br>
+cmd=ls ../../../ <br>
 <img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd3.png"
 	width="917"
 	height="589"
@@ -2155,8 +2395,8 @@ cmd=ls ../../../<br>
 		data-flex-grow="155"
 		data-flex-basis="373px"
 	
->
-cmd=cat ../../../flag<br>
+><br>
+cmd=cat ../../../flag <br>
 <img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd4.png"
 	width="736"
 	height="577"
