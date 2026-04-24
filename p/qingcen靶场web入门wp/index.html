@@ -555,7 +555,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 4 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -2535,12 +2535,279 @@ cmd=cat%09/flag%0a<br>
 	
 ></p>
 <h3 id="ezcmd_4">EZCMD_4
-</h3><h3 id="ezcmd_5">EZCMD_5
-</h3><h3 id="ezcmd_6">EZCMD_6
-</h3><h3 id="ezcmd_7">EZCMD_7
-</h3><h3 id="ezcmd_8">EZCMD_8
-</h3><h3 id="ezcmd_9">EZCMD_9
-</h3><h3 id="ezcmd_10">EZCMD_10
+</h3><p>访问靶机<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c13.png"
+	width="1535"
+	height="872"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c13_hu_51d7269df9ca282d.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c13_hu_5035183410f47b52.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="176"
+		data-flex-basis="422px"
+	
+><br>
+页面名为robot 我们访问robots.txt<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c14.png"
+	width="437"
+	height="170"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c14_hu_af75eb9919db66b5.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c14_hu_d61a75161e974897.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="257"
+		data-flex-basis="616px"
+	
+><br>
+访问4atP5Aup.php<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c15.png"
+	width="2479"
+	height="309"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c15_hu_7739d6d9130958c1.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c15_hu_e40d8618bb8ddf89.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="802"
+		data-flex-basis="1925px"
+	
+><br>
+分析条件，看看过滤了哪些命令<br>
+escapeshellcmd()会转义shell命令中的特殊字符，防止命令注入<br>
+我们需要读取flag文件<br>
+cmd=cat /flag-&gt;cmd=dd if=/flag-&gt;cmd=a=fl;b=ag;dd if=/$a$b-&gt;cmd=eval a=fl;b=ag;dd if=/$a$b<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c16.png"
+	width="1240"
+	height="662"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c16_hu_dcaaec7c95c475e9.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c16_hu_951e435e2e54674c.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="187"
+		data-flex-basis="449px"
+	
+></p>
+<h3 id="ezcmd_5">EZCMD_5
+</h3><p>访问靶机<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c17.png"
+	width="676"
+	height="368"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c17_hu_c29651c91afb4a27.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c17_hu_f871f4c6f1537412.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="440px"
+	
+><br>
+分析条件<br>
+把所有的字母全部过滤，典型的无字母命令执行<br>
+/???/?? 匹配 /bin/ca  (为什么不直接用cat呢，直接用???匹配不到cat,通配符 ? 不会像命令名那样自动搜索 PATH，必须指定完整路径！)<br>
+$&rsquo;\164&rsquo; 是字母 t 的八进制表示（ASCII码116）<br>
+/????.??? 匹配 /flag.txt<br>
+最终执行： /bin/cat /flag.txt<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c18.png"
+	width="745"
+	height="623"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c18_hu_c01fc364c5671149.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c18_hu_1f7ef367e0b724a.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="119"
+		data-flex-basis="286px"
+	
+></p>
+<h3 id="ezcmd_6">EZCMD_6
+</h3><p>访问靶机<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c19.png"
+	width="395"
+	height="208"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c19_hu_e3df0f3743adab10.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c19_hu_26aa4015c54a65e1.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="189"
+		data-flex-basis="455px"
+	
+><br>
+分析条件<br>
+典型的一句话木马<br>
+qc=system(&rsquo;ls /&rsquo;);<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c20.png"
+	width="979"
+	height="615"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c20_hu_b100147e1d36c513.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c20_hu_b834f07f24cb786d.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="159"
+		data-flex-basis="382px"
+	
+>
+qc=system(&lsquo;cat /flag&rsquo;);<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c21.png"
+	width="627"
+	height="477"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c21_hu_61088b0c7db1e74d.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c21_hu_645da1a577dc1bb7.png 1024w"
+	loading="lazy"
+	
+		alt="获得flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="131"
+		data-flex-basis="315px"
+	
+></p>
+<h3 id="ezcmd_7">EZCMD_7
+</h3><p>访问靶机<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c22.png"
+	width="522"
+	height="347"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c22_hu_81b08ddf592dde61.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c22_hu_825d9ef5d885c474.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="361px"
+	
+><br>
+分析条件<br>
+eval(&rsquo;$qc&rsquo;) 将字符串转换为PHP代码执行<br>
+仅过滤flag  没有过滤ls<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c23.png"
+	width="846"
+	height="317"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c23_hu_fa0fd0b5bc059d5.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c23_hu_1d5a9391a11b7c14.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="266"
+		data-flex-basis="640px"
+	
+><br>
+发现flag的路径  /flag<br>
+利用chr() 函数拼接字符串<br>
+echo file_get_contents(&rsquo;/flag&rsquo;);  读取并输出<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c24.png"
+	width="1292"
+	height="309"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c24_hu_9d0d985a08e5626.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c24_hu_a4b3ec232f44bf40.png 1024w"
+	loading="lazy"
+	
+		alt="flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="418"
+		data-flex-basis="1003px"
+	
+></p>
+<h3 id="ezcmd_8">EZCMD_8
+</h3><p>访问靶机<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c25.png"
+	width="636"
+	height="315"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c25_hu_de8e38dd3577b099.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c25_hu_d65445a131a7b76d.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="201"
+		data-flex-basis="484px"
+	
+><br>
+分析条件<br>
+过滤了system() 和 flag<br>
+利用shell_exec() 代替 system()<br>
+利用strrev()反转字符串绕过flag<br>
+?qc=echo shell_exec(&rsquo;ls /&rsquo;);<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c26.png"
+	width="870"
+	height="450"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c26_hu_667b0ef475bd6689.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c26_hu_24c0ee42da7c7e85.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="464px"
+	
+> <br>
+发现路径<br>
+?qc=readfile(strrev(&lsquo;galf/&rsquo;));<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c27.png"
+	width="793"
+	height="301"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c27_hu_915f359c6d1af00d.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c27_hu_810efac94d1c19e4.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="263"
+		data-flex-basis="632px"
+	
+></p>
+<h3 id="ezcmd_9">EZCMD_9
+</h3><p>访问靶场<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c28.png"
+	width="567"
+	height="338"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c28_hu_59dddd37ac4e7ed9.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c28_hu_bfb694a39eb8ac8c.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="167"
+		data-flex-basis="402px"
+	
+><br>
+分析条件<br>
+禁用空格和system()<br>
+scandir(目录路径) 列出目录中的所有文件和文件夹，返回数组  搭配print_r() 打印数组<br>
+?qc=print_r(scandir(&rsquo;/&rsquo;));<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c29.png"
+	width="2495"
+	height="323"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c29_hu_88dbff3611a4c50c.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c29_hu_c9bb50a1aa1f05d7.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="772"
+		data-flex-basis="1853px"
+	
+><br>
+发现flag的路径  /flag<br>
+?qc=readfile(&rsquo;/flag&rsquo;);  不含过滤字符<br>
+<img src="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c30.png"
+	width="710"
+	height="315"
+	srcset="/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c30_hu_899f4480928edb7d.png 480w, /p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c30_hu_f3fb8e5615335454.png 1024w"
+	loading="lazy"
+	
+		alt="flag"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="225"
+		data-flex-basis="540px"
+	
+></p>
+<h3 id="ezcmd_10">EZCMD_10
 </h3><h3 id="ezcmd_11">EZCMD_11
 </h3><h3 id="ezcmd_12">EZCMD_12
 </h3><h3 id="ezcmd_13">EZCMD_13

