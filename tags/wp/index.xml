@@ -2251,7 +2251,37 @@ scandir(目录路径) 列出目录中的所有文件和文件夹，返回数组 
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;ezcmd_10&#34;&gt;EZCMD_10
-&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_11&#34;&gt;EZCMD_11
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c31.png&#34;
+	width=&#34;666&#34;
+	height=&#34;391&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c31_hu_c5c0e1053c7e519a.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c31_hu_f049735a09503278.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;170&#34;
+		data-flex-basis=&#34;408px&#34;
+	
+&gt;&lt;br&gt;
+分析条件&lt;br&gt;
+仅过滤 ;   利用?&amp;gt;绕过
+payload ?qc=echo file_get_contents(&amp;rsquo;/flag.txt&amp;rsquo;)?&amp;gt;&lt;br&gt;
+&lt;img src=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c32.png&#34;
+	width=&#34;936&#34;
+	height=&#34;260&#34;
+	srcset=&#34;https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c32_hu_aea71a76c8560382.png 480w, https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp/IMG/c32_hu_5bcf1bae4e8f3970.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;获得flag&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;360&#34;
+		data-flex-basis=&#34;864px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezcmd_11&#34;&gt;EZCMD_11
 &lt;/h3&gt;&lt;h3 id=&#34;ezcmd_12&#34;&gt;EZCMD_12
 &lt;/h3&gt;&lt;h3 id=&#34;ezcmd_13&#34;&gt;EZCMD_13
 &lt;/h3&gt;&lt;h3 id=&#34;ezcmd_14&#34;&gt;EZCMD_14
