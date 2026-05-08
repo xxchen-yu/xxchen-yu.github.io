@@ -27,7 +27,9 @@ code, pre, kbd {
 
 .article-page .main-article.has-image .article-header .article-image {
     order: 2;
-    flex: 0 0 clamp(220px, 34vw, 460px);
+    flex: 0 0 46%;
+    min-width: 280px;
+    max-width: 560px;
 }
 
 .article-page .main-article.has-image .article-header .article-image a {
@@ -60,7 +62,9 @@ code, pre, kbd {
 
 .article-list article.has-image .article-header .article-image {
     order: 2;
-    flex: 0 0 clamp(180px, 30vw, 360px);
+    flex: 0 0 46%;
+    min-width: 260px;
+    max-width: 520px;
 }
 
 .article-list article.has-image .article-header .article-image a {
