@@ -9,3 +9,45 @@ code, pre, kbd {
     font-family: "Consolas", "Courier New", Courier, monospace !important;
 }
 */
+
+.article-page .main-article.has-image .article-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(180px, 30vw, 360px);
+    align-items: center;
+    gap: var(--card-padding);
+    padding: var(--card-padding);
+}
+
+.article-page .main-article.has-image .article-header .article-details {
+    order: 1;
+    padding: 0;
+    min-width: 0;
+}
+
+.article-page .main-article.has-image .article-header .article-image {
+    order: 2;
+}
+
+.article-page .main-article.has-image .article-header .article-image a {
+    display: block;
+}
+
+.article-page .main-article.has-image .article-header .article-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .article-page .main-article.has-image .article-header {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .article-page .main-article.has-image .article-header .article-image {
+        max-width: 280px;
+        justify-self: end;
+    }
+}
