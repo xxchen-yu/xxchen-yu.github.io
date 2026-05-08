@@ -480,7 +480,7 @@
 
 
 
-                <span class="article-time--wordcount">5080 字</span>
+                <span class="article-time--wordcount">5091 字</span>
             </div>
         
     </footer>
@@ -2241,7 +2241,7 @@ qc 参数会进入 eval($qc),只过滤了分号 ; flag 在 flag.php 里<br>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>原因是:<br>
-scandir(getcwd()) 返回 [&rsquo;.&rsquo;,&rsquo;..&rsquo;,&lsquo;flag.php&rsquo;,&lsquo;index.php&rsquo;]  array_reverse() 后变成 [&lsquo;index.php&rsquo;,&lsquo;flag.php&rsquo;,&rsquo;..&rsquo;,&rsquo;.&rsquo;]  next() 取第二个元素，正好就是 flag.php <br>
+scandir(getcwd()) 返回 [&rsquo;.&rsquo;  ,  &lsquo;..&rsquo;  ,  &lsquo;flag.php&rsquo;  ,  &lsquo;index.php&rsquo;]  array_reverse() 后变成 [&lsquo;index.php&rsquo;  ,  &lsquo;flag.php&rsquo;,  &lsquo;..&rsquo;  ,  &lsquo;.&rsquo;]  next() 取第二个元素，正好就是 flag.php <br>
 虽然 next() 正常要求传引用变量，但这里 error_reporting(0) 把 warning 压掉了，实际仍然能拿到值.<br>
 最终payload:</p>
 <div class="highlight"><div class="chroma">

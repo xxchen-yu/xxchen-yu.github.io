@@ -1848,7 +1848,7 @@ qc 参数会进入 eval($qc),只过滤了分号 ; flag 在 flag.php 里&lt;br&gt
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;原因是:&lt;br&gt;
-scandir(getcwd()) 返回 [&amp;rsquo;.&amp;rsquo;,&amp;rsquo;..&amp;rsquo;,&amp;lsquo;flag.php&amp;rsquo;,&amp;lsquo;index.php&amp;rsquo;]  array_reverse() 后变成 [&amp;lsquo;index.php&amp;rsquo;,&amp;lsquo;flag.php&amp;rsquo;,&amp;rsquo;..&amp;rsquo;,&amp;rsquo;.&amp;rsquo;]  next() 取第二个元素，正好就是 flag.php &lt;br&gt;
+scandir(getcwd()) 返回 [&amp;rsquo;.&amp;rsquo;  ,  &amp;lsquo;..&amp;rsquo;  ,  &amp;lsquo;flag.php&amp;rsquo;  ,  &amp;lsquo;index.php&amp;rsquo;]  array_reverse() 后变成 [&amp;lsquo;index.php&amp;rsquo;  ,  &amp;lsquo;flag.php&amp;rsquo;,  &amp;lsquo;..&amp;rsquo;  ,  &amp;lsquo;.&amp;rsquo;]  next() 取第二个元素，正好就是 flag.php &lt;br&gt;
 虽然 next() 正常要求传引用变量，但这里 error_reporting(0) 把 warning 压掉了，实际仍然能拿到值.&lt;br&gt;
 最终payload:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
