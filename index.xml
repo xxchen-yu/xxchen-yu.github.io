@@ -1786,7 +1786,7 @@ payload ?qc=echo file_get_contents(&amp;rsquo;/flag.txt&amp;rsquo;)?&amp;gt;&lt;
 	loading=&#34;lazy&#34;
 	
 	
-&gt;
+&gt;&lt;br&gt;
 分析条件&lt;br&gt;
 qc 参数会进入 eval($qc),只过滤了分号 ; flag 在 flag.php 里&lt;br&gt;
 直接构造highlight_file(&amp;lsquo;flag.php&amp;rsquo;)?&amp;gt; 读取flag即可&lt;br&gt;
@@ -1807,7 +1807,7 @@ qc 参数会进入 eval($qc),只过滤了分号 ; flag 在 flag.php 里&lt;br&gt
 	loading=&#34;lazy&#34;
 	
 	
-&gt;
+&gt;&lt;br&gt;
 分析条件&lt;br&gt;
 可以看出这题本质是 eval() 代码执行，只是做了一层黑名单过滤.&lt;br&gt;
 被过滤的字符很多，尤其关键的是：&lt;/p&gt;
@@ -1836,7 +1836,7 @@ qc 参数会进入 eval($qc),只过滤了分号 ; flag 在 flag.php 里&lt;br&gt
 	loading=&#34;lazy&#34;
 	
 	
-&gt;
+&gt;&lt;br&gt;
 目标是不直接写出 flag.php，而是从 scandir() 返回结果里间接取出它.&lt;br&gt;
 构造：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1876,7 +1876,7 @@ scandir(getcwd()) 返回 [&amp;rsquo;.&amp;rsquo;,&amp;rsquo;..&amp;rsquo;,&amp;
 	loading=&#34;lazy&#34;
 	
 	
-&gt;
+&gt;&lt;br&gt;
 分析条件&lt;br&gt;
 preg_replace() 使用了 /e 修饰符,在 PHP 5.x 里，/e 会把替换内容当成 PHP 代码执行,利用思路是让 \1 替换成我们可控的内容，再借助双引号里的 ${&amp;hellip;} 字符串插值触发函数执行&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1894,7 +1894,7 @@ preg_replace() 使用了 /e 修饰符,在 PHP 5.x 里，/e 会把替换内容当
 	loading=&#34;lazy&#34;
 	
 	
-&gt;
+&gt;&lt;br&gt;
 可以成功弹出 phpinfo()，说明利用成立&lt;br&gt;
 接着尝试命令执行  PHP 5.6 的特性：未定义常量会被当成字符串.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1912,7 +1912,7 @@ preg_replace() 使用了 /e 修饰符,在 PHP 5.x 里，/e 会把替换内容当
 	loading=&#34;lazy&#34;
 	
 	
-&gt;
+&gt;&lt;br&gt;
 回显当前目录只有index.php 说明flag不在当前目录,继续列根目录&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1929,7 +1929,7 @@ preg_replace() 使用了 /e 修饰符,在 PHP 5.x 里，/e 会把替换内容当
 	loading=&#34;lazy&#34;
 	
 	
-&gt;
+&gt;&lt;br&gt;
 也就是 ls /  回显里可以看到flag 说明flag在flag文件中  最后读出flag&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

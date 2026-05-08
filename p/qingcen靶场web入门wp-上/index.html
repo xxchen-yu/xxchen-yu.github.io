@@ -2179,7 +2179,7 @@ payload ?qc=echo file_get_contents(&rsquo;/flag.txt&rsquo;)?&gt;<br>
 	loading="lazy"
 	
 	
->
+><br>
 分析条件<br>
 qc 参数会进入 eval($qc),只过滤了分号 ; flag 在 flag.php 里<br>
 直接构造highlight_file(&lsquo;flag.php&rsquo;)?&gt; 读取flag即可<br>
@@ -2200,7 +2200,7 @@ qc 参数会进入 eval($qc),只过滤了分号 ; flag 在 flag.php 里<br>
 	loading="lazy"
 	
 	
->
+><br>
 分析条件<br>
 可以看出这题本质是 eval() 代码执行，只是做了一层黑名单过滤.<br>
 被过滤的字符很多，尤其关键的是：</p>
@@ -2229,7 +2229,7 @@ qc 参数会进入 eval($qc),只过滤了分号 ; flag 在 flag.php 里<br>
 	loading="lazy"
 	
 	
->
+><br>
 目标是不直接写出 flag.php，而是从 scandir() 返回结果里间接取出它.<br>
 构造：</p>
 <div class="highlight"><div class="chroma">
@@ -2269,7 +2269,7 @@ scandir(getcwd()) 返回 [&rsquo;.&rsquo;,&rsquo;..&rsquo;,&lsquo;flag.php&rsquo
 	loading="lazy"
 	
 	
->
+><br>
 分析条件<br>
 preg_replace() 使用了 /e 修饰符,在 PHP 5.x 里，/e 会把替换内容当成 PHP 代码执行,利用思路是让 \1 替换成我们可控的内容，再借助双引号里的 ${&hellip;} 字符串插值触发函数执行</p>
 <div class="highlight"><div class="chroma">
@@ -2287,7 +2287,7 @@ preg_replace() 使用了 /e 修饰符,在 PHP 5.x 里，/e 会把替换内容当
 	loading="lazy"
 	
 	
->
+><br>
 可以成功弹出 phpinfo()，说明利用成立<br>
 接着尝试命令执行  PHP 5.6 的特性：未定义常量会被当成字符串.</p>
 <div class="highlight"><div class="chroma">
@@ -2305,7 +2305,7 @@ preg_replace() 使用了 /e 修饰符,在 PHP 5.x 里，/e 会把替换内容当
 	loading="lazy"
 	
 	
->
+><br>
 回显当前目录只有index.php 说明flag不在当前目录,继续列根目录</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2322,7 +2322,7 @@ preg_replace() 使用了 /e 修饰符,在 PHP 5.x 里，/e 会把替换内容当
 	loading="lazy"
 	
 	
->
+><br>
 也就是 ls /  回显里可以看到flag 说明flag在flag文件中  最后读出flag</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
