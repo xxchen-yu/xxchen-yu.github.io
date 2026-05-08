@@ -11,10 +11,9 @@
     </filter>
   </defs>
   <rect width="1400" height="350" fill="url(#bg)" rx="10" />
-  <g filter="url(#shadow)" font-family="'Arial Black', Impact, 'Segoe UI Black', sans-serif" font-size="205" font-weight="900">
-    <text x="30" y="260" letter-spacing="2">
-      <tspan fill="#e4e4e4">QINGCEN</tspan>
-      <tspan fill="#c6ff00">CTF</tspan>
-    </text>
+  <g filter="url(#shadow)" font-family="'Arial Black', Impact, 'Segoe UI Black', sans-serif" font-size="185" font-weight="900">
+    <text x="48" y="248" fill="#e4e4e4">QING</text>
+    <text x="610" y="248" fill="#c6ff00">CEN</text>
+    <text x="1035" y="248" fill="#e8ff3a">CTF</text>
   </g>
 </svg>

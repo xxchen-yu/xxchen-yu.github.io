@@ -27,7 +27,7 @@ code, pre, kbd {
 
 .article-page .main-article.has-image .article-header .article-image {
     order: 2;
-    flex: 0 0 clamp(180px, 30vw, 360px);
+    flex: 0 0 clamp(220px, 34vw, 460px);
 }
 
 .article-page .main-article.has-image .article-header .article-image a {
@@ -35,6 +35,39 @@ code, pre, kbd {
 }
 
 .article-page .main-article.has-image .article-header .article-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.article-list article.has-image .article-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--card-padding);
+    padding: var(--card-padding);
+}
+
+.article-list article.has-image .article-header .article-details {
+    order: 1;
+    flex: 1 1 auto;
+    padding: 0;
+    min-width: 0;
+}
+
+.article-list article.has-image .article-header .article-image {
+    order: 2;
+    flex: 0 0 clamp(180px, 30vw, 360px);
+}
+
+.article-list article.has-image .article-header .article-image a {
+    display: block;
+}
+
+.article-list article.has-image .article-header .article-image img {
     display: block;
     width: 100%;
     height: auto;
