@@ -311,6 +311,7 @@
         <li><a href="#ezmd5_4">EZMD5_4</a></li>
         <li><a href="#ezmd5_5">EZMD5_5</a></li>
         <li><a href="#ezmd5_6">EZMD5_6</a></li>
+        <li><a href="#ezmd5_7">EZMD5_7</a></li>
       </ol>
     </li>
     <li><a href="#ezinfoleak">EZINFOLEAK</a>
@@ -492,7 +493,7 @@
 
 
 
-                <span class="article-time--wordcount">5118 字</span>
+                <span class="article-time--wordcount">5234 字</span>
             </div>
         
     </footer>
@@ -1398,8 +1399,8 @@ payload: ?a[]=1&amp;b[]=2<br>
 	
 >
 分析条件<br>
-和上一题类似，只是从弱类型比较变成强类型比较</p>
-<p>payload: ?a[]=1&amp;b[]=2<br>
+和上一题类似，只是从弱类型比较变成强类型比较<br>
+payload: ?a[]=1&amp;b[]=2<br>
 <img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/77.png"
 	
 	
@@ -1407,6 +1408,29 @@ payload: ?a[]=1&amp;b[]=2<br>
 	loading="lazy"
 	
 		alt="获得flag"
+	
+	
+></p>
+<h3 id="ezmd5_7">EZMD5_7
+</h3><p>访问靶机<br>
+<img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/xinjia_1.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+><br>
+和EZMD5_3源码一样 尝试数组绕过 ?a[]=1&amp;b[]=2 返回错误
+看一下php版本 PHP 8.3 数组绕过错误<br>
+直接找MD5值相同的咯 a=d131dd02c5e6eec4693d9a0698aff95c2fcab58712467eab4004583eb8fb7f8955ad340609f4b30283e488832571415a085125e8f7cdc99fd91dbdf280373c5bd8823e3156348f5bae6dacd436c919c6dd53e2b487da03fd02396306d248cda0e99f33420f577ee8ce54b67080a80d1ec69821bcb6a8839396f9652b6ff72a70<br>
+b=d131dd02c5e6eec4693d9a0698aff95c2fcab50712467eab4004583eb8fb7f8955ad340609f4b30283e4888325f1415a085125e8f7cdc99fd91dbd7280373c5bd8823e3156348f5bae6dacd436c919c6dd53e23487da03fd02396306d248cda0e99f33420f577ee8ce54b67080280d1ec69821bcb6a8839396f965ab6ff72a70
+这是一组值不同 但是MD5值相同的字符串  将这两个二进制串通过 URL 编码后作为 GET 参数 a 和 b 传递，成功绕过了 === 严格比较，获取到 flag<br>
+<img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/xinjia_2.png"
+	
+	
+	
+	loading="lazy"
 	
 	
 ></p>
@@ -2460,8 +2484,9 @@ preg_replace() 使用了 /e 修饰符,在 PHP 5.x 里，/e 会把替换内容当
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
 </div>
 
 <style>

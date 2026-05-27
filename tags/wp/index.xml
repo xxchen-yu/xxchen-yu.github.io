@@ -993,8 +993,8 @@ payload: ?a[]=1&amp;amp;b[]=2&lt;br&gt;
 	
 &gt;
 分析条件&lt;br&gt;
-和上一题类似，只是从弱类型比较变成强类型比较&lt;/p&gt;
-&lt;p&gt;payload: ?a[]=1&amp;amp;b[]=2&lt;br&gt;
+和上一题类似，只是从弱类型比较变成强类型比较&lt;br&gt;
+payload: ?a[]=1&amp;amp;b[]=2&lt;br&gt;
 &lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/77.png&#34;
 	
 	
@@ -1002,6 +1002,29 @@ payload: ?a[]=1&amp;amp;b[]=2&lt;br&gt;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;获得flag&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezmd5_7&#34;&gt;EZMD5_7
+&lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/xinjia_1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+和EZMD5_3源码一样 尝试数组绕过 ?a[]=1&amp;amp;b[]=2 返回错误
+看一下php版本 PHP 8.3 数组绕过错误&lt;br&gt;
+直接找MD5值相同的咯 a=d131dd02c5e6eec4693d9a0698aff95c2fcab58712467eab4004583eb8fb7f8955ad340609f4b30283e488832571415a085125e8f7cdc99fd91dbdf280373c5bd8823e3156348f5bae6dacd436c919c6dd53e2b487da03fd02396306d248cda0e99f33420f577ee8ce54b67080a80d1ec69821bcb6a8839396f9652b6ff72a70&lt;br&gt;
+b=d131dd02c5e6eec4693d9a0698aff95c2fcab50712467eab4004583eb8fb7f8955ad340609f4b30283e4888325f1415a085125e8f7cdc99fd91dbd7280373c5bd8823e3156348f5bae6dacd436c919c6dd53e23487da03fd02396306d248cda0e99f33420f577ee8ce54b67080280d1ec69821bcb6a8839396f965ab6ff72a70
+这是一组值不同 但是MD5值相同的字符串  将这两个二进制串通过 URL 编码后作为 GET 参数 a 和 b 传递，成功绕过了 === 严格比较，获取到 flag&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/xinjia_2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
 	
 	
 &gt;&lt;/p&gt;
