@@ -58,10 +58,40 @@
 &lt;/h2&gt;&lt;p&gt;继续~ 继续~ 鸽了好久&lt;/p&gt;
 &lt;h2 id=&#34;ezfl&#34;&gt;EZFL
 &lt;/h2&gt;&lt;h3 id=&#34;ezfl-1&#34;&gt;EZFL
-&lt;/h3&gt;&lt;p&gt;访问靶机&lt;/p&gt;
-&lt;p&gt;先随便点点，没有发现什么特殊交互和信息，看一下注释 发现两行特别注释&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;访问靶机
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780064985077_fl_1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl_1.png&#34;
+	
+	
+&gt;&lt;br&gt;
+先随便点点，没有发现什么特殊交互和信息，看一下注释 发现两行特别注释&lt;/p&gt;
 &lt;p&gt;第一条注释确认了后端使用 include($file) 进行文件包含&lt;br&gt;
 第二条 Base64 解码后为：flag is in /flag.txt&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780064990744_fl_2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl_2.png&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780064985043_fl_3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl_3.png&#34;
+	
+	
+&gt;&lt;br&gt;
 由于后端 include() 没有对 $file 做路径限制&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -71,12 +101,52 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?file=/flag.txt
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;直接传入了 /flag.txt，PHP 的 include 会读取并输出文件内容，flag 就被包含在页面中返回了&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;直接传入了 /flag.txt，PHP 的 include 会读取并输出文件内容，flag 就被包含在页面中返回了&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780064985019_fl_4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl_4.png&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;ezfl_1&#34;&gt;EZFL_1
 &lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780064985379_fl1_1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl1_1.png&#34;
+	
+	
+&gt;&lt;br&gt;
 跟第一题没多大差别，没有什么可交互的，还是看一下注释，发现特别注释&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780064991590_fl1_2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl1_2.png&#34;
+	
+	
+&gt;&lt;br&gt;
 Base64 解码后：&amp;ldquo;The flag is right in flag.php, but you&amp;rsquo;ll never be able to see it.&amp;rdquo;  在flag.php中 但是我不能看见它&lt;br&gt;
 尝试直接包含flag.php 返回 flag就在这里，不过我把他藏起来了&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780064984283_fl1_3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl1_3.png&#34;
+	
+	
+&gt;&lt;br&gt;
 因为 include(&amp;lsquo;flag.php&amp;rsquo;) 会执行PHP代码，flag 被藏在注释 //flag{&amp;hellip;} 中，PHP 不会输出注释内容&lt;br&gt;
 使用php://filter 读取源码&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -87,11 +157,52 @@ Base64 解码后：&amp;ldquo;The flag is right in flag.php, but you&amp;rsquo;l
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?file=php://filter/read=convert.base64-encode/resource=flag.php
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;让PHP不执行flag.php 而是Base64编码再输出 这样就能看见源码&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;让PHP不执行flag.php 而是Base64编码再输出 这样就能看见源码&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780064987631_fl1_4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl1_4.png&#34;
+	
+	
+&gt;&lt;br&gt;
+然后再转换一下就能看到flag&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780064984870_fl1_5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl1_5.png&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;ezfl_2&#34;&gt;EZFL_2
 &lt;/h3&gt;&lt;p&gt;访问靶机&lt;br&gt;
-依旧没有交互 看一下注释 和上一题的注释内容一样，尝试一下上一题的payload 发现不行 返回no way&lt;br&gt;
-可能过滤了base64 尝试一下其他的过滤器 convert.iconv.UTF-8.UTF-16LE&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780064990719_fl2_1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl2_1.png&#34;
+	
+	
+&gt;&lt;br&gt;
+依旧没有交互 看一下注释 和上一题的注释内容一样&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780064990286_fl2_2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl2_2.png&#34;
+	
+	
+&gt;&lt;br&gt;
+尝试一下上一题的payload 发现不行 返回no way 可能过滤了base64 尝试一下其他的过滤器 convert.iconv.UTF-8.UTF-16LE&lt;br&gt;
 原文件开头是 &amp;lt;?php  转成 UTF-16LE 后会变成类似 &amp;lt;00?&amp;lt;00p&amp;lt;00h&amp;lt;00p&amp;lt;00&lt;br&gt;
 这样就不再是可执行的 PHP 标签  include 时不会执行，而是把源码内容直接吐出来&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -102,17 +213,16 @@ Base64 解码后：&amp;ldquo;The flag is right in flag.php, but you&amp;rsquo;l
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?file=php://filter/convert.iconv.UTF-8.UTF-16LE/resource=flag.php  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1779976938596_1.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780064989911_fl2_3.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;1.png&#34;
+		alt=&#34;fl2_3.png&#34;
 	
 	
-&gt;
-11111111&lt;/p&gt;
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;ezfl_3&#34;&gt;EZFL_3
 &lt;/h3&gt;&lt;h3 id=&#34;ezfl_4&#34;&gt;EZFL_4
 &lt;/h3&gt;&lt;h3 id=&#34;ezfl_5&#34;&gt;EZFL_5
