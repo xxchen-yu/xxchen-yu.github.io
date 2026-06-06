@@ -460,7 +460,7 @@
 
 
 
-                <span class="article-time--wordcount">529 字</span>
+                <span class="article-time--wordcount">767 字</span>
             </div>
         
     </footer>
@@ -644,7 +644,110 @@ Base64 解码后：&ldquo;The flag is right in flag.php, but you&rsquo;ll never 
 	
 ></p>
 <h3 id="ezfl_3">EZFL_3
-</h3><h3 id="ezfl_4">EZFL_4
+</h3><p>访问首页  和前面题目一样 首页没有可交互的地方，那就看一下注释<br>
+<img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780728358343_fl3_1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl3_1.png"
+	
+	
+><br>
+大概意思就是 让我们靠自己 没有提示了<br>
+利用 PHP 的 php://filter 伪协议读取 index.php 的源码
+<img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780728364541_fl3_2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl3_2.png"
+	
+	
+><br>
+<img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780728359861_fl3_3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl3_3.png"
+	
+	
+><br>
+$file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校验，直接传入 include()，存在无限制的本地文件包含漏洞<br>
+使用目录穿越读取系统文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://docker.qingcen.net:47554/?file=/etc/passwd  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780728366247_fl3_4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl3_4.png"
+	
+	
+><br>
+单纯的文件包含只能读取文件，要获取 flag 需要执行命令。利用 php://input 伪协议可以将 POST 请求体作为 PHP 代码执行<br>
+<img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780728364020_fl3_5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl3_5.png"
+	
+	
+><br>
+接着查看flag的位置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php system(&#34;ls -la /&#34;); ?&gt;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780728365756_fl3_6.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl3_6.png"
+	
+	
+><br>
+发现有关flag的随机文件 进行访问</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php system(&#34;cat /flag-2n68xeiJ56Ui70FYkooi0xcyT3vLYX.txt&#34;); ?&gt;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780728366087_fl3_7.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl3_7.png"
+	
+	
+><br>
+成功获得flag</p>
+<h3 id="ezfl_4">EZFL_4
 </h3><h3 id="ezfl_5">EZFL_5
 </h3><h3 id="ezfl_6">EZFL_6
 </h3><h2 id="ezfu">EZFU
