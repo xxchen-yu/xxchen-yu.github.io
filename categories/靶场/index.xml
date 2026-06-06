@@ -522,7 +522,8 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 	
 	
 &gt;&lt;br&gt;
-再让目标去包含这个远程文件，从而枚举根目录。结果在根目录下发现了可疑文件  qingcenctf.txt  &lt;br&gt;
+*
+从而枚举根目录,结果在根目录下发现了可疑文件  qingcenctf.txt  &lt;br&gt;
 直接读取&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
