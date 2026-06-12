@@ -81,34 +81,51 @@ code, pre, kbd {
 }
 
 .runtime-status-card {
-    background: var(--card-background);
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--shadow-l1);
-    padding: 18px 16px 16px;
+    padding: 15px 8px 6px;
 }
 
 .runtime-status-header {
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: var(--card-text-color-main);
-    font-size: 1.5rem;
-    line-height: 1.5;
+    gap: 6px;
 }
 
 .runtime-status-icon {
     display: inline-flex;
-    color: var(--card-text-color-tertiary);
+    align-items: center;
+    justify-content: center;
+    color: #66739c;
 }
 
 .runtime-status-icon svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
+    flex: none;
+}
+
+.runtime-status-title {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.runtime-status-label {
+    color: #61719d;
 }
 
 .runtime-status-title strong {
-    color: #f08c32;
+    color: #ef7f2f;
+    font-size: 1em;
     font-weight: 700;
+}
+
+.runtime-status-suffix {
+    color: #3f4658;
 }
 
 .runtime-status-meta {
@@ -116,40 +133,73 @@ code, pre, kbd {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    margin-top: 14px;
+    margin-top: 18px;
 }
 
 .runtime-status-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 70px;
-    padding: 6px 14px;
+    min-width: 72px;
+    height: 28px;
+    padding: 0 16px;
     border-radius: 999px;
-    background: rgba(128, 144, 255, 0.14);
-    color: #6270f0;
-    font-size: 1.4rem;
+    background: #eaebfb;
+    color: #5d6df1;
+    font-size: 1.3rem;
     font-weight: 700;
+    line-height: 1;
 }
 
 .runtime-status-percent {
-    color: var(--card-text-color-secondary);
-    font-size: 1.4rem;
+    color: #8da0bb;
+    font-size: 1.5rem;
     font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1;
 }
 
 .runtime-status-track {
-    margin-top: 12px;
+    margin-top: 14px;
     height: 10px;
     border-radius: 999px;
     overflow: hidden;
-    background: rgba(128, 128, 128, 0.18);
+    background: #d8d1cf;
 }
 
 .runtime-status-fill {
     display: block;
     width: 0;
     height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(90deg, #6270f0 0%, #6e7cff 100%);
+    border-radius: 999px 0 0 999px;
+    background: #6170f0;
+}
+
+[data-scheme="dark"] .runtime-status-icon {
+    color: #94a0c7;
+}
+
+[data-scheme="dark"] .runtime-status-label {
+    color: #9fadd1;
+}
+
+[data-scheme="dark"] .runtime-status-suffix {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+[data-scheme="dark"] .runtime-status-percent {
+    color: #aab8cd;
+}
+
+[data-scheme="dark"] .runtime-status-badge {
+    background: rgba(119, 132, 255, 0.18);
+    color: #7c8bff;
+}
+
+[data-scheme="dark"] .runtime-status-track {
+    background: rgba(235, 226, 223, 0.18);
+}
+
+[data-scheme="dark"] .runtime-status-fill {
+    background: #6a79ff;
 }
