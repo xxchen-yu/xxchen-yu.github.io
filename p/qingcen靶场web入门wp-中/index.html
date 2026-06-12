@@ -297,6 +297,8 @@
         <li><a href="#ezfu_10">EZFU_10</a></li>
         <li><a href="#ezfu_11">EZFU_11</a></li>
         <li><a href="#ezfu_12">EZFU_12</a></li>
+        <li><a href="#ezfu_13">EZFU_13</a></li>
+        <li><a href="#ezfu_14">EZFU_14</a></li>
       </ol>
     </li>
     <li><a href="#ezsql">EZSQL</a>
@@ -444,7 +446,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 4 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -461,7 +463,7 @@
 
 
 
-                <span class="article-time--wordcount">1732 字</span>
+                <span class="article-time--wordcount">2037 字</span>
             </div>
         
     </footer>
@@ -1067,8 +1069,60 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 ></p>
 <h2 id="ezfu">EZFU
 </h2><h3 id="ezfu-1">EZFU
-</h3><h3 id="ezfu_1">EZFU_1
-</h3><h3 id="ezfu_2">EZFU_2
+</h3><p>访问首页 发现有文件上传功能<br>
+fu_1 <br>
+正常上传一个测试文件，服务端返回 uploads/<uuid>.<ext>，说明上传后的文件可以直接通过 Web 路径访问<br>
+在源码里看到它只取原始文件名扩展名，然后直接 move_uploaded_file()，没有任何类型校验  直接抓包 改包发送即可<br>
+fu_2
+接着直接访问返回的 file_url 验证命令执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docker</span><span class="o">.</span><span class="n">qingcen</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="mi">35383</span><span class="o">/</span><span class="n">uploads</span><span class="o">/</span><span class="n">xxxxxx</span><span class="o">.</span><span class="n">php</span><span class="err">?</span><span class="n">cmd</span><span class="o">=</span><span class="n">id</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>fu_3<br>
+一般来说 flag会放在环境变量中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docker</span><span class="o">.</span><span class="n">qingcen</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="mi">35383</span><span class="o">/</span><span class="n">uploads</span><span class="o">/</span><span class="n">xxxxxx</span><span class="o">.</span><span class="n">php</span><span class="err">?</span><span class="n">cmd</span><span class="o">=</span><span class="n">printenv</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>fu_4<br>
+成功获得flag</p>
+<h3 id="ezfu_1">EZFU_1
+</h3><p>和前面一样 那我们直接看源码<br>
+fu1_1<br>
+只允许上传图片文件 我们上传一个简单的图片绕过前端 在burp中修改文件名和内容即可<br>
+修改请求体 中filename 1.png-&gt;1.php 和Content-Type image/png-&gt;application/x-php<br>
+fu1_2<br>
+上传成功 我们直接访问并测试 命令是否执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docker</span><span class="o">.</span><span class="n">qingcen</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="mi">42821</span><span class="o">/</span><span class="n">upload</span><span class="o">/******.</span><span class="n">php</span><span class="err">?</span><span class="n">cmd</span><span class="o">=</span><span class="n">id</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>fu1_3<br>
+命令执行成功  直接读环境变量获得flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docker</span><span class="o">.</span><span class="n">qingcen</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="mi">42821</span><span class="o">/</span><span class="n">uploads</span><span class="o">/********.</span><span class="n">php</span><span class="err">?</span><span class="n">cmd</span><span class="o">=</span><span class="n">printenv</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>fu1_4<br>
+成功获得flag</p>
+<h3 id="ezfu_2">EZFU_2
 </h3><h3 id="ezfu_3">EZFU_3
 </h3><h3 id="ezfu_4">EZFU_4
 </h3><h3 id="ezfu_5">EZFU_5
@@ -1079,6 +1133,8 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 </h3><h3 id="ezfu_10">EZFU_10
 </h3><h3 id="ezfu_11">EZFU_11
 </h3><h3 id="ezfu_12">EZFU_12
+</h3><h3 id="ezfu_13">EZFU_13
+</h3><h3 id="ezfu_14">EZFU_14
 </h3><h2 id="ezsql">EZSQL
 </h2><h3 id="ezsql-1">EZSQL
 </h3><h3 id="ezsql_1">EZSQL_1

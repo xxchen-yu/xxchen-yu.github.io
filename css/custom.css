@@ -79,3 +79,77 @@ code, pre, kbd {
     object-fit: contain;
     border-radius: 10px;
 }
+
+.runtime-status-card {
+    background: var(--card-background);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--shadow-l1);
+    padding: 18px 16px 16px;
+}
+
+.runtime-status-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--card-text-color-main);
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.runtime-status-icon {
+    display: inline-flex;
+    color: var(--card-text-color-tertiary);
+}
+
+.runtime-status-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.runtime-status-title strong {
+    color: #f08c32;
+    font-weight: 700;
+}
+
+.runtime-status-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.runtime-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(128, 144, 255, 0.14);
+    color: #6270f0;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.runtime-status-percent {
+    color: var(--card-text-color-secondary);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.runtime-status-track {
+    margin-top: 12px;
+    height: 10px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(128, 128, 128, 0.18);
+}
+
+.runtime-status-fill {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #6270f0 0%, #6e7cff 100%);
+}
