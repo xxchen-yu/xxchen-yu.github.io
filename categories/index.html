@@ -288,7 +288,11 @@
 
         <div class="runtime-status-meta">
             <span class="runtime-status-badge">2026</span>
-            <span class="runtime-status-percent" data-runtime-percent>0.00%</span>
+            <span
+                class="runtime-status-percent"
+                data-runtime-percent
+                title="悬停后显示并实时更新到小数点后五位"
+            >0.00%</span>
         </div>
 
         <div class="runtime-status-track" aria-hidden="true">
@@ -307,30 +311,67 @@
             const startAt = new Date(card.dataset.runtimeStart);
             const progressYear = Number(card.dataset.progressYear);
             const msPerDay = 24 * 60 * 60 * 1000;
-            const now = new Date();
-
-            const runtimeDays = Math.max(0, Math.floor((now.getTime() - startAt.getTime()) / msPerDay));
             const yearStart = new Date(`${progressYear}-01-01T00:00:00+08:00`);
             const yearEnd = new Date(`${progressYear + 1}-01-01T00:00:00+08:00`);
             const totalMs = yearEnd.getTime() - yearStart.getTime();
-            const elapsedMs = Math.min(Math.max(now.getTime() - yearStart.getTime(), 0), totalMs);
-            const percent = totalMs > 0 ? (elapsedMs / totalMs) * 100 : 0;
 
             const daysNode = card.querySelector('[data-runtime-days]');
             const percentNode = card.querySelector('[data-runtime-percent]');
             const fillNode = card.querySelector('[data-runtime-fill]');
+            let hoverTimer = null;
 
-            if (daysNode) {
-                daysNode.textContent = String(runtimeDays);
-            }
+            const getRuntimeDays = () => {
+                const now = new Date();
+                return Math.max(0, Math.floor((now.getTime() - startAt.getTime()) / msPerDay));
+            };
 
-            if (percentNode) {
-                percentNode.textContent = `${percent.toFixed(2)}%`;
-            }
+            const getProgressPercent = () => {
+                const now = new Date();
+                const elapsedMs = Math.min(Math.max(now.getTime() - yearStart.getTime(), 0), totalMs);
+                return totalMs > 0 ? (elapsedMs / totalMs) * 100 : 0;
+            };
 
-            if (fillNode) {
-                fillNode.style.width = `${percent.toFixed(2)}%`;
-            }
+            const render = (precision = 2) => {
+                const percent = getProgressPercent();
+
+                if (daysNode) {
+                    daysNode.textContent = String(getRuntimeDays());
+                }
+
+                if (percentNode) {
+                    percentNode.textContent = `${percent.toFixed(precision)}%`;
+                }
+
+                if (fillNode) {
+                    fillNode.style.width = `${percent}%`;
+                }
+            };
+
+            const stopHoverMode = () => {
+                if (hoverTimer) {
+                    window.clearInterval(hoverTimer);
+                    hoverTimer = null;
+                }
+
+                card.classList.remove('runtime-status-card--active');
+                render(2);
+            };
+
+            card.addEventListener('mouseenter', () => {
+                stopHoverMode();
+                card.classList.add('runtime-status-card--active');
+                render(5);
+                hoverTimer = window.setInterval(() => render(5), 80);
+            });
+
+            card.addEventListener('mouseleave', stopHoverMode);
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    stopHoverMode();
+                }
+            });
+
+            render(2);
         })();
     </script>
 </section>
