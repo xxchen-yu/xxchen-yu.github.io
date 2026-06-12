@@ -292,7 +292,7 @@
             <span
                 class="runtime-status-percent"
                 data-runtime-percent
-                title="悬停后显示并实时更新到小数点后五位"
+                title="悬停后显示并实时更新到小数点后七位"
             >0.00%</span>
         </div>
 
@@ -361,8 +361,8 @@
             card.addEventListener('mouseenter', () => {
                 stopHoverMode();
                 card.classList.add('runtime-status-card--active');
-                render(5);
-                hoverTimer = window.setInterval(() => render(5), 80);
+                render(7);
+                hoverTimer = window.setInterval(() => render(7), 80);
             });
 
             card.addEventListener('mouseleave', stopHoverMode);
