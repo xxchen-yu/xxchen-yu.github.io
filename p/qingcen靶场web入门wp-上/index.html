@@ -479,7 +479,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 15 分钟
                 </time>
             </div>
         
@@ -496,7 +496,7 @@
 
 
 
-                <span class="article-time--wordcount">1083 字</span>
+                <span class="article-time--wordcount">7080 字</span>
             </div>
         
     </footer>
@@ -755,7 +755,7 @@ String.fromCharCode()函数:将ASCII数字数组转换为字符串</p>
 </h3><p>访问 <a class="link" href="http://docker.qingcen.net:45040/"  target="_blank" rel="noopener"
     >http://docker.qingcen.net:45040/</a>，看到一个 3×3 拼图游戏，需要把 9 块拼图拖拽到正确位置后点击&quot;提交&quot;。<br>
 关键发现<br>
-查看页面源码，核心逻辑在 <script> 中：</p>
+查看页面源码，核心逻辑在 <code>&lt;script&gt;</code> 中：</p>
 <ol>
 <li>CSRF Token：每个会话会生成一个 CSRF token（const csrf = &ldquo;65bdfa841e802c39510e4d59eb5c1820&rdquo;）</li>
 <li>提交逻辑：拼图完成后，JS 会向 /complete.php 发送 POST 请求：<br>
@@ -882,7 +882,7 @@ body: new URLSearchParams({ csrf, solved: &lsquo;1&rsquo; })<br>
 	
 ></p>
 <p>没发现有用信息，进行目录扫描(这里用的是dirsearch)</p>
-<p>常用格式：python3 dirsearch.py -u &lt;目标URL&gt; [选项]；</p>
+<p>常用格式：<code>python3 dirsearch.py -u &lt;目标URL&gt; [选项]</code>；</p>
 <p>-e 指定扩展名（如 -e php,html,txt）；</p>
 <p>-w 指定字典文件，不指定则用默认字典；</p>
 <p>-x 排除状态码（如 -x 403,404）可减少无效结果；</p>

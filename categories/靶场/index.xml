@@ -1204,7 +1204,7 @@ String.fromCharCode()函数:将ASCII数字数组转换为字符串&lt;/p&gt;
 &lt;/h3&gt;&lt;p&gt;访问 &lt;a class=&#34;link&#34; href=&#34;http://docker.qingcen.net:45040/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;http://docker.qingcen.net:45040/&lt;/a&gt;，看到一个 3×3 拼图游戏，需要把 9 块拼图拖拽到正确位置后点击&amp;quot;提交&amp;quot;。&lt;br&gt;
 关键发现&lt;br&gt;
-查看页面源码，核心逻辑在 &lt;script&gt; 中：&lt;/p&gt;
+查看页面源码，核心逻辑在 &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 中：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;CSRF Token：每个会话会生成一个 CSRF token（const csrf = &amp;ldquo;65bdfa841e802c39510e4d59eb5c1820&amp;rdquo;）&lt;/li&gt;
 &lt;li&gt;提交逻辑：拼图完成后，JS 会向 /complete.php 发送 POST 请求：&lt;br&gt;
@@ -1331,7 +1331,7 @@ body: new URLSearchParams({ csrf, solved: &amp;lsquo;1&amp;rsquo; })&lt;br&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;没发现有用信息，进行目录扫描(这里用的是dirsearch)&lt;/p&gt;
-&lt;p&gt;常用格式：python3 dirsearch.py -u &amp;lt;目标URL&amp;gt; [选项]；&lt;/p&gt;
+&lt;p&gt;常用格式：&lt;code&gt;python3 dirsearch.py -u &amp;lt;目标URL&amp;gt; [选项]&lt;/code&gt;；&lt;/p&gt;
 &lt;p&gt;-e 指定扩展名（如 -e php,html,txt）；&lt;/p&gt;
 &lt;p&gt;-w 指定字典文件，不指定则用默认字典；&lt;/p&gt;
 &lt;p&gt;-x 排除状态码（如 -x 403,404）可减少无效结果；&lt;/p&gt;
