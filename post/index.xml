@@ -696,55 +696,32 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 &lt;p&gt;打开题目页面，是一个很简洁的文件上传表单，只接受 image
 字段，上传后返回文件路径。没有登录、没有验证码，看起来就是考上传绕过。&lt;/p&gt;
 &lt;p&gt;二、试探过滤规则&lt;/p&gt;
-&lt;p&gt;先拿不同类型的文件试了一圈，摸清楚后端的过滤逻辑：&lt;/p&gt;
-&lt;p&gt;┌────────────┬─────────────────────────────┬────────────────────────────┐
-│    文件    │            结果             │            说明            │
-├────────────┼─────────────────────────────┼────────────────────────────┤
-│ test.php   │ ❌ File type not allowed    │ 扩展名黑名单               │
-├────────────┼─────────────────────────────┼────────────────────────────┤
-│ test.php5  │ ❌ 同上                     │ 也被黑名单拦了             │
-├────────────┼─────────────────────────────┼────────────────────────────┤
-│ test.pHp   │ ❌ 同上                     │ 转小写后匹配，大小写绕不过 │
-├────────────┼─────────────────────────────┼────────────────────────────┤
-│ test.jpg   │ ✅ 正常上传                 │ 图片放行                   │
-├────────────┼─────────────────────────────┼────────────────────────────┤
-│ test.phtml │ ✅ 正常上传                 │ 这个漏了！                 │
-├────────────┼─────────────────────────────┼────────────────────────────┤
-│ test.phar  │ ❌ File content not allowed │ 内容检测拦了               │
-├────────────┼─────────────────────────────┼────────────────────────────┤
-│ .htaccess  │ ✅ 正常上传                 │ 没拦这个                   │
-└────────────┴─────────────────────────────┴────────────────────────────┘&lt;/p&gt;
-&lt;p&gt;到这里已经看出来了——后端有两层过滤：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;第一层：扩展名黑名单，拦了 php, php3, php4, php5, phps, pht, jsp,jspx, asp, aspx, sh, py, pl, exe,
-bat, cmd&lt;/li&gt;
-&lt;li&gt;第二层：内容检测，如果文件里有 &amp;lt;?php 或 &amp;lt;?= 标记，只有 .phtml 扩展名能放行&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;所以 .phtml 就是突破口——它既不在黑名单里，又不会被内容检测拦，而且 Apache 默认会把它当 PHP 解析。&lt;/p&gt;
+&lt;p&gt;先拿不同类型的文件试了一圈，摸清楚后端的过滤逻辑。&lt;/p&gt;
+&lt;p&gt;test.php 直接被拦，返回 File type not allowed，说明有扩展名黑名单。test.php5 也被拦了，test.pHp
+大小写混写同样没用，后端会先转小写再匹配。&lt;/p&gt;
+&lt;p&gt;正常的图片文件 test.jpg 和 test.png 都能上传成功。&lt;/p&gt;
+&lt;p&gt;试了 test.phtml，居然过了，既没被黑名单拦，也没被内容检测拦。另外 .htaccess 也能传上去。&lt;/p&gt;
+&lt;p&gt;再试 test.phar，这次是被内容检测拦下来的，返回 File content not
+allowed。说明后端除了黑名单之外，还会扫描文件内容里有没有 &amp;lt;?php 之类的标记。&lt;/p&gt;
+&lt;p&gt;到这里就清楚了，后端有两层过滤。第一层是扩展名黑名单，拦了
+php、php3、php4、php5、phps、pht、jsp、jspx、asp、aspx、sh、py、pl、exe、bat、cmd
+这些。第二层是内容检测，如果文件里出现 &amp;lt;?php 或 &amp;lt;?=，只有扩展名是 .phtml 的时候才放行。&lt;/p&gt;
+&lt;p&gt;所以 .phtml 就是突破口——不在黑名单里，内容检测也给它开了绿灯，而且 Apache 默认配置会把它当 PHP 解析。&lt;/p&gt;
 &lt;p&gt;三、拿到 Webshell&lt;/p&gt;
-&lt;p&gt;构造一句话木马：&lt;/p&gt;
-  &lt;?php system($_GET[&#34;cmd&#34;]); ?&gt;
-&lt;p&gt;保存为 shell.phtml，通过表单上传，服务器返回了文件路径：&lt;/p&gt;
-&lt;p&gt;uploads/96289496-024a-471d-8ad0-faeb1416d3a3.phtml&lt;/p&gt;
-&lt;p&gt;访问确认能执行 PHP——服务器返回了 phpinfo 的输出，说明 .phtml 确实被当作 PHP 处理了。&lt;/p&gt;
+&lt;p&gt;构造一句话木马，内容就一行 &lt;?php system($_GET[&#34;cmd&#34;]); ?&gt;，保存为 shell.phtml 上传。服务器返回了路径
+uploads/96289496-024a-471d-8ad0-faeb1416d3a3.phtml。&lt;/p&gt;
+&lt;p&gt;直接浏览器访问这个地址，页面输出了 phpinfo 的内容，确认 .phtml 被当成 PHP 执行了。&lt;/p&gt;
 &lt;p&gt;四、找 Flag&lt;/p&gt;
-&lt;p&gt;用 webshell 执行命令，先翻了一遍常见位置（/flag*、/root/、/var/www/html/），都没找到。&lt;/p&gt;
-&lt;p&gt;最后直接读环境变量：&lt;/p&gt;
-&lt;p&gt;curl &amp;ldquo;http://&amp;hellip;/uploads/xxx.phtml?cmd=env&amp;rdquo;&lt;/p&gt;
-&lt;p&gt;在输出里发现了：&lt;/p&gt;
-&lt;p&gt;FLAG=flag{4327b3b7-cfac-46f7-8e6f-88810e9a2147}&lt;/p&gt;
-&lt;p&gt;Flag 是通过 Docker 的环境变量注入进来的，所以用 find 搜文件名搜不到，必须用 env 或 printenv
-才能看见。&lt;/p&gt;
-&lt;p&gt;五、Flag&lt;/p&gt;
-&lt;p&gt;flag{4327b3b7-cfac-46f7-8e6f-88810e9a2147}&lt;/p&gt;
-&lt;p&gt;六、复盘&lt;/p&gt;
-&lt;p&gt;这题的核心考点就两个：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;扩展名黑名单不完整——.phtml 是 PHP 的合法扩展名，但出题人的黑名单里漏掉了。做题的时候要对各种 web
-语言的扩展名心里有数，比如 .phtml、.pht、.phps、.phar 这些冷门的。&lt;/li&gt;
-&lt;li&gt;Flag 藏在环境变量里——不是文件，不能靠 find 搜到。Docker 容器里经常通过 ENV FLAG=xxx 注入
-flag，养成习惯先 env 看一眼。&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;用 webshell 执行命令找 flag。先翻了 /flag*、/root/、/var/www/html/ 这些常见位置，都没有。&lt;/p&gt;
+&lt;p&gt;然后直接读环境变量 env，输出里赫然写着 FLAG=flag{4327b3b7-cfac-46f7-8e6f-88810e9a2147}。&lt;/p&gt;
+&lt;p&gt;Flag 是通过 Docker 的 ENV 指令注入进容器的，不在文件系统里，所以用 find 搜文件名根本搜不到，必须用
+env 或 printenv 才能看见。&lt;/p&gt;
+&lt;p&gt;五、复盘&lt;/p&gt;
+&lt;p&gt;这题核心考了两个点。&lt;/p&gt;
+&lt;p&gt;一个是扩展名黑名单不完整。.phtml 是 PHP 的合法扩展名，出题人的黑名单里漏掉了。做文件上传题要对各种
+web 语言的冷门扩展名心里有数，比如 .phtml、.pht、.phps、.phar 这些，黑名单很容易漏。&lt;/p&gt;
+&lt;p&gt;另一个是 flag 的藏法。Docker 容器里经常通过环境变量注入 flag，不是文件，用 find
+搜不到。养成习惯进容器先 env 看一眼。&lt;/p&gt;
 &lt;h3 id=&#34;ezfu_3&#34;&gt;EZFU_3
 &lt;/h3&gt;&lt;h3 id=&#34;ezfu_4&#34;&gt;EZFU_4
 &lt;/h3&gt;&lt;h3 id=&#34;ezfu_5&#34;&gt;EZFU_5
