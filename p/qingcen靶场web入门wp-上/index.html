@@ -479,7 +479,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 14 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -496,7 +496,7 @@
 
 
 
-                <span class="article-time--wordcount">6516 字</span>
+                <span class="article-time--wordcount">1083 字</span>
             </div>
         
     </footer>
@@ -752,7 +752,58 @@ String.fromCharCode()函数:将ASCII数字数组转换为字符串</p>
 	
 ></p>
 <h3 id="basic_7">BASIC_7
-</h3><h3 id="basic_8">BASIC_8
+</h3><p>访问 <a class="link" href="http://docker.qingcen.net:45040/"  target="_blank" rel="noopener"
+    >http://docker.qingcen.net:45040/</a>，看到一个 3×3 拼图游戏，需要把 9 块拼图拖拽到正确位置后点击&quot;提交&quot;。<br>
+关键发现<br>
+查看页面源码，核心逻辑在 <script> 中：</p>
+<ol>
+<li>CSRF Token：每个会话会生成一个 CSRF token（const csrf = &ldquo;65bdfa841e802c39510e4d59eb5c1820&rdquo;）</li>
+<li>提交逻辑：拼图完成后，JS 会向 /complete.php 发送 POST 请求：<br>
+fetch(&rsquo;/complete.php&rsquo;, {<br>
+method: &lsquo;POST&rsquo;,<br>
+body: new URLSearchParams({ csrf, solved: &lsquo;1&rsquo; })<br>
+});</li>
+<li>重定向链：提交成功后，响应头显示 302 跳转链：- /complete.php → /vault.php → /decoy.php<br>
+关键点：/vault.php 虽然返回了 302 Redirect 到 /decoy.php，但 响应体仍然包含 flag 内容！<br>
+解题过程</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl">  <span class="n">Step</span> <span class="mi">1</span><span class="err">：带</span> <span class="n">Cookie</span> <span class="err">访问首页获取</span> <span class="n">CSRF</span> <span class="n">Token</span>  
+</span></span><span class="line"><span class="cl">  <span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="o">-</span><span class="n">c</span> <span class="n">cookie</span><span class="o">.</span><span class="n">txt</span> <span class="s1">&#39;http://docker.qingcen.net:45040/&#39;</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">&#39;const csrf&#39;</span>  
+</span></span><span class="line"><span class="cl">  <span class="c1"># → const csrf = &#34;6adc8fb5af2c4ca36c946fcfaea42fc2&#34;  </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">Step</span> <span class="mi">2</span><span class="err">：用同一</span> <span class="n">Session</span> <span class="err">提交拼图完成请求</span>  
+</span></span><span class="line"><span class="cl">  <span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="o">-</span><span class="n">L</span> <span class="o">-</span><span class="n">b</span> <span class="n">cookie</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s1">&#39;http://docker.qingcen.net:45040/complete.php&#39;</span> \  
+</span></span><span class="line"><span class="cl">    <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;csrf=6adc8fb5af2c4ca36c946fcfaea42fc2&amp;solved=1&#39;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">Step</span> <span class="mi">3</span><span class="err">：直接访问</span> <span class="o">/</span><span class="n">vault</span><span class="o">.</span><span class="n">php</span><span class="err">（不跟随重定向）</span>
+</span></span><span class="line"><span class="cl">  <span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="o">-</span><span class="n">b</span> <span class="n">cookie</span><span class="o">.</span><span class="n">txt</span> <span class="s1">&#39;http://docker.qingcen.net:45040/vault.php&#39;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="err">虽然响应头是</span> <span class="mi">302</span> <span class="err">→</span> <span class="o">/</span><span class="n">decoy</span><span class="o">.</span><span class="n">php</span><span class="err">（</span><span class="n">decoy</span> <span class="o">=</span> <span class="err">诱饵页面），但响应体中赫然写着</span> <span class="n">flag</span><span class="err">。</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>总结<br>
+这道题的核心考点是 HTTP 302 重定向与响应体的关系。题目利用两层误导：</p>
+<ol>
+<li>正常浏览器会跟随重定向，先到 vault.php，再到 decoy.php（诱饵页面），用户只看到诱饵</li>
+<li>但实际上 vault.php 虽然发了 302，响应体里已经包含了 flag —— 用 curl 不跟随重定向（或只跟随到vault.php）就能直接看到</li>
+</ol>
+<h3 id="basic_8">BASIC_8
 </h3><p>访问靶场
 <img src="https://cdn.jsdelivr.net/gh/xxchen-yu/blog-images@main/2026/qingcen-web-rumen-wp/34.png"
 	
