@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="OWASP Top 10 2025 总览与分析 这份笔记适合怎么用 如果你是开发者：先看“怎么理解这份榜单”，再看每一项的“开发/排查重点”。 如果你是安全测试人员：重点看每一项的“常见表现”和“检查点”。 如果你是做安全治理：重点看“2025 版变化”和“落地建议”。 一、OWASP Top 10 2025 是什么 OWASP Top 10 是面向 Web 应用安全风险的高优先级清单。\n2025 版是第 8 次发布，官方说明它依旧是“数据驱动，但不盲从数据”的榜单：一部分来自大规模测试数据，一部分来自社区调查，用来补足那些“现实里很重要、但不容易被自动化工具统计出来”的风险。\n">
+<title>OWASP Top 10 2025 总览与分析</title>
+
+<link rel='canonical' href='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/00-owasp-top-10-2025-%E6%80%BB%E8%A7%88%E4%B8%8E%E5%88%86%E6%9E%90/'>
+
+<link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="OWASP Top 10 2025 总览与分析">
+<meta property='og:description' content="OWASP Top 10 2025 总览与分析 这份笔记适合怎么用 如果你是开发者：先看“怎么理解这份榜单”，再看每一项的“开发/排查重点”。 如果你是安全测试人员：重点看每一项的“常见表现”和“检查点”。 如果你是做安全治理：重点看“2025 版变化”和“落地建议”。 一、OWASP Top 10 2025 是什么 OWASP Top 10 是面向 Web 应用安全风险的高优先级清单。\n2025 版是第 8 次发布，官方说明它依旧是“数据驱动，但不盲从数据”的榜单：一部分来自大规模测试数据，一部分来自社区调查，用来补足那些“现实里很重要、但不容易被自动化工具统计出来”的风险。\n">
+<meta property='og:url' content='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/00-owasp-top-10-2025-%E6%80%BB%E8%A7%88%E4%B8%8E%E5%88%86%E6%9E%90/'>
+<meta property='og:site_name' content='ChenOvo'>
+<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-05-20T12:28:39&#43;08:00'/><meta property='article:modified_time' content='2026-05-20T12:28:39&#43;08:00'/>
+<meta name="twitter:title" content="OWASP Top 10 2025 总览与分析">
+<meta name="twitter:description" content="OWASP Top 10 2025 总览与分析 这份笔记适合怎么用 如果你是开发者：先看“怎么理解这份榜单”，再看每一项的“开发/排查重点”。 如果你是安全测试人员：重点看每一项的“常见表现”和“检查点”。 如果你是做安全治理：重点看“2025 版变化”和“落地建议”。 一、OWASP Top 10 2025 是什么 OWASP Top 10 是面向 Web 应用安全风险的高优先级清单。\n2025 版是第 8 次发布，官方说明它依旧是“数据驱动，但不盲从数据”的榜单：一部分来自大规模测试数据，一部分来自社区调查，用来补足那些“现实里很重要、但不容易被自动化工具统计出来”的风险。\n">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="/css/custom.css">
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_7a0b096c17d58c3c.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">ChenOvo</a></h1>
+            <h2 class="site-description">游手好闲的一天</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/xxchen-yu'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>blog</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li  class='current' >
+            <a href='/wiki/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wiki" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M4 5h5a3 3 0 0 1 3 3v11a3 3 0 0 0 -3 -3h-5z" />
+  <path d="M20 5h-5a3 3 0 0 0 -3 3v11a3 3 0 0 1 3 -3h5z" />
+  <path d="M8 9h1" />
+  <path d="M8 12h1" />
+  <path d="M15 9h1" />
+  <path d="M15 12h1" />
+</svg>
+
+                
+                <span>Wiki</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc collapsible-toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#这份笔记适合怎么用">这份笔记适合怎么用</a></li>
+    <li><a href="#一owasp-top-10-2025-是什么">一、OWASP Top 10 2025 是什么</a></li>
+    <li><a href="#二2025-版最值得注意的变化">二、2025 版最值得注意的变化</a>
+      <ol>
+        <li><a href="#1-新增或重构的类别">1. 新增或重构的类别</a></li>
+        <li><a href="#2-排名变化明显">2. 排名变化明显</a></li>
+        <li><a href="#3-官方更强调现代工程现实">3. 官方更强调“现代工程现实”</a></li>
+      </ol>
+    </li>
+    <li><a href="#三2025-top-10-排名速览">三、2025 Top 10 排名速览</a></li>
+    <li><a href="#四怎么理解这份榜单">四、怎么理解这份榜单</a>
+      <ol>
+        <li><a href="#1-前三名本质上都在讲信任边界">1. 前三名本质上都在讲“信任边界”</a></li>
+        <li><a href="#2-2025-版比以前更偏系统性风险">2. 2025 版比以前更偏“系统性风险”</a></li>
+        <li><a href="#3-很多风险之间会相互放大">3. 很多风险之间会相互放大</a></li>
+      </ol>
+    </li>
+    <li><a href="#五10-个风险的中文理解与排查重点">五、10 个风险的中文理解与排查重点</a></li>
+    <li><a href="#a01-broken-access-control">A01 Broken Access Control</a>
+      <ol>
+        <li><a href="#核心含义">核心含义</a></li>
+        <li><a href="#常见表现">常见表现</a></li>
+        <li><a href="#开发排查重点">开发/排查重点</a></li>
+      </ol>
+    </li>
+    <li><a href="#a02-security-misconfiguration">A02 Security Misconfiguration</a>
+      <ol>
+        <li><a href="#核心含义-1">核心含义</a></li>
+        <li><a href="#常见表现-1">常见表现</a></li>
+        <li><a href="#开发排查重点-1">开发/排查重点</a></li>
+      </ol>
+    </li>
+    <li><a href="#a03-software-supply-chain-failures">A03 Software Supply Chain Failures</a>
+      <ol>
+        <li><a href="#核心含义-2">核心含义</a></li>
+        <li><a href="#常见表现-2">常见表现</a></li>
+        <li><a href="#开发排查重点-2">开发/排查重点</a></li>
+      </ol>
+    </li>
+    <li><a href="#a04-cryptographic-failures">A04 Cryptographic Failures</a>
+      <ol>
+        <li><a href="#核心含义-3">核心含义</a></li>
+        <li><a href="#常见表现-3">常见表现</a></li>
+        <li><a href="#开发排查重点-3">开发/排查重点</a></li>
+      </ol>
+    </li>
+    <li><a href="#a05-injection">A05 Injection</a>
+      <ol>
+        <li><a href="#核心含义-4">核心含义</a></li>
+        <li><a href="#常见表现-4">常见表现</a></li>
+        <li><a href="#开发排查重点-4">开发/排查重点</a></li>
+      </ol>
+    </li>
+    <li><a href="#a06-insecure-design">A06 Insecure Design</a>
+      <ol>
+        <li><a href="#核心含义-5">核心含义</a></li>
+        <li><a href="#常见表现-5">常见表现</a></li>
+        <li><a href="#开发排查重点-5">开发/排查重点</a></li>
+      </ol>
+    </li>
+    <li><a href="#a07-authentication-failures">A07 Authentication Failures</a>
+      <ol>
+        <li><a href="#核心含义-6">核心含义</a></li>
+        <li><a href="#常见表现-6">常见表现</a></li>
+        <li><a href="#开发排查重点-6">开发/排查重点</a></li>
+      </ol>
+    </li>
+    <li><a href="#a08-software-or-data-integrity-failures">A08 Software or Data Integrity Failures</a>
+      <ol>
+        <li><a href="#核心含义-7">核心含义</a></li>
+        <li><a href="#常见表现-7">常见表现</a></li>
+        <li><a href="#开发排查重点-7">开发/排查重点</a></li>
+      </ol>
+    </li>
+    <li><a href="#a09-security-logging-and-alerting-failures">A09 Security Logging and Alerting Failures</a>
+      <ol>
+        <li><a href="#核心含义-8">核心含义</a></li>
+        <li><a href="#常见表现-8">常见表现</a></li>
+        <li><a href="#开发排查重点-8">开发/排查重点</a></li>
+      </ol>
+    </li>
+    <li><a href="#a10-mishandling-of-exceptional-conditions">A10 Mishandling of Exceptional Conditions</a>
+      <ol>
+        <li><a href="#核心含义-9">核心含义</a></li>
+        <li><a href="#常见表现-9">常见表现</a></li>
+        <li><a href="#开发排查重点-9">开发/排查重点</a></li>
+      </ol>
+    </li>
+    <li><a href="#六容易混淆的几个边界">六、容易混淆的几个边界</a>
+      <ol>
+        <li><a href="#a03-vs-a08"><code>A03</code> vs <code>A08</code></a></li>
+        <li><a href="#a01-vs-a07"><code>A01</code> vs <code>A07</code></a></li>
+        <li><a href="#a02-vs-a10"><code>A02</code> vs <code>A10</code></a></li>
+        <li><a href="#a06-vs-其他所有项"><code>A06</code> vs 其他所有项</a></li>
+      </ol>
+    </li>
+    <li><a href="#七如果你要把-top-10-用到实际项目建议这样落地">七、如果你要把 Top 10 用到实际项目，建议这样落地</a>
+      <ol>
+        <li><a href="#对开发团队">对开发团队</a></li>
+        <li><a href="#对测试团队">对测试团队</a></li>
+        <li><a href="#对治理或安全负责人">对治理或安全负责人</a></li>
+      </ol>
+    </li>
+    <li><a href="#八我的整体判断">八、我的整体判断</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+    <style>
+     
+    .collapsible-toc nav > ol > li {
+        position: relative;
+        margin: 6px 0;
+        list-style: none;
+    }
+
+    .collapsible-toc nav > ol > li > a {
+        display: inline-flex;
+        align-items: center;
+    }
+
+     
+    .collapsible-toc nav > ol > li > a::after {
+        content: '▶';
+        margin-left: 6px;
+        font-size: 10px;
+        opacity: 0.5;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .collapsible-toc nav > ol > li:hover > a::after {
+        transform: rotate(90deg);
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin-left: 16px;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+     
+    .collapsible-toc nav > ol > li:hover > ol {
+        max-height: 2000px;
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol > li {
+        list-style: none;
+        margin: 4px 0;
+    }
+
+     
+    .collapsible-toc nav > ol > li:not(:has(> ol)) > a::after {
+        display: none;
+    }
+    </style>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/00-owasp-top-10-2025-%E6%80%BB%E8%A7%88%E4%B8%8E%E5%88%86%E6%9E%90/">OWASP Top 10 2025 总览与分析</a>
+        </h2>
+
+        
+    </div>
+
+    
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-05-20T12:28:39&#43;08:00'>May 20, 2026</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 12 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                <span class="article-time--wordcount">5960 字</span>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="owasp-top-10-2025-总览与分析">OWASP Top 10 2025 总览与分析
+</h1><h2 id="这份笔记适合怎么用">这份笔记适合怎么用
+</h2><ul>
+<li>如果你是开发者：先看“怎么理解这份榜单”，再看每一项的“开发/排查重点”。</li>
+<li>如果你是安全测试人员：重点看每一项的“常见表现”和“检查点”。</li>
+<li>如果你是做安全治理：重点看“2025 版变化”和“落地建议”。</li>
+</ul>
+<hr>
+<h2 id="一owasp-top-10-2025-是什么">一、OWASP Top 10 2025 是什么
+</h2><p>OWASP Top 10 是面向 Web 应用安全风险的高优先级清单。<br>
+2025 版是第 8 次发布，官方说明它依旧是“数据驱动，但不盲从数据”的榜单：一部分来自大规模测试数据，一部分来自社区调查，用来补足那些“现实里很重要、但不容易被自动化工具统计出来”的风险。</p>
+<p>我对它的理解是：</p>
+<ul>
+<li>它不是漏洞库，而是“风险类别榜单”。</li>
+<li>它不要求你背 10 个名词，而是要求你识别 10 类最常见的失守方式。</li>
+<li>它越来越强调“根因”而不是“表象”。</li>
+</ul>
+<p>比如：</p>
+<ul>
+<li>以前常说“敏感信息泄露”，现在更追问它为什么泄露，是访问控制失效、加密失败，还是日志/异常处理问题。</li>
+<li>以前常把问题看成单点漏洞，现在更强调系统、配置、供应链、设计、流程这些成因。</li>
+</ul>
+<hr>
+<h2 id="二2025-版最值得注意的变化">二、2025 版最值得注意的变化
+</h2><h3 id="1-新增或重构的类别">1. 新增或重构的类别
+</h3><ul>
+<li><code>A03 Software Supply Chain Failures</code>：把 2021 版“易受攻击/过时组件”扩展成更大的“软件供应链失败”。</li>
+<li><code>A10 Mishandling of Exceptional Conditions</code>：新增“异常条件处理不当”，强调错误处理、fail-open、资源/状态异常、逻辑异常。</li>
+<li><code>SSRF</code> 被并入 <code>A01 Broken Access Control</code>，体现它很多时候本质上是信任边界和访问边界失守。</li>
+</ul>
+<h3 id="2-排名变化明显">2. 排名变化明显
+</h3><ul>
+<li><code>A02 Security Misconfiguration</code> 从 2021 的第 5 名升到 2025 的第 2 名。</li>
+<li><code>A03 Software Supply Chain Failures</code> 升得很高，说明现代软件交付链已经成为核心攻击面。</li>
+<li><code>A04 Cryptographic Failures</code>、<code>A05 Injection</code>、<code>A06 Insecure Design</code> 相对后移，但绝不代表不重要。</li>
+</ul>
+<h3 id="3-官方更强调现代工程现实">3. 官方更强调“现代工程现实”
+</h3><p>2025 版非常明显地在回应这些现实问题：</p>
+<ul>
+<li>云原生与高度可配置系统越来越多。</li>
+<li>依赖、构建、制品、CI/CD 已经成为攻击面。</li>
+<li>单纯靠编码阶段补洞不够，必须把安全前移到设计、需求、流程和供应链。</li>
+<li>可观测性、告警、异常恢复已经不是“运维问题”，而是应用安全问题。</li>
+</ul>
+<hr>
+<h2 id="三2025-top-10-排名速览">三、2025 Top 10 排名速览
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>排名</th>
+					<th>类别</th>
+					<th>一句话理解</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A01</td>
+					<td>Broken Access Control</td>
+					<td>不该看的能看，不该改的能改，不该执行的能执行</td>
+			</tr>
+			<tr>
+					<td>A02</td>
+					<td>Security Misconfiguration</td>
+					<td>系统原本可以更安全，但你没有把安全配置真正落地</td>
+			</tr>
+			<tr>
+					<td>A03</td>
+					<td>Software Supply Chain Failures</td>
+					<td>依赖、构建、仓库、制品、更新链路被污染或失控</td>
+			</tr>
+			<tr>
+					<td>A04</td>
+					<td>Cryptographic Failures</td>
+					<td>该加密的没加密，该正确用密钥/算法的没用对</td>
+			</tr>
+			<tr>
+					<td>A05</td>
+					<td>Injection</td>
+					<td>不可信输入进入解释器，被当成命令或语句执行</td>
+			</tr>
+			<tr>
+					<td>A06</td>
+					<td>Insecure Design</td>
+					<td>设计阶段就缺控制，后面写再多代码也只是补丁</td>
+			</tr>
+			<tr>
+					<td>A07</td>
+					<td>Authentication Failures</td>
+					<td>系统把“不该算合法身份的人”当成了合法用户</td>
+			</tr>
+			<tr>
+					<td>A08</td>
+					<td>Software or Data Integrity Failures</td>
+					<td>没有验证代码、更新或数据完整性，就直接信任</td>
+			</tr>
+			<tr>
+					<td>A09</td>
+					<td>Security Logging and Alerting Failures</td>
+					<td>发生攻击了，但系统看不见、报不出、跟不上</td>
+			</tr>
+			<tr>
+					<td>A10</td>
+					<td>Mishandling of Exceptional Conditions</td>
+					<td>出现异常、缺参、故障、资源异常时处理失控或 fail-open</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="四怎么理解这份榜单">四、怎么理解这份榜单
+</h2><h3 id="1-前三名本质上都在讲信任边界">1. 前三名本质上都在讲“信任边界”
+</h3><ul>
+<li><code>A01</code> 关注“谁可以做什么”。</li>
+<li><code>A02</code> 关注“系统默认边界有没有收紧”。</li>
+<li><code>A03</code> 关注“你信任的软件和交付链值不值得信任”。</li>
+</ul>
+<p>换句话说，现代安全问题已经不只是“输入是否合法”，而是“系统到底把谁当自己人、把什么当可信来源”。</p>
+<h3 id="2-2025-版比以前更偏系统性风险">2. 2025 版比以前更偏“系统性风险”
+</h3><p>旧思路更像：</p>
+<ul>
+<li>SQL 注入</li>
+<li>弱密码</li>
+<li>明文传输</li>
+</ul>
+<p>新思路更像：</p>
+<ul>
+<li>你的系统有没有统一的授权模型</li>
+<li>你的安全配置是不是可重复、可审计、可自动化</li>
+<li>你的构建链、依赖链、更新链是不是可追踪、可验证、可回滚</li>
+</ul>
+<h3 id="3-很多风险之间会相互放大">3. 很多风险之间会相互放大
+</h3><p>典型组合：</p>
+<ul>
+<li><code>A02 配置错误</code> 暴露接口或目录，进一步导致 <code>A01 越权</code></li>
+<li><code>A10 异常处理失效</code> 没有 fail-closed，进一步造成 <code>A01</code> 或 <code>A07</code></li>
+<li><code>A09 日志告警失效</code> 让 <code>A03</code> 或 <code>A08</code> 的入侵长期不被发现</li>
+<li><code>A06 设计缺陷</code> 往往是 <code>A01/A07/A10</code> 的上游根因</li>
+</ul>
+<p>所以不要把 Top 10 当成 10 个孤立桶，它更像 10 种常见失守方式。</p>
+<hr>
+<h2 id="五10-个风险的中文理解与排查重点">五、10 个风险的中文理解与排查重点
+</h2><h2 id="a01-broken-access-control">A01 Broken Access Control
+</h2><h3 id="核心含义">核心含义
+</h3><p>访问控制的本质是：系统必须持续判断“这个用户是否真的能对这个资源做这件事”。<br>
+一旦这个判断只做了前端限制、只判断是否登录、或没有校验资源归属，就会失守。</p>
+<h3 id="常见表现">常见表现
+</h3><ul>
+<li>通过修改 URL、参数、对象 ID 查看或修改他人的数据</li>
+<li>普通用户可以访问管理员接口</li>
+<li>前端隐藏了按钮，但后端接口仍可直接调用</li>
+<li>JWT、Cookie、隐藏字段被篡改后产生越权</li>
+<li>CORS 配置过宽导致不可信来源可调用敏感 API</li>
+<li>可通过猜测 URL 直接访问受限页面、备份文件、目录列表</li>
+</ul>
+<h3 id="开发排查重点">开发/排查重点
+</h3><ul>
+<li>所有授权判断必须落在服务端</li>
+<li>默认拒绝，公开资源以外一律显式放行</li>
+<li>不只校验“是否登录”，还要校验“是否有权访问该资源”</li>
+<li>把授权逻辑做成统一组件，不要每个接口各写一套</li>
+<li>对高风险接口做速率限制、失败日志和告警</li>
+</ul>
+<hr>
+<h2 id="a02-security-misconfiguration">A02 Security Misconfiguration
+</h2><h3 id="核心含义-1">核心含义
+</h3><p>不是代码一定写错了，而是系统、框架、服务、云资源、头部策略、权限或错误处理没有被安全地配置。</p>
+<h3 id="常见表现-1">常见表现
+</h3><ul>
+<li>默认账号、默认密码未修改</li>
+<li>多余端口、页面、测试框架、示例应用仍暴露</li>
+<li>目录浏览未关闭</li>
+<li>安全头缺失或值不安全</li>
+<li>云存储、云权限、ACL 过宽</li>
+<li>报错把堆栈、版本、内部细节直接返回给用户</li>
+<li>升级后新安全特性没开启，或为了兼容保留旧配置</li>
+</ul>
+<h3 id="开发排查重点-1">开发/排查重点
+</h3><ul>
+<li>建立可重复的加固基线，开发/测试/生产环境一致</li>
+<li>最小化安装与最小暴露面</li>
+<li>自动化校验配置，不要只靠人工检查</li>
+<li>云权限、对象存储、容器/安全组单独审计</li>
+<li>用身份联邦、短期凭证、角色机制替代静态密钥</li>
+</ul>
+<hr>
+<h2 id="a03-software-supply-chain-failures">A03 Software Supply Chain Failures
+</h2><h3 id="核心含义-2">核心含义
+</h3><p>风险不再只是“依赖有漏洞”，而是“从依赖、构建、仓库、CI/CD、IDE 到更新发布的整条供应链，都可能被投毒、篡改、失管或长期暴露”。</p>
+<h3 id="常见表现-2">常见表现
+</h3><ul>
+<li>不清楚项目到底依赖了哪些直接/间接组件</li>
+<li>组件过时、无人维护、有已知漏洞但长期不升级</li>
+<li>CI/CD 权限过大，缺少职责分离</li>
+<li>代码仓库、制品仓库、容器仓库缺少完整性保护</li>
+<li>从不可信来源下载包、镜像、脚本或构建插件</li>
+<li>开发工具链本身长期不更新</li>
+<li>供应链变更无记录、无追踪、无回滚策略</li>
+</ul>
+<h3 id="开发排查重点-2">开发/排查重点
+</h3><ul>
+<li>建立并持续维护 <code>SBOM</code></li>
+<li>跟踪直接依赖和传递依赖</li>
+<li>订阅 CVE/NVD/OSV 等漏洞情报</li>
+<li>只从可信源拉取依赖，优先校验签名</li>
+<li>对代码仓库、CI/CD、构建机、制品做 MFA、最小权限、审计与防篡改</li>
+<li>发布采用分阶段/金丝雀，而不是一次性全量推送</li>
+</ul>
+<hr>
+<h2 id="a04-cryptographic-failures">A04 Cryptographic Failures
+</h2><h3 id="核心含义-3">核心含义
+</h3><p>问题不只是“没加密”，还包括：算法弱、密钥差、随机数弱、模式错误、证书验证错误、密钥管理失控。</p>
+<h3 id="常见表现-3">常见表现
+</h3><ul>
+<li>敏感数据传输未强制 TLS</li>
+<li>敏感数据静态存储未加密</li>
+<li>使用过时算法、弱哈希、弱随机数</li>
+<li>IV 重用、ECB 模式、错误的认证加密选择</li>
+<li>密钥写进代码仓库或配置文件</li>
+<li>密钥长期不轮换、默认密钥复用</li>
+<li>证书链、主机名校验不严</li>
+</ul>
+<h3 id="开发排查重点-3">开发/排查重点
+</h3><ul>
+<li>先做数据分级，明确哪些数据必须重点保护</li>
+<li>传输中和静态存储的敏感数据都要加密</li>
+<li>优先使用成熟库与平台能力，不要自造轮子</li>
+<li>密钥放入 HSM 或云 KMS，建立轮换策略</li>
+<li>强制 TLS 1.2+、HSTS、强密码套件</li>
+<li>密码存储使用 Argon2、scrypt、PBKDF2 等自适应哈希</li>
+</ul>
+<hr>
+<h2 id="a05-injection">A05 Injection
+</h2><h3 id="核心含义-4">核心含义
+</h3><p>只要不可信输入进入解释器，并被当成“命令的一部分”执行，就属于注入问题。<br>
+对象可以是数据库、操作系统、模板引擎、LDAP、表达式引擎等。</p>
+<h3 id="常见表现-4">常见表现
+</h3><ul>
+<li>SQL/NoSQL 注入</li>
+<li>OS 命令注入</li>
+<li>LDAP/EL/OGNL 注入</li>
+<li>ORM/HQL 拼接查询</li>
+<li>存在大量字符串拼接式动态查询</li>
+<li>输入校验、过滤、转义依赖前端或不做上下文区分</li>
+</ul>
+<h3 id="开发排查重点-4">开发/排查重点
+</h3><ul>
+<li>数据与命令必须分离</li>
+<li>优先使用参数化接口、安全 API 或 ORM</li>
+<li>服务端白名单校验输入</li>
+<li>对剩余的动态结构做针对解释器的上下文转义</li>
+<li>在 CI/CD 中加入 SAST、DAST、IAST、Fuzzing</li>
+<li>对所有输入面做覆盖：参数、Header、Cookie、JSON、XML、SOAP</li>
+</ul>
+<hr>
+<h2 id="a06-insecure-design">A06 Insecure Design
+</h2><h3 id="核心含义-5">核心含义
+</h3><p>这是“控制设计缺失或无效”，不是简单的编码失误。<br>
+如果业务流程、权限模型、失败状态、租户隔离、交易边界在设计阶段就没想清楚，后面实现再规范也可能只是把坏设计写得更稳定。</p>
+<h3 id="常见表现-5">常见表现
+</h3><ul>
+<li>找回密码流程设计本身不安全</li>
+<li>多租户隔离只靠表字段，没有架构层隔离</li>
+<li>业务状态机允许跳步、重复消费、回滚失序</li>
+<li>关键流程没有威胁建模</li>
+<li>需求文档没有安全要求，用户故事没有误用场景</li>
+</ul>
+<h3 id="开发排查重点-5">开发/排查重点
+</h3><ul>
+<li>在需求与设计阶段引入安全活动，而不是只在编码后补洞</li>
+<li>对认证、授权、业务逻辑、关键数据流做威胁建模</li>
+<li>把“正常流”和“失败流”都设计清楚</li>
+<li>建立安全设计模式库和安全组件铺装路</li>
+<li>用单元测试和集成测试验证关键流与误用流</li>
+</ul>
+<hr>
+<h2 id="a07-authentication-failures">A07 Authentication Failures
+</h2><h3 id="核心含义-6">核心含义
+</h3><p>系统把错误的人识别成了正确的人，或者让攻击者太容易伪造、复用、猜解、接管身份。</p>
+<h3 id="常见表现-6">常见表现
+</h3><ul>
+<li>允许撞库、密码喷洒、暴力破解</li>
+<li>使用默认口令、弱口令、泄露口令</li>
+<li>找回密码流程脆弱</li>
+<li>缺少 MFA，或 MFA 回退机制太弱</li>
+<li>Session ID 放在 URL 或可被前端轻易读取的位置</li>
+<li>登录后不更换 Session ID</li>
+<li>注销或空闲后 Token/Session 未正确失效</li>
+<li>JWT 的 <code>aud</code>、<code>iss</code>、scope 校验不严</li>
+</ul>
+<h3 id="开发排查重点-6">开发/排查重点
+</h3><ul>
+<li>优先启用 MFA</li>
+<li>禁止默认凭证，校验弱密码与泄露密码</li>
+<li>做账户枚举防护，统一错误提示</li>
+<li>对登录失败做节流、延迟、告警</li>
+<li>登录后重新签发高熵 Session ID</li>
+<li>统一会话生命周期：登录、注销、空闲超时、绝对超时</li>
+<li>尽量使用成熟身份系统，不自己实现整套认证体系</li>
+</ul>
+<hr>
+<h2 id="a08-software-or-data-integrity-failures">A08 Software or Data Integrity Failures
+</h2><h3 id="核心含义-7">核心含义
+</h3><p>这里强调的是：你在“完整性还没验证”的情况下就开始信任代码、更新、模块或数据。<br>
+它和 A03 的区别是，A03 更偏“整条供应链治理”，A08 更偏“对象级信任与完整性验证”。</p>
+<h3 id="常见表现-7">常见表现
+</h3><ul>
+<li>从不可信 CDN、仓库、插件源加载功能</li>
+<li>自动更新包未校验签名或来源</li>
+<li>反序列化不可信数据</li>
+<li>CI/CD 拉取外部制品不验签</li>
+<li>代码/配置修改缺少审查流程</li>
+</ul>
+<h3 id="开发排查重点-7">开发/排查重点
+</h3><ul>
+<li>对软件包、更新包、数据对象做签名或完整性校验</li>
+<li>依赖只来自可信仓库，必要时使用内部白名单仓库</li>
+<li>强化代码与配置变更审查</li>
+<li>CI/CD 做隔离、权限控制和制品完整性验证</li>
+<li>对序列化对象增加防篡改校验，避免直接信任客户端数据</li>
+</ul>
+<hr>
+<h2 id="a09-security-logging-and-alerting-failures">A09 Security Logging and Alerting Failures
+</h2><h3 id="核心含义-8">核心含义
+</h3><p>风险不是“没有日志”这么简单，而是：系统在被攻击、被试探、被滥用时，不能被及时、正确、可操作地发现。</p>
+<h3 id="常见表现-8">常见表现
+</h3><ul>
+<li>只记录成功登录，不记录失败登录</li>
+<li>日志无用户上下文，无法溯源</li>
+<li>告警阈值、升级流程、值班机制缺失</li>
+<li>日志只保存在本地，可被删改</li>
+<li>DAST/渗透测试都打不出告警</li>
+<li>记录了敏感信息，或日志本身可被注入污染</li>
+<li>异常发生了，但系统既没记，也没报</li>
+<li>误报太多，真正的告警被淹没</li>
+</ul>
+<h3 id="开发排查重点-8">开发/排查重点
+</h3><ul>
+<li>登录、授权失败、服务端校验失败、关键交易都要可审计</li>
+<li>日志要可被 SIEM/SOC 消费</li>
+<li>对日志做防篡改与完整性保护</li>
+<li>告警必须有可执行 playbook，不是“发出来就算完”</li>
+<li>控制误报，保证真正攻击能被看到</li>
+<li>敏感数据不要写日志，日志输出要做安全编码</li>
+</ul>
+<hr>
+<h2 id="a10-mishandling-of-exceptional-conditions">A10 Mishandling of Exceptional Conditions
+</h2><h3 id="核心含义-9">核心含义
+</h3><p>系统面对缺参、空指针、资源不足、网络异常、权限异常、时序异常、状态异常时，没能在“发生点”被正确处理，最后进入不可预测状态，甚至 fail-open。</p>
+<h3 id="常见表现-9">常见表现
+</h3><ul>
+<li>只在高层统一 try/catch，底层失败原因被吞掉</li>
+<li>事务失败后未完整回滚</li>
+<li>异常时默认放行、默认继续执行、默认返回成功</li>
+<li>缺少限流、配额、节流，导致资源异常可被放大成 DoS</li>
+<li>异常没有监控、没有告警、没有恢复策略</li>
+<li>输入验证缺失导致异常状态被攻击者持续触发</li>
+</ul>
+<h3 id="开发排查重点-9">开发/排查重点
+</h3><ul>
+<li>在异常发生点捕获并做有意义的处理</li>
+<li>关键事务失败必须 fail-closed，并完整回滚</li>
+<li>建立全局异常处理器，但不能替代局部正确处理</li>
+<li>对重复错误、异常峰值建立监控和告警</li>
+<li>加限流、资源配额、熔断、超时、重试策略</li>
+<li>统一异常处理方式，不要一个系统里多套风格并存</li>
+</ul>
+<hr>
+<h2 id="六容易混淆的几个边界">六、容易混淆的几个边界
+</h2><h3 id="a03-vs-a08"><code>A03</code> vs <code>A08</code>
+</h3><ul>
+<li><code>A03</code> 更像“供应链治理失效”</li>
+<li><code>A08</code> 更像“对象完整性验证失效”</li>
+</ul>
+<p>前者关注依赖、构建、仓库、CI/CD、发布链。<br>
+后者关注更新包、模块、序列化对象、外部脚本、数据对象是否被当成可信内容直接执行或消费。</p>
+<h3 id="a01-vs-a07"><code>A01</code> vs <code>A07</code>
+</h3><ul>
+<li><code>A07</code> 是“你是谁”</li>
+<li><code>A01</code> 是“你能做什么”</li>
+</ul>
+<p>很多系统认证做得不错，但授权做得很弱，所以登录以后仍然能越权。</p>
+<h3 id="a02-vs-a10"><code>A02</code> vs <code>A10</code>
+</h3><ul>
+<li><code>A02</code> 是安全基线没有配好</li>
+<li><code>A10</code> 是异常、错误、故障出现时没有被安全地处理</li>
+</ul>
+<p>一个偏“部署与运行基线”，一个偏“异常流与失败流设计/实现”。</p>
+<h3 id="a06-vs-其他所有项"><code>A06</code> vs 其他所有项
+</h3><p><code>A06</code> 很像上游根因。<br>
+很多访问控制、认证、异常处理问题，表面看是实现错误，根上其实是设计阶段没定义好安全约束和失败状态。</p>
+<hr>
+<h2 id="七如果你要把-top-10-用到实际项目建议这样落地">七、如果你要把 Top 10 用到实际项目，建议这样落地
+</h2><h3 id="对开发团队">对开发团队
+</h3><p>先抓这 5 件事：</p>
+<ol>
+<li>授权统一收口，按资源归属校验。</li>
+<li>配置基线自动化，尤其是云权限、对象存储、安全头、默认账户。</li>
+<li>建立 SBOM、依赖监控、CI/CD 加固。</li>
+<li>所有认证链路接入 MFA、会话治理和弱口令/泄露口令检测。</li>
+<li>打通日志、告警、异常处理和回滚机制。</li>
+</ol>
+<h3 id="对测试团队">对测试团队
+</h3><p>优先做这 5 类检查：</p>
+<ol>
+<li>越权测试：横向越权、纵向越权、对象级越权、功能级越权。</li>
+<li>配置测试：目录浏览、默认账号、安全头、错误信息、云权限。</li>
+<li>供应链测试：依赖版本、签名、来源、CI/CD 权限、制品可信度。</li>
+<li>认证测试：撞库、爆破、枚举、找回密码、Session 生命周期、JWT 校验。</li>
+<li>异常流测试：缺参、超长、边界值、并发、重复提交、超时、资源耗尽、回滚。</li>
+</ol>
+<h3 id="对治理或安全负责人">对治理或安全负责人
+</h3><p>不要只做“漏洞修复率”指标，还要看：</p>
+<ul>
+<li>权限模型是否统一</li>
+<li>配置是否基线化、自动化</li>
+<li>依赖与制品是否可追踪</li>
+<li>关键流程是否做威胁建模</li>
+<li>告警是否真的能触发响应</li>
+<li>异常交易是否真的能回滚与 fail-closed</li>
+</ul>
+<hr>
+<h2 id="八我的整体判断">八、我的整体判断
+</h2><p>2025 版的核心信号是：</p>
+<ul>
+<li>安全问题正在从“单点漏洞”转向“工程系统失控”。</li>
+<li>现代应用真正危险的地方，往往不是某一行代码，而是默认信任、缺少验证、缺少治理、缺少失败处理。</li>
+<li>如果一个团队只会修 SQL 注入和 XSS，但没有统一授权、没有供应链治理、没有告警和异常恢复能力，那么它仍然处在高风险状态。</li>
+</ul>
+<p>一句话总结：</p>
+<blockquote>
+<p>OWASP Top 10 2025 不只是“十大漏洞”，更像“现代应用最常见的十种安全失守模式”。</p>
+</blockquote>
+<hr>
+<h2 id="参考链接">参考链接
+</h2><ul>
+<li>官方主页：https://owasp.org/Top10/2025/</li>
+<li>介绍页：https://owasp.org/Top10/2025/0x00_2025-Introduction/</li>
+<li>A01：https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/</li>
+<li>A02：https://owasp.org/Top10/2025/A02_2025-Security_Misconfiguration/</li>
+<li>A03：https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/</li>
+<li>A04：https://owasp.org/Top10/2025/A04_2025-Cryptographic_Failures/</li>
+<li>A05：https://owasp.org/Top10/2025/A05_2025-Injection/</li>
+<li>A06：https://owasp.org/Top10/2025/A06_2025-Insecure_Design/</li>
+<li>A07：https://owasp.org/Top10/2025/A07_2025-Authentication_Failures/</li>
+<li>A08：https://owasp.org/Top10/2025/A08_2025-Software_or_Data_Integrity_Failures/</li>
+<li>A09：https://owasp.org/Top10/2025/A09_2025-Security_Logging_and_Alerting_Failures/</li>
+<li>A10：https://owasp.org/Top10/2025/A10_2025-Mishandling_of_Exceptional_Conditions/</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        2026 ChenOvo
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+<script src=https://xxchen-yu.github.io/background/particles.min.js></script>
+<script>
+  particlesJS.load('particles-js', "https://xxchen-yu.github.io/background/particlesjs-config.json", function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
+<script>
+function initCollapsibleToc() {
+    
+    
+    const topLinks = document.querySelectorAll('.widget--toc nav > ol > li');
+
+    topLinks.forEach(li => {
+        
+        const subList = li.querySelector('ol, ul');
+
+        if (subList) {
+            
+            li.addEventListener('click', function(e) {
+                
+                e.stopPropagation();
+                
+                
+                
+                li.classList.toggle('expanded');
+            });
+        }
+    });
+}
+
+
+document.addEventListener('stack:config', initCollapsibleToc);
+
+document.addEventListener('DOMContentLoaded', initCollapsibleToc);
+</script>
+<style>
+ 
+
+ 
+.widget--toc .toc .nav > li > ul {
+    display: none !important;
+    padding-left: 1rem;  
+    margin-top: 0.5rem;
+}
+
+ 
+.widget--toc .toc .nav > li.active > ul {
+    display: block !important;
+}
+
+ 
+.widget--toc .toc .nav > li > a {
+    position: relative;
+    padding-right: 20px;  
+}
+
+ 
+.widget--toc .toc .nav > li > a::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: #999;
+    transition: transform 0.2s;
+}
+
+ 
+.widget--toc .toc .nav > li.active > a::after {
+    content: '-';
+    color: #333;
+}
+</style>
+    </body>
+</html>

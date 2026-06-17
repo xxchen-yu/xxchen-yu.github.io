@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="在\u00a0OWASP Top 10:2025\u00a0里，Broken Access Control（访问控制失效）\u00a0仍然排在\u00a0A01，也就是第 1 位。它的意思很直接：系统没有正确限制“谁能访问什么、谁能执行什么操作”，结果就是用户能看到、修改、删除本不属于自己的数据，甚至越权拿到管理员能力。OWASP 给出的 2025 数据里，这一类问题覆盖了\u00a0100% 被测试应用，而且总出现次数非常高，说明它不是“高级漏洞”，而是最常见、最容易被遗漏的基础性问题。\n来源：OWASP A01:2025\u00a0Broken Access Control\n">
+<title>TOP1-Broken Access Control（访问控制失效）</title>
+
+<link rel='canonical' href='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top1-broken-access-control%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%A4%B1%E6%95%88/'>
+
+<link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="TOP1-Broken Access Control（访问控制失效）">
+<meta property='og:description' content="在\u00a0OWASP Top 10:2025\u00a0里，Broken Access Control（访问控制失效）\u00a0仍然排在\u00a0A01，也就是第 1 位。它的意思很直接：系统没有正确限制“谁能访问什么、谁能执行什么操作”，结果就是用户能看到、修改、删除本不属于自己的数据，甚至越权拿到管理员能力。OWASP 给出的 2025 数据里，这一类问题覆盖了\u00a0100% 被测试应用，而且总出现次数非常高，说明它不是“高级漏洞”，而是最常见、最容易被遗漏的基础性问题。\n来源：OWASP A01:2025\u00a0Broken Access Control\n">
+<meta property='og:url' content='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top1-broken-access-control%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%A4%B1%E6%95%88/'>
+<meta property='og:site_name' content='ChenOvo'>
+<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-04-27T16:12:43&#43;08:00'/><meta property='article:modified_time' content='2026-04-27T16:12:43&#43;08:00'/>
+<meta name="twitter:title" content="TOP1-Broken Access Control（访问控制失效）">
+<meta name="twitter:description" content="在\u00a0OWASP Top 10:2025\u00a0里，Broken Access Control（访问控制失效）\u00a0仍然排在\u00a0A01，也就是第 1 位。它的意思很直接：系统没有正确限制“谁能访问什么、谁能执行什么操作”，结果就是用户能看到、修改、删除本不属于自己的数据，甚至越权拿到管理员能力。OWASP 给出的 2025 数据里，这一类问题覆盖了\u00a0100% 被测试应用，而且总出现次数非常高，说明它不是“高级漏洞”，而是最常见、最容易被遗漏的基础性问题。\n来源：OWASP A01:2025\u00a0Broken Access Control\n">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="/css/custom.css">
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_7a0b096c17d58c3c.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">ChenOvo</a></h1>
+            <h2 class="site-description">游手好闲的一天</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/xxchen-yu'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>blog</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li  class='current' >
+            <a href='/wiki/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wiki" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M4 5h5a3 3 0 0 1 3 3v11a3 3 0 0 0 -3 -3h-5z" />
+  <path d="M20 5h-5a3 3 0 0 0 -3 3v11a3 3 0 0 1 3 -3h5z" />
+  <path d="M8 9h1" />
+  <path d="M8 12h1" />
+  <path d="M15 9h1" />
+  <path d="M15 12h1" />
+</svg>
+
+                
+                <span>Wiki</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top1-broken-access-control%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%A4%B1%E6%95%88/">TOP1-Broken Access Control（访问控制失效）</a>
+        </h2>
+
+        
+    </div>
+
+    
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-04-27T16:12:43&#43;08:00'>Apr 27, 2026</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                <span class="article-time--wordcount">1216 字</span>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>在 <strong>OWASP Top 10:2025</strong> 里，<strong>Broken Access Control（访问控制失效）</strong> 仍然排在 <strong>A01，也就是第 1 位</strong>。它的意思很直接：系统没有正确限制“谁能访问什么、谁能执行什么操作”，结果就是用户能看到、修改、删除本不属于自己的数据，甚至越权拿到管理员能力。OWASP 给出的 2025 数据里，这一类问题覆盖了 <strong>100% 被测试应用</strong>，而且总出现次数非常高，说明它不是“高级漏洞”，而是最常见、最容易被遗漏的基础性问题。<br>
+来源：<a class="link" href="https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/"  target="_blank" rel="noopener"
+    >OWASP A01:2025 Broken Access Control</a></p>
+<p>你可以把它和“认证”区分开来理解：<br>
+认证（Authentication） 是“你是谁”，授权/访问控制（Authorization / Access Control） 是“你被允许做什么”。很多系统登录做得还行，但授权做得很松，这就会出现“普通用户登录后直接改 URL 看别人订单”“前端隐藏了管理按钮，但接口没拦截”“把 JWT 里的 role 改成 admin 就真能生效”这类问题。</p>
+<p><strong>常见表现</strong></p>
+<ul>
+<li>IDOR / 越权访问对象：把 /orders/1001 改成 /orders/1002 就能看别人的订单。</li>
+<li>功能级越权：普通用户能调用本该只有管理员可用的 POST/PUT/DELETE 接口。</li>
+<li>前端做了限制，后端没做校验：按钮虽然隐藏，但直接抓包重放请求仍然成功。</li>
+<li>权限提升：未登录用户访问已登录页面，或普通用户进入管理员页面。</li>
+<li>Token / Cookie / Hidden Field 被篡改：服务端错误地信任客户端传来的角色、权限、状态。</li>
+<li>CORS 配置错误：把不可信来源也放进允许列表，导致跨站调用敏感 API。</li>
+<li>Force Browsing：猜 URL 就能访问受限资源、备份文件、目录列表或 .git 等敏感内容。</li>
+</ul>
+<p><strong>为什么它危险</strong></p>
+<ul>
+<li>它直接破坏“业务边界”，不是只泄露一条数据，而是可能整库查看、批量修改、批量删除。</li>
+<li>它常常绕过的是“业务规则”而不是技术边界，所以影响往往比单点漏洞更大。</li>
+<li>API、前后端分离、微服务、移动端特别容易放大这个问题，因为请求面更多、角色更多、资源更多。</li>
+</ul>
+<p><strong>OWASP 官方举的典型攻击思路</strong></p>
+<ul>
+<li>修改请求参数里的账户 ID，访问别人的账户信息。</li>
+<li>直接访问管理接口 URL，看后端是否真的做了管理员校验。</li>
+<li>如果权限检查只写在浏览器里的 JavaScript，攻击者完全可以绕过前端，直接 curl 调接口。</li>
+</ul>
+<p><strong>怎么防</strong></p>
+<ul>
+<li>采用 deny by default：除公开资源外，默认拒绝访问。</li>
+<li>把权限校验放在<strong>服务端</strong>，不要信任前端、隐藏字段、JWT 中未经验证的声明。</li>
+<li>统一做授权逻辑：不要每个接口自己拼一套判断。</li>
+<li>校验“资源归属”而不只是“是否登录”：例如用户只能读写自己的订单、自己的文件。</li>
+<li>对高风险操作加业务约束：金额上限、审批流、状态机顺序、频率限制。</li>
+<li>正确处理会话和 token：登出后失效；JWT 短生命周期；需要时支持吊销。</li>
+<li>记录并告警授权失败，防止批量探测。</li>
+<li>把授权测试写进单元测试和集成测试，最好做“角色 × 功能 × 数据范围”的权限矩阵测试。<br>
+补充参考：<a class="link" href="https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Testing_Automation_Cheat_Sheet.html"  target="_blank" rel="noopener"
+    >OWASP Authorization Testing Automation Cheat Sheet</a></li>
+</ul>
+<p>如果你是从开发角度记忆它，可以用一句话概括：<br>
+<strong>Broken Access Control = 后端没有持续、统一、按资源归属和角色边界去验证“这个用户是否真的能做这件事”。</strong></p>
+<p>如果你愿意，我下一步可以继续帮你做两种延伸之一：</p>
+<ol>
+<li>用开发者视角，把它拆成 Spring Boot / Node.js / Django 常见代码反模式。</li>
+<li>用渗透测试视角，总结一份 Broken Access Control 的检查清单。</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        2026 ChenOvo
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+<script src=https://xxchen-yu.github.io/background/particles.min.js></script>
+<script>
+  particlesJS.load('particles-js', "https://xxchen-yu.github.io/background/particlesjs-config.json", function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
+<script>
+function initCollapsibleToc() {
+    
+    
+    const topLinks = document.querySelectorAll('.widget--toc nav > ol > li');
+
+    topLinks.forEach(li => {
+        
+        const subList = li.querySelector('ol, ul');
+
+        if (subList) {
+            
+            li.addEventListener('click', function(e) {
+                
+                e.stopPropagation();
+                
+                
+                
+                li.classList.toggle('expanded');
+            });
+        }
+    });
+}
+
+
+document.addEventListener('stack:config', initCollapsibleToc);
+
+document.addEventListener('DOMContentLoaded', initCollapsibleToc);
+</script>
+<style>
+ 
+
+ 
+.widget--toc .toc .nav > li > ul {
+    display: none !important;
+    padding-left: 1rem;  
+    margin-top: 0.5rem;
+}
+
+ 
+.widget--toc .toc .nav > li.active > ul {
+    display: block !important;
+}
+
+ 
+.widget--toc .toc .nav > li > a {
+    position: relative;
+    padding-right: 20px;  
+}
+
+ 
+.widget--toc .toc .nav > li > a::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: #999;
+    transition: transform 0.2s;
+}
+
+ 
+.widget--toc .toc .nav > li.active > a::after {
+    content: '-';
+    color: #333;
+}
+</style>
+    </body>
+</html>

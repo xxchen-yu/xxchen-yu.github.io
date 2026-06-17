@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="范围与授权 明确授权域名、IP、子域、环境、API、账号、测试时间窗、禁止动作。 区分 in-scope、out-of-scope、第三方资源、CDN、云厂商托管资产。 记录证据来源、时间、请求方式、是否主动触达目标。 范围与授权 定义： 范围与授权是 Web 安全信息收集开始前必须确认的边界规则，用来说明哪些资产、环境、接口、账号和操作被允许，哪些资产、环境、接口、账号和操作不被允许。 作用： 作用是保证信息收集行为合法、可控、可复盘，避免把未授权资产、第三方服务、真实生产数据或敏感业务系统误当作测试目标。 实践： 实践时先拿到明确的授权说明，再确认域名、IP、子域、环境、API、账号、测试时间窗和禁止动作，并在收集过程中持续区分 in-scope、out-of-scope、第三方资源、CDN 资源和云厂商托管资产。 授权域名 定义： 授权域名是指在测试授权中明确允许进行信息收集和安全测试的主域名、业务域名或指定站点域名，例如 example.com、www.example.com、shop.example.com。 作用： 作用是确定 Web 信息收集的起始边界，避免因为域名相似、品牌相似、历史归属相似而误测不属于授权范围的站点。 实践： 实践时记录授权域名列表，确认是否包含泛域名 *.example.com，确认是否排除某些高敏感子域或第三方托管域名，并把后续发现的新域名标记为已授权、未授权或待确认。\n">
+<title>范围与授权</title>
+
+<link rel='canonical' href='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/'>
+
+<link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="范围与授权">
+<meta property='og:description' content="范围与授权 明确授权域名、IP、子域、环境、API、账号、测试时间窗、禁止动作。 区分 in-scope、out-of-scope、第三方资源、CDN、云厂商托管资产。 记录证据来源、时间、请求方式、是否主动触达目标。 范围与授权 定义： 范围与授权是 Web 安全信息收集开始前必须确认的边界规则，用来说明哪些资产、环境、接口、账号和操作被允许，哪些资产、环境、接口、账号和操作不被允许。 作用： 作用是保证信息收集行为合法、可控、可复盘，避免把未授权资产、第三方服务、真实生产数据或敏感业务系统误当作测试目标。 实践： 实践时先拿到明确的授权说明，再确认域名、IP、子域、环境、API、账号、测试时间窗和禁止动作，并在收集过程中持续区分 in-scope、out-of-scope、第三方资源、CDN 资源和云厂商托管资产。 授权域名 定义： 授权域名是指在测试授权中明确允许进行信息收集和安全测试的主域名、业务域名或指定站点域名，例如 example.com、www.example.com、shop.example.com。 作用： 作用是确定 Web 信息收集的起始边界，避免因为域名相似、品牌相似、历史归属相似而误测不属于授权范围的站点。 实践： 实践时记录授权域名列表，确认是否包含泛域名 *.example.com，确认是否排除某些高敏感子域或第三方托管域名，并把后续发现的新域名标记为已授权、未授权或待确认。\n">
+<meta property='og:url' content='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/'>
+<meta property='og:site_name' content='ChenOvo'>
+<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-17T11:35:32&#43;08:00'/><meta property='article:modified_time' content='2026-06-17T11:35:32&#43;08:00'/>
+<meta name="twitter:title" content="范围与授权">
+<meta name="twitter:description" content="范围与授权 明确授权域名、IP、子域、环境、API、账号、测试时间窗、禁止动作。 区分 in-scope、out-of-scope、第三方资源、CDN、云厂商托管资产。 记录证据来源、时间、请求方式、是否主动触达目标。 范围与授权 定义： 范围与授权是 Web 安全信息收集开始前必须确认的边界规则，用来说明哪些资产、环境、接口、账号和操作被允许，哪些资产、环境、接口、账号和操作不被允许。 作用： 作用是保证信息收集行为合法、可控、可复盘，避免把未授权资产、第三方服务、真实生产数据或敏感业务系统误当作测试目标。 实践： 实践时先拿到明确的授权说明，再确认域名、IP、子域、环境、API、账号、测试时间窗和禁止动作，并在收集过程中持续区分 in-scope、out-of-scope、第三方资源、CDN 资源和云厂商托管资产。 授权域名 定义： 授权域名是指在测试授权中明确允许进行信息收集和安全测试的主域名、业务域名或指定站点域名，例如 example.com、www.example.com、shop.example.com。 作用： 作用是确定 Web 信息收集的起始边界，避免因为域名相似、品牌相似、历史归属相似而误测不属于授权范围的站点。 实践： 实践时记录授权域名列表，确认是否包含泛域名 *.example.com，确认是否排除某些高敏感子域或第三方托管域名，并把后续发现的新域名标记为已授权、未授权或待确认。\n">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="/css/custom.css">
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_7a0b096c17d58c3c.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">ChenOvo</a></h1>
+            <h2 class="site-description">游手好闲的一天</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/xxchen-yu'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>blog</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li  class='current' >
+            <a href='/wiki/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wiki" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M4 5h5a3 3 0 0 1 3 3v11a3 3 0 0 0 -3 -3h-5z" />
+  <path d="M20 5h-5a3 3 0 0 0 -3 3v11a3 3 0 0 1 3 -3h5z" />
+  <path d="M8 9h1" />
+  <path d="M8 12h1" />
+  <path d="M15 9h1" />
+  <path d="M15 12h1" />
+</svg>
+
+                
+                <span>Wiki</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/">范围与授权</a>
+        </h2>
+
+        
+    </div>
+
+    
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-06-17T11:35:32&#43;08:00'>Jun 17, 2026</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 9 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                <span class="article-time--wordcount">4032 字</span>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="范围与授权">范围与授权
+</h1><ul>
+<li>明确授权域名、IP、子域、环境、API、账号、测试时间窗、禁止动作。</li>
+<li>区分 <code>in-scope</code>、<code>out-of-scope</code>、第三方资源、CDN、云厂商托管资产。</li>
+<li>记录证据来源、时间、请求方式、是否主动触达目标。
+范围与授权
+定义：
+范围与授权是 Web 安全信息收集开始前必须确认的边界规则，用来说明哪些资产、环境、接口、账号和操作被允许，哪些资产、环境、接口、账号和操作不被允许。
+作用：
+作用是保证信息收集行为合法、可控、可复盘，避免把未授权资产、第三方服务、真实生产数据或敏感业务系统误当作测试目标。
+实践：
+实践时先拿到明确的授权说明，再确认域名、IP、子域、环境、API、账号、测试时间窗和禁止动作，并在收集过程中持续区分 <code>in-scope</code>、<code>out-of-scope</code>、第三方资源、CDN 资源和云厂商托管资产。</li>
+</ul>
+<p>授权域名
+定义：
+授权域名是指在测试授权中明确允许进行信息收集和安全测试的主域名、业务域名或指定站点域名，例如 <code>example.com</code>、<code>www.example.com</code>、<code>shop.example.com</code>。
+作用：
+作用是确定 Web 信息收集的起始边界，避免因为域名相似、品牌相似、历史归属相似而误测不属于授权范围的站点。
+实践：
+实践时记录授权域名列表，确认是否包含泛域名 <code>*.example.com</code>，确认是否排除某些高敏感子域或第三方托管域名，并把后续发现的新域名标记为已授权、未授权或待确认。</p>
+<p>授权 IP
+定义：
+授权 IP 是指在测试授权中明确允许访问、探测或扫描的服务器 IP、IP 段或云资产地址，例如单个公网 IP、内网 IP、CIDR 网段或指定负载均衡地址。
+作用：
+作用是确定网络层和服务层测试边界，避免对 CDN 节点、云厂商公共节点、第三方 SaaS 节点或其他客户共享基础设施进行未授权扫描。
+实践：
+实践时记录 IP、网段、归属、解析域名、是否生产环境、是否允许端口扫描和服务识别，域名解析得到的 IP 不能自动视为授权 IP，必须结合授权清单和资产归属确认。</p>
+<p>授权子域
+定义：
+授权子域是指在授权范围内允许收集和测试的目标子域，例如 <code>admin.example.com</code>、<code>api.example.com</code>、<code>test.example.com</code>、<code>dev.example.com</code>。
+作用：
+作用是扩展和细化 Web 攻击面，因为后台、接口、测试环境、旧系统和临时系统通常通过子域暴露。
+实践：
+实践时确认授权是否覆盖全部子域、指定子域还是只允许被动发现子域，发现新子域后先判断归属和范围，再决定是否可以访问、枚举目录、测试接口或登录功能。</p>
+<p>授权环境
+定义：
+授权环境是指允许测试的系统运行环境，包括生产环境、测试环境、开发环境、预发布环境、灾备环境、沙箱环境和演示环境。
+作用：
+作用是控制测试影响范围，不同环境的数据真实性、业务承载能力、安全策略和可操作权限不同，不能用同一套强度对所有环境测试。
+实践：
+实践时标记每个资产属于生产、测试、开发、预发还是未知环境，生产环境优先采用低频、只读、低影响的信息收集方式，测试环境可在授权允许下做更完整的接口、权限和业务流程验证。</p>
+<p>授权 API
+定义：
+授权 API 是指被允许进行信息收集和安全测试的接口资产，包括 Web API、移动端 API、开放平台 API、GraphQL、WebSocket、gRPC-Web 和内部管理 API。
+作用：
+作用是明确接口测试边界，避免调用真实业务接口导致数据新增、修改、删除、支付、通知、导出或对外回调等副作用。
+实践：
+实践时记录 API 基础地址、版本、认证方式、允许方法、调用频率、测试账号、数据隔离要求和禁止操作，优先从公开文档、前端 JS、移动端配置和流量代理中整理接口清单。</p>
+<p>授权账号
+定义：
+授权账号是指由目标方提供或明确允许使用的测试身份，包括普通用户、管理员、商户、运营、客服、审核员、开发者和只读观察账号。
+作用：
+作用是让测试人员在合法身份下观察功能面、接口面和权限边界，避免使用真实用户账号、员工账号、泄露账号或未授权账号进行测试。
+实践：
+实践时记录账号角色、权限级别、可操作功能、是否允许改密、是否允许绑定 MFA、是否允许上传文件、是否允许创建订单或修改数据，并为不同角色建立清晰的权限对照。</p>
+<p>测试时间窗
+定义：
+测试时间窗是指授权方允许进行信息收集和安全测试的具体日期、时间段和持续周期。
+作用：
+作用是降低测试对业务和监控系统的影响，便于安全运营、业务团队和测试人员在同一时间范围内定位告警、日志和异常。
+实践：
+实践时按照授权时间执行主动访问、扫描、目录枚举、接口探测和登录验证，生产环境通常选择低峰期，时间窗之外只保留已授权的被动分析或停止测试等待确认。</p>
+<p>禁止动作
+定义：
+禁止动作是指即使目标资产在授权范围内也不能执行的测试行为，例如拒绝服务、压力测试、批量爆破、社工钓鱼、真实支付、短信轰炸、删除数据、修改生产配置和持久化后门。
+作用：
+作用是把安全测试和破坏性攻击区分开，防止测试行为造成业务中断、数据污染、资损、合规事故或对第三方产生影响。
+实践：
+实践时在测试前列出禁止动作清单，执行过程中遇到可能产生高影响的操作先暂停确认，所有写入、删除、批量请求、回调外部地址、文件上传和权限提升验证都要按授权限制处理。</p>
+<p><code>in-scope</code>
+定义：
+<code>in-scope</code> 是指明确在授权范围内、可以按照约定方式进行信息收集和安全测试的资产、功能、账号、接口、环境或业务流程。
+作用：
+作用是告诉测试人员哪些目标可以被主动触达、哪些功能可以被验证、哪些接口可以被调用，从而提高信息收集效率并减少边界不清导致的风险。
+实践：
+实践时把 <code>in-scope</code> 资产整理成清单，记录域名、IP、子域、环境、负责人、测试方式、限制条件和备注，并在发现新资产时及时和授权清单比对。</p>
+<p><code>out-of-scope</code>
+定义：
+<code>out-of-scope</code> 是指明确不在授权范围内或暂时不能测试的资产、功能、账号、接口、环境或业务流程。
+作用：
+作用是划出禁止触达或禁止测试的边界，避免测试人员因为资产关联、页面引用、DNS 解析、品牌归属或业务依赖而误测未授权目标。
+实践：
+实践时把 <code>out-of-scope</code> 资产单独记录，遇到员工邮箱、真实用户数据、第三方支付、供应商后台、客户系统、非授权子公司系统和敏感生产功能时只记录线索并停止主动测试。</p>
+<p>第三方资源
+定义：
+第三方资源是指目标站点中引用或依赖但不一定归目标方所有的外部服务，例如支付、短信、邮件、验证码、客服、统计、广告、地图、对象存储、身份认证和风控服务。
+作用：
+作用是帮助理解目标业务架构和供应链依赖，同时避免把第三方服务误认为目标方可授权测试资产。
+实践：
+实践时从页面源码、响应头、JS 文件、网络请求和接口回调中记录第三方资源的域名、用途和数据流向，除非授权中明确允许，否则只做识别和风险备注，不对第三方服务进行主动攻击测试。</p>
+<p>CDN 资源
+定义：
+CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudflare、Akamai、Fastly、CloudFront、阿里云 CDN、腾讯云 CDN 和其他加速防护节点。
+作用：
+作用是识别目标的访问链路、缓存策略、防护能力和源站隐藏情况，同时避免把共享 CDN 节点或边缘 IP 当作目标自有服务器扫描。
+实践：
+实践时通过响应头、DNS CNAME、证书、IP 归属和页面资源判断是否使用 CDN，记录 CDN 厂商、缓存行为、WAF 痕迹和可能的源站线索，但不默认扫描 CDN IP 段。</p>
+<p>云厂商托管资产
+定义：
+云厂商托管资产是指运行在 AWS、Azure、GCP、阿里云、腾讯云、华为云等平台上的对象存储、负载均衡、云函数、API 网关、容器服务、镜像仓库和静态站点。
+作用：
+作用是帮助识别现代 Web 系统的真实攻击面，因为很多敏感文件、接口、回调、日志、备份和临时环境都可能暴露在云托管资源中。
+实践：
+实践时根据云域名特征、证书、DNS、页面资源和接口地址判断资产归属，确认是否属于授权范围，公开可访问不等于允许测试，发现 Bucket、函数地址、网关地址或镜像仓库时先记录再验证授权。</p>
+<p>证据来源
+定义：
+证据来源是指每一条信息收集结果的出处，例如搜索引擎、DNS 查询、证书透明度日志、Wayback Machine、GitHub 搜索、页面源码、HTTP 响应头、API 文档和目标站点响应。
+作用：
+作用是让信息收集结果可复查、可复现、可解释，报告中能说明某个资产、接口、泄露信息或风险线索是如何被发现的。
+实践：
+实践时每发现一个域名、接口、文件、路径、账号格式、技术栈或第三方依赖，都记录来源名称、查询条件、访问地址、状态码、关键响应内容和截图或原始响应摘要。</p>
+<p>发现时间
+定义：
+发现时间是指某条资产、接口、路径、泄露信息或响应证据被观察到的具体时间。
+作用：
+作用是处理信息时效性问题，因为 DNS 解析、证书、页面内容、接口响应、云资源权限和搜索引擎索引都可能随时间变化。
+实践：
+实践时按统一时区记录时间，例如 <code>2026-06-17 14:35 UTC+8</code>，对短暂暴露、临时环境、偶发错误、证书变更和动态接口尤其要记录精确时间。</p>
+<p>请求方式
+定义：
+请求方式是指获得某条信息时使用的方法和路径，包括被动查询、浏览器访问、HTTP 请求、DNS 查询、接口调用、代理抓包、登录账号访问和工具枚举。
+作用：
+作用是区分信息来自公开索引、第三方数据源还是直接请求目标系统，也能帮助复现结果和评估测试行为对目标的影响。
+实践：
+实践时记录请求方法、URL、参数、Header、Cookie 使用情况、状态码、响应长度和关键返回内容，例如 <code>GET /robots.txt</code>、<code>GET /api/v1/users/me</code>、DNS 查询 <code>A api.example.com</code>。</p>
+<p>是否主动触达目标
+定义：
+是否主动触达目标是指信息收集行为是否直接向目标服务器、接口、域名或 IP 发送请求，被动搜索和第三方平台查询通常不算主动触达，访问页面、接口探测、目录枚举和端口扫描属于主动触达。
+作用：
+作用是区分低影响的公开情报收集和可能被目标日志、安全设备、WAF、告警系统记录的主动探测行为。
+实践：
+实践时把搜索引擎、证书透明度日志、Wayback Machine、GitHub 搜索、Shodan/Censys 结果查看标记为未主动触达，把访问目标页面、请求 <code>robots.txt</code>、DNS 枚举、目录枚举、端口扫描、API 探测和登录测试账号查看功能标记为主动触达。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        2026 ChenOvo
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+<script src=https://xxchen-yu.github.io/background/particles.min.js></script>
+<script>
+  particlesJS.load('particles-js', "https://xxchen-yu.github.io/background/particlesjs-config.json", function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
+<script>
+function initCollapsibleToc() {
+    
+    
+    const topLinks = document.querySelectorAll('.widget--toc nav > ol > li');
+
+    topLinks.forEach(li => {
+        
+        const subList = li.querySelector('ol, ul');
+
+        if (subList) {
+            
+            li.addEventListener('click', function(e) {
+                
+                e.stopPropagation();
+                
+                
+                
+                li.classList.toggle('expanded');
+            });
+        }
+    });
+}
+
+
+document.addEventListener('stack:config', initCollapsibleToc);
+
+document.addEventListener('DOMContentLoaded', initCollapsibleToc);
+</script>
+<style>
+ 
+
+ 
+.widget--toc .toc .nav > li > ul {
+    display: none !important;
+    padding-left: 1rem;  
+    margin-top: 0.5rem;
+}
+
+ 
+.widget--toc .toc .nav > li.active > ul {
+    display: block !important;
+}
+
+ 
+.widget--toc .toc .nav > li > a {
+    position: relative;
+    padding-right: 20px;  
+}
+
+ 
+.widget--toc .toc .nav > li > a::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: #999;
+    transition: transform 0.2s;
+}
+
+ 
+.widget--toc .toc .nav > li.active > a::after {
+    content: '-';
+    color: #333;
+}
+</style>
+    </body>
+</html>

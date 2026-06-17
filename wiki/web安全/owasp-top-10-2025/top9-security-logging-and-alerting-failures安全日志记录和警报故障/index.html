@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="在 OWASP Top 10:2025 里，Security Logging and Alerting Failures 排在 A09，也就是第 9 位。它延续了 2021 的位置，但名字从 “Logging and Monitoring Failures” 调整成了更强调行动性的 “Logging and Alerting Failures”。OWASP 的意思很明确：光有日志不够，日志如果不能触发正确告警和响应，价值是很有限的。\n来源：OWASP Top 10:2025 Introduction\n来源：A09:2025 Security Logging and Alerting Failures\n">
+<title>TOP9-Security Logging and Alerting Failures（安全日志记录和警报故障）</title>
+
+<link rel='canonical' href='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top9-security-logging-and-alerting-failures%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%92%8C%E8%AD%A6%E6%8A%A5%E6%95%85%E9%9A%9C/'>
+
+<link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="TOP9-Security Logging and Alerting Failures（安全日志记录和警报故障）">
+<meta property='og:description' content="在 OWASP Top 10:2025 里，Security Logging and Alerting Failures 排在 A09，也就是第 9 位。它延续了 2021 的位置，但名字从 “Logging and Monitoring Failures” 调整成了更强调行动性的 “Logging and Alerting Failures”。OWASP 的意思很明确：光有日志不够，日志如果不能触发正确告警和响应，价值是很有限的。\n来源：OWASP Top 10:2025 Introduction\n来源：A09:2025 Security Logging and Alerting Failures\n">
+<meta property='og:url' content='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top9-security-logging-and-alerting-failures%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%92%8C%E8%AD%A6%E6%8A%A5%E6%95%85%E9%9A%9C/'>
+<meta property='og:site_name' content='ChenOvo'>
+<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-05-20T12:33:47&#43;08:00'/><meta property='article:modified_time' content='2026-05-20T12:33:47&#43;08:00'/>
+<meta name="twitter:title" content="TOP9-Security Logging and Alerting Failures（安全日志记录和警报故障）">
+<meta name="twitter:description" content="在 OWASP Top 10:2025 里，Security Logging and Alerting Failures 排在 A09，也就是第 9 位。它延续了 2021 的位置，但名字从 “Logging and Monitoring Failures” 调整成了更强调行动性的 “Logging and Alerting Failures”。OWASP 的意思很明确：光有日志不够，日志如果不能触发正确告警和响应，价值是很有限的。\n来源：OWASP Top 10:2025 Introduction\n来源：A09:2025 Security Logging and Alerting Failures\n">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="/css/custom.css">
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_7a0b096c17d58c3c.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">ChenOvo</a></h1>
+            <h2 class="site-description">游手好闲的一天</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/xxchen-yu'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>blog</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li  class='current' >
+            <a href='/wiki/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wiki" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M4 5h5a3 3 0 0 1 3 3v11a3 3 0 0 0 -3 -3h-5z" />
+  <path d="M20 5h-5a3 3 0 0 0 -3 3v11a3 3 0 0 1 3 -3h5z" />
+  <path d="M8 9h1" />
+  <path d="M8 12h1" />
+  <path d="M15 9h1" />
+  <path d="M15 12h1" />
+</svg>
+
+                
+                <span>Wiki</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top9-security-logging-and-alerting-failures%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%92%8C%E8%AD%A6%E6%8A%A5%E6%95%85%E9%9A%9C/">TOP9-Security Logging and Alerting Failures（安全日志记录和警报故障）</a>
+        </h2>
+
+        
+    </div>
+
+    
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-05-20T12:33:47&#43;08:00'>May 20, 2026</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                <span class="article-time--wordcount">996 字</span>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>在 <strong>OWASP Top 10:2025</strong> 里，<strong>Security Logging and Alerting Failures</strong> 排在 <strong>A09，也就是第 9 位</strong>。它延续了 2021 的位置，但名字从 “Logging and Monitoring Failures” 调整成了更强调行动性的 “Logging and Alerting Failures”。OWASP 的意思很明确：<strong>光有日志不够，日志如果不能触发正确告警和响应，价值是很有限的。</strong><br>
+来源：<a class="link" href="https://owasp.org/Top10/2025/0x00_2025-Introduction/"  target="_blank" rel="noopener"
+    >OWASP Top 10:2025 Introduction</a><br>
+来源：<a class="link" href="https://owasp.org/Top10/2025/A09_2025-Security_Logging_and_Alerting_Failures/"  target="_blank" rel="noopener"
+    >A09:2025 Security Logging and Alerting Failures</a></p>
+<p>你可以把它理解成：<br>
+系统不是没被攻击，而是被攻击了却没看见；或者看见了也没法及时行动。</p>
+<p><strong>为什么它长期上榜</strong><br>
+OWASP 官方明确说，这一类问题很难通过传统测试数据充分体现，所以它会长期在数据里“被低估”。但现实中，它对安全事件的可见性、取证和响应速度影响极大。没有日志和监控，入侵很难被发现；没有告警，发现了也很难在正确时间做出正确动作。</p>
+<p><strong>常见表现</strong></p>
+<ul>
+<li>只记录成功登录，不记录失败登录。</li>
+<li>登录、越权、服务端校验失败、关键交易等可审计事件没有统一记录。</li>
+<li>警告和错误日志不清晰、不完整，或者根本不记。</li>
+<li>日志完整性没有保护，攻击者可以删改。</li>
+<li>应用和 API 日志没有被持续监控。</li>
+<li>日志只存本地，没有备份，也没有集中分析。</li>
+<li>没有阈值、没有升级流程、没有 playbook，导致告警来了也没人处理。</li>
+<li>DAST、渗透测试、批量探测根本触发不了告警。</li>
+<li>日志里写入了不该记录的敏感信息，或者日志输出未编码，反而给日志系统带来注入风险。</li>
+<li>误报太多，真正的攻击信号被 SOC 淹没。</li>
+</ul>
+<p><strong>OWASP 官方典型场景</strong></p>
+<ul>
+<li>医疗相关网站因为缺乏监控和日志，外部第三方先发现大规模数据被改，而系统自己多年都没察觉。</li>
+<li>航空公司的大规模旅客数据泄露，还是第三方云服务商事后通知才知道。</li>
+<li>支付相关漏洞导致欧洲大型航空公司发生 GDPR 级别的数据事件，最后不仅是技术问题，还变成高额罚款和合规问题。</li>
+</ul>
+<p><strong>怎么防</strong></p>
+<ul>
+<li>把登录、访问控制失败、服务端输入校验失败、高价值交易等事件纳入统一审计。</li>
+<li>所有安全控制点都要记录“成功”和“失败”，而不是只记一边。</li>
+<li>使用日志平台易消费的统一格式，便于 SIEM/SOC 处理。</li>
+<li>正确编码日志内容，防止日志注入或监控系统被攻击。</li>
+<li>关键交易要有完整审计链，并用防篡改方式保存。</li>
+<li>对可疑行为及时发出告警，不要把日志当“只留档不行动”的黑盒。</li>
+<li>建立有效的监控用例、告警阈值和响应 playbook。</li>
+<li>通过 honeytoken、行为分析等方式降低误报、提高命中率。</li>
+<li>制定并演练事件响应与恢复方案，让开发团队知道“攻击长什么样”。</li>
+</ul>
+<p><strong>一句话总结</strong><br>
+Security Logging and Alerting Failures 的本质是：<strong>系统没有把安全事件记录成可发现、可告警、可响应、可追溯的信号。</strong></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        2026 ChenOvo
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+<script src=https://xxchen-yu.github.io/background/particles.min.js></script>
+<script>
+  particlesJS.load('particles-js', "https://xxchen-yu.github.io/background/particlesjs-config.json", function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
+<script>
+function initCollapsibleToc() {
+    
+    
+    const topLinks = document.querySelectorAll('.widget--toc nav > ol > li');
+
+    topLinks.forEach(li => {
+        
+        const subList = li.querySelector('ol, ul');
+
+        if (subList) {
+            
+            li.addEventListener('click', function(e) {
+                
+                e.stopPropagation();
+                
+                
+                
+                li.classList.toggle('expanded');
+            });
+        }
+    });
+}
+
+
+document.addEventListener('stack:config', initCollapsibleToc);
+
+document.addEventListener('DOMContentLoaded', initCollapsibleToc);
+</script>
+<style>
+ 
+
+ 
+.widget--toc .toc .nav > li > ul {
+    display: none !important;
+    padding-left: 1rem;  
+    margin-top: 0.5rem;
+}
+
+ 
+.widget--toc .toc .nav > li.active > ul {
+    display: block !important;
+}
+
+ 
+.widget--toc .toc .nav > li > a {
+    position: relative;
+    padding-right: 20px;  
+}
+
+ 
+.widget--toc .toc .nav > li > a::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: #999;
+    transition: transform 0.2s;
+}
+
+ 
+.widget--toc .toc .nav > li.active > a::after {
+    content: '-';
+    color: #333;
+}
+</style>
+    </body>
+</html>

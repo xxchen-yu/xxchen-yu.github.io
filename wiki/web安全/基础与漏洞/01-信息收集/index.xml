@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>信息收集 on ChenOvo</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</link>
+        <description>Recent content in 信息收集 on ChenOvo</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>ChenOvo</copyright>
+        <lastBuildDate>Wed, 17 Jun 2026 11:35:32 +0800</lastBuildDate><atom:link href="https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>范围与授权</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/</link>
+        <pubDate>Wed, 17 Jun 2026 11:35:32 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/</guid>
+        <description>&lt;h1 id=&#34;范围与授权&#34;&gt;范围与授权
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;明确授权域名、IP、子域、环境、API、账号、测试时间窗、禁止动作。&lt;/li&gt;
+&lt;li&gt;区分 &lt;code&gt;in-scope&lt;/code&gt;、&lt;code&gt;out-of-scope&lt;/code&gt;、第三方资源、CDN、云厂商托管资产。&lt;/li&gt;
+&lt;li&gt;记录证据来源、时间、请求方式、是否主动触达目标。
+范围与授权
+定义：
+范围与授权是 Web 安全信息收集开始前必须确认的边界规则，用来说明哪些资产、环境、接口、账号和操作被允许，哪些资产、环境、接口、账号和操作不被允许。
+作用：
+作用是保证信息收集行为合法、可控、可复盘，避免把未授权资产、第三方服务、真实生产数据或敏感业务系统误当作测试目标。
+实践：
+实践时先拿到明确的授权说明，再确认域名、IP、子域、环境、API、账号、测试时间窗和禁止动作，并在收集过程中持续区分 &lt;code&gt;in-scope&lt;/code&gt;、&lt;code&gt;out-of-scope&lt;/code&gt;、第三方资源、CDN 资源和云厂商托管资产。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;授权域名
+定义：
+授权域名是指在测试授权中明确允许进行信息收集和安全测试的主域名、业务域名或指定站点域名，例如 &lt;code&gt;example.com&lt;/code&gt;、&lt;code&gt;www.example.com&lt;/code&gt;、&lt;code&gt;shop.example.com&lt;/code&gt;。
+作用：
+作用是确定 Web 信息收集的起始边界，避免因为域名相似、品牌相似、历史归属相似而误测不属于授权范围的站点。
+实践：
+实践时记录授权域名列表，确认是否包含泛域名 &lt;code&gt;*.example.com&lt;/code&gt;，确认是否排除某些高敏感子域或第三方托管域名，并把后续发现的新域名标记为已授权、未授权或待确认。&lt;/p&gt;
+&lt;p&gt;授权 IP
+定义：
+授权 IP 是指在测试授权中明确允许访问、探测或扫描的服务器 IP、IP 段或云资产地址，例如单个公网 IP、内网 IP、CIDR 网段或指定负载均衡地址。
+作用：
+作用是确定网络层和服务层测试边界，避免对 CDN 节点、云厂商公共节点、第三方 SaaS 节点或其他客户共享基础设施进行未授权扫描。
+实践：
+实践时记录 IP、网段、归属、解析域名、是否生产环境、是否允许端口扫描和服务识别，域名解析得到的 IP 不能自动视为授权 IP，必须结合授权清单和资产归属确认。&lt;/p&gt;
+&lt;p&gt;授权子域
+定义：
+授权子域是指在授权范围内允许收集和测试的目标子域，例如 &lt;code&gt;admin.example.com&lt;/code&gt;、&lt;code&gt;api.example.com&lt;/code&gt;、&lt;code&gt;test.example.com&lt;/code&gt;、&lt;code&gt;dev.example.com&lt;/code&gt;。
+作用：
+作用是扩展和细化 Web 攻击面，因为后台、接口、测试环境、旧系统和临时系统通常通过子域暴露。
+实践：
+实践时确认授权是否覆盖全部子域、指定子域还是只允许被动发现子域，发现新子域后先判断归属和范围，再决定是否可以访问、枚举目录、测试接口或登录功能。&lt;/p&gt;
+&lt;p&gt;授权环境
+定义：
+授权环境是指允许测试的系统运行环境，包括生产环境、测试环境、开发环境、预发布环境、灾备环境、沙箱环境和演示环境。
+作用：
+作用是控制测试影响范围，不同环境的数据真实性、业务承载能力、安全策略和可操作权限不同，不能用同一套强度对所有环境测试。
+实践：
+实践时标记每个资产属于生产、测试、开发、预发还是未知环境，生产环境优先采用低频、只读、低影响的信息收集方式，测试环境可在授权允许下做更完整的接口、权限和业务流程验证。&lt;/p&gt;
+&lt;p&gt;授权 API
+定义：
+授权 API 是指被允许进行信息收集和安全测试的接口资产，包括 Web API、移动端 API、开放平台 API、GraphQL、WebSocket、gRPC-Web 和内部管理 API。
+作用：
+作用是明确接口测试边界，避免调用真实业务接口导致数据新增、修改、删除、支付、通知、导出或对外回调等副作用。
+实践：
+实践时记录 API 基础地址、版本、认证方式、允许方法、调用频率、测试账号、数据隔离要求和禁止操作，优先从公开文档、前端 JS、移动端配置和流量代理中整理接口清单。&lt;/p&gt;
+&lt;p&gt;授权账号
+定义：
+授权账号是指由目标方提供或明确允许使用的测试身份，包括普通用户、管理员、商户、运营、客服、审核员、开发者和只读观察账号。
+作用：
+作用是让测试人员在合法身份下观察功能面、接口面和权限边界，避免使用真实用户账号、员工账号、泄露账号或未授权账号进行测试。
+实践：
+实践时记录账号角色、权限级别、可操作功能、是否允许改密、是否允许绑定 MFA、是否允许上传文件、是否允许创建订单或修改数据，并为不同角色建立清晰的权限对照。&lt;/p&gt;
+&lt;p&gt;测试时间窗
+定义：
+测试时间窗是指授权方允许进行信息收集和安全测试的具体日期、时间段和持续周期。
+作用：
+作用是降低测试对业务和监控系统的影响，便于安全运营、业务团队和测试人员在同一时间范围内定位告警、日志和异常。
+实践：
+实践时按照授权时间执行主动访问、扫描、目录枚举、接口探测和登录验证，生产环境通常选择低峰期，时间窗之外只保留已授权的被动分析或停止测试等待确认。&lt;/p&gt;
+&lt;p&gt;禁止动作
+定义：
+禁止动作是指即使目标资产在授权范围内也不能执行的测试行为，例如拒绝服务、压力测试、批量爆破、社工钓鱼、真实支付、短信轰炸、删除数据、修改生产配置和持久化后门。
+作用：
+作用是把安全测试和破坏性攻击区分开，防止测试行为造成业务中断、数据污染、资损、合规事故或对第三方产生影响。
+实践：
+实践时在测试前列出禁止动作清单，执行过程中遇到可能产生高影响的操作先暂停确认，所有写入、删除、批量请求、回调外部地址、文件上传和权限提升验证都要按授权限制处理。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;in-scope&lt;/code&gt;
+定义：
+&lt;code&gt;in-scope&lt;/code&gt; 是指明确在授权范围内、可以按照约定方式进行信息收集和安全测试的资产、功能、账号、接口、环境或业务流程。
+作用：
+作用是告诉测试人员哪些目标可以被主动触达、哪些功能可以被验证、哪些接口可以被调用，从而提高信息收集效率并减少边界不清导致的风险。
+实践：
+实践时把 &lt;code&gt;in-scope&lt;/code&gt; 资产整理成清单，记录域名、IP、子域、环境、负责人、测试方式、限制条件和备注，并在发现新资产时及时和授权清单比对。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;out-of-scope&lt;/code&gt;
+定义：
+&lt;code&gt;out-of-scope&lt;/code&gt; 是指明确不在授权范围内或暂时不能测试的资产、功能、账号、接口、环境或业务流程。
+作用：
+作用是划出禁止触达或禁止测试的边界，避免测试人员因为资产关联、页面引用、DNS 解析、品牌归属或业务依赖而误测未授权目标。
+实践：
+实践时把 &lt;code&gt;out-of-scope&lt;/code&gt; 资产单独记录，遇到员工邮箱、真实用户数据、第三方支付、供应商后台、客户系统、非授权子公司系统和敏感生产功能时只记录线索并停止主动测试。&lt;/p&gt;
+&lt;p&gt;第三方资源
+定义：
+第三方资源是指目标站点中引用或依赖但不一定归目标方所有的外部服务，例如支付、短信、邮件、验证码、客服、统计、广告、地图、对象存储、身份认证和风控服务。
+作用：
+作用是帮助理解目标业务架构和供应链依赖，同时避免把第三方服务误认为目标方可授权测试资产。
+实践：
+实践时从页面源码、响应头、JS 文件、网络请求和接口回调中记录第三方资源的域名、用途和数据流向，除非授权中明确允许，否则只做识别和风险备注，不对第三方服务进行主动攻击测试。&lt;/p&gt;
+&lt;p&gt;CDN 资源
+定义：
+CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudflare、Akamai、Fastly、CloudFront、阿里云 CDN、腾讯云 CDN 和其他加速防护节点。
+作用：
+作用是识别目标的访问链路、缓存策略、防护能力和源站隐藏情况，同时避免把共享 CDN 节点或边缘 IP 当作目标自有服务器扫描。
+实践：
+实践时通过响应头、DNS CNAME、证书、IP 归属和页面资源判断是否使用 CDN，记录 CDN 厂商、缓存行为、WAF 痕迹和可能的源站线索，但不默认扫描 CDN IP 段。&lt;/p&gt;
+&lt;p&gt;云厂商托管资产
+定义：
+云厂商托管资产是指运行在 AWS、Azure、GCP、阿里云、腾讯云、华为云等平台上的对象存储、负载均衡、云函数、API 网关、容器服务、镜像仓库和静态站点。
+作用：
+作用是帮助识别现代 Web 系统的真实攻击面，因为很多敏感文件、接口、回调、日志、备份和临时环境都可能暴露在云托管资源中。
+实践：
+实践时根据云域名特征、证书、DNS、页面资源和接口地址判断资产归属，确认是否属于授权范围，公开可访问不等于允许测试，发现 Bucket、函数地址、网关地址或镜像仓库时先记录再验证授权。&lt;/p&gt;
+&lt;p&gt;证据来源
+定义：
+证据来源是指每一条信息收集结果的出处，例如搜索引擎、DNS 查询、证书透明度日志、Wayback Machine、GitHub 搜索、页面源码、HTTP 响应头、API 文档和目标站点响应。
+作用：
+作用是让信息收集结果可复查、可复现、可解释，报告中能说明某个资产、接口、泄露信息或风险线索是如何被发现的。
+实践：
+实践时每发现一个域名、接口、文件、路径、账号格式、技术栈或第三方依赖，都记录来源名称、查询条件、访问地址、状态码、关键响应内容和截图或原始响应摘要。&lt;/p&gt;
+&lt;p&gt;发现时间
+定义：
+发现时间是指某条资产、接口、路径、泄露信息或响应证据被观察到的具体时间。
+作用：
+作用是处理信息时效性问题，因为 DNS 解析、证书、页面内容、接口响应、云资源权限和搜索引擎索引都可能随时间变化。
+实践：
+实践时按统一时区记录时间，例如 &lt;code&gt;2026-06-17 14:35 UTC+8&lt;/code&gt;，对短暂暴露、临时环境、偶发错误、证书变更和动态接口尤其要记录精确时间。&lt;/p&gt;
+&lt;p&gt;请求方式
+定义：
+请求方式是指获得某条信息时使用的方法和路径，包括被动查询、浏览器访问、HTTP 请求、DNS 查询、接口调用、代理抓包、登录账号访问和工具枚举。
+作用：
+作用是区分信息来自公开索引、第三方数据源还是直接请求目标系统，也能帮助复现结果和评估测试行为对目标的影响。
+实践：
+实践时记录请求方法、URL、参数、Header、Cookie 使用情况、状态码、响应长度和关键返回内容，例如 &lt;code&gt;GET /robots.txt&lt;/code&gt;、&lt;code&gt;GET /api/v1/users/me&lt;/code&gt;、DNS 查询 &lt;code&gt;A api.example.com&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;是否主动触达目标
+定义：
+是否主动触达目标是指信息收集行为是否直接向目标服务器、接口、域名或 IP 发送请求，被动搜索和第三方平台查询通常不算主动触达，访问页面、接口探测、目录枚举和端口扫描属于主动触达。
+作用：
+作用是区分低影响的公开情报收集和可能被目标日志、安全设备、WAF、告警系统记录的主动探测行为。
+实践：
+实践时把搜索引擎、证书透明度日志、Wayback Machine、GitHub 搜索、Shodan/Censys 结果查看标记为未主动触达，把访问目标页面、请求 &lt;code&gt;robots.txt&lt;/code&gt;、DNS 枚举、目录枚举、端口扫描、API 探测和登录测试账号查看功能标记为主动触达。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>输出物</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/20-%E8%BE%93%E5%87%BA%E7%89%A9/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:56 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/20-%E8%BE%93%E5%87%BA%E7%89%A9/</guid>
+        <description>&lt;h1 id=&#34;输出物&#34;&gt;输出物
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;资产表：域名、子域、IP、端口、服务、技术栈、环境、归属、状态。&lt;/li&gt;
+&lt;li&gt;入口点表：URL、方法、参数、认证、角色、功能、风险备注。&lt;/li&gt;
+&lt;li&gt;API 表：端点、版本、参数、认证、来源、是否文档化。&lt;/li&gt;
+&lt;li&gt;架构图：用户端、CDN/WAF、反向代理、应用、API、存储、第三方。&lt;/li&gt;
+&lt;li&gt;风险优先级：公开敏感信息、测试环境暴露、旧版本、管理后台、未授权 API、源码/配置泄露。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>API 信息收集</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/12-api%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/12-api%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</guid>
+        <description>&lt;h1 id=&#34;api-信息收集&#34;&gt;API 信息收集
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;OpenAPI/Swagger：&lt;code&gt;/swagger&lt;/code&gt;、&lt;code&gt;/swagger.json&lt;/code&gt;、&lt;code&gt;/openapi.json&lt;/code&gt;、&lt;code&gt;/api-docs&lt;/code&gt;、&lt;code&gt;/.well-known/schema-discovery&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;API 类型：公开 API、合作伙伴 API、内部 API、移动端 API、BFF、GraphQL。&lt;/li&gt;
+&lt;li&gt;目标：找全端点、参数、版本、认证方式、旧版本、废弃但仍可用接口。&lt;/li&gt;
+&lt;li&gt;来源：前端 JS、移动 App 包、Postman Collection、GitHub、API 目录、历史快照。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>错误信息与调试面</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/16-%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%B0%83%E8%AF%95%E9%9D%A2/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/16-%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%B0%83%E8%AF%95%E9%9D%A2/</guid>
+        <description>&lt;h1 id=&#34;错误信息与调试面&#34;&gt;错误信息与调试面
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;404/403/500 页面差异、栈追踪、调试页、SQL/NoSQL 错误、模板错误。&lt;/li&gt;
+&lt;li&gt;框架默认错误页、请求 ID、Trace ID、内部主机名、内部路径、版本号。&lt;/li&gt;
+&lt;li&gt;重定向响应体、异常 JSON、GraphQL Error、REST 错误格式。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>代码仓库与开发痕迹</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/17-%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E4%B8%8E%E5%BC%80%E5%8F%91%E7%97%95%E8%BF%B9/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/17-%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E4%B8%8E%E5%BC%80%E5%8F%91%E7%97%95%E8%BF%B9/</guid>
+        <description>&lt;h1 id=&#34;代码仓库与开发痕迹&#34;&gt;代码仓库与开发痕迹
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;GitHub/GitLab/Gitee 搜索组织、项目名、域名、API Key、环境名。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.git&lt;/code&gt; 暴露、&lt;code&gt;.svn&lt;/code&gt;、&lt;code&gt;.hg&lt;/code&gt;、CI 配置、Dockerfile、Compose、K8s YAML。&lt;/li&gt;
+&lt;li&gt;包管理文件：&lt;code&gt;package.json&lt;/code&gt;、&lt;code&gt;pom.xml&lt;/code&gt;、&lt;code&gt;requirements.txt&lt;/code&gt;、&lt;code&gt;go.mod&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;GitDorking 可作为 API 和敏感信息线索来源。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>框架、CMS 与组件指纹</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/13-%E6%A1%86%E6%9E%B6cms%E4%B8%8E%E7%BB%84%E4%BB%B6%E6%8C%87%E7%BA%B9/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/13-%E6%A1%86%E6%9E%B6cms%E4%B8%8E%E7%BB%84%E4%BB%B6%E6%8C%87%E7%BA%B9/</guid>
+        <description>&lt;h1 id=&#34;框架cms-与组件指纹&#34;&gt;框架、CMS 与组件指纹
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;Web 框架：Spring、Django、Flask、Laravel、Rails、Express、Next.js、Nuxt、ASP.NET。&lt;/li&gt;
+&lt;li&gt;CMS：WordPress、Drupal、Joomla、Magento、Shopify、自研后台。&lt;/li&gt;
+&lt;li&gt;指纹来源：HTTP 头、Cookie、HTML 源码、特定目录、文件扩展名、错误页。&lt;/li&gt;
+&lt;li&gt;组件版本：JS 库、CSS 框架、后端框架、插件、主题、构建工具。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>移动端与客户端补充</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/19-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%A1%A5%E5%85%85/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/19-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%A1%A5%E5%85%85/</guid>
+        <description>&lt;h1 id=&#34;移动端与客户端补充&#34;&gt;移动端与客户端补充
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;Android/iOS 包中的 API Base URL、证书 Pinning 配置、第三方 SDK Key。&lt;/li&gt;
+&lt;li&gt;小程序、桌面客户端、浏览器插件、Electron 应用中的接口和配置。&lt;/li&gt;
+&lt;li&gt;WebView 与 H5 页面、深链、Universal Link、App Link。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>应用架构识别</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/15-%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84%E8%AF%86%E5%88%AB/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/15-%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84%E8%AF%86%E5%88%AB/</guid>
+        <description>&lt;h1 id=&#34;应用架构识别&#34;&gt;应用架构识别
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;单体、微服务、Serverless、PaaS、容器、Kubernetes、API Gateway。&lt;/li&gt;
+&lt;li&gt;静态资源存储：S3、Azure Blob、GCS、OSS、COS。&lt;/li&gt;
+&lt;li&gt;第三方服务：支付、短信、邮件、风控、客服、统计、广告、地图、验证码。&lt;/li&gt;
+&lt;li&gt;网络组件：反向代理、负载均衡、CDN、WAF、防火墙、IDS/IPS。&lt;/li&gt;
+&lt;li&gt;架构映射覆盖 Web Server、PaaS、Serverless、微服务、静态存储、数据库、认证、第三方服务、反向代理、CDN、WAF 等。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>应用流程与权限面</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/14-%E5%BA%94%E7%94%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%9D%83%E9%99%90%E9%9D%A2/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/14-%E5%BA%94%E7%94%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%9D%83%E9%99%90%E9%9D%A2/</guid>
+        <description>&lt;h1 id=&#34;应用流程与权限面&#34;&gt;应用流程与权限面
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;登录、注册、找回密码、改密、绑定 MFA、OAuth/OIDC/SAML。&lt;/li&gt;
+&lt;li&gt;普通用户、管理员、商户、运营、客服、审核员等角色。&lt;/li&gt;
+&lt;li&gt;业务流程：下单、支付、退款、提现、审批、邀请、上传、导出、消息通知。&lt;/li&gt;
+&lt;li&gt;在测试前映射主要工作流和执行路径，否则无法形成完整测试覆盖。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>云与存储资产</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/18-%E4%BA%91%E4%B8%8E%E5%AD%98%E5%82%A8%E8%B5%84%E4%BA%A7/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/18-%E4%BA%91%E4%B8%8E%E5%AD%98%E5%82%A8%E8%B5%84%E4%BA%A7/</guid>
+        <description>&lt;h1 id=&#34;云与存储资产&#34;&gt;云与存储资产
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;对象存储桶、CDN 源站、静态站点托管、镜像仓库、函数计算、API Gateway。&lt;/li&gt;
+&lt;li&gt;云域名特征、Bucket 命名、公开读写、索引列表、备份文件、日志文件。&lt;/li&gt;
+&lt;li&gt;IAM 线索、临时凭证、Access Key 暴露、预签名 URL。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>IP、端口与服务</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/06-ip%E7%AB%AF%E5%8F%A3%E4%B8%8E%E6%9C%8D%E5%8A%A1/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/06-ip%E7%AB%AF%E5%8F%A3%E4%B8%8E%E6%9C%8D%E5%8A%A1/</guid>
+        <description>&lt;h1 id=&#34;ip端口与服务&#34;&gt;IP、端口与服务
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;域名解析到 IP、历史解析 IP、同 IP 虚拟主机、反向 IP、旁站。&lt;/li&gt;
+&lt;li&gt;标准端口：80、443。&lt;/li&gt;
+&lt;li&gt;非标准 Web 端口：8080、8000、8443、9443、9000、5000、3000、7001、8081 等。&lt;/li&gt;
+&lt;li&gt;Web 应用可能运行在任意 TCP 端口，服务识别可发现非标准 HTTP/HTTPS 服务。&lt;/li&gt;
+&lt;li&gt;注意授权边界，端口扫描属于主动行为。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>Web Server 指纹</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/07-webserver%E6%8C%87%E7%BA%B9/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/07-webserver%E6%8C%87%E7%BA%B9/</guid>
+        <description>&lt;h1 id=&#34;web-server-指纹&#34;&gt;Web Server 指纹
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;识别 Nginx、Apache、IIS、Tomcat、Jetty、OpenResty、Caddy、Kestrel、Node.js 等。&lt;/li&gt;
+&lt;li&gt;观察 &lt;code&gt;Server&lt;/code&gt;、响应头顺序、默认错误页、状态码差异、TLS 行为。&lt;/li&gt;
+&lt;li&gt;Web Server 指纹用于识别服务器类型和版本，从而判断是否存在已知版本风险。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>目录、路径与文件枚举</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/09-%E7%9B%AE%E5%BD%95%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9E%9A%E4%B8%BE/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/09-%E7%9B%AE%E5%BD%95%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9E%9A%E4%B8%BE/</guid>
+        <description>&lt;h1 id=&#34;目录路径与文件枚举&#34;&gt;目录、路径与文件枚举
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;普通路径：&lt;code&gt;/admin&lt;/code&gt;、&lt;code&gt;/login&lt;/code&gt;、&lt;code&gt;/api&lt;/code&gt;、&lt;code&gt;/upload&lt;/code&gt;、&lt;code&gt;/backup&lt;/code&gt;、&lt;code&gt;/debug&lt;/code&gt;、&lt;code&gt;/test&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;框架路径：&lt;code&gt;/wp-admin&lt;/code&gt;、&lt;code&gt;/wp-content&lt;/code&gt;、&lt;code&gt;/static&lt;/code&gt;、&lt;code&gt;/assets&lt;/code&gt;、&lt;code&gt;/vendor&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;敏感文件：备份包、压缩包、日志、&lt;code&gt;.env&lt;/code&gt;、配置文件、数据库导出、源码包。&lt;/li&gt;
+&lt;li&gt;目录/文件结构、特定文件夹、文件扩展名、错误信息都可用于组件识别。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>搜索引擎与公开索引</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/03-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%8E%E5%85%AC%E5%BC%80%E7%B4%A2%E5%BC%95/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/03-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%8E%E5%85%AC%E5%BC%80%E7%B4%A2%E5%BC%95/</guid>
+        <description>&lt;h1 id=&#34;搜索引擎与公开索引&#34;&gt;搜索引擎与公开索引
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;使用 Google、Bing、DuckDuckGo、Baidu、Common Crawl、Internet Archive、Censys、Shodan 等多个来源，因为不同搜索引擎索引结果不同。&lt;/li&gt;
+&lt;li&gt;关注泄露类型：网络图、配置、管理员邮件、登录流程、用户名格式、密钥、云配置、错误信息、开发/测试/UAT/预发环境。&lt;/li&gt;
+&lt;li&gt;常用搜索维度：&lt;code&gt;site:&lt;/code&gt;、&lt;code&gt;inurl:&lt;/code&gt;、&lt;code&gt;intitle:&lt;/code&gt;、&lt;code&gt;intext:&lt;/code&gt;、&lt;code&gt;filetype:&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;历史页面：Wayback Machine、archive.ph、缓存页面、旧 sitemap、旧接口路径。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>页面源码与前端泄露</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/10-%E9%A1%B5%E9%9D%A2%E6%BA%90%E7%A0%81%E4%B8%8E%E5%89%8D%E7%AB%AF%E6%B3%84%E9%9C%B2/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/10-%E9%A1%B5%E9%9D%A2%E6%BA%90%E7%A0%81%E4%B8%8E%E5%89%8D%E7%AB%AF%E6%B3%84%E9%9C%B2/</guid>
+        <description>&lt;h1 id=&#34;页面源码与前端泄露&#34;&gt;页面源码与前端泄露
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;HTML 注释、隐藏字段、调试信息、SQL 片段、内部 IP、用户名、测试密码。&lt;/li&gt;
+&lt;li&gt;JavaScript 中的 API 地址、GraphQL 地址、内部路由、云存储地址、API Key、Feature Flag。&lt;/li&gt;
+&lt;li&gt;Source Map：&lt;code&gt;.js.map&lt;/code&gt;、&lt;code&gt;.css.map&lt;/code&gt;，可能还原前端源码和源码路径。&lt;/li&gt;
+&lt;li&gt;审查 HTML 注释、元数据、JS 文件、Source Map、重定向响应体、生成文件元数据。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>应用入口点</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/11-%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E7%82%B9/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/11-%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E7%82%B9/</guid>
+        <description>&lt;h1 id=&#34;应用入口点&#34;&gt;应用入口点
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;URL、路径参数、Query 参数、POST Body、JSON、XML、Multipart、Cookie、Header。&lt;/li&gt;
+&lt;li&gt;隐藏表单字段、CSRF Token、状态字段、价格/数量字段、回调地址。&lt;/li&gt;
+&lt;li&gt;HTTP 方法：GET、POST、PUT、PATCH、DELETE、OPTIONS。&lt;/li&gt;
+&lt;li&gt;WebSocket、SSE、gRPC-Web、GraphQL、文件上传、下载、导出、导入。&lt;/li&gt;
+&lt;li&gt;记录每个请求/响应、参数、认证状态、TLS、是否多步骤流程、是否 WebSocket。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>域名与 DNS</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/04-%E5%9F%9F%E5%90%8D%E4%B8%8Edns/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/04-%E5%9F%9F%E5%90%8D%E4%B8%8Edns/</guid>
+        <description>&lt;h1 id=&#34;域名与-dns&#34;&gt;域名与 DNS
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;根域、子域、泛解析、CNAME、A/AAAA、MX、TXT、NS、CAA、PTR。&lt;/li&gt;
+&lt;li&gt;被动 DNS：公开 DNS、反查、搜索引擎、Passive DNS 数据库、证书透明度日志。&lt;/li&gt;
+&lt;li&gt;主动 DNS：子域枚举、字典爆破、区域传送尝试、DNS 记录枚举。&lt;/li&gt;
+&lt;li&gt;工具知识面：&lt;code&gt;dig&lt;/code&gt;、&lt;code&gt;nslookup&lt;/code&gt;、&lt;code&gt;host&lt;/code&gt;、&lt;code&gt;amass&lt;/code&gt;、&lt;code&gt;subfinder&lt;/code&gt;、&lt;code&gt;dnsrecon&lt;/code&gt;、&lt;code&gt;fierce&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>元文件与爬虫文件</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/08-%E5%85%83%E6%96%87%E4%BB%B6%E4%B8%8E%E7%88%AC%E8%99%AB%E6%96%87%E4%BB%B6/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/08-%E5%85%83%E6%96%87%E4%BB%B6%E4%B8%8E%E7%88%AC%E8%99%AB%E6%96%87%E4%BB%B6/</guid>
+        <description>&lt;h1 id=&#34;元文件与爬虫文件&#34;&gt;元文件与爬虫文件
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;robots.txt&lt;/code&gt;、&lt;code&gt;sitemap.xml&lt;/code&gt;、&lt;code&gt;security.txt&lt;/code&gt;、&lt;code&gt;humans.txt&lt;/code&gt;、&lt;code&gt;.well-known/*&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;robots.txt&lt;/code&gt; 可能暴露隐藏路径，但不能当访问控制。&lt;/li&gt;
+&lt;li&gt;页面 &lt;code&gt;meta&lt;/code&gt; 标签、OpenGraph、Twitter Card、App ID、站点名、作者、生成器。&lt;/li&gt;
+&lt;li&gt;公开 manifest：&lt;code&gt;manifest.json&lt;/code&gt;、&lt;code&gt;asset-manifest.json&lt;/code&gt;、&lt;code&gt;service-worker.js&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>证书与 CT 日志</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/05-%E8%AF%81%E4%B9%A6%E4%B8%8Ect%E6%97%A5%E5%BF%97/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/05-%E8%AF%81%E4%B9%A6%E4%B8%8Ect%E6%97%A5%E5%BF%97/</guid>
+        <description>&lt;h1 id=&#34;证书与-ct-日志&#34;&gt;证书与 CT 日志
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;检查 TLS 证书的 CN、SAN、颁发机构、有效期、通配符证书。&lt;/li&gt;
+&lt;li&gt;查 CT 日志发现 &lt;code&gt;dev&lt;/code&gt;、&lt;code&gt;staging&lt;/code&gt;、&lt;code&gt;test&lt;/code&gt;、&lt;code&gt;admin&lt;/code&gt;、&lt;code&gt;legacy&lt;/code&gt;、隐藏子域。&lt;/li&gt;
+&lt;li&gt;CT 日志可发现 DNS 区域传送、反查、搜索引擎无法直接发现的主机名，并要求验证归属和范围。&lt;/li&gt;
+&lt;li&gt;可用来源：&lt;code&gt;crt.sh&lt;/code&gt;、Censys、Google CT、Cloudflare CT、Cert Spotter 等。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>组织与资产画像</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/02-%E7%BB%84%E7%BB%87%E4%B8%8E%E8%B5%84%E4%BA%A7%E7%94%BB%E5%83%8F/</link>
+        <pubDate>Wed, 17 Jun 2026 11:20:53 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/02-%E7%BB%84%E7%BB%87%E4%B8%8E%E8%B5%84%E4%BA%A7%E7%94%BB%E5%83%8F/</guid>
+        <description>&lt;h1 id=&#34;组织与资产画像&#34;&gt;组织与资产画像
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;公司名、品牌、子公司、并购资产、旧品牌、海外站点。&lt;/li&gt;
+&lt;li&gt;根域名、相关域名、拼写变体、国际化域名、历史域名。&lt;/li&gt;
+&lt;li&gt;ASN、IP 段、云账号痕迹、CDN、托管平台、邮件服务、第三方 SaaS。&lt;/li&gt;
+&lt;li&gt;公开文档、招聘 JD、技术博客、开发者文档、状态页、帮助中心、公告页。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

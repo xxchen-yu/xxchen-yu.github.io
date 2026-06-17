@@ -2,24 +2,22 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="面向终身学习的 LLM WIKI 知识管理体系的构建">
-<title>Wiki</title>
+<title>安全WIKI分类导航</title>
 
 <link rel='canonical' href='https://xxchen-yu.github.io/wiki/'>
 
-<link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="Wiki">
+<link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="安全WIKI分类导航">
 <meta property='og:description' content="面向终身学习的 LLM WIKI 知识管理体系的构建">
 <meta property='og:url' content='https://xxchen-yu.github.io/wiki/'>
 <meta property='og:site_name' content='ChenOvo'>
-<meta property='og:type' content='article'><meta property='article:section' content='Page' />
-<meta name="twitter:title" content="Wiki">
-<meta name="twitter:description" content="面向终身学习的 LLM WIKI 知识管理体系的构建">
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-06-17T12:19:12&#43;08:00 '/>
+<meta name="twitter:title" content="安全WIKI分类导航">
+<meta name="twitter:description" content="面向终身学习的 LLM WIKI 知识管理体系的构建"><link rel="alternate" type="application/rss&#43;xml" href="https://xxchen-yu.github.io/wiki/index.xml">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
 
     </head>
-    <body class="
-    article-page
-    ">
+    <body class="">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
@@ -175,7 +173,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>blog</span>
             </a>
         </li>
         
@@ -270,10 +268,173 @@
     <aside class="sidebar right-sidebar sticky">
         
             
-                
-    <section class="widget archives">
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+            
+                <section class="widget runtime-status">
+    <div
+        class="runtime-status-card"
+        data-runtime-start="2026-03-08T00:00:00+08:00"
+        data-progress-year="2026"
+    >
+        <div class="runtime-status-header">
+            <span class="runtime-status-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M10.39 2.7a1 1 0 0 1 1.22-.63l.76.24a1 1 0 0 0 1.26-.57l.33-.73a1 1 0 0 1 1.3-.5l1.42.63a1 1 0 0 1 .5 1.3l-.33.73a1 1 0 0 0 .3 1.21l.62.5a1 1 0 0 1 .16 1.4l-.94 1.17a1 1 0 0 0 0 1.26l.94 1.17a1 1 0 0 1-.16 1.4l-.62.5a1 1 0 0 0-.3 1.21l.33.73a1 1 0 0 1-.5 1.3l-1.42.63a1 1 0 0 1-1.3-.5l-.33-.73a1 1 0 0 0-1.26-.57l-.76.24a1 1 0 0 1-1.22-.63l-.28-.74a1 1 0 0 0-1.15-.62l-.79.13a1 1 0 0 1-1.14-.82l-.24-1.54a1 1 0 0 1 .82-1.14l.79-.13a1 1 0 0 0 .82-.93V9.5a1 1 0 0 0-.82-.93l-.79-.13a1 1 0 0 1-.82-1.14l.24-1.54a1 1 0 0 1 1.14-.82l.79.13a1 1 0 0 0 1.15-.62zM12 9a3 3 0 1 0 0 6a3 3 0 0 0 0-6z" />
+                </svg>
+            </span>
+            <p class="runtime-status-title">
+                <span class="runtime-status-label">&#x535A;&#x5BA2;&#x5DF2;&#x8FD0;&#x884C;</span>
+                <strong data-runtime-days>96</strong>
+                <span class="runtime-status-suffix">&#x5929;</span>
+            </p>
+        </div>
+
+        <div class="runtime-status-meta">
+            <span class="runtime-status-badge">2026</span>
+            <span
+                class="runtime-status-percent"
+                data-runtime-percent
+                title="悬停后显示并实时更新到小数点后七位"
+            >0.00%</span>
+        </div>
+
+        <div class="runtime-status-track" aria-hidden="true">
+            <span class="runtime-status-fill" data-runtime-fill></span>
+        </div>
+    </div>
+
+    <script>
+        (() => {
+            const card = document.currentScript?.previousElementSibling;
+
+            if (!card || !card.classList.contains('runtime-status-card')) {
+                return;
+            }
+
+            const startAt = new Date(card.dataset.runtimeStart);
+            const progressYear = Number(card.dataset.progressYear);
+            const msPerDay = 24 * 60 * 60 * 1000;
+            const yearStart = new Date(`${progressYear}-01-01T00:00:00+08:00`);
+            const yearEnd = new Date(`${progressYear + 1}-01-01T00:00:00+08:00`);
+            const totalMs = yearEnd.getTime() - yearStart.getTime();
+
+            const daysNode = card.querySelector('[data-runtime-days]');
+            const percentNode = card.querySelector('[data-runtime-percent]');
+            const fillNode = card.querySelector('[data-runtime-fill]');
+            let hoverTimer = null;
+
+            const getRuntimeDays = () => {
+                const now = new Date();
+                return Math.max(0, Math.floor((now.getTime() - startAt.getTime()) / msPerDay));
+            };
+
+            const getProgressPercent = () => {
+                const now = new Date();
+                const elapsedMs = Math.min(Math.max(now.getTime() - yearStart.getTime(), 0), totalMs);
+                return totalMs > 0 ? (elapsedMs / totalMs) * 100 : 0;
+            };
+
+            const render = (precision = 2) => {
+                const percent = getProgressPercent();
+
+                if (daysNode) {
+                    daysNode.textContent = String(getRuntimeDays());
+                }
+
+                if (percentNode) {
+                    percentNode.textContent = `${percent.toFixed(precision)}%`;
+                }
+
+                if (fillNode) {
+                    fillNode.style.width = `${percent}%`;
+                }
+            };
+
+            const stopHoverMode = () => {
+                if (hoverTimer) {
+                    window.clearInterval(hoverTimer);
+                    hoverTimer = null;
+                }
+
+                card.classList.remove('runtime-status-card--active');
+                render(2);
+            };
+
+            card.addEventListener('mouseenter', () => {
+                stopHoverMode();
+                card.classList.add('runtime-status-card--active');
+                render(7);
+                hoverTimer = window.setInterval(() => render(7), 80);
+            });
+
+            card.addEventListener('mouseleave', stopHoverMode);
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    stopHoverMode();
+                }
+            });
+
+            render(2);
+        })();
+    </script>
+</section>
+
+            
+        
+            
+                <section class="widget archives">
         <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">归档</h2>
+
+        
+        
+        
+        
+        
+        <div class="widget-archive--list">
+            <div class="archives-year">
+                    <a href="/archives/#2026">
+                        
+                            <span class="year">2026</span>
+                            <span class="count">3</span>
+                        
+                    </a> 
+                </div>
+            
+        </div>
+    </section>
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <line x1="5" y1="9" x2="19" y2="9" />
   <line x1="5" y1="15" x2="19" y2="15" />
@@ -283,72 +444,46 @@
 
 
 
-        </div>
-        <h2 class="widget-title section-title">目录</h2>
+    </div>
+    <h2 class="widget-title section-title">分类</h2>
+
+    <div class="tagCloud-tags">
         
-        <div class="widget--toc collapsible-toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#知识入口">知识入口</a></li>
-    <li><a href="#构建方向">构建方向</a></li>
-  </ol>
-</nav>
-        </div>
-    </section>
+            <a href="/categories/%E9%9D%B6%E5%9C%BA/" class="font_size_3">
+                靶场
+            </a>
+        
+    </div>
+</section>
 
-    <style>
-     
-    .collapsible-toc nav > ol > li {
-        position: relative;
-        margin: 6px 0;
-        list-style: none;
-    }
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
 
-    .collapsible-toc nav > ol > li > a {
-        display: inline-flex;
-        align-items: center;
-    }
 
-     
-    .collapsible-toc nav > ol > li > a::after {
-        content: '▶';
-        margin-left: 6px;
-        font-size: 10px;
-        opacity: 0.5;
-        transition: transform 0.2s ease, opacity 0.2s ease;
-    }
 
-    .collapsible-toc nav > ol > li:hover > a::after {
-        transform: rotate(90deg);
-        opacity: 1;
-    }
+    </div>
+    <h2 class="widget-title section-title">标签云</h2>
 
-     
-    .collapsible-toc nav > ol > li > ol {
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        margin-left: 16px;
-        transition: max-height 0.3s ease, opacity 0.3s ease;
-    }
-
-     
-    .collapsible-toc nav > ol > li:hover > ol {
-        max-height: 2000px;
-        opacity: 1;
-    }
-
-     
-    .collapsible-toc nav > ol > li > ol > li {
-        list-style: none;
-        margin: 4px 0;
-    }
-
-     
-    .collapsible-toc nav > ol > li:not(:has(> ol)) > a::after {
-        display: none;
-    }
-    </style>
+    <div class="tagCloud-tags">
+        
+            <a href="/tags/web/">
+                Web
+            </a>
+        
+            <a href="/tags/wp/">
+                Wp
+            </a>
+        
+    </div>
+</section>
 
             
         
@@ -356,51 +491,47 @@
 
 
             <main class="main full-width">
-    <article class="main-article">
-    <header class="article-header">
-
-    <div class="article-details">
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/wiki/">Wiki</a>
-        </h2>
-
-        
-        <h3 class="article-subtitle">
-            面向终身学习的 LLM WIKI 知识管理体系的构建
+    <header>
+        <h3 class="section-title">
+            
+                章节
+            
         </h3>
-        
-    </div>
 
-    
-    
-    
-    
-    
-    <footer class="article-time">
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    阅读时长: 1 分钟
-                </time>
+        <div class="section-card">
+            <div class="section-details">
+                <h3 class="section-count">2 个页面</h3>
+                <h1 class="section-term">安全WIKI分类导航</h1>
+                
+                    <h2 class="section-description">面向终身学习的 LLM WIKI 知识管理体系的构建</h2>
+                
             </div>
+        </div>
+    </header>
         
-
+    
+    <section class="article-list--compact">
         
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <article>
+    <a href="/wiki/ai%E5%AE%89%E5%85%A8/">
+        <div class="article-details">
+            <h2 class="article-title">AI安全</h2>
+            <footer class="article-time">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                    <time datetime='2026-06-17T12:19:12&#43;08:00'>Jun 17, 2026</time>
+                </div>
+                
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <line x1="5" y1="9" x2="19" y2="9" />
   <line x1="5" y1="15" x2="19" y2="15" />
@@ -410,147 +541,60 @@
 
 
 
-                <span class="article-time--wordcount">224 字</span>
-            </div>
+                    <span>18 字</span>
+                </div>
+                
+            </footer>
+        </div>
+    </a>
+</article>
+
         
-    </footer>
-    
-
-    
-</div>
-
-</header>
-
-    <section class="article-content">
-    
-    
-    <h1 id="面向终身学习的-llm-wiki-知识管理体系的构建">面向终身学习的 LLM WIKI 知识管理体系的构建
-</h1><p>这里用于沉淀长期学习中的问题、概念、方法、提示词、项目经验与复盘记录，让知识可以被持续更新、交叉引用，并在需要时被 LLM 快速调用。</p>
-<h2 id="知识入口">知识入口
-</h2><ul>
-<li>概念库：整理核心概念、术语和模型能力边界。</li>
-<li>方法库：沉淀学习路径、研究方法、Prompt 模板和工作流。</li>
-<li>项目库：记录实践项目、实验结论和可复用方案。</li>
-<li>复盘库：保存错误、决策、改进点和下一步行动。</li>
-</ul>
-<h2 id="构建方向">构建方向
-</h2><p>把零散笔记逐步组织成可检索、可扩展、可复用的个人知识网络，服务长期学习与持续创造。</p>
-
-</section>
-
-
-    <footer class="article-footer">
-    
-
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <article>
+    <a href="/wiki/web%E5%AE%89%E5%85%A8/">
+        <div class="article-details">
+            <h2 class="article-title">Web安全</h2>
+            <footer class="article-time">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                    <time datetime='2026-06-17T12:19:12&#43;08:00'>Jun 17, 2026</time>
+                </div>
+                
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
 </svg>
 
 
 
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
-    </footer>
-
-
-    
+                    <span>19 字</span>
+                </div>
+                
+            </footer>
+        </div>
+    </a>
 </article>
 
-    
-
-    
-
-     
-    
-
-    <footer class="site-footer">
+        
+    </section>
+<footer class="site-footer">
     <section class="copyright">
         2026 ChenOvo
     </section>
 </footer>
 
-
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
-            >
 
             </main>
         </div>

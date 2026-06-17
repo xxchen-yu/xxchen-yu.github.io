@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="在 OWASP Top 10:2025 里，Mishandling of Exceptional Conditions 排在 A10，也就是第 10 位。这是 2025 新增的类别，它聚焦的是“异常条件处理不当”：系统在遇到缺参、空指针、权限不足、网络中断、资源耗尽、状态异常、事务中断、未预期输入时，没有正确地预防、识别和处理这些异常，最终进入不可预测状态，甚至直接 fail-open（失败时放行）。\n来源：OWASP Top 10:2025 Introduction\n来源：A10:2025 Mishandling of Exceptional Conditions\n">
+<title>TOP10-Mishandling of Exceptional Conditions（处理异常情况不当）</title>
+
+<link rel='canonical' href='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top10-mishandling-of-exceptional-conditions%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8D%E5%BD%93/'>
+
+<link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="TOP10-Mishandling of Exceptional Conditions（处理异常情况不当）">
+<meta property='og:description' content="在 OWASP Top 10:2025 里，Mishandling of Exceptional Conditions 排在 A10，也就是第 10 位。这是 2025 新增的类别，它聚焦的是“异常条件处理不当”：系统在遇到缺参、空指针、权限不足、网络中断、资源耗尽、状态异常、事务中断、未预期输入时，没有正确地预防、识别和处理这些异常，最终进入不可预测状态，甚至直接 fail-open（失败时放行）。\n来源：OWASP Top 10:2025 Introduction\n来源：A10:2025 Mishandling of Exceptional Conditions\n">
+<meta property='og:url' content='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top10-mishandling-of-exceptional-conditions%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8D%E5%BD%93/'>
+<meta property='og:site_name' content='ChenOvo'>
+<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-05-20T12:33:47&#43;08:00'/><meta property='article:modified_time' content='2026-05-20T12:33:47&#43;08:00'/>
+<meta name="twitter:title" content="TOP10-Mishandling of Exceptional Conditions（处理异常情况不当）">
+<meta name="twitter:description" content="在 OWASP Top 10:2025 里，Mishandling of Exceptional Conditions 排在 A10，也就是第 10 位。这是 2025 新增的类别，它聚焦的是“异常条件处理不当”：系统在遇到缺参、空指针、权限不足、网络中断、资源耗尽、状态异常、事务中断、未预期输入时，没有正确地预防、识别和处理这些异常，最终进入不可预测状态，甚至直接 fail-open（失败时放行）。\n来源：OWASP Top 10:2025 Introduction\n来源：A10:2025 Mishandling of Exceptional Conditions\n">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="/css/custom.css">
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_7a0b096c17d58c3c.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">ChenOvo</a></h1>
+            <h2 class="site-description">游手好闲的一天</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/xxchen-yu'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>blog</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li  class='current' >
+            <a href='/wiki/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wiki" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M4 5h5a3 3 0 0 1 3 3v11a3 3 0 0 0 -3 -3h-5z" />
+  <path d="M20 5h-5a3 3 0 0 0 -3 3v11a3 3 0 0 1 3 -3h5z" />
+  <path d="M8 9h1" />
+  <path d="M8 12h1" />
+  <path d="M15 9h1" />
+  <path d="M15 12h1" />
+</svg>
+
+                
+                <span>Wiki</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top10-mishandling-of-exceptional-conditions%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8D%E5%BD%93/">TOP10-Mishandling of Exceptional Conditions（处理异常情况不当）</a>
+        </h2>
+
+        
+    </div>
+
+    
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-05-20T12:33:47&#43;08:00'>May 20, 2026</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                <span class="article-time--wordcount">1027 字</span>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>在 <strong>OWASP Top 10:2025</strong> 里，<strong>Mishandling of Exceptional Conditions</strong> 排在 <strong>A10，也就是第 10 位</strong>。这是 <strong>2025 新增的类别</strong>，它聚焦的是“异常条件处理不当”：系统在遇到缺参、空指针、权限不足、网络中断、资源耗尽、状态异常、事务中断、未预期输入时，没有正确地预防、识别和处理这些异常，最终进入不可预测状态，甚至直接 <strong>fail-open（失败时放行）</strong>。<br>
+来源：<a class="link" href="https://owasp.org/Top10/2025/0x00_2025-Introduction/"  target="_blank" rel="noopener"
+    >OWASP Top 10:2025 Introduction</a><br>
+来源：<a class="link" href="https://owasp.org/Top10/2025/A10_2025-Mishandling_of_Exceptional_Conditions/"  target="_blank" rel="noopener"
+    >A10:2025 Mishandling of Exceptional Conditions</a></p>
+<p>你可以把它理解成：<br>
+正常流程往往大家都会写，但真正拉开安全差距的，是<strong>系统出错时会怎样</strong>。很多应用一到异常流就开始“能跑就行”，而攻击者最喜欢钻的就是这些状态。</p>
+<p><strong>OWASP 为什么把它单独拉出来</strong><br>
+官方说明，这类问题以前常被归到“代码质量差”之类过宽的桶里，但那样不利于给出安全指导。2025 版把它独立成类，是为了强调：异常处理不是工程洁癖问题，而是直接影响机密性、完整性、可用性的安全控制。</p>
+<p><strong>常见表现</strong></p>
+<ul>
+<li>输入校验缺失或不完整，异常数据一路流到深层函数才爆炸。</li>
+<li>只在很高层统一 try/catch，底层出错点没有就地处理。</li>
+<li>捕获到错误但什么也不做，或者吞掉异常继续执行。</li>
+<li>事务执行到一半失败，却没有完整回滚。</li>
+<li>权限检查失败、状态异常、网络中断时默认继续走成功路径。</li>
+<li>出现异常后资源没有释放，逐步被耗尽形成 DoS。</li>
+<li>同一个系统里有多套错误处理风格，行为不一致。</li>
+<li>没有对重复错误、异常峰值、异常模式做监控和告警。</li>
+</ul>
+<p><strong>OWASP 官方典型场景</strong></p>
+<ul>
+<li>文件上传时发生异常，但程序没有释放资源，攻击者不断触发异常，最终把资源耗尽，形成拒绝服务。</li>
+<li>数据库报错被原样返回给用户，泄露内部实现细节，攻击者再利用这些信息构造更精准的 SQL 注入。</li>
+<li>金融交易是“扣款 -&gt; 入账 -&gt; 记账”三步，如果中间网络中断而系统又没有完整回滚，就可能出现资金状态损坏，甚至被攻击者利用成重复转账或资金抽走。</li>
+</ul>
+<p><strong>怎么防</strong></p>
+<ul>
+<li>在异常发生的地方就捕获并处理，不要把一切都丢给最上层。</li>
+<li>异常处理必须做“有意义的动作”：回滚、释放资源、拒绝请求、记录日志、必要时告警。</li>
+<li>建立全局异常处理器作为兜底，但它不能替代局部正确处理。</li>
+<li>对事务类操作坚持 <strong>fail closed</strong>，一旦异常就整体回滚，不要“半路修补”。</li>
+<li>在系统里加入限流、配额、节流、资源上限，尽量预防异常条件本身。</li>
+<li>对重复错误和异常模式做监控，识别脚本化探测和攻击。</li>
+<li>统一项目里的异常处理方式，不要每个模块各玩各的。</li>
+<li>设计阶段就把异常流纳入威胁建模，测试阶段加入压力测试、异常流测试和渗透测试。</li>
+</ul>
+<p><strong>一句话总结</strong><br>
+Mishandling of Exceptional Conditions 的本质是：<strong>系统在异常状态下没有安全地失败、回滚、记录和恢复，结果把“错误”变成了“漏洞”。</strong></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        2026 ChenOvo
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+<script src=https://xxchen-yu.github.io/background/particles.min.js></script>
+<script>
+  particlesJS.load('particles-js', "https://xxchen-yu.github.io/background/particlesjs-config.json", function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
+<script>
+function initCollapsibleToc() {
+    
+    
+    const topLinks = document.querySelectorAll('.widget--toc nav > ol > li');
+
+    topLinks.forEach(li => {
+        
+        const subList = li.querySelector('ol, ul');
+
+        if (subList) {
+            
+            li.addEventListener('click', function(e) {
+                
+                e.stopPropagation();
+                
+                
+                
+                li.classList.toggle('expanded');
+            });
+        }
+    });
+}
+
+
+document.addEventListener('stack:config', initCollapsibleToc);
+
+document.addEventListener('DOMContentLoaded', initCollapsibleToc);
+</script>
+<style>
+ 
+
+ 
+.widget--toc .toc .nav > li > ul {
+    display: none !important;
+    padding-left: 1rem;  
+    margin-top: 0.5rem;
+}
+
+ 
+.widget--toc .toc .nav > li.active > ul {
+    display: block !important;
+}
+
+ 
+.widget--toc .toc .nav > li > a {
+    position: relative;
+    padding-right: 20px;  
+}
+
+ 
+.widget--toc .toc .nav > li > a::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: #999;
+    transition: transform 0.2s;
+}
+
+ 
+.widget--toc .toc .nav > li.active > a::after {
+    content: '-';
+    color: #333;
+}
+</style>
+    </body>
+</html>
