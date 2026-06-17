@@ -7,7 +7,57 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>ChenOvo</copyright>
-        <lastBuildDate>Wed, 20 May 2026 12:33:47 +0800</lastBuildDate><atom:link href="https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 17 Jun 2026 12:21:29 +0800</lastBuildDate><atom:link href="https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>TOP1-Broken Access Control（访问控制失效）</title>
+        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top1-broken-access-control%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%A4%B1%E6%95%88/</link>
+        <pubDate>Wed, 17 Jun 2026 12:21:29 +0800</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top1-broken-access-control%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%A4%B1%E6%95%88/</guid>
+        <description>&lt;p&gt;在 &lt;strong&gt;OWASP Top 10:2025&lt;/strong&gt; 里，&lt;strong&gt;Broken Access Control（访问控制失效）&lt;/strong&gt; 仍然排在 &lt;strong&gt;A01，也就是第 1 位&lt;/strong&gt;。它的意思很直接：系统没有正确限制“谁能访问什么、谁能执行什么操作”，结果就是用户能看到、修改、删除本不属于自己的数据，甚至越权拿到管理员能力。OWASP 给出的 2025 数据里，这一类问题覆盖了 &lt;strong&gt;100% 被测试应用&lt;/strong&gt;，而且总出现次数非常高，说明它不是“高级漏洞”，而是最常见、最容易被遗漏的基础性问题。&lt;br&gt;
+来源：&lt;a class=&#34;link&#34; href=&#34;https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;OWASP A01:2025 Broken Access Control&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;你可以把它和“认证”区分开来理解：&lt;br&gt;
+认证（Authentication） 是“你是谁”，授权/访问控制（Authorization / Access Control） 是“你被允许做什么”。很多系统登录做得还行，但授权做得很松，这就会出现“普通用户登录后直接改 URL 看别人订单”“前端隐藏了管理按钮，但接口没拦截”“把 JWT 里的 role 改成 admin 就真能生效”这类问题。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;常见表现&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IDOR / 越权访问对象：把 /orders/1001 改成 /orders/1002 就能看别人的订单。&lt;/li&gt;
+&lt;li&gt;功能级越权：普通用户能调用本该只有管理员可用的 POST/PUT/DELETE 接口。&lt;/li&gt;
+&lt;li&gt;前端做了限制，后端没做校验：按钮虽然隐藏，但直接抓包重放请求仍然成功。&lt;/li&gt;
+&lt;li&gt;权限提升：未登录用户访问已登录页面，或普通用户进入管理员页面。&lt;/li&gt;
+&lt;li&gt;Token / Cookie / Hidden Field 被篡改：服务端错误地信任客户端传来的角色、权限、状态。&lt;/li&gt;
+&lt;li&gt;CORS 配置错误：把不可信来源也放进允许列表，导致跨站调用敏感 API。&lt;/li&gt;
+&lt;li&gt;Force Browsing：猜 URL 就能访问受限资源、备份文件、目录列表或 .git 等敏感内容。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;为什么它危险&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它直接破坏“业务边界”，不是只泄露一条数据，而是可能整库查看、批量修改、批量删除。&lt;/li&gt;
+&lt;li&gt;它常常绕过的是“业务规则”而不是技术边界，所以影响往往比单点漏洞更大。&lt;/li&gt;
+&lt;li&gt;API、前后端分离、微服务、移动端特别容易放大这个问题，因为请求面更多、角色更多、资源更多。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;OWASP 官方举的典型攻击思路&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修改请求参数里的账户 ID，访问别人的账户信息。&lt;/li&gt;
+&lt;li&gt;直接访问管理接口 URL，看后端是否真的做了管理员校验。&lt;/li&gt;
+&lt;li&gt;如果权限检查只写在浏览器里的 JavaScript，攻击者完全可以绕过前端，直接 curl 调接口。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;怎么防&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;采用 deny by default：除公开资源外，默认拒绝访问。&lt;/li&gt;
+&lt;li&gt;把权限校验放在&lt;strong&gt;服务端&lt;/strong&gt;，不要信任前端、隐藏字段、JWT 中未经验证的声明。&lt;/li&gt;
+&lt;li&gt;统一做授权逻辑：不要每个接口自己拼一套判断。&lt;/li&gt;
+&lt;li&gt;校验“资源归属”而不只是“是否登录”：例如用户只能读写自己的订单、自己的文件。&lt;/li&gt;
+&lt;li&gt;对高风险操作加业务约束：金额上限、审批流、状态机顺序、频率限制。&lt;/li&gt;
+&lt;li&gt;正确处理会话和 token：登出后失效；JWT 短生命周期；需要时支持吊销。&lt;/li&gt;
+&lt;li&gt;记录并告警授权失败，防止批量探测。&lt;/li&gt;
+&lt;li&gt;把授权测试写进单元测试和集成测试，最好做“角色 × 功能 × 数据范围”的权限矩阵测试。&lt;br&gt;
+补充参考：&lt;a class=&#34;link&#34; href=&#34;https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Testing_Automation_Cheat_Sheet.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;OWASP Authorization Testing Automation Cheat Sheet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果你是从开发角度记忆它，可以用一句话概括：&lt;br&gt;
+&lt;strong&gt;Broken Access Control = 后端没有持续、统一、按资源归属和角色边界去验证“这个用户是否真的能做这件事”。&lt;/strong&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>TOP10-Mishandling of Exceptional Conditions（处理异常情况不当）</title>
         <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top10-mishandling-of-exceptional-conditions%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8D%E5%BD%93/</link>
         <pubDate>Wed, 20 May 2026 12:33:47 +0800</pubDate>
@@ -951,61 +1001,6 @@ OWASP 的核心思路不是“发现一个配一个”，而是建立可重复�
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;一句话总结&lt;/strong&gt;&lt;br&gt;
 Security Misconfiguration 的本质不是“写错了业务逻辑”，而是 &lt;strong&gt;系统虽然能安全运行，但实际部署和配置没有把安全边界真正落下来&lt;/strong&gt;。它危险的地方在于门槛低、覆盖面广、很容易在“默认配置”“临时调试”“兼容性妥协”里被悄悄带进生产。&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>TOP1-Broken Access Control（访问控制失效）</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top1-broken-access-control%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%A4%B1%E6%95%88/</link>
-        <pubDate>Mon, 27 Apr 2026 16:12:43 +0800</pubDate>
-        
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top1-broken-access-control%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%A4%B1%E6%95%88/</guid>
-        <description>&lt;p&gt;在 &lt;strong&gt;OWASP Top 10:2025&lt;/strong&gt; 里，&lt;strong&gt;Broken Access Control（访问控制失效）&lt;/strong&gt; 仍然排在 &lt;strong&gt;A01，也就是第 1 位&lt;/strong&gt;。它的意思很直接：系统没有正确限制“谁能访问什么、谁能执行什么操作”，结果就是用户能看到、修改、删除本不属于自己的数据，甚至越权拿到管理员能力。OWASP 给出的 2025 数据里，这一类问题覆盖了 &lt;strong&gt;100% 被测试应用&lt;/strong&gt;，而且总出现次数非常高，说明它不是“高级漏洞”，而是最常见、最容易被遗漏的基础性问题。&lt;br&gt;
-来源：&lt;a class=&#34;link&#34; href=&#34;https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;OWASP A01:2025 Broken Access Control&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;你可以把它和“认证”区分开来理解：&lt;br&gt;
-认证（Authentication） 是“你是谁”，授权/访问控制（Authorization / Access Control） 是“你被允许做什么”。很多系统登录做得还行，但授权做得很松，这就会出现“普通用户登录后直接改 URL 看别人订单”“前端隐藏了管理按钮，但接口没拦截”“把 JWT 里的 role 改成 admin 就真能生效”这类问题。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;常见表现&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;IDOR / 越权访问对象：把 /orders/1001 改成 /orders/1002 就能看别人的订单。&lt;/li&gt;
-&lt;li&gt;功能级越权：普通用户能调用本该只有管理员可用的 POST/PUT/DELETE 接口。&lt;/li&gt;
-&lt;li&gt;前端做了限制，后端没做校验：按钮虽然隐藏，但直接抓包重放请求仍然成功。&lt;/li&gt;
-&lt;li&gt;权限提升：未登录用户访问已登录页面，或普通用户进入管理员页面。&lt;/li&gt;
-&lt;li&gt;Token / Cookie / Hidden Field 被篡改：服务端错误地信任客户端传来的角色、权限、状态。&lt;/li&gt;
-&lt;li&gt;CORS 配置错误：把不可信来源也放进允许列表，导致跨站调用敏感 API。&lt;/li&gt;
-&lt;li&gt;Force Browsing：猜 URL 就能访问受限资源、备份文件、目录列表或 .git 等敏感内容。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;为什么它危险&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;它直接破坏“业务边界”，不是只泄露一条数据，而是可能整库查看、批量修改、批量删除。&lt;/li&gt;
-&lt;li&gt;它常常绕过的是“业务规则”而不是技术边界，所以影响往往比单点漏洞更大。&lt;/li&gt;
-&lt;li&gt;API、前后端分离、微服务、移动端特别容易放大这个问题，因为请求面更多、角色更多、资源更多。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;OWASP 官方举的典型攻击思路&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;修改请求参数里的账户 ID，访问别人的账户信息。&lt;/li&gt;
-&lt;li&gt;直接访问管理接口 URL，看后端是否真的做了管理员校验。&lt;/li&gt;
-&lt;li&gt;如果权限检查只写在浏览器里的 JavaScript，攻击者完全可以绕过前端，直接 curl 调接口。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;怎么防&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;采用 deny by default：除公开资源外，默认拒绝访问。&lt;/li&gt;
-&lt;li&gt;把权限校验放在&lt;strong&gt;服务端&lt;/strong&gt;，不要信任前端、隐藏字段、JWT 中未经验证的声明。&lt;/li&gt;
-&lt;li&gt;统一做授权逻辑：不要每个接口自己拼一套判断。&lt;/li&gt;
-&lt;li&gt;校验“资源归属”而不只是“是否登录”：例如用户只能读写自己的订单、自己的文件。&lt;/li&gt;
-&lt;li&gt;对高风险操作加业务约束：金额上限、审批流、状态机顺序、频率限制。&lt;/li&gt;
-&lt;li&gt;正确处理会话和 token：登出后失效；JWT 短生命周期；需要时支持吊销。&lt;/li&gt;
-&lt;li&gt;记录并告警授权失败，防止批量探测。&lt;/li&gt;
-&lt;li&gt;把授权测试写进单元测试和集成测试，最好做“角色 × 功能 × 数据范围”的权限矩阵测试。&lt;br&gt;
-补充参考：&lt;a class=&#34;link&#34; href=&#34;https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Testing_Automation_Cheat_Sheet.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;OWASP Authorization Testing Automation Cheat Sheet&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果你是从开发角度记忆它，可以用一句话概括：&lt;br&gt;
-&lt;strong&gt;Broken Access Control = 后端没有持续、统一、按资源归属和角色边界去验证“这个用户是否真的能做这件事”。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;如果你愿意，我下一步可以继续帮你做两种延伸之一：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;用开发者视角，把它拆成 Spring Boot / Node.js / Django 常见代码反模式。&lt;/li&gt;
-&lt;li&gt;用渗透测试视角，总结一份 Broken Access Control 的检查清单。&lt;/li&gt;
-&lt;/ol&gt;
 </description>
         </item>
         

