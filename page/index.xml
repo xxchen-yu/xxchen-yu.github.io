@@ -59,6 +59,25 @@
         <description></description>
         </item>
         <item>
+        <title>Wiki</title>
+        <link>https://xxchen-yu.github.io/wiki/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/</guid>
+        <description>&lt;h1 id=&#34;面向终身学习的-llm-wiki-知识管理体系的构建&#34;&gt;面向终身学习的 LLM WIKI 知识管理体系的构建
+&lt;/h1&gt;&lt;p&gt;这里用于沉淀长期学习中的问题、概念、方法、提示词、项目经验与复盘记录，让知识可以被持续更新、交叉引用，并在需要时被 LLM 快速调用。&lt;/p&gt;
+&lt;h2 id=&#34;知识入口&#34;&gt;知识入口
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;概念库：整理核心概念、术语和模型能力边界。&lt;/li&gt;
+&lt;li&gt;方法库：沉淀学习路径、研究方法、Prompt 模板和工作流。&lt;/li&gt;
+&lt;li&gt;项目库：记录实践项目、实验结论和可复用方案。&lt;/li&gt;
+&lt;li&gt;复盘库：保存错误、决策、改进点和下一步行动。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;构建方向&#34;&gt;构建方向
+&lt;/h2&gt;&lt;p&gt;把零散笔记逐步组织成可检索、可扩展、可复用的个人知识网络，服务长期学习与持续创造。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>关于</title>
         <link>https://xxchen-yu.github.io/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

