@@ -4,17 +4,56 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="游手好闲的一天">
 <title>信息收集</title>
 
-<link rel='canonical' href='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/'>
+<link rel='canonical' href='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="信息收集">
 <meta property='og:description' content="游手好闲的一天">
-<meta property='og:url' content='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/'>
+<meta property='og:url' content='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/'>
 <meta property='og:site_name' content='ChenOvo'>
 <meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-06-17T12:23:45&#43;08:00 '/>
 <meta name="twitter:title" content="信息收集">
-<meta name="twitter:description" content="游手好闲的一天"><link rel="alternate" type="application/rss&#43;xml" href="https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.xml">
+<meta name="twitter:description" content="游手好闲的一天"><link rel="alternate" type="application/rss&#43;xml" href="https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.xml">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
+<script>
+    (function () {
+        var storageKey = "chenovo_disable_pageview_count";
+        var params = new URLSearchParams(window.location.search);
+        var host = window.location.hostname;
+        var isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1";
+
+        if (params.has("no-count")) {
+            localStorage.setItem(storageKey, "1");
+        }
+
+        if (params.has("count")) {
+            localStorage.removeItem(storageKey);
+        }
+
+        var disabled = isLocal || localStorage.getItem(storageKey) === "1";
+
+        function markDisabled() {
+            var container = document.getElementById("busuanzi_container_page_pv");
+            if (container) {
+                container.textContent = "本机不计";
+            }
+        }
+
+        if (disabled) {
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", markDisabled);
+            } else {
+                markDisabled();
+            }
+            return;
+        }
+
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+        document.head.appendChild(script);
+    })();
+</script>
 
     </head>
     <body class="">
@@ -510,6 +549,9 @@
     <section class="article-list--compact">
         
             <article>
+    
+    
+
     <a href="/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/18-%E4%BA%91%E4%B8%8E%E5%AD%98%E5%82%A8%E8%B5%84%E4%BA%A7/">
         <div class="article-details">
             <h2 class="article-title">云与存储资产</h2>
@@ -548,6 +590,9 @@
 
         
             <article>
+    
+    
+
     <a href="/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/06-ip%E7%AB%AF%E5%8F%A3%E4%B8%8E%E6%9C%8D%E5%8A%A1/">
         <div class="article-details">
             <h2 class="article-title">IP、端口与服务</h2>
@@ -586,6 +631,9 @@
 
         
             <article>
+    
+    
+
     <a href="/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/07-webserver%E6%8C%87%E7%BA%B9/">
         <div class="article-details">
             <h2 class="article-title">Web Server 指纹</h2>
@@ -692,9 +740,9 @@
 </script>
 <div id="particles-js"></div>
 
-<script src=https://xxchen-yu.github.io/background/particles.min.js></script>
+<script src=https://blog.xxchenchen.top/background/particles.min.js></script>
 <script>
-  particlesJS.load('particles-js', "https://xxchen-yu.github.io/background/particlesjs-config.json", function() {
+  particlesJS.load('particles-js', "https://blog.xxchenchen.top/background/particlesjs-config.json", function() {
     console.log('particles.js loaded - callback');
   });
 </script>

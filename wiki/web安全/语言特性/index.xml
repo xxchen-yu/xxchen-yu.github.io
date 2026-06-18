@@ -2,41 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>语言特性 on ChenOvo</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/</link>
         <description>Recent content in 语言特性 on ChenOvo</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>ChenOvo</copyright>
-        <lastBuildDate>Mon, 13 Apr 2026 08:48:30 +0800</lastBuildDate><atom:link href="https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 13 Apr 2026 08:48:30 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Golang</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/golang/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/golang/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/golang/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/golang/</guid>
         <description></description>
         </item>
         <item>
         <title>Java</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/java/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/java/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/java/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/java/</guid>
         <description></description>
         </item>
         <item>
         <title>Nodejs</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/nodejs/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/nodejs/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/nodejs/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/nodejs/</guid>
         <description></description>
         </item>
         <item>
         <title>Python</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/python/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/python/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/python/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/python/</guid>
         <description></description>
         </item>
         

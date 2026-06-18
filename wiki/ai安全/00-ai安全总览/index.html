@@ -4,17 +4,56 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="AI安全总览 当前 AI安全 作为一级分类，先收纳以下方向：\n大模型基础 大模型攻击与防护 RAG / MCP 安全 LLM 应用安全 Agent / Multi-Agent 安全相关 当前内容 基础学习 攻击与协议安全 应用安全 Agent 后续可继续细分 你后面可以继续让我拆成例如：\n">
 <title>AI安全总览</title>
 
-<link rel='canonical' href='https://xxchen-yu.github.io/wiki/ai%E5%AE%89%E5%85%A8/00-ai%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/'>
+<link rel='canonical' href='https://blog.xxchenchen.top/wiki/ai%E5%AE%89%E5%85%A8/00-ai%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="AI安全总览">
 <meta property='og:description' content="AI安全总览 当前 AI安全 作为一级分类，先收纳以下方向：\n大模型基础 大模型攻击与防护 RAG / MCP 安全 LLM 应用安全 Agent / Multi-Agent 安全相关 当前内容 基础学习 攻击与协议安全 应用安全 Agent 后续可继续细分 你后面可以继续让我拆成例如：\n">
-<meta property='og:url' content='https://xxchen-yu.github.io/wiki/ai%E5%AE%89%E5%85%A8/00-ai%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/'>
+<meta property='og:url' content='https://blog.xxchenchen.top/wiki/ai%E5%AE%89%E5%85%A8/00-ai%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/'>
 <meta property='og:site_name' content='ChenOvo'>
 <meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-16T18:43:51&#43;08:00'/><meta property='article:modified_time' content='2026-06-16T18:43:51&#43;08:00'/>
 <meta name="twitter:title" content="AI安全总览">
 <meta name="twitter:description" content="AI安全总览 当前 AI安全 作为一级分类，先收纳以下方向：\n大模型基础 大模型攻击与防护 RAG / MCP 安全 LLM 应用安全 Agent / Multi-Agent 安全相关 当前内容 基础学习 攻击与协议安全 应用安全 Agent 后续可继续细分 你后面可以继续让我拆成例如：\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
+<script>
+    (function () {
+        var storageKey = "chenovo_disable_pageview_count";
+        var params = new URLSearchParams(window.location.search);
+        var host = window.location.hostname;
+        var isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1";
+
+        if (params.has("no-count")) {
+            localStorage.setItem(storageKey, "1");
+        }
+
+        if (params.has("count")) {
+            localStorage.removeItem(storageKey);
+        }
+
+        var disabled = isLocal || localStorage.getItem(storageKey) === "1";
+
+        function markDisabled() {
+            var container = document.getElementById("busuanzi_container_page_pv");
+            if (container) {
+                container.textContent = "本机不计";
+            }
+        }
+
+        if (disabled) {
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", markDisabled);
+            } else {
+                markDisabled();
+            }
+            return;
+        }
+
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+        document.head.appendChild(script);
+    })();
+</script>
 
     </head>
     <body class="
@@ -422,6 +461,20 @@
                 <span class="article-time--wordcount">122 字</span>
             </div>
         
+
+        
+            <div class="article-time--views">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
+    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/>
+</svg>
+
+                <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv">0</span> 浏览
+                </span>
+            </div>
+        
     </footer>
     
 
@@ -429,6 +482,7 @@
 </div>
 
 </header>
+
 
     <section class="article-content">
     
@@ -482,6 +536,7 @@
 
     
 </article>
+
 
     
 
@@ -595,9 +650,9 @@
 </script>
 <div id="particles-js"></div>
 
-<script src=https://xxchen-yu.github.io/background/particles.min.js></script>
+<script src=https://blog.xxchenchen.top/background/particles.min.js></script>
 <script>
-  particlesJS.load('particles-js', "https://xxchen-yu.github.io/background/particlesjs-config.json", function() {
+  particlesJS.load('particles-js', "https://blog.xxchenchen.top/background/particlesjs-config.json", function() {
     console.log('particles.js loaded - callback');
   });
 </script>

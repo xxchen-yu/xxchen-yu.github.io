@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>AI安全 on ChenOvo</title>
-        <link>https://xxchen-yu.github.io/wiki/ai%E5%AE%89%E5%85%A8/</link>
+        <link>https://blog.xxchenchen.top/wiki/ai%E5%AE%89%E5%85%A8/</link>
         <description>Recent content in AI安全 on ChenOvo</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>ChenOvo</copyright>
-        <lastBuildDate>Tue, 16 Jun 2026 18:43:51 +0800</lastBuildDate><atom:link href="https://xxchen-yu.github.io/wiki/ai%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 16 Jun 2026 18:43:51 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/wiki/ai%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>AI安全总览</title>
-        <link>https://xxchen-yu.github.io/wiki/ai%E5%AE%89%E5%85%A8/00-ai%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</link>
+        <link>https://blog.xxchenchen.top/wiki/ai%E5%AE%89%E5%85%A8/00-ai%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</link>
         <pubDate>Tue, 16 Jun 2026 18:43:51 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/ai%E5%AE%89%E5%85%A8/00-ai%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/ai%E5%AE%89%E5%85%A8/00-ai%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</guid>
         <description>&lt;h1 id=&#34;ai安全总览&#34;&gt;AI安全总览
 &lt;/h1&gt;&lt;p&gt;当前 &lt;code&gt;AI安全&lt;/code&gt; 作为一级分类，先收纳以下方向：&lt;/p&gt;
 &lt;ul&gt;
@@ -25,7 +25,7 @@
 &lt;h2 id=&#34;当前内容&#34;&gt;当前内容
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;%e5%9f%ba%e7%a1%80%e5%ad%a6%e4%b9%a0&#34; &gt;基础学习&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://xxchen-yu.github.io/wiki/AI%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/&#34; &gt;攻击与协议安全&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.xxchenchen.top/wiki/AI%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/&#34; &gt;攻击与协议安全&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;%e5%ba%94%e7%94%a8%e5%ae%89%e5%85%a8&#34; &gt;应用安全&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;Agent&#34; &gt;Agent&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;

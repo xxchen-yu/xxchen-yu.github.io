@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Pages on ChenOvo</title>
-        <link>https://xxchen-yu.github.io/page/</link>
+        <link>https://blog.xxchenchen.top/page/</link>
         <description>Recent content in Pages on ChenOvo</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>ChenOvo</copyright>
-        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://xxchen-yu.github.io/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.xxchenchen.top/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>blog</title>
-        <link>https://xxchen-yu.github.io/archives/</link>
+        <link>https://blog.xxchenchen.top/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://xxchen-yu.github.io/archives/</guid>
+        <guid>https://blog.xxchenchen.top/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>Links</title>
-        <link>https://xxchen-yu.github.io/links/</link>
+        <link>https://blog.xxchenchen.top/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://xxchen-yu.github.io/links/</guid>
+        <guid>https://blog.xxchenchen.top/links/</guid>
         <description>&lt;p&gt;To use this feature, add &lt;code&gt;links&lt;/code&gt; section to frontmatter.&lt;/p&gt;
 &lt;p&gt;This page&amp;rsquo;s frontmatter:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -52,18 +52,18 @@
         </item>
         <item>
         <title>Search</title>
-        <link>https://xxchen-yu.github.io/search/</link>
+        <link>https://blog.xxchenchen.top/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://xxchen-yu.github.io/search/</guid>
+        <guid>https://blog.xxchenchen.top/search/</guid>
         <description></description>
         </item>
         <item>
         <title>关于</title>
-        <link>https://xxchen-yu.github.io/%E5%85%B3%E4%BA%8E/</link>
+        <link>https://blog.xxchenchen.top/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://xxchen-yu.github.io/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>https://blog.xxchenchen.top/%E5%85%B3%E4%BA%8E/</guid>
         <description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;
 </description>
         </item>

@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>安全WIKI分类导航 on ChenOvo</title>
-        <link>https://xxchen-yu.github.io/wiki/</link>
+        <link>https://blog.xxchenchen.top/wiki/</link>
         <description>Recent content in 安全WIKI分类导航 on ChenOvo</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>ChenOvo</copyright>
-        <lastBuildDate></lastBuildDate><atom:link href="https://xxchen-yu.github.io/wiki/index.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate></lastBuildDate><atom:link href="https://blog.xxchenchen.top/wiki/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>

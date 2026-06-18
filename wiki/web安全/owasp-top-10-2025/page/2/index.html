@@ -4,17 +4,56 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="游手好闲的一天">
 <title>OWASP Top 10 2025</title>
 
-<link rel='canonical' href='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/'>
+<link rel='canonical' href='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="OWASP Top 10 2025">
 <meta property='og:description' content="游手好闲的一天">
-<meta property='og:url' content='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/'>
+<meta property='og:url' content='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/'>
 <meta property='og:site_name' content='ChenOvo'>
 <meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-06-17T12:23:45&#43;08:00 '/>
 <meta name="twitter:title" content="OWASP Top 10 2025">
-<meta name="twitter:description" content="游手好闲的一天"><link rel="alternate" type="application/rss&#43;xml" href="https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/index.xml">
+<meta name="twitter:description" content="游手好闲的一天"><link rel="alternate" type="application/rss&#43;xml" href="https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/index.xml">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
+<script>
+    (function () {
+        var storageKey = "chenovo_disable_pageview_count";
+        var params = new URLSearchParams(window.location.search);
+        var host = window.location.hostname;
+        var isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1";
+
+        if (params.has("no-count")) {
+            localStorage.setItem(storageKey, "1");
+        }
+
+        if (params.has("count")) {
+            localStorage.removeItem(storageKey);
+        }
+
+        var disabled = isLocal || localStorage.getItem(storageKey) === "1";
+
+        function markDisabled() {
+            var container = document.getElementById("busuanzi_container_page_pv");
+            if (container) {
+                container.textContent = "本机不计";
+            }
+        }
+
+        if (disabled) {
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", markDisabled);
+            } else {
+                markDisabled();
+            }
+            return;
+        }
+
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+        document.head.appendChild(script);
+    })();
+</script>
 
     </head>
     <body class="">
@@ -510,6 +549,9 @@
     <section class="article-list--compact">
         
             <article>
+    
+    
+
     <a href="/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top8-software-or-data-integrity-failures%E8%BD%AF%E4%BB%B6%E6%88%96%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7%E6%95%85%E9%9A%9C/">
         <div class="article-details">
             <h2 class="article-title">TOP8-Software or Data Integrity Failures（软件或数据完整性故障）</h2>
@@ -548,6 +590,9 @@
 
         
             <article>
+    
+    
+
     <a href="/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top9-security-logging-and-alerting-failures%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%92%8C%E8%AD%A6%E6%8A%A5%E6%95%85%E9%9A%9C/">
         <div class="article-details">
             <h2 class="article-title">TOP9-Security Logging and Alerting Failures（安全日志记录和警报故障）</h2>
@@ -586,6 +631,9 @@
 
         
             <article>
+    
+    
+
     <a href="/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top3-software-supply-chain-failureso%E8%BD%AF%E4%BB%B6%E4%BE%9B%E5%BA%94%E9%93%BE%E6%95%85%E9%9A%9C/">
         <div class="article-details">
             <h2 class="article-title">TOP3-Software Supply Chain FailuresO（软件供应链故障）</h2>
@@ -674,9 +722,9 @@
 </script>
 <div id="particles-js"></div>
 
-<script src=https://xxchen-yu.github.io/background/particles.min.js></script>
+<script src=https://blog.xxchenchen.top/background/particles.min.js></script>
 <script>
-  particlesJS.load('particles-js', "https://xxchen-yu.github.io/background/particlesjs-config.json", function() {
+  particlesJS.load('particles-js', "https://blog.xxchenchen.top/background/particlesjs-config.json", function() {
     console.log('particles.js loaded - callback');
   });
 </script>

@@ -4,17 +4,56 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="范围与授权 明确授权域名、IP、子域、环境、API、账号、测试时间窗、禁止动作。 区分 in-scope、out-of-scope、第三方资源、CDN、云厂商托管资产。 记录证据来源、时间、请求方式、是否主动触达目标。 范围与授权 定义： 范围与授权是 Web 安全信息收集开始前必须确认的边界规则，用来说明哪些资产、环境、接口、账号和操作被允许，哪些资产、环境、接口、账号和操作不被允许。 作用： 作用是保证信息收集行为合法、可控、可复盘，避免把未授权资产、第三方服务、真实生产数据或敏感业务系统误当作测试目标。 实践： 实践时先拿到明确的授权说明，再确认域名、IP、子域、环境、API、账号、测试时间窗和禁止动作，并在收集过程中持续区分 in-scope、out-of-scope、第三方资源、CDN 资源和云厂商托管资产。 授权域名 定义： 授权域名是指在测试授权中明确允许进行信息收集和安全测试的主域名、业务域名或指定站点域名，例如 example.com、www.example.com、shop.example.com。 作用： 作用是确定 Web 信息收集的起始边界，避免因为域名相似、品牌相似、历史归属相似而误测不属于授权范围的站点。 实践： 实践时记录授权域名列表，确认是否包含泛域名 *.example.com，确认是否排除某些高敏感子域或第三方托管域名，并把后续发现的新域名标记为已授权、未授权或待确认。\n">
 <title>范围与授权</title>
 
-<link rel='canonical' href='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/'>
+<link rel='canonical' href='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="范围与授权">
 <meta property='og:description' content="范围与授权 明确授权域名、IP、子域、环境、API、账号、测试时间窗、禁止动作。 区分 in-scope、out-of-scope、第三方资源、CDN、云厂商托管资产。 记录证据来源、时间、请求方式、是否主动触达目标。 范围与授权 定义： 范围与授权是 Web 安全信息收集开始前必须确认的边界规则，用来说明哪些资产、环境、接口、账号和操作被允许，哪些资产、环境、接口、账号和操作不被允许。 作用： 作用是保证信息收集行为合法、可控、可复盘，避免把未授权资产、第三方服务、真实生产数据或敏感业务系统误当作测试目标。 实践： 实践时先拿到明确的授权说明，再确认域名、IP、子域、环境、API、账号、测试时间窗和禁止动作，并在收集过程中持续区分 in-scope、out-of-scope、第三方资源、CDN 资源和云厂商托管资产。 授权域名 定义： 授权域名是指在测试授权中明确允许进行信息收集和安全测试的主域名、业务域名或指定站点域名，例如 example.com、www.example.com、shop.example.com。 作用： 作用是确定 Web 信息收集的起始边界，避免因为域名相似、品牌相似、历史归属相似而误测不属于授权范围的站点。 实践： 实践时记录授权域名列表，确认是否包含泛域名 *.example.com，确认是否排除某些高敏感子域或第三方托管域名，并把后续发现的新域名标记为已授权、未授权或待确认。\n">
-<meta property='og:url' content='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/'>
+<meta property='og:url' content='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/'>
 <meta property='og:site_name' content='ChenOvo'>
 <meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-17T11:35:32&#43;08:00'/><meta property='article:modified_time' content='2026-06-17T11:35:32&#43;08:00'/>
 <meta name="twitter:title" content="范围与授权">
 <meta name="twitter:description" content="范围与授权 明确授权域名、IP、子域、环境、API、账号、测试时间窗、禁止动作。 区分 in-scope、out-of-scope、第三方资源、CDN、云厂商托管资产。 记录证据来源、时间、请求方式、是否主动触达目标。 范围与授权 定义： 范围与授权是 Web 安全信息收集开始前必须确认的边界规则，用来说明哪些资产、环境、接口、账号和操作被允许，哪些资产、环境、接口、账号和操作不被允许。 作用： 作用是保证信息收集行为合法、可控、可复盘，避免把未授权资产、第三方服务、真实生产数据或敏感业务系统误当作测试目标。 实践： 实践时先拿到明确的授权说明，再确认域名、IP、子域、环境、API、账号、测试时间窗和禁止动作，并在收集过程中持续区分 in-scope、out-of-scope、第三方资源、CDN 资源和云厂商托管资产。 授权域名 定义： 授权域名是指在测试授权中明确允许进行信息收集和安全测试的主域名、业务域名或指定站点域名，例如 example.com、www.example.com、shop.example.com。 作用： 作用是确定 Web 信息收集的起始边界，避免因为域名相似、品牌相似、历史归属相似而误测不属于授权范围的站点。 实践： 实践时记录授权域名列表，确认是否包含泛域名 *.example.com，确认是否排除某些高敏感子域或第三方托管域名，并把后续发现的新域名标记为已授权、未授权或待确认。\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
+<script>
+    (function () {
+        var storageKey = "chenovo_disable_pageview_count";
+        var params = new URLSearchParams(window.location.search);
+        var host = window.location.hostname;
+        var isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1";
+
+        if (params.has("no-count")) {
+            localStorage.setItem(storageKey, "1");
+        }
+
+        if (params.has("count")) {
+            localStorage.removeItem(storageKey);
+        }
+
+        var disabled = isLocal || localStorage.getItem(storageKey) === "1";
+
+        function markDisabled() {
+            var container = document.getElementById("busuanzi_container_page_pv");
+            if (container) {
+                container.textContent = "本机不计";
+            }
+        }
+
+        if (disabled) {
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", markDisabled);
+            } else {
+                markDisabled();
+            }
+            return;
+        }
+
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+        document.head.appendChild(script);
+    })();
+</script>
 
     </head>
     <body class="
@@ -336,6 +375,20 @@
                 <span class="article-time--wordcount">4032 字</span>
             </div>
         
+
+        
+            <div class="article-time--views">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
+    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/>
+</svg>
+
+                <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv">0</span> 浏览
+                </span>
+            </div>
+        
     </footer>
     
 
@@ -343,6 +396,7 @@
 </div>
 
 </header>
+
 
     <section class="article-content">
     
@@ -504,6 +558,7 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
     
 </article>
 
+
     
 
     
@@ -616,9 +671,9 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
 </script>
 <div id="particles-js"></div>
 
-<script src=https://xxchen-yu.github.io/background/particles.min.js></script>
+<script src=https://blog.xxchenchen.top/background/particles.min.js></script>
 <script>
-  particlesJS.load('particles-js', "https://xxchen-yu.github.io/background/particlesjs-config.json", function() {
+  particlesJS.load('particles-js', "https://blog.xxchenchen.top/background/particlesjs-config.json", function() {
     console.log('particles.js loaded - callback');
   });
 </script>

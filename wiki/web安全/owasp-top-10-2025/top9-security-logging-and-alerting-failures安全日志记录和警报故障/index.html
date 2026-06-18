@@ -4,17 +4,56 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="在 OWASP Top 10:2025 里，Security Logging and Alerting Failures 排在 A09，也就是第 9 位。它延续了 2021 的位置，但名字从 “Logging and Monitoring Failures” 调整成了更强调行动性的 “Logging and Alerting Failures”。OWASP 的意思很明确：光有日志不够，日志如果不能触发正确告警和响应，价值是很有限的。\n来源：OWASP Top 10:2025 Introduction\n来源：A09:2025 Security Logging and Alerting Failures\n">
 <title>TOP9-Security Logging and Alerting Failures（安全日志记录和警报故障）</title>
 
-<link rel='canonical' href='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top9-security-logging-and-alerting-failures%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%92%8C%E8%AD%A6%E6%8A%A5%E6%95%85%E9%9A%9C/'>
+<link rel='canonical' href='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top9-security-logging-and-alerting-failures%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%92%8C%E8%AD%A6%E6%8A%A5%E6%95%85%E9%9A%9C/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="TOP9-Security Logging and Alerting Failures（安全日志记录和警报故障）">
 <meta property='og:description' content="在 OWASP Top 10:2025 里，Security Logging and Alerting Failures 排在 A09，也就是第 9 位。它延续了 2021 的位置，但名字从 “Logging and Monitoring Failures” 调整成了更强调行动性的 “Logging and Alerting Failures”。OWASP 的意思很明确：光有日志不够，日志如果不能触发正确告警和响应，价值是很有限的。\n来源：OWASP Top 10:2025 Introduction\n来源：A09:2025 Security Logging and Alerting Failures\n">
-<meta property='og:url' content='https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top9-security-logging-and-alerting-failures%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%92%8C%E8%AD%A6%E6%8A%A5%E6%95%85%E9%9A%9C/'>
+<meta property='og:url' content='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top9-security-logging-and-alerting-failures%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%92%8C%E8%AD%A6%E6%8A%A5%E6%95%85%E9%9A%9C/'>
 <meta property='og:site_name' content='ChenOvo'>
 <meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-05-20T12:33:47&#43;08:00'/><meta property='article:modified_time' content='2026-05-20T12:33:47&#43;08:00'/>
 <meta name="twitter:title" content="TOP9-Security Logging and Alerting Failures（安全日志记录和警报故障）">
 <meta name="twitter:description" content="在 OWASP Top 10:2025 里，Security Logging and Alerting Failures 排在 A09，也就是第 9 位。它延续了 2021 的位置，但名字从 “Logging and Monitoring Failures” 调整成了更强调行动性的 “Logging and Alerting Failures”。OWASP 的意思很明确：光有日志不够，日志如果不能触发正确告警和响应，价值是很有限的。\n来源：OWASP Top 10:2025 Introduction\n来源：A09:2025 Security Logging and Alerting Failures\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
+<script>
+    (function () {
+        var storageKey = "chenovo_disable_pageview_count";
+        var params = new URLSearchParams(window.location.search);
+        var host = window.location.hostname;
+        var isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1";
+
+        if (params.has("no-count")) {
+            localStorage.setItem(storageKey, "1");
+        }
+
+        if (params.has("count")) {
+            localStorage.removeItem(storageKey);
+        }
+
+        var disabled = isLocal || localStorage.getItem(storageKey) === "1";
+
+        function markDisabled() {
+            var container = document.getElementById("busuanzi_container_page_pv");
+            if (container) {
+                container.textContent = "本机不计";
+            }
+        }
+
+        if (disabled) {
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", markDisabled);
+            } else {
+                markDisabled();
+            }
+            return;
+        }
+
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+        document.head.appendChild(script);
+    })();
+</script>
 
     </head>
     <body class="
@@ -336,6 +375,20 @@
                 <span class="article-time--wordcount">996 字</span>
             </div>
         
+
+        
+            <div class="article-time--views">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
+    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/>
+</svg>
+
+                <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv">0</span> 浏览
+                </span>
+            </div>
+        
     </footer>
     
 
@@ -343,6 +396,7 @@
 </div>
 
 </header>
+
 
     <section class="article-content">
     
@@ -413,6 +467,7 @@ Security Logging and Alerting Failures 的本质是：<strong>系统没有把安
 
     
 </article>
+
 
     
 
@@ -526,9 +581,9 @@ Security Logging and Alerting Failures 的本质是：<strong>系统没有把安
 </script>
 <div id="particles-js"></div>
 
-<script src=https://xxchen-yu.github.io/background/particles.min.js></script>
+<script src=https://blog.xxchenchen.top/background/particles.min.js></script>
 <script>
-  particlesJS.load('particles-js', "https://xxchen-yu.github.io/background/particlesjs-config.json", function() {
+  particlesJS.load('particles-js', "https://blog.xxchenchen.top/background/particlesjs-config.json", function() {
     console.log('particles.js loaded - callback');
   });
 </script>

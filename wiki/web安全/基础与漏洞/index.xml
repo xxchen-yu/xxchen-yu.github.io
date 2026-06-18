@@ -2,137 +2,137 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>基础与漏洞 on ChenOvo</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/</link>
         <description>Recent content in 基础与漏洞 on ChenOvo</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>ChenOvo</copyright>
-        <lastBuildDate>Tue, 16 Jun 2026 18:58:11 +0800</lastBuildDate><atom:link href="https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 16 Jun 2026 18:58:11 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>HTTP请求</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</guid>
         <description></description>
         </item>
         <item>
         <title>SQL注入</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</guid>
         <description></description>
         </item>
         <item>
         <title>SSRF</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</guid>
         <description></description>
         </item>
         <item>
         <title>WAF</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/14-waf/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/14-waf/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/14-waf/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/14-waf/</guid>
         <description></description>
         </item>
         <item>
         <title>命令执行</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/13-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/13-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/13-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/13-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</guid>
         <description></description>
         </item>
         <item>
         <title>文件包含</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/09-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/09-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/09-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/09-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</guid>
         <description></description>
         </item>
         <item>
         <title>文件上传</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/10-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/10-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/10-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/10-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</guid>
         <description></description>
         </item>
         <item>
         <title>反序列化</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/17-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/17-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</link>
         <pubDate>Tue, 16 Jun 2026 18:56:20 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/17-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/17-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
         <description></description>
         </item>
         <item>
         <title>认证与会话</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/05-%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%BC%9A%E8%AF%9D/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/05-%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%BC%9A%E8%AF%9D/</link>
         <pubDate>Tue, 16 Jun 2026 18:56:20 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/05-%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%BC%9A%E8%AF%9D/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/05-%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%BC%9A%E8%AF%9D/</guid>
         <description></description>
         </item>
         <item>
         <title>任意文件读取</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/08-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/08-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/</link>
         <pubDate>Tue, 16 Jun 2026 18:56:20 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/08-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/08-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/</guid>
         <description></description>
         </item>
         <item>
         <title>源码泄露与备份文件</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/03-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/03-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</link>
         <pubDate>Tue, 16 Jun 2026 18:56:20 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/03-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/03-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</guid>
         <description></description>
         </item>
         <item>
         <title>越权与访问控制</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/06-%E8%B6%8A%E6%9D%83%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/06-%E8%B6%8A%E6%9D%83%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</link>
         <pubDate>Tue, 16 Jun 2026 18:56:20 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/06-%E8%B6%8A%E6%9D%83%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/06-%E8%B6%8A%E6%9D%83%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</guid>
         <description></description>
         </item>
         <item>
         <title>CSRF</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/07-csrf/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/07-csrf/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/07-csrf/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/07-csrf/</guid>
         <description></description>
         </item>
         <item>
         <title>XSS漏洞分析</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/11-xss%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/11-xss%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/11-xss%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/11-xss%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
         <description></description>
         </item>
         <item>
         <title>XXE</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/16-xxe/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/16-xxe/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/16-xxe/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/16-xxe/</guid>
         <description></description>
         </item>
         <item>
         <title>逻辑漏洞</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/04-%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/04-%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/04-%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/04-%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</guid>
         <description></description>
         </item>
         

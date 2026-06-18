@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>ChenOvo</title>
-        <link>https://xxchen-yu.github.io/</link>
+        <link>https://blog.xxchenchen.top/</link>
         <description>Recent content on ChenOvo</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>ChenOvo</copyright>
-        <lastBuildDate>Wed, 17 Jun 2026 12:21:29 +0800</lastBuildDate><atom:link href="https://xxchen-yu.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 17 Jun 2026 12:21:29 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>TOP1-Broken Access Control（访问控制失效）</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top1-broken-access-control%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%A4%B1%E6%95%88/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top1-broken-access-control%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%A4%B1%E6%95%88/</link>
         <pubDate>Wed, 17 Jun 2026 12:21:29 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top1-broken-access-control%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%A4%B1%E6%95%88/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top1-broken-access-control%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%A4%B1%E6%95%88/</guid>
         <description>&lt;p&gt;在 &lt;strong&gt;OWASP Top 10:2025&lt;/strong&gt; 里，&lt;strong&gt;Broken Access Control（访问控制失效）&lt;/strong&gt; 仍然排在 &lt;strong&gt;A01，也就是第 1 位&lt;/strong&gt;。它的意思很直接：系统没有正确限制“谁能访问什么、谁能执行什么操作”，结果就是用户能看到、修改、删除本不属于自己的数据，甚至越权拿到管理员能力。OWASP 给出的 2025 数据里，这一类问题覆盖了 &lt;strong&gt;100% 被测试应用&lt;/strong&gt;，而且总出现次数非常高，说明它不是“高级漏洞”，而是最常见、最容易被遗漏的基础性问题。&lt;br&gt;
 来源：&lt;a class=&#34;link&#34; href=&#34;https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;OWASP A01:2025 Broken Access Control&lt;/a&gt;&lt;/p&gt;
@@ -59,10 +59,10 @@
         </item>
         <item>
         <title>范围与授权</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/</link>
         <pubDate>Wed, 17 Jun 2026 11:35:32 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/01-%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8E%88%E6%9D%83/</guid>
         <description>&lt;h1 id=&#34;范围与授权&#34;&gt;范围与授权
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;明确授权域名、IP、子域、环境、API、账号、测试时间窗、禁止动作。&lt;/li&gt;
@@ -199,10 +199,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>输出物</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/20-%E8%BE%93%E5%87%BA%E7%89%A9/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/20-%E8%BE%93%E5%87%BA%E7%89%A9/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:56 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/20-%E8%BE%93%E5%87%BA%E7%89%A9/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/20-%E8%BE%93%E5%87%BA%E7%89%A9/</guid>
         <description>&lt;h1 id=&#34;输出物&#34;&gt;输出物
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;资产表：域名、子域、IP、端口、服务、技术栈、环境、归属、状态。&lt;/li&gt;
@@ -215,10 +215,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>API 信息收集</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/12-api%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/12-api%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/12-api%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/12-api%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</guid>
         <description>&lt;h1 id=&#34;api-信息收集&#34;&gt;API 信息收集
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;OpenAPI/Swagger：&lt;code&gt;/swagger&lt;/code&gt;、&lt;code&gt;/swagger.json&lt;/code&gt;、&lt;code&gt;/openapi.json&lt;/code&gt;、&lt;code&gt;/api-docs&lt;/code&gt;、&lt;code&gt;/.well-known/schema-discovery&lt;/code&gt;。&lt;/li&gt;
@@ -230,10 +230,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>错误信息与调试面</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/16-%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%B0%83%E8%AF%95%E9%9D%A2/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/16-%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%B0%83%E8%AF%95%E9%9D%A2/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/16-%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%B0%83%E8%AF%95%E9%9D%A2/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/16-%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%B0%83%E8%AF%95%E9%9D%A2/</guid>
         <description>&lt;h1 id=&#34;错误信息与调试面&#34;&gt;错误信息与调试面
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;404/403/500 页面差异、栈追踪、调试页、SQL/NoSQL 错误、模板错误。&lt;/li&gt;
@@ -244,10 +244,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>代码仓库与开发痕迹</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/17-%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E4%B8%8E%E5%BC%80%E5%8F%91%E7%97%95%E8%BF%B9/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/17-%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E4%B8%8E%E5%BC%80%E5%8F%91%E7%97%95%E8%BF%B9/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/17-%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E4%B8%8E%E5%BC%80%E5%8F%91%E7%97%95%E8%BF%B9/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/17-%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E4%B8%8E%E5%BC%80%E5%8F%91%E7%97%95%E8%BF%B9/</guid>
         <description>&lt;h1 id=&#34;代码仓库与开发痕迹&#34;&gt;代码仓库与开发痕迹
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;GitHub/GitLab/Gitee 搜索组织、项目名、域名、API Key、环境名。&lt;/li&gt;
@@ -259,10 +259,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>框架、CMS 与组件指纹</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/13-%E6%A1%86%E6%9E%B6cms%E4%B8%8E%E7%BB%84%E4%BB%B6%E6%8C%87%E7%BA%B9/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/13-%E6%A1%86%E6%9E%B6cms%E4%B8%8E%E7%BB%84%E4%BB%B6%E6%8C%87%E7%BA%B9/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/13-%E6%A1%86%E6%9E%B6cms%E4%B8%8E%E7%BB%84%E4%BB%B6%E6%8C%87%E7%BA%B9/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/13-%E6%A1%86%E6%9E%B6cms%E4%B8%8E%E7%BB%84%E4%BB%B6%E6%8C%87%E7%BA%B9/</guid>
         <description>&lt;h1 id=&#34;框架cms-与组件指纹&#34;&gt;框架、CMS 与组件指纹
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;Web 框架：Spring、Django、Flask、Laravel、Rails、Express、Next.js、Nuxt、ASP.NET。&lt;/li&gt;
@@ -274,10 +274,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>移动端与客户端补充</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/19-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%A1%A5%E5%85%85/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/19-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%A1%A5%E5%85%85/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/19-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%A1%A5%E5%85%85/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/19-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%A1%A5%E5%85%85/</guid>
         <description>&lt;h1 id=&#34;移动端与客户端补充&#34;&gt;移动端与客户端补充
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;Android/iOS 包中的 API Base URL、证书 Pinning 配置、第三方 SDK Key。&lt;/li&gt;
@@ -288,10 +288,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>应用架构识别</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/15-%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84%E8%AF%86%E5%88%AB/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/15-%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84%E8%AF%86%E5%88%AB/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/15-%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84%E8%AF%86%E5%88%AB/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/15-%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84%E8%AF%86%E5%88%AB/</guid>
         <description>&lt;h1 id=&#34;应用架构识别&#34;&gt;应用架构识别
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;单体、微服务、Serverless、PaaS、容器、Kubernetes、API Gateway。&lt;/li&gt;
@@ -304,10 +304,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>应用流程与权限面</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/14-%E5%BA%94%E7%94%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%9D%83%E9%99%90%E9%9D%A2/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/14-%E5%BA%94%E7%94%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%9D%83%E9%99%90%E9%9D%A2/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/14-%E5%BA%94%E7%94%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%9D%83%E9%99%90%E9%9D%A2/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/14-%E5%BA%94%E7%94%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%9D%83%E9%99%90%E9%9D%A2/</guid>
         <description>&lt;h1 id=&#34;应用流程与权限面&#34;&gt;应用流程与权限面
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;登录、注册、找回密码、改密、绑定 MFA、OAuth/OIDC/SAML。&lt;/li&gt;
@@ -319,10 +319,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>云与存储资产</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/18-%E4%BA%91%E4%B8%8E%E5%AD%98%E5%82%A8%E8%B5%84%E4%BA%A7/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/18-%E4%BA%91%E4%B8%8E%E5%AD%98%E5%82%A8%E8%B5%84%E4%BA%A7/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:55 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/18-%E4%BA%91%E4%B8%8E%E5%AD%98%E5%82%A8%E8%B5%84%E4%BA%A7/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/18-%E4%BA%91%E4%B8%8E%E5%AD%98%E5%82%A8%E8%B5%84%E4%BA%A7/</guid>
         <description>&lt;h1 id=&#34;云与存储资产&#34;&gt;云与存储资产
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;对象存储桶、CDN 源站、静态站点托管、镜像仓库、函数计算、API Gateway。&lt;/li&gt;
@@ -333,10 +333,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>IP、端口与服务</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/06-ip%E7%AB%AF%E5%8F%A3%E4%B8%8E%E6%9C%8D%E5%8A%A1/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/06-ip%E7%AB%AF%E5%8F%A3%E4%B8%8E%E6%9C%8D%E5%8A%A1/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/06-ip%E7%AB%AF%E5%8F%A3%E4%B8%8E%E6%9C%8D%E5%8A%A1/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/06-ip%E7%AB%AF%E5%8F%A3%E4%B8%8E%E6%9C%8D%E5%8A%A1/</guid>
         <description>&lt;h1 id=&#34;ip端口与服务&#34;&gt;IP、端口与服务
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;域名解析到 IP、历史解析 IP、同 IP 虚拟主机、反向 IP、旁站。&lt;/li&gt;
@@ -349,10 +349,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>Web Server 指纹</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/07-webserver%E6%8C%87%E7%BA%B9/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/07-webserver%E6%8C%87%E7%BA%B9/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/07-webserver%E6%8C%87%E7%BA%B9/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/07-webserver%E6%8C%87%E7%BA%B9/</guid>
         <description>&lt;h1 id=&#34;web-server-指纹&#34;&gt;Web Server 指纹
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;识别 Nginx、Apache、IIS、Tomcat、Jetty、OpenResty、Caddy、Kestrel、Node.js 等。&lt;/li&gt;
@@ -363,10 +363,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>目录、路径与文件枚举</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/09-%E7%9B%AE%E5%BD%95%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9E%9A%E4%B8%BE/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/09-%E7%9B%AE%E5%BD%95%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9E%9A%E4%B8%BE/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/09-%E7%9B%AE%E5%BD%95%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9E%9A%E4%B8%BE/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/09-%E7%9B%AE%E5%BD%95%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9E%9A%E4%B8%BE/</guid>
         <description>&lt;h1 id=&#34;目录路径与文件枚举&#34;&gt;目录、路径与文件枚举
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;普通路径：&lt;code&gt;/admin&lt;/code&gt;、&lt;code&gt;/login&lt;/code&gt;、&lt;code&gt;/api&lt;/code&gt;、&lt;code&gt;/upload&lt;/code&gt;、&lt;code&gt;/backup&lt;/code&gt;、&lt;code&gt;/debug&lt;/code&gt;、&lt;code&gt;/test&lt;/code&gt;。&lt;/li&gt;
@@ -378,10 +378,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>搜索引擎与公开索引</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/03-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%8E%E5%85%AC%E5%BC%80%E7%B4%A2%E5%BC%95/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/03-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%8E%E5%85%AC%E5%BC%80%E7%B4%A2%E5%BC%95/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/03-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%8E%E5%85%AC%E5%BC%80%E7%B4%A2%E5%BC%95/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/03-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%8E%E5%85%AC%E5%BC%80%E7%B4%A2%E5%BC%95/</guid>
         <description>&lt;h1 id=&#34;搜索引擎与公开索引&#34;&gt;搜索引擎与公开索引
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;使用 Google、Bing、DuckDuckGo、Baidu、Common Crawl、Internet Archive、Censys、Shodan 等多个来源，因为不同搜索引擎索引结果不同。&lt;/li&gt;
@@ -393,10 +393,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>页面源码与前端泄露</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/10-%E9%A1%B5%E9%9D%A2%E6%BA%90%E7%A0%81%E4%B8%8E%E5%89%8D%E7%AB%AF%E6%B3%84%E9%9C%B2/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/10-%E9%A1%B5%E9%9D%A2%E6%BA%90%E7%A0%81%E4%B8%8E%E5%89%8D%E7%AB%AF%E6%B3%84%E9%9C%B2/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/10-%E9%A1%B5%E9%9D%A2%E6%BA%90%E7%A0%81%E4%B8%8E%E5%89%8D%E7%AB%AF%E6%B3%84%E9%9C%B2/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/10-%E9%A1%B5%E9%9D%A2%E6%BA%90%E7%A0%81%E4%B8%8E%E5%89%8D%E7%AB%AF%E6%B3%84%E9%9C%B2/</guid>
         <description>&lt;h1 id=&#34;页面源码与前端泄露&#34;&gt;页面源码与前端泄露
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;HTML 注释、隐藏字段、调试信息、SQL 片段、内部 IP、用户名、测试密码。&lt;/li&gt;
@@ -408,10 +408,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>应用入口点</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/11-%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E7%82%B9/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/11-%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E7%82%B9/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/11-%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E7%82%B9/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/11-%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E7%82%B9/</guid>
         <description>&lt;h1 id=&#34;应用入口点&#34;&gt;应用入口点
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;URL、路径参数、Query 参数、POST Body、JSON、XML、Multipart、Cookie、Header。&lt;/li&gt;
@@ -424,10 +424,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>域名与 DNS</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/04-%E5%9F%9F%E5%90%8D%E4%B8%8Edns/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/04-%E5%9F%9F%E5%90%8D%E4%B8%8Edns/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/04-%E5%9F%9F%E5%90%8D%E4%B8%8Edns/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/04-%E5%9F%9F%E5%90%8D%E4%B8%8Edns/</guid>
         <description>&lt;h1 id=&#34;域名与-dns&#34;&gt;域名与 DNS
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;根域、子域、泛解析、CNAME、A/AAAA、MX、TXT、NS、CAA、PTR。&lt;/li&gt;
@@ -439,10 +439,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>元文件与爬虫文件</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/08-%E5%85%83%E6%96%87%E4%BB%B6%E4%B8%8E%E7%88%AC%E8%99%AB%E6%96%87%E4%BB%B6/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/08-%E5%85%83%E6%96%87%E4%BB%B6%E4%B8%8E%E7%88%AC%E8%99%AB%E6%96%87%E4%BB%B6/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/08-%E5%85%83%E6%96%87%E4%BB%B6%E4%B8%8E%E7%88%AC%E8%99%AB%E6%96%87%E4%BB%B6/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/08-%E5%85%83%E6%96%87%E4%BB%B6%E4%B8%8E%E7%88%AC%E8%99%AB%E6%96%87%E4%BB%B6/</guid>
         <description>&lt;h1 id=&#34;元文件与爬虫文件&#34;&gt;元文件与爬虫文件
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;robots.txt&lt;/code&gt;、&lt;code&gt;sitemap.xml&lt;/code&gt;、&lt;code&gt;security.txt&lt;/code&gt;、&lt;code&gt;humans.txt&lt;/code&gt;、&lt;code&gt;.well-known/*&lt;/code&gt;。&lt;/li&gt;
@@ -454,10 +454,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>证书与 CT 日志</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/05-%E8%AF%81%E4%B9%A6%E4%B8%8Ect%E6%97%A5%E5%BF%97/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/05-%E8%AF%81%E4%B9%A6%E4%B8%8Ect%E6%97%A5%E5%BF%97/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:54 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/05-%E8%AF%81%E4%B9%A6%E4%B8%8Ect%E6%97%A5%E5%BF%97/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/05-%E8%AF%81%E4%B9%A6%E4%B8%8Ect%E6%97%A5%E5%BF%97/</guid>
         <description>&lt;h1 id=&#34;证书与-ct-日志&#34;&gt;证书与 CT 日志
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;检查 TLS 证书的 CN、SAN、颁发机构、有效期、通配符证书。&lt;/li&gt;
@@ -469,10 +469,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>组织与资产画像</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/02-%E7%BB%84%E7%BB%87%E4%B8%8E%E8%B5%84%E4%BA%A7%E7%94%BB%E5%83%8F/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/02-%E7%BB%84%E7%BB%87%E4%B8%8E%E8%B5%84%E4%BA%A7%E7%94%BB%E5%83%8F/</link>
         <pubDate>Wed, 17 Jun 2026 11:20:53 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/02-%E7%BB%84%E7%BB%87%E4%B8%8E%E8%B5%84%E4%BA%A7%E7%94%BB%E5%83%8F/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/02-%E7%BB%84%E7%BB%87%E4%B8%8E%E8%B5%84%E4%BA%A7%E7%94%BB%E5%83%8F/</guid>
         <description>&lt;h1 id=&#34;组织与资产画像&#34;&gt;组织与资产画像
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;公司名、品牌、子公司、并购资产、旧品牌、海外站点。&lt;/li&gt;
@@ -484,106 +484,106 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>HTTP请求</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</guid>
         <description></description>
         </item>
         <item>
         <title>SQL注入</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</guid>
         <description></description>
         </item>
         <item>
         <title>SSRF</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</guid>
         <description></description>
         </item>
         <item>
         <title>WAF</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/14-waf/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/14-waf/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/14-waf/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/14-waf/</guid>
         <description></description>
         </item>
         <item>
         <title>命令执行</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/13-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/13-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/13-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/13-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</guid>
         <description></description>
         </item>
         <item>
         <title>文件包含</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/09-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/09-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/09-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/09-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</guid>
         <description></description>
         </item>
         <item>
         <title>文件上传</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/10-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/10-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</link>
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/10-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/10-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</guid>
         <description></description>
         </item>
         <item>
         <title>反序列化</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/17-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/17-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</link>
         <pubDate>Tue, 16 Jun 2026 18:56:20 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/17-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/17-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
         <description></description>
         </item>
         <item>
         <title>认证与会话</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/05-%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%BC%9A%E8%AF%9D/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/05-%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%BC%9A%E8%AF%9D/</link>
         <pubDate>Tue, 16 Jun 2026 18:56:20 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/05-%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%BC%9A%E8%AF%9D/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/05-%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%BC%9A%E8%AF%9D/</guid>
         <description></description>
         </item>
         <item>
         <title>任意文件读取</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/08-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/08-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/</link>
         <pubDate>Tue, 16 Jun 2026 18:56:20 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/08-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/08-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/</guid>
         <description></description>
         </item>
         <item>
         <title>源码泄露与备份文件</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/03-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/03-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</link>
         <pubDate>Tue, 16 Jun 2026 18:56:20 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/03-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/03-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</guid>
         <description></description>
         </item>
         <item>
         <title>越权与访问控制</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/06-%E8%B6%8A%E6%9D%83%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/06-%E8%B6%8A%E6%9D%83%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</link>
         <pubDate>Tue, 16 Jun 2026 18:56:20 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/06-%E8%B6%8A%E6%9D%83%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/06-%E8%B6%8A%E6%9D%83%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</guid>
         <description></description>
         </item>
         <item>
         <title>AI安全总览</title>
-        <link>https://xxchen-yu.github.io/wiki/ai%E5%AE%89%E5%85%A8/00-ai%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</link>
+        <link>https://blog.xxchenchen.top/wiki/ai%E5%AE%89%E5%85%A8/00-ai%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</link>
         <pubDate>Tue, 16 Jun 2026 18:43:51 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/ai%E5%AE%89%E5%85%A8/00-ai%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/ai%E5%AE%89%E5%85%A8/00-ai%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</guid>
         <description>&lt;h1 id=&#34;ai安全总览&#34;&gt;AI安全总览
 &lt;/h1&gt;&lt;p&gt;当前 &lt;code&gt;AI安全&lt;/code&gt; 作为一级分类，先收纳以下方向：&lt;/p&gt;
 &lt;ul&gt;
@@ -596,7 +596,7 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
 &lt;h2 id=&#34;当前内容&#34;&gt;当前内容
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;%e5%9f%ba%e7%a1%80%e5%ad%a6%e4%b9%a0&#34; &gt;基础学习&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://xxchen-yu.github.io/wiki/AI%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/&#34; &gt;攻击与协议安全&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.xxchenchen.top/wiki/AI%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/&#34; &gt;攻击与协议安全&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;%e5%ba%94%e7%94%a8%e5%ae%89%e5%85%a8&#34; &gt;应用安全&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;Agent&#34; &gt;Agent&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -613,10 +613,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>Web安全总览</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/00-web%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/00-web%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</link>
         <pubDate>Tue, 16 Jun 2026 18:41:55 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/00-web%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/00-web%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</guid>
         <description>&lt;h1 id=&#34;web安全总览&#34;&gt;Web安全总览
 &lt;/h1&gt;&lt;p&gt;当前 &lt;code&gt;Web安全&lt;/code&gt; 作为一级分类，先收纳以下方向：&lt;/p&gt;
 &lt;ul&gt;
@@ -627,9 +627,9 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
 &lt;/ul&gt;
 &lt;h2 id=&#34;当前内容入口&#34;&gt;当前内容入口
 &lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://xxchen-yu.github.io/wiki/Web%E5%AE%89%E5%85%A8/OWASP%20Top%2010%202025/&#34; &gt;OWASP Top 10 2025&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://xxchen-yu.github.io/wiki/Web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/&#34; &gt;基础与漏洞&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://xxchen-yu.github.io/wiki/Web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/&#34; &gt;语言特性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.xxchenchen.top/wiki/Web%E5%AE%89%E5%85%A8/OWASP%20Top%2010%202025/&#34; &gt;OWASP Top 10 2025&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.xxchenchen.top/wiki/Web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/&#34; &gt;基础与漏洞&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.xxchenchen.top/wiki/Web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/&#34; &gt;语言特性&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;%e4%b8%93%e9%a2%98%e6%a1%88%e4%be%8b&#34; &gt;专题案例&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;%e5%ae%9e%e6%88%98%e9%a2%98%e8%a7%a3&#34; &gt;实战题解&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -660,10 +660,10 @@ CDN 资源是指目标使用的内容分发网络和边缘节点，例如 Cloudf
         </item>
         <item>
         <title>RAG投毒与MCP协议安全</title>
-        <link>https://xxchen-yu.github.io/wiki/ai%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/rag%E6%8A%95%E6%AF%92%E4%B8%8Emcp%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/</link>
+        <link>https://blog.xxchenchen.top/wiki/ai%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/rag%E6%8A%95%E6%AF%92%E4%B8%8Emcp%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/</link>
         <pubDate>Sun, 24 May 2026 16:04:45 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/ai%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/rag%E6%8A%95%E6%AF%92%E4%B8%8Emcp%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/ai%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/rag%E6%8A%95%E6%AF%92%E4%B8%8Emcp%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/</guid>
         <description>&lt;h1 id=&#34;rag投毒与mcp协议安全&#34;&gt;RAG投毒与MCP协议安全
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;适用范围：LLM 应用安全、Agent 安全、RAG 安全、工具调用安全&lt;br&gt;
@@ -1129,10 +1129,10 @@ server 给 client 分配了一个 session ID，而未授权方拿到这个 sessi
         </item>
         <item>
         <title>TOP10-Mishandling of Exceptional Conditions（处理异常情况不当）</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top10-mishandling-of-exceptional-conditions%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8D%E5%BD%93/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top10-mishandling-of-exceptional-conditions%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8D%E5%BD%93/</link>
         <pubDate>Wed, 20 May 2026 12:33:47 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top10-mishandling-of-exceptional-conditions%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8D%E5%BD%93/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top10-mishandling-of-exceptional-conditions%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8D%E5%BD%93/</guid>
         <description>&lt;p&gt;在 &lt;strong&gt;OWASP Top 10:2025&lt;/strong&gt; 里，&lt;strong&gt;Mishandling of Exceptional Conditions&lt;/strong&gt; 排在 &lt;strong&gt;A10，也就是第 10 位&lt;/strong&gt;。这是 &lt;strong&gt;2025 新增的类别&lt;/strong&gt;，它聚焦的是“异常条件处理不当”：系统在遇到缺参、空指针、权限不足、网络中断、资源耗尽、状态异常、事务中断、未预期输入时，没有正确地预防、识别和处理这些异常，最终进入不可预测状态，甚至直接 &lt;strong&gt;fail-open（失败时放行）&lt;/strong&gt;。&lt;br&gt;
 来源：&lt;a class=&#34;link&#34; href=&#34;https://owasp.org/Top10/2025/0x00_2025-Introduction/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;OWASP Top 10:2025 Introduction&lt;/a&gt;&lt;br&gt;
@@ -1176,10 +1176,10 @@ Mishandling of Exceptional Conditions 的本质是：&lt;strong&gt;系统在异�
         </item>
         <item>
         <title>TOP7-Authentication Failures（身份验证失败）</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top7-authentication-failures%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top7-authentication-failures%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5/</link>
         <pubDate>Wed, 20 May 2026 12:33:47 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top7-authentication-failures%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top7-authentication-failures%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5/</guid>
         <description>&lt;p&gt;在 &lt;strong&gt;OWASP Top 10:2025&lt;/strong&gt; 里，&lt;strong&gt;Authentication Failures&lt;/strong&gt; 排在 &lt;strong&gt;A07，也就是第 7 位&lt;/strong&gt;。它和 2021 一样保持在第 7 位，只是名字从 “Identification and Authentication Failures” 略微调整为更直接的 “Authentication Failures”。它关注的是：系统把&lt;strong&gt;不该被当成合法用户的人，当成了合法身份&lt;/strong&gt;，或者让攻击者过于容易地猜解、复用、接管、绕过身份认证。&lt;br&gt;
 来源：&lt;a class=&#34;link&#34; href=&#34;https://owasp.org/Top10/2025/0x00_2025-Introduction/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;OWASP Top 10:2025 Introduction&lt;/a&gt;&lt;br&gt;
@@ -1228,10 +1228,10 @@ Authentication Failures 的本质是：&lt;strong&gt;系统没有把“合法身
         </item>
         <item>
         <title>TOP8-Software or Data Integrity Failures（软件或数据完整性故障）</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top8-software-or-data-integrity-failures%E8%BD%AF%E4%BB%B6%E6%88%96%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7%E6%95%85%E9%9A%9C/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top8-software-or-data-integrity-failures%E8%BD%AF%E4%BB%B6%E6%88%96%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7%E6%95%85%E9%9A%9C/</link>
         <pubDate>Wed, 20 May 2026 12:33:47 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top8-software-or-data-integrity-failures%E8%BD%AF%E4%BB%B6%E6%88%96%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7%E6%95%85%E9%9A%9C/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top8-software-or-data-integrity-failures%E8%BD%AF%E4%BB%B6%E6%88%96%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7%E6%95%85%E9%9A%9C/</guid>
         <description>&lt;p&gt;在 &lt;strong&gt;OWASP Top 10:2025&lt;/strong&gt; 里，&lt;strong&gt;Software or Data Integrity Failures&lt;/strong&gt; 排在 &lt;strong&gt;A08，也就是第 8 位&lt;/strong&gt;。它延续了 2021 的排名，只是名字做了轻微澄清。这个类别关注的是：系统&lt;strong&gt;没有验证软件、代码、更新包或数据对象的完整性，就直接把它们当成可信内容使用了&lt;/strong&gt;。&lt;br&gt;
 来源：&lt;a class=&#34;link&#34; href=&#34;https://owasp.org/Top10/2025/0x00_2025-Introduction/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;OWASP Top 10:2025 Introduction&lt;/a&gt;&lt;br&gt;
@@ -1274,10 +1274,10 @@ Software or Data Integrity Failures 的本质是：&lt;strong&gt;系统在还没
         </item>
         <item>
         <title>TOP9-Security Logging and Alerting Failures（安全日志记录和警报故障）</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top9-security-logging-and-alerting-failures%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%92%8C%E8%AD%A6%E6%8A%A5%E6%95%85%E9%9A%9C/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top9-security-logging-and-alerting-failures%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%92%8C%E8%AD%A6%E6%8A%A5%E6%95%85%E9%9A%9C/</link>
         <pubDate>Wed, 20 May 2026 12:33:47 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top9-security-logging-and-alerting-failures%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%92%8C%E8%AD%A6%E6%8A%A5%E6%95%85%E9%9A%9C/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top9-security-logging-and-alerting-failures%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%92%8C%E8%AD%A6%E6%8A%A5%E6%95%85%E9%9A%9C/</guid>
         <description>&lt;p&gt;在 &lt;strong&gt;OWASP Top 10:2025&lt;/strong&gt; 里，&lt;strong&gt;Security Logging and Alerting Failures&lt;/strong&gt; 排在 &lt;strong&gt;A09，也就是第 9 位&lt;/strong&gt;。它延续了 2021 的位置，但名字从 “Logging and Monitoring Failures” 调整成了更强调行动性的 “Logging and Alerting Failures”。OWASP 的意思很明确：&lt;strong&gt;光有日志不够，日志如果不能触发正确告警和响应，价值是很有限的。&lt;/strong&gt;&lt;br&gt;
 来源：&lt;a class=&#34;link&#34; href=&#34;https://owasp.org/Top10/2025/0x00_2025-Introduction/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;OWASP Top 10:2025 Introduction&lt;/a&gt;&lt;br&gt;
@@ -1324,10 +1324,10 @@ Security Logging and Alerting Failures 的本质是：&lt;strong&gt;系统没有
         </item>
         <item>
         <title>TOP3-Software Supply Chain FailuresO（软件供应链故障）</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top3-software-supply-chain-failureso%E8%BD%AF%E4%BB%B6%E4%BE%9B%E5%BA%94%E9%93%BE%E6%95%85%E9%9A%9C/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top3-software-supply-chain-failureso%E8%BD%AF%E4%BB%B6%E4%BE%9B%E5%BA%94%E9%93%BE%E6%95%85%E9%9A%9C/</link>
         <pubDate>Wed, 20 May 2026 12:33:46 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top3-software-supply-chain-failureso%E8%BD%AF%E4%BB%B6%E4%BE%9B%E5%BA%94%E9%93%BE%E6%95%85%E9%9A%9C/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top3-software-supply-chain-failureso%E8%BD%AF%E4%BB%B6%E4%BE%9B%E5%BA%94%E9%93%BE%E6%95%85%E9%9A%9C/</guid>
         <description>&lt;p&gt;在 &lt;strong&gt;OWASP Top 10:2025&lt;/strong&gt; 里，&lt;strong&gt;Software Supply Chain Failures&lt;/strong&gt; 排在 &lt;strong&gt;A03，也就是第 3 位&lt;/strong&gt;。它可以理解成“软件供应链失效”：风险不再只是“依赖里有漏洞”，而是从依赖、构建、仓库、IDE、CI/CD、制品、更新发布到生产部署的整条链路，只要有一个环节被投毒、失管、篡改或长期裸奔，最后都会变成你的应用风险。OWASP 在 2025 版里明确把它从 2021 年的 “Vulnerable and Outdated Components” 扩展成了更大的风险类别，说明现代软件最危险的地方之一，已经不是你自己写的业务代码，而是你信任的那整条开发与交付链。&lt;br&gt;
 来源：&lt;a class=&#34;link&#34; href=&#34;https://owasp.org/Top10/2025/0x00_2025-Introduction/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;OWASP Top 10:2025 Introduction&lt;/a&gt;&lt;br&gt;
@@ -1379,10 +1379,10 @@ Software Supply Chain Failures 的本质是：&lt;strong&gt;你把不够可信�
         </item>
         <item>
         <title>TOP4-Cryptographic Failures（密码学故障）</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top4-cryptographic-failures%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%85%E9%9A%9C/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top4-cryptographic-failures%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%85%E9%9A%9C/</link>
         <pubDate>Wed, 20 May 2026 12:33:46 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top4-cryptographic-failures%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%85%E9%9A%9C/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top4-cryptographic-failures%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%85%E9%9A%9C/</guid>
         <description>&lt;p&gt;在 &lt;strong&gt;OWASP Top 10:2025&lt;/strong&gt; 里，&lt;strong&gt;Cryptographic Failures&lt;/strong&gt; 排在 &lt;strong&gt;A04，也就是第 4 位&lt;/strong&gt;。它从 2021 年的第 2 位下降到了第 4 位，但这不代表它不重要，而是说明其它系统性风险上升得更快。它关注的不是单纯“有没有加密”，而是更完整的一组问题：没加密、加密不够强、密钥管理差、随机数弱、证书校验错、模式用错、散列算法过时，都会落在这个类别里。&lt;br&gt;
 来源：&lt;a class=&#34;link&#34; href=&#34;https://owasp.org/Top10/2025/0x00_2025-Introduction/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;OWASP Top 10:2025 Introduction&lt;/a&gt;&lt;br&gt;
@@ -1429,10 +1429,10 @@ Cryptographic Failures 的本质是：&lt;strong&gt;系统本来该靠加密保�
         </item>
         <item>
         <title>TOP5-Injection（注入）</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top5-injection%E6%B3%A8%E5%85%A5/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top5-injection%E6%B3%A8%E5%85%A5/</link>
         <pubDate>Wed, 20 May 2026 12:33:46 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top5-injection%E6%B3%A8%E5%85%A5/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top5-injection%E6%B3%A8%E5%85%A5/</guid>
         <description>&lt;p&gt;在 &lt;strong&gt;OWASP Top 10:2025&lt;/strong&gt; 里，&lt;strong&gt;Injection&lt;/strong&gt; 排在 &lt;strong&gt;A05，也就是第 5 位&lt;/strong&gt;。它从 2021 年的第 3 位下降到了第 5 位，但依然是最经典、最常见、也最容易造成高危后果的一类漏洞。它的核心很简单：&lt;strong&gt;不可信输入进入了解释器，并被当成命令、语句或结构的一部分执行了&lt;/strong&gt;。&lt;br&gt;
 来源：&lt;a class=&#34;link&#34; href=&#34;https://owasp.org/Top10/2025/0x00_2025-Introduction/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;OWASP Top 10:2025 Introduction&lt;/a&gt;&lt;br&gt;
@@ -1484,10 +1484,10 @@ Injection 的本质是：&lt;strong&gt;系统没有把“用户数据”和“�
         </item>
         <item>
         <title>TOP6-Insecure Design（不安全设计）</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top6-insecure-design%E4%B8%8D%E5%AE%89%E5%85%A8%E8%AE%BE%E8%AE%A1/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top6-insecure-design%E4%B8%8D%E5%AE%89%E5%85%A8%E8%AE%BE%E8%AE%A1/</link>
         <pubDate>Wed, 20 May 2026 12:33:46 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top6-insecure-design%E4%B8%8D%E5%AE%89%E5%85%A8%E8%AE%BE%E8%AE%A1/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top6-insecure-design%E4%B8%8D%E5%AE%89%E5%85%A8%E8%AE%BE%E8%AE%A1/</guid>
         <description>&lt;p&gt;在 &lt;strong&gt;OWASP Top 10:2025&lt;/strong&gt; 里，&lt;strong&gt;Insecure Design&lt;/strong&gt; 排在 &lt;strong&gt;A06，也就是第 6 位&lt;/strong&gt;。它从 2021 年的第 4 位降到了第 6 位，但这并不代表它不关键。相反，OWASP 把它保留在榜单里，就是因为很多严重安全问题并不是“代码写错了”，而是&lt;strong&gt;从需求、流程、权限模型、业务状态机、租户隔离到失败状态设计，一开始就没有把安全控制设计进去&lt;/strong&gt;。&lt;br&gt;
 来源：&lt;a class=&#34;link&#34; href=&#34;https://owasp.org/Top10/2025/0x00_2025-Introduction/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;OWASP Top 10:2025 Introduction&lt;/a&gt;&lt;br&gt;
@@ -1538,10 +1538,10 @@ Insecure Design 的本质是：&lt;strong&gt;系统不是后来才被写坏的�
         </item>
         <item>
         <title>OWASP Top 10 2025 总览与分析</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/00-owasp-top-10-2025-%E6%80%BB%E8%A7%88%E4%B8%8E%E5%88%86%E6%9E%90/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/00-owasp-top-10-2025-%E6%80%BB%E8%A7%88%E4%B8%8E%E5%88%86%E6%9E%90/</link>
         <pubDate>Wed, 20 May 2026 12:28:39 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/00-owasp-top-10-2025-%E6%80%BB%E8%A7%88%E4%B8%8E%E5%88%86%E6%9E%90/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/00-owasp-top-10-2025-%E6%80%BB%E8%A7%88%E4%B8%8E%E5%88%86%E6%9E%90/</guid>
         <description>&lt;h1 id=&#34;owasp-top-10-2025-总览与分析&#34;&gt;OWASP Top 10 2025 总览与分析
 &lt;/h1&gt;&lt;h2 id=&#34;这份笔记适合怎么用&#34;&gt;这份笔记适合怎么用
 &lt;/h2&gt;&lt;ul&gt;
@@ -1993,11 +1993,11 @@ Insecure Design 的本质是：&lt;strong&gt;系统不是后来才被写坏的�
         </item>
         <item>
         <title>QingCen靶场Web入门wp 下</title>
-        <link>https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8B/</link>
+        <link>https://blog.xxchenchen.top/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8B/</link>
         <pubDate>Tue, 28 Apr 2026 15:34:32 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8B/</guid>
-        <description>&lt;img src="https://xxchen-yu.github.io/img/qingcenctf-cover.svg" alt="Featured image of post QingCen靶场Web入门wp 下" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+        <guid>https://blog.xxchenchen.top/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8B/</guid>
+        <description>&lt;img src="https://blog.xxchenchen.top/img/qingcenctf-cover.svg" alt="Featured image of post QingCen靶场Web入门wp 下" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;终于到最后了，累/(ㄒoㄒ)/~~&lt;/p&gt;
 &lt;h2 id=&#34;ezxss&#34;&gt;EZXSS
 &lt;/h2&gt;&lt;h3 id=&#34;ezxss-1&#34;&gt;EZXSS
@@ -2034,11 +2034,11 @@ Insecure Design 的本质是：&lt;strong&gt;系统不是后来才被写坏的�
         </item>
         <item>
         <title>QingCen靶场Web入门wp-中</title>
-        <link>https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%AD/</link>
+        <link>https://blog.xxchenchen.top/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%AD/</link>
         <pubDate>Tue, 28 Apr 2026 15:34:23 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%AD/</guid>
-        <description>&lt;img src="https://xxchen-yu.github.io/img/qingcenctf-cover.svg" alt="Featured image of post QingCen靶场Web入门wp-中" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+        <guid>https://blog.xxchenchen.top/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%AD/</guid>
+        <description>&lt;img src="https://blog.xxchenchen.top/img/qingcenctf-cover.svg" alt="Featured image of post QingCen靶场Web入门wp-中" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;继续~ 继续~ 鸽了好久&lt;/p&gt;
 &lt;h2 id=&#34;ezfl&#34;&gt;EZFL
 &lt;/h2&gt;&lt;h3 id=&#34;ezflphp-文件包含&#34;&gt;EZFL(PHP 文件包含)
@@ -3865,10 +3865,10 @@ env 或 printenv 才能看见。&lt;/p&gt;
         </item>
         <item>
         <title>TOP2-Security Misconfiguration (安全配置错误)</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top2-security-misconfiguration-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AF/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top2-security-misconfiguration-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AF/</link>
         <pubDate>Mon, 27 Apr 2026 16:32:19 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top2-security-misconfiguration-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AF/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top2-security-misconfiguration-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AF/</guid>
         <description>&lt;p&gt;Security Misconfiguration 可以翻成“安全配置错误”或“安全配置不当”。它不是某一个单点漏洞，而是一类问题：系统、应用、框架、云服务、数据库、Web 服务器、中间件明明能配得更安全，但实际部署时配错了、漏配了、保留了默认值，结果给攻击者留下入口。&lt;/p&gt;
 &lt;p&gt;你可以把它理解成：&lt;/p&gt;
 &lt;ul&gt;
@@ -3947,10 +3947,10 @@ Security Misconfiguration 的本质不是“写错了业务逻辑”，而是 
         </item>
         <item>
         <title>大模型提示词注入</title>
-        <link>https://xxchen-yu.github.io/wiki/ai%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5/</link>
+        <link>https://blog.xxchenchen.top/wiki/ai%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5/</link>
         <pubDate>Tue, 14 Apr 2026 09:48:40 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/ai%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/ai%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E4%B8%8E%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5/</guid>
         <description>&lt;h1 id=&#34;大模型提示词注入&#34;&gt;大模型提示词注入
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;来源视频：B站《AI安全之大模型提示词注入》&lt;br&gt;
@@ -4468,10 +4468,10 @@ Security Misconfiguration 的本质不是“写错了业务逻辑”，而是 
         </item>
         <item>
         <title>函数学习</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/php/%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/php/%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:31 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/php/%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/php/%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/</guid>
         <description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -4518,75 +4518,75 @@ Security Misconfiguration 的本质不是“写错了业务逻辑”，而是 
         </item>
         <item>
         <title>CSRF</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/07-csrf/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/07-csrf/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/07-csrf/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/07-csrf/</guid>
         <description></description>
         </item>
         <item>
         <title>Golang</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/golang/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/golang/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/golang/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/golang/</guid>
         <description></description>
         </item>
         <item>
         <title>Java</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/java/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/java/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/java/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/java/</guid>
         <description></description>
         </item>
         <item>
         <title>Nodejs</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/nodejs/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/nodejs/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/nodejs/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/nodejs/</guid>
         <description></description>
         </item>
         <item>
         <title>Python</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/python/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/python/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/python/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/python/</guid>
         <description></description>
         </item>
         <item>
         <title>XSS漏洞分析</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/11-xss%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/11-xss%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/11-xss%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/11-xss%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
         <description></description>
         </item>
         <item>
         <title>XXE</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/16-xxe/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/16-xxe/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/16-xxe/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/16-xxe/</guid>
         <description></description>
         </item>
         <item>
         <title>逻辑漏洞</title>
-        <link>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/04-%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</link>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/04-%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</link>
         <pubDate>Mon, 13 Apr 2026 08:48:30 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/04-%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</guid>
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/04-%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</guid>
         <description></description>
         </item>
         <item>
         <title>QingCen靶场Web入门wp-上</title>
-        <link>https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8A/</link>
+        <link>https://blog.xxchenchen.top/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8A/</link>
         <pubDate>Tue, 07 Apr 2026 08:52:16 +0800</pubDate>
         
-        <guid>https://xxchen-yu.github.io/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8A/</guid>
-        <description>&lt;img src="https://xxchen-yu.github.io/img/qingcenctf-cover.svg" alt="Featured image of post QingCen靶场Web入门wp-上" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+        <guid>https://blog.xxchenchen.top/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8A/</guid>
+        <description>&lt;img src="https://blog.xxchenchen.top/img/qingcenctf-cover.svg" alt="Featured image of post QingCen靶场Web入门wp-上" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;最近一直在青岑靶场做web入门(菜到只能做这个)，今天分享一下自己的wp。(含ai成分)&lt;/p&gt;
 &lt;p&gt;靶场地址：https://ctf.qingcen.net/&lt;/p&gt;
 &lt;h2 id=&#34;basic&#34;&gt;BASIC
@@ -6772,18 +6772,18 @@ payload&lt;/p&gt;
         </item>
         <item>
         <title>blog</title>
-        <link>https://xxchen-yu.github.io/archives/</link>
+        <link>https://blog.xxchenchen.top/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://xxchen-yu.github.io/archives/</guid>
+        <guid>https://blog.xxchenchen.top/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>Links</title>
-        <link>https://xxchen-yu.github.io/links/</link>
+        <link>https://blog.xxchenchen.top/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://xxchen-yu.github.io/links/</guid>
+        <guid>https://blog.xxchenchen.top/links/</guid>
         <description>&lt;p&gt;To use this feature, add &lt;code&gt;links&lt;/code&gt; section to frontmatter.&lt;/p&gt;
 &lt;p&gt;This page&amp;rsquo;s frontmatter:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -6815,18 +6815,18 @@ payload&lt;/p&gt;
         </item>
         <item>
         <title>Search</title>
-        <link>https://xxchen-yu.github.io/search/</link>
+        <link>https://blog.xxchenchen.top/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://xxchen-yu.github.io/search/</guid>
+        <guid>https://blog.xxchenchen.top/search/</guid>
         <description></description>
         </item>
         <item>
         <title>关于</title>
-        <link>https://xxchen-yu.github.io/%E5%85%B3%E4%BA%8E/</link>
+        <link>https://blog.xxchenchen.top/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://xxchen-yu.github.io/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>https://blog.xxchenchen.top/%E5%85%B3%E4%BA%8E/</guid>
         <description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;
 </description>
         </item>
