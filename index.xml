@@ -7,7 +7,17 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>ChenOvo</copyright>
-        <lastBuildDate>Fri, 19 Jun 2026 15:27:54 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 19 Jun 2026 15:40:47 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>SQL注入详解：种类、Payload与数据库变化</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</link>
+        <pubDate>Fri, 19 Jun 2026 15:40:47 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</guid>
+        <description>&lt;h1 id=&#34;sql注入详解种类payload与数据库变化&#34;&gt;SQL注入详解：种类、Payload与数据库变化
+&lt;/h1&gt;&lt;h2 id=&#34;摘要&#34;&gt;摘要
+&lt;/h2&gt;&lt;p&gt;SQL注入是一种常见的网络安全漏洞，攻击者通过在应用程序输入字段中插入恶意SQL代码片段，从而操控后端数据库执行非预期操作。本文涵盖SQL注入的种类、payload示例及数据库变化，帮助理解其原理和风险。&lt;/p&gt;</description>
+        </item>
+        <item>
         <title>XSS漏洞分析</title>
         <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/11-xss%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
         <pubDate>Fri, 19 Jun 2026 15:27:54 +0800</pubDate>
@@ -16,16 +26,6 @@
         <description>&lt;h1 id=&#34;xss漏洞分析&#34;&gt;XSS漏洞分析
 &lt;/h1&gt;&lt;h2 id=&#34;摘要&#34;&gt;摘要
 &lt;/h2&gt;&lt;p&gt;本文全面介绍了XSS（跨站脚本）漏洞，包括其作为Web安全漏洞的基本概念、主要分类（反射型、存储型、DOM型等）及其工作原理，以及在搜索框、评论区、URL参数等场景下的典型触发方式。&lt;/p&gt;</description>
-        </item>
-        <item>
-        <title>SQL注入详解</title>
-        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</link>
-        <pubDate>Fri, 19 Jun 2026 14:26:35 +0800</pubDate>
-        
-        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</guid>
-        <description>&lt;h1 id=&#34;sql注入详解&#34;&gt;SQL注入详解
-&lt;/h1&gt;&lt;h2 id=&#34;摘要&#34;&gt;摘要
-&lt;/h2&gt;&lt;p&gt;SQL注入是一种常见的Web安全漏洞，攻击者通过插入恶意SQL代码来操纵数据库查询，导致数据泄露、破坏或未授权访问。本文详细介绍了SQL注入的原理、数据库内容变化、分类及Payload，并提供了防御措施。&lt;/p&gt;</description>
         </item>
         <item>
         <title>TOP1-Broken Access Control（访问控制失效）</title>
