@@ -15,45 +15,6 @@
 <meta name="twitter:description" content="在\u00a0OWASP Top 10:2025\u00a0里，Broken Access Control（访问控制失效）\u00a0仍然排在\u00a0A01，也就是第 1 位。它的意思很直接：系统没有正确限制“谁能访问什么、谁能执行什么操作”，结果就是用户能看到、修改、删除本不属于自己的数据，甚至越权拿到管理员能力。OWASP 给出的 2025 数据里，这一类问题覆盖了\u00a0100% 被测试应用，而且总出现次数非常高，说明它不是“高级漏洞”，而是最常见、最容易被遗漏的基础性问题。\n来源：OWASP A01:2025\u00a0Broken Access Control\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
-<script>
-    (function () {
-        var storageKey = "chenovo_disable_pageview_count";
-        var params = new URLSearchParams(window.location.search);
-        var host = window.location.hostname;
-        var isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1";
-
-        if (params.has("no-count")) {
-            localStorage.setItem(storageKey, "1");
-        }
-
-        if (params.has("count")) {
-            localStorage.removeItem(storageKey);
-        }
-
-        var disabled = isLocal || localStorage.getItem(storageKey) === "1";
-
-        function markDisabled() {
-            var container = document.getElementById("busuanzi_container_page_pv");
-            if (container) {
-                container.textContent = "本机不计";
-            }
-        }
-
-        if (disabled) {
-            if (document.readyState === "loading") {
-                document.addEventListener("DOMContentLoaded", markDisabled);
-            } else {
-                markDisabled();
-            }
-            return;
-        }
-
-        var script = document.createElement("script");
-        script.async = true;
-        script.src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
-        document.head.appendChild(script);
-    })();
-</script>
 
     </head>
     <body class="
@@ -375,20 +336,6 @@
                 <span class="article-time--wordcount">1146 字</span>
             </div>
         
-
-        
-            <div class="article-time--views">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
-    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/>
-</svg>
-
-                <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv">0</span> 浏览
-                </span>
-            </div>
-        
     </footer>
     
 
@@ -396,7 +343,6 @@
 </div>
 
 </header>
-
 
     <section class="article-content">
     
@@ -467,7 +413,6 @@
 
     
 </article>
-
 
     
 

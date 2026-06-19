@@ -15,45 +15,6 @@
 <meta name="twitter:description" content="RAG投毒与MCP协议安全 适用范围：LLM 应用安全、Agent 安全、RAG 安全、工具调用安全\n整理日期：2026-05-24\n这篇笔记的目标：把 RAG投毒 和 MCP协议安全 这两个经常一起出现、但本质不同的概念彻底分开讲清楚。\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
-<script>
-    (function () {
-        var storageKey = "chenovo_disable_pageview_count";
-        var params = new URLSearchParams(window.location.search);
-        var host = window.location.hostname;
-        var isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1";
-
-        if (params.has("no-count")) {
-            localStorage.setItem(storageKey, "1");
-        }
-
-        if (params.has("count")) {
-            localStorage.removeItem(storageKey);
-        }
-
-        var disabled = isLocal || localStorage.getItem(storageKey) === "1";
-
-        function markDisabled() {
-            var container = document.getElementById("busuanzi_container_page_pv");
-            if (container) {
-                container.textContent = "本机不计";
-            }
-        }
-
-        if (disabled) {
-            if (document.readyState === "loading") {
-                document.addEventListener("DOMContentLoaded", markDisabled);
-            } else {
-                markDisabled();
-            }
-            return;
-        }
-
-        var script = document.createElement("script");
-        script.async = true;
-        script.src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
-        document.head.appendChild(script);
-    })();
-</script>
 
     </head>
     <body class="
@@ -538,20 +499,6 @@
                 <span class="article-time--wordcount">4433 字</span>
             </div>
         
-
-        
-            <div class="article-time--views">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
-    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/>
-</svg>
-
-                <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv">0</span> 浏览
-                </span>
-            </div>
-        
     </footer>
     
 
@@ -559,7 +506,6 @@
 </div>
 
 </header>
-
 
     <section class="article-content">
     
@@ -1049,7 +995,6 @@ server 给 client 分配了一个 session ID，而未授权方拿到这个 sessi
 
     
 </article>
-
 
     
 

@@ -15,45 +15,6 @@
 <meta name="twitter:description" content="输出物 资产表：域名、子域、IP、端口、服务、技术栈、环境、归属、状态。 入口点表：URL、方法、参数、认证、角色、功能、风险备注。 API 表：端点、版本、参数、认证、来源、是否文档化。 架构图：用户端、CDN/WAF、反向代理、应用、API、存储、第三方。 风险优先级：公开敏感信息、测试环境暴露、旧版本、管理后台、未授权 API、源码/配置泄露。 ">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
-<script>
-    (function () {
-        var storageKey = "chenovo_disable_pageview_count";
-        var params = new URLSearchParams(window.location.search);
-        var host = window.location.hostname;
-        var isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1";
-
-        if (params.has("no-count")) {
-            localStorage.setItem(storageKey, "1");
-        }
-
-        if (params.has("count")) {
-            localStorage.removeItem(storageKey);
-        }
-
-        var disabled = isLocal || localStorage.getItem(storageKey) === "1";
-
-        function markDisabled() {
-            var container = document.getElementById("busuanzi_container_page_pv");
-            if (container) {
-                container.textContent = "本机不计";
-            }
-        }
-
-        if (disabled) {
-            if (document.readyState === "loading") {
-                document.addEventListener("DOMContentLoaded", markDisabled);
-            } else {
-                markDisabled();
-            }
-            return;
-        }
-
-        var script = document.createElement("script");
-        script.async = true;
-        script.src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
-        document.head.appendChild(script);
-    })();
-</script>
 
     </head>
     <body class="
@@ -375,20 +336,6 @@
                 <span class="article-time--wordcount">167 字</span>
             </div>
         
-
-        
-            <div class="article-time--views">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
-    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/>
-</svg>
-
-                <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv">0</span> 浏览
-                </span>
-            </div>
-        
     </footer>
     
 
@@ -396,7 +343,6 @@
 </div>
 
 </header>
-
 
     <section class="article-content">
     
@@ -433,7 +379,6 @@
 
     
 </article>
-
 
     
 

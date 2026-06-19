@@ -15,45 +15,6 @@
 <meta name="twitter:description" content="在 OWASP Top 10:2025 里，Mishandling of Exceptional Conditions 排在 A10，也就是第 10 位。这是 2025 新增的类别，它聚焦的是“异常条件处理不当”：系统在遇到缺参、空指针、权限不足、网络中断、资源耗尽、状态异常、事务中断、未预期输入时，没有正确地预防、识别和处理这些异常，最终进入不可预测状态，甚至直接 fail-open（失败时放行）。\n来源：OWASP Top 10:2025 Introduction\n来源：A10:2025 Mishandling of Exceptional Conditions\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
-<script>
-    (function () {
-        var storageKey = "chenovo_disable_pageview_count";
-        var params = new URLSearchParams(window.location.search);
-        var host = window.location.hostname;
-        var isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1";
-
-        if (params.has("no-count")) {
-            localStorage.setItem(storageKey, "1");
-        }
-
-        if (params.has("count")) {
-            localStorage.removeItem(storageKey);
-        }
-
-        var disabled = isLocal || localStorage.getItem(storageKey) === "1";
-
-        function markDisabled() {
-            var container = document.getElementById("busuanzi_container_page_pv");
-            if (container) {
-                container.textContent = "本机不计";
-            }
-        }
-
-        if (disabled) {
-            if (document.readyState === "loading") {
-                document.addEventListener("DOMContentLoaded", markDisabled);
-            } else {
-                markDisabled();
-            }
-            return;
-        }
-
-        var script = document.createElement("script");
-        script.async = true;
-        script.src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
-        document.head.appendChild(script);
-    })();
-</script>
 
     </head>
     <body class="
@@ -375,20 +336,6 @@
                 <span class="article-time--wordcount">1027 字</span>
             </div>
         
-
-        
-            <div class="article-time--views">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
-    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/>
-</svg>
-
-                <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv">0</span> 浏览
-                </span>
-            </div>
-        
     </footer>
     
 
@@ -396,7 +343,6 @@
 </div>
 
 </header>
-
 
     <section class="article-content">
     
@@ -464,7 +410,6 @@ Mishandling of Exceptional Conditions 的本质是：<strong>系统在异常状�
 
     
 </article>
-
 
     
 
