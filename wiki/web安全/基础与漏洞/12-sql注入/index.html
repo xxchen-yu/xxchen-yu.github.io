@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
-<title>SQL注入</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="SQL注入详解 摘要 SQL注入是一种常见的Web安全漏洞，攻击者通过插入恶意SQL代码来操纵数据库查询，导致数据泄露、破坏或未授权访问。本文详细介绍了SQL注入的原理、数据库内容变化、分类及Payload，并提供了防御措施。\n">
+<title>SQL注入详解</title>
 
 <link rel='canonical' href='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/'>
 
-<link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="SQL注入">
-<meta property='og:description' content="">
+<link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="SQL注入详解">
+<meta property='og:description' content="SQL注入详解 摘要 SQL注入是一种常见的Web安全漏洞，攻击者通过插入恶意SQL代码来操纵数据库查询，导致数据泄露、破坏或未授权访问。本文详细介绍了SQL注入的原理、数据库内容变化、分类及Payload，并提供了防御措施。\n">
 <meta property='og:url' content='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/'>
 <meta property='og:site_name' content='ChenOvo'>
-<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-16T18:58:11&#43;08:00'/><meta property='article:modified_time' content='2026-06-16T18:58:11&#43;08:00'/>
-<meta name="twitter:title" content="SQL注入">
-<meta name="twitter:description" content="">
+<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-19T14:26:35&#43;08:00'/><meta property='article:modified_time' content='2026-06-19T14:26:35&#43;08:00'/>
+<meta name="twitter:title" content="SQL注入详解">
+<meta name="twitter:description" content="SQL注入详解 摘要 SQL注入是一种常见的Web安全漏洞，攻击者通过插入恶意SQL代码来操纵数据库查询，导致数据泄露、破坏或未授权访问。本文详细介绍了SQL注入的原理、数据库内容变化、分类及Payload，并提供了防御措施。\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
 <script>
@@ -306,7 +306,95 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc collapsible-toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#摘要">摘要</a></li>
+    <li><a href="#来源">来源</a></li>
+    <li><a href="#待验证">待验证</a></li>
+    <li><a href="#入库记录">入库记录</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+    <style>
+     
+    .collapsible-toc nav > ol > li {
+        position: relative;
+        margin: 6px 0;
+        list-style: none;
+    }
+
+    .collapsible-toc nav > ol > li > a {
+        display: inline-flex;
+        align-items: center;
+    }
+
+     
+    .collapsible-toc nav > ol > li > a::after {
+        content: '▶';
+        margin-left: 6px;
+        font-size: 10px;
+        opacity: 0.5;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .collapsible-toc nav > ol > li:hover > a::after {
+        transform: rotate(90deg);
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin-left: 16px;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+     
+    .collapsible-toc nav > ol > li:hover > ol {
+        max-height: 2000px;
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol > li {
+        list-style: none;
+        margin: 4px 0;
+    }
+
+     
+    .collapsible-toc nav > ol > li:not(:has(> ol)) > a::after {
+        display: none;
+    }
+    </style>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -317,7 +405,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/">SQL注入</a>
+            <a href="/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/">SQL注入详解</a>
         </h2>
 
         
@@ -340,7 +428,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published" datetime='2026-06-16T18:58:11&#43;08:00'>Jun 16, 2026</time>
+                <time class="article-time--published" datetime='2026-06-19T14:26:35&#43;08:00'>Jun 19, 2026</time>
             </div>
         
 
@@ -355,11 +443,25 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 0 分钟
+                    阅读时长: 1 分钟
                 </time>
             </div>
         
 
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                <span class="article-time--wordcount">276 字</span>
+            </div>
         
 
         
@@ -387,7 +489,24 @@
     <section class="article-content">
     
     
-    
+    <h1 id="sql注入详解">SQL注入详解
+</h1><h2 id="摘要">摘要
+</h2><p>SQL注入是一种常见的Web安全漏洞，攻击者通过插入恶意SQL代码来操纵数据库查询，导致数据泄露、破坏或未授权访问。本文详细介绍了SQL注入的原理、数据库内容变化、分类及Payload，并提供了防御措施。</p>
+<h2 id="来源">来源
+</h2><p>来自用户提问和助手回答的对话历史，覆盖了SQL注入的核心知识点。</p>
+<h2 id="待验证">待验证
+</h2><ul>
+<li>不同数据库系统（如MySQL、MSSQL）的注入语法差异和有效性验证。</li>
+<li>现代Web框架中参数化查询的具体实现和最佳实践。</li>
+<li>最新WAF规则和防御技术对SQL注入的检测效果更新。</li>
+</ul>
+<h2 id="入库记录">入库记录
+</h2><ul>
+<li>入库时间：2026-06-19 14:26:35</li>
+<li>入库方式：Agent工作台 baseline v0</li>
+<li>状态：已确认入库</li>
+</ul>
+
 </section>
 
 

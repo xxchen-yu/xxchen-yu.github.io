@@ -7,7 +7,17 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>ChenOvo</copyright>
-        <lastBuildDate>Wed, 17 Jun 2026 12:21:29 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 19 Jun 2026 14:26:35 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>SQL注入详解</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</link>
+        <pubDate>Fri, 19 Jun 2026 14:26:35 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</guid>
+        <description>&lt;h1 id=&#34;sql注入详解&#34;&gt;SQL注入详解
+&lt;/h1&gt;&lt;h2 id=&#34;摘要&#34;&gt;摘要
+&lt;/h2&gt;&lt;p&gt;SQL注入是一种常见的Web安全漏洞，攻击者通过插入恶意SQL代码来操纵数据库查询，导致数据泄露、破坏或未授权访问。本文详细介绍了SQL注入的原理、数据库内容变化、分类及Payload，并提供了防御措施。&lt;/p&gt;</description>
+        </item>
+        <item>
         <title>TOP1-Broken Access Control（访问控制失效）</title>
         <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/owasp-top-10-2025/top1-broken-access-control%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%A4%B1%E6%95%88/</link>
         <pubDate>Wed, 17 Jun 2026 12:21:29 +0800</pubDate>
@@ -316,14 +326,6 @@
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
         <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>SQL注入</title>
-        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</link>
-        <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
-        
-        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</guid>
         <description></description>
         </item>
         <item>
