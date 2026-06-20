@@ -14,39 +14,12 @@
         
         <guid>https://blog.xxchenchen.top/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8B/</guid>
         <description>&lt;img src="https://blog.xxchenchen.top/img/qingcenctf-cover.svg" alt="Featured image of post QingCen靶场Web入门wp 下" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
-&lt;/h2&gt;&lt;p&gt;终于到最后了，累/(ㄒoㄒ)/~~&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;到最后了，/(ㄒoㄒ)/~~&lt;/p&gt;
 &lt;h2 id=&#34;ezxss&#34;&gt;EZXSS
-&lt;/h2&gt;&lt;h3 id=&#34;ezxss-1&#34;&gt;EZXSS
-&lt;/h3&gt;&lt;h3 id=&#34;ezxss_1&#34;&gt;EZXSS_1
-&lt;/h3&gt;&lt;h3 id=&#34;ezxss_2&#34;&gt;EZXSS_2
-&lt;/h3&gt;&lt;h2 id=&#34;ezxxe&#34;&gt;EZXXE
-&lt;/h2&gt;&lt;h3 id=&#34;ezxxe-1&#34;&gt;EZXXE
-&lt;/h3&gt;&lt;h3 id=&#34;ezxxe_1&#34;&gt;EZXXE_1
-&lt;/h3&gt;&lt;h3 id=&#34;ezxxe_2&#34;&gt;EZXXE_2
-&lt;/h3&gt;&lt;h3 id=&#34;ezxxe_3&#34;&gt;EZXXE_3
-&lt;/h3&gt;&lt;h2 id=&#34;ezssrf&#34;&gt;EZSSRF
-&lt;/h2&gt;&lt;h3 id=&#34;ezssrf-1&#34;&gt;EZSSRF
-&lt;/h3&gt;&lt;h3 id=&#34;ezssrf_1&#34;&gt;EZSSRF_1
-&lt;/h3&gt;&lt;h3 id=&#34;ezssrf_2&#34;&gt;EZSSRF_2
-&lt;/h3&gt;&lt;h3 id=&#34;ezssrf_3&#34;&gt;EZSSRF_3
-&lt;/h3&gt;&lt;h3 id=&#34;ezssrf_4&#34;&gt;EZSSRF_4
-&lt;/h3&gt;&lt;h3 id=&#34;ezssrf_5&#34;&gt;EZSSRF_5
-&lt;/h3&gt;&lt;h3 id=&#34;ezssrf_6&#34;&gt;EZSSRF_6
-&lt;/h3&gt;&lt;h2 id=&#34;ezjwt&#34;&gt;EZJWT
-&lt;/h2&gt;&lt;h3 id=&#34;ezjwt-1&#34;&gt;EZJWT
-&lt;/h3&gt;&lt;h3 id=&#34;ezjwt_1&#34;&gt;EZJWT_1
-&lt;/h3&gt;&lt;h3 id=&#34;ezjwt_2&#34;&gt;EZJWT_2
-&lt;/h3&gt;&lt;h2 id=&#34;ezpop&#34;&gt;EZPOP
-&lt;/h2&gt;&lt;h3 id=&#34;ezpop-1&#34;&gt;EZPOP
-&lt;/h3&gt;&lt;h3 id=&#34;ezpop_1&#34;&gt;EZPOP_1
-&lt;/h3&gt;&lt;h3 id=&#34;ezpop_2&#34;&gt;EZPOP_2
-&lt;/h3&gt;&lt;h3 id=&#34;ezpop_3&#34;&gt;EZPOP_3
-&lt;/h3&gt;&lt;h3 id=&#34;ezpop_4&#34;&gt;EZPOP_4
-&lt;/h3&gt;&lt;h3 id=&#34;ezpop_5&#34;&gt;EZPOP_5
-&lt;/h3&gt;&lt;h3 id=&#34;ezpop_6&#34;&gt;EZPOP_6
-&lt;/h3&gt;&lt;h3 id=&#34;ezpop_7&#34;&gt;EZPOP_7
-&lt;/h3&gt;&lt;h3 id=&#34;ezpop_8&#34;&gt;EZPOP_8
-&lt;/h3&gt;</description>
+&lt;/h2&gt;&lt;h3 id=&#34;ezxss存储型-xss&#34;&gt;EZXSS（存储型 XSS）
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;漏洞类型：&lt;/strong&gt; 存储型 XSS（Stored Cross-Site Scripting）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;题目分析：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;目标是一个技术博客网站，包含搜索框和留言板功能。经测试：&lt;/p&gt;</description>
         </item>
         <item>
         <title>QingCen靶场Web入门wp-中</title>

