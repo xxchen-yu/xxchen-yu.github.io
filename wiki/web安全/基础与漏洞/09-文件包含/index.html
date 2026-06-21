@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="文件包含 文件包含是应用把某个文件加载进程序执行或渲染。若文件名可控，就可能从“读取文件”升级到“执行不该执行的内容”。\n基本类型 类型 说明 本地文件包含 包含服务器本地文件，如模板、日志、上传文件 远程文件包含 从外部地址加载文件，风险更高 模板包含 根据参数选择页面片段或主题文件 文件包含常见于 PHP、模板引擎、插件系统、多语言页面、主题切换和老旧 CMS 中。\n">
 <title>文件包含</title>
 
 <link rel='canonical' href='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/09-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="文件包含">
-<meta property='og:description' content="">
+<meta property='og:description' content="文件包含 文件包含是应用把某个文件加载进程序执行或渲染。若文件名可控，就可能从“读取文件”升级到“执行不该执行的内容”。\n基本类型 类型 说明 本地文件包含 包含服务器本地文件，如模板、日志、上传文件 远程文件包含 从外部地址加载文件，风险更高 模板包含 根据参数选择页面片段或主题文件 文件包含常见于 PHP、模板引擎、插件系统、多语言页面、主题切换和老旧 CMS 中。\n">
 <meta property='og:url' content='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/09-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/'>
 <meta property='og:site_name' content='ChenOvo'>
-<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-16T18:58:11&#43;08:00'/><meta property='article:modified_time' content='2026-06-16T18:58:11&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-21T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-06-21T00:00:00&#43;08:00'/>
 <meta name="twitter:title" content="文件包含">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="文件包含 文件包含是应用把某个文件加载进程序执行或渲染。若文件名可控，就可能从“读取文件”升级到“执行不该执行的内容”。\n基本类型 类型 说明 本地文件包含 包含服务器本地文件，如模板、日志、上传文件 远程文件包含 从外部地址加载文件，风险更高 模板包含 根据参数选择页面片段或主题文件 文件包含常见于 PHP、模板引擎、插件系统、多语言页面、主题切换和老旧 CMS 中。\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
 
@@ -267,7 +267,94 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc collapsible-toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#基本类型">基本类型</a></li>
+    <li><a href="#风险判断">风险判断</a></li>
+    <li><a href="#防护要点">防护要点</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+    <style>
+     
+    .collapsible-toc nav > ol > li {
+        position: relative;
+        margin: 6px 0;
+        list-style: none;
+    }
+
+    .collapsible-toc nav > ol > li > a {
+        display: inline-flex;
+        align-items: center;
+    }
+
+     
+    .collapsible-toc nav > ol > li > a::after {
+        content: '▶';
+        margin-left: 6px;
+        font-size: 10px;
+        opacity: 0.5;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .collapsible-toc nav > ol > li:hover > a::after {
+        transform: rotate(90deg);
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin-left: 16px;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+     
+    .collapsible-toc nav > ol > li:hover > ol {
+        max-height: 2000px;
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol > li {
+        list-style: none;
+        margin: 4px 0;
+    }
+
+     
+    .collapsible-toc nav > ol > li:not(:has(> ol)) > a::after {
+        display: none;
+    }
+    </style>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -301,7 +388,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published" datetime='2026-06-16T18:58:11&#43;08:00'>Jun 16, 2026</time>
+                <time class="article-time--published" datetime='2026-06-21T00:00:00&#43;08:00'>Jun 21, 2026</time>
             </div>
         
 
@@ -316,11 +403,25 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 0 分钟
+                    阅读时长: 1 分钟
                 </time>
             </div>
         
 
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                <span class="article-time--wordcount">365 字</span>
+            </div>
         
     </footer>
     
@@ -333,7 +434,39 @@
     <section class="article-content">
     
     
-    
+    <h1 id="文件包含">文件包含
+</h1><blockquote>
+<p>文件包含是应用把某个文件加载进程序执行或渲染。若文件名可控，就可能从“读取文件”升级到“执行不该执行的内容”。</p>
+</blockquote>
+<h2 id="基本类型">基本类型
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>本地文件包含</td>
+					<td>包含服务器本地文件，如模板、日志、上传文件</td>
+			</tr>
+			<tr>
+					<td>远程文件包含</td>
+					<td>从外部地址加载文件，风险更高</td>
+			</tr>
+			<tr>
+					<td>模板包含</td>
+					<td>根据参数选择页面片段或主题文件</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>文件包含常见于 PHP、模板引擎、插件系统、多语言页面、主题切换和老旧 CMS 中。</p>
+<h2 id="风险判断">风险判断
+</h2><p>如果参数决定页面加载哪个文件，或者错误信息暴露了 include、require、template、view 等字样，就要关注包含路径是否可控。上传功能和日志文件也值得结合观察，因为“可写文件”一旦被包含，风险会明显升高。</p>
+<h2 id="防护要点">防护要点
+</h2><p>用固定枚举值选择模板，不接受任意路径。关闭远程包含能力，限制可包含目录，避免把上传目录、日志目录和模板执行目录混在一起。报错信息不向外暴露真实路径和调用栈。</p>
+
 </section>
 
 

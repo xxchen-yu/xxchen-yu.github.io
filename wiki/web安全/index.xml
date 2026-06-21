@@ -7,7 +7,455 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>ChenOvo</copyright>
-        <lastBuildDate>Tue, 16 Jun 2026 18:41:55 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 21 Jun 2026 00:00:00 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>CSRF</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/07-csrf/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/07-csrf/</guid>
+        <description>&lt;h1 id=&#34;csrf&#34;&gt;CSRF
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;CSRF 的关键不是偷到账号，而是借用用户已经登录的浏览器，让它向目标站点发出用户并不知情的请求。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;成立条件&#34;&gt;成立条件
+&lt;/h2&gt;&lt;p&gt;CSRF 通常需要同时满足三件事：用户已经登录目标站点，浏览器会自动携带身份凭据，请求会造成状态变化。比如修改资料、绑定邮箱、发起转账、提交订单、删除内容。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>HTTP请求</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</guid>
+        <description>&lt;h1 id=&#34;http请求&#34;&gt;HTTP请求
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;HTTP 是浏览器、App、接口客户端和服务器之间说话的格式。做 Web 安全时，先能看懂一条请求，后面看认证、越权、注入、文件上传才不会散。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;一条请求里有什么&#34;&gt;一条请求里有什么
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;部分&lt;/th&gt;
+					&lt;th&gt;作用&lt;/th&gt;
+					&lt;th&gt;安全上看什么&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;请求行&lt;/td&gt;
+					&lt;td&gt;方法、路径、协议版本&lt;/td&gt;
+					&lt;td&gt;是否有隐藏路径、危险方法、敏感参数&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Header&lt;/td&gt;
+					&lt;td&gt;客户端、来源、身份、格式等上下文&lt;/td&gt;
+					&lt;td&gt;Cookie、Authorization、Referer、Origin、X-Forwarded-*&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Body&lt;/td&gt;
+					&lt;td&gt;POST/PUT 等请求提交的数据&lt;/td&gt;
+					&lt;td&gt;JSON、表单、文件、XML 是否被可信处理&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;响应码&lt;/td&gt;
+					&lt;td&gt;服务器处理结果&lt;/td&gt;
+					&lt;td&gt;200、302、401、403、404、500 的差异&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;响应体&lt;/td&gt;
+					&lt;td&gt;页面或接口返回内容&lt;/td&gt;
+					&lt;td&gt;错误信息、调试信息、数据越权、反射内容&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;常见方法里，&lt;code&gt;GET&lt;/code&gt; 多用于读取，&lt;code&gt;POST&lt;/code&gt; 多用于提交，&lt;code&gt;PUT/PATCH&lt;/code&gt; 常用于修改，&lt;code&gt;DELETE&lt;/code&gt; 常用于删除。方法本身不等于权限，真正的权限判断必须在服务端完成。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>SQL注入</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</guid>
+        <description>&lt;h1 id=&#34;sql注入&#34;&gt;SQL注入
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;SQL 注入的核心是把用户输入拼进数据库语句，使数据被当成 SQL 代码解释。它是“数据和指令混在一起”的典型问题。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;会出现在哪里&#34;&gt;会出现在哪里
+&lt;/h2&gt;&lt;p&gt;登录、搜索、筛选、排序、分页、详情查询、后台报表、导出接口都可能接触数据库。除了表单字段，URL 参数、JSON 字段、Header、Cookie 中的值也可能被带入查询。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>SSRF</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</guid>
+        <description>&lt;h1 id=&#34;ssrf&#34;&gt;SSRF
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;SSRF 是服务器端请求伪造：攻击者让目标服务器代替自己去访问某个地址。危险点在于，请求从服务器内部发出，可能碰到外部用户碰不到的资源。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;常见入口&#34;&gt;常见入口
+&lt;/h2&gt;&lt;p&gt;图片抓取、URL 预览、Webhook、远程导入、在线翻译、文件下载、PDF 生成、代理转发、开放接口测试等功能，都可能接收一个 URL 并由服务端发起请求。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>WAF</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/14-waf/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/14-waf/</guid>
+        <description>&lt;h1 id=&#34;waf&#34;&gt;WAF
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;WAF 是 Web 应用防火墙，用来在请求到达应用前识别和拦截可疑流量。它是防线，不是漏洞修复本身。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;能做什么&#34;&gt;能做什么
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;能力&lt;/th&gt;
+					&lt;th&gt;说明&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;规则拦截&lt;/td&gt;
+					&lt;td&gt;识别常见注入、扫描、恶意文件等特征&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;频率控制&lt;/td&gt;
+					&lt;td&gt;限制爆破、爬虫、批量请求&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;虚拟补丁&lt;/td&gt;
+					&lt;td&gt;在代码修复前临时降低暴露风险&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;日志审计&lt;/td&gt;
+					&lt;td&gt;帮助定位攻击来源、路径和参数&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;WAF 适合挡住已知模式和明显异常，但业务逻辑、越权、认证流程缺陷仍然需要应用自身修复。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>XSS漏洞分析</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/11-xss%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/11-xss%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
+        <description>&lt;h1 id=&#34;xss漏洞分析&#34;&gt;XSS漏洞分析
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;XSS 的本质是：用户输入被当成页面代码执行了。它发生在浏览器里，但根源常常是服务端或前端没有区分“数据”和“代码”。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;类型与场景&#34;&gt;类型与场景
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;类型&lt;/th&gt;
+					&lt;th&gt;特点&lt;/th&gt;
+					&lt;th&gt;常见位置&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;反射型 XSS&lt;/td&gt;
+					&lt;td&gt;输入随请求返回，通常不持久&lt;/td&gt;
+					&lt;td&gt;搜索、错误页、URL 参数&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;存储型 XSS&lt;/td&gt;
+					&lt;td&gt;输入被保存，其他用户访问时触发&lt;/td&gt;
+					&lt;td&gt;评论、昵称、公告、工单&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;DOM 型 XSS&lt;/td&gt;
+					&lt;td&gt;前端脚本处理输入时触发&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;location&lt;/code&gt;、Hash、前端路由&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;只要用户可控内容进入 HTML、属性、JavaScript、CSS、URL 等上下文，都要考虑对应的输出编码是否正确。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>XXE</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/16-xxe/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/16-xxe/</guid>
+        <description>&lt;h1 id=&#34;xxe&#34;&gt;XXE
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;XXE 是 XML 外部实体注入。问题出在 XML 解析器允许文档引用外部实体，导致服务器读取本地文件、访问内网地址或造成资源消耗。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;出现场景&#34;&gt;出现场景
+&lt;/h2&gt;&lt;p&gt;虽然现代接口更多使用 JSON，但 XML 仍常见于老系统、支付回调、SOAP、SAML、Office 文档、SVG、RSS、配置导入和某些企业集成接口。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>反序列化</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/17-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/17-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
+        <description>&lt;h1 id=&#34;反序列化&#34;&gt;反序列化
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;序列化是把对象变成可存储、可传输的数据；反序列化是把数据还原成对象。漏洞发生在应用把不可信数据还原成有行为的对象。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;为什么危险&#34;&gt;为什么危险
+&lt;/h2&gt;&lt;p&gt;很多语言的对象在反序列化时会触发构造、析构、属性访问、魔术方法或回调。如果攻击者能控制序列化数据，就可能让程序走到意想不到的代码路径。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>逻辑漏洞</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/04-%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/04-%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</guid>
+        <description>&lt;h1 id=&#34;逻辑漏洞&#34;&gt;逻辑漏洞
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;逻辑漏洞不是让程序崩掉，而是让程序“认真地做错事”。它利用的是业务规则、流程顺序和信任边界的缺口。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;常见场景&#34;&gt;常见场景
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;场景&lt;/th&gt;
+					&lt;th&gt;典型问题&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;价格与订单&lt;/td&gt;
+					&lt;td&gt;客户端可改金额、数量、优惠券、运费&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;注册与邀请&lt;/td&gt;
+					&lt;td&gt;邀请码重复使用、手机号/邮箱未真正验证&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;找回密码&lt;/td&gt;
+					&lt;td&gt;验证码可爆破、Token 不失效、可改目标账号&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;支付与退款&lt;/td&gt;
+					&lt;td&gt;回调可信任不当、状态可重复提交&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;积分与库存&lt;/td&gt;
+					&lt;td&gt;并发请求导致重复领取、超卖、负库存&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;审批与流程&lt;/td&gt;
+					&lt;td&gt;跳过前置步骤、低权限触发高权限动作&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;分析方法&#34;&gt;分析方法
+&lt;/h2&gt;&lt;p&gt;先画出正常业务流程，再观察每一步依赖哪些数据、由谁提交、服务端是否重新计算。重点看“客户端传来的关键值”以及“状态流转是否只能按顺序发生”。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>命令执行</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/13-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/13-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</guid>
+        <description>&lt;h1 id=&#34;命令执行&#34;&gt;命令执行
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;命令执行是应用把用户输入交给操作系统命令解释器处理，导致攻击者影响服务器执行的系统命令。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;常见入口&#34;&gt;常见入口
+&lt;/h2&gt;&lt;p&gt;图片处理、压缩解压、PDF 转换、网络诊断、备份恢复、Git 操作、系统管理面板、插件执行器等功能，都可能在后端调用系统命令。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>认证与会话</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/05-%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%BC%9A%E8%AF%9D/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/05-%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%BC%9A%E8%AF%9D/</guid>
+        <description>&lt;h1 id=&#34;认证与会话&#34;&gt;认证与会话
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;认证回答“你是谁”，会话回答“服务器如何持续记住你”。这两件事一旦薄弱，后面的权限控制都会变得不可靠。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;关键概念&#34;&gt;关键概念
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;概念&lt;/th&gt;
+					&lt;th&gt;说明&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;账号身份&lt;/td&gt;
+					&lt;td&gt;用户名、手机号、邮箱、第三方登录身份&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;凭据&lt;/td&gt;
+					&lt;td&gt;密码、验证码、MFA、OAuth 授权结果&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;会话&lt;/td&gt;
+					&lt;td&gt;Cookie、Session ID、JWT、访问令牌&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;生命周期&lt;/td&gt;
+					&lt;td&gt;创建、刷新、失效、退出、设备管理&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;好的认证系统不只检查密码是否正确，还要考虑注册、登录、找回密码、修改密码、绑定手机、注销账号、多设备登录等完整链路。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>任意文件读取</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/08-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/08-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/</guid>
+        <description>&lt;h1 id=&#34;任意文件读取&#34;&gt;任意文件读取
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;任意文件读取是指应用把用户输入当成文件路径使用，却没有限制读取范围，导致服务器上的敏感文件被读取。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;风险来源&#34;&gt;风险来源
+&lt;/h2&gt;&lt;p&gt;常见入口包括文件下载、图片预览、日志查看、模板读取、报表导出、附件访问和主题资源加载。问题往往出在服务端拼接路径时，允许用户控制文件名、目录名或完整路径。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>文件包含</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/09-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/09-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</guid>
+        <description>&lt;h1 id=&#34;文件包含&#34;&gt;文件包含
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;文件包含是应用把某个文件加载进程序执行或渲染。若文件名可控，就可能从“读取文件”升级到“执行不该执行的内容”。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;基本类型&#34;&gt;基本类型
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;类型&lt;/th&gt;
+					&lt;th&gt;说明&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;本地文件包含&lt;/td&gt;
+					&lt;td&gt;包含服务器本地文件，如模板、日志、上传文件&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;远程文件包含&lt;/td&gt;
+					&lt;td&gt;从外部地址加载文件，风险更高&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;模板包含&lt;/td&gt;
+					&lt;td&gt;根据参数选择页面片段或主题文件&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;文件包含常见于 PHP、模板引擎、插件系统、多语言页面、主题切换和老旧 CMS 中。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>文件上传</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/10-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/10-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</guid>
+        <description>&lt;h1 id=&#34;文件上传&#34;&gt;文件上传
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;文件上传的危险点在于：用户把内容交给服务器保存，而服务器可能又把它当成网页、脚本、图片、压缩包或业务数据处理。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;上传流程看什么&#34;&gt;上传流程看什么
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;环节&lt;/th&gt;
+					&lt;th&gt;关注点&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;前端限制&lt;/td&gt;
+					&lt;td&gt;是否只是浏览器限制后缀和大小&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;服务端校验&lt;/td&gt;
+					&lt;td&gt;是否检查类型、内容、尺寸、结构&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;存储位置&lt;/td&gt;
+					&lt;td&gt;是否在可执行目录或 Web 根目录&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;文件命名&lt;/td&gt;
+					&lt;td&gt;是否保留原始文件名，是否可覆盖&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;访问方式&lt;/td&gt;
+					&lt;td&gt;是否能直接访问、下载、预览&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;后续处理&lt;/td&gt;
+					&lt;td&gt;是否会解压、解析、转码、入库&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;常见风险&#34;&gt;常见风险
+&lt;/h2&gt;&lt;p&gt;上传脚本文件可能导致代码执行；上传特殊图片、文档或压缩包可能触发解析器漏洞；保留原文件名可能造成 XSS、路径问题或覆盖文件；公开可访问的附件可能泄露隐私数据。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>信息收集</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</guid>
+        <description>&lt;h1 id=&#34;信息收集&#34;&gt;信息收集
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;信息收集是 Web 安全测试的起点。它不是“拿工具扫一遍”，而是把目标的资产、入口、技术栈、业务流程和风险线索整理成一张可复盘的地图。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;先定边界&#34;&gt;先定边界
+&lt;/h2&gt;&lt;p&gt;开始之前先确认授权范围。哪些域名、子域名、IP、接口、账号和时间窗口允许测试，哪些第三方资源、生产数据、支付流程、短信邮件、压力行为不能触碰，都要提前写清楚。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>源码泄露与备份文件</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/03-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/03-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</guid>
+        <description>&lt;h1 id=&#34;源码泄露与备份文件&#34;&gt;源码泄露与备份文件
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;源码和备份文件一旦暴露，攻击者看到的就不只是页面，而是业务逻辑、配置习惯、密钥线索和真实目录结构。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;为什么会泄露&#34;&gt;为什么会泄露
+&lt;/h2&gt;&lt;p&gt;常见原因不是“黑客很厉害”，而是发布流程粗糙：临时压缩包留在 Web 目录、编辑器备份文件被同步、&lt;code&gt;.git&lt;/code&gt; 目录被直接部署、日志和配置文件没有隔离、测试环境复用了生产数据。&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>越权与访问控制</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/06-%E8%B6%8A%E6%9D%83%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</link>
+        <pubDate>Sun, 21 Jun 2026 00:00:00 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/06-%E8%B6%8A%E6%9D%83%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</guid>
+        <description>&lt;h1 id=&#34;越权与访问控制&#34;&gt;越权与访问控制
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;越权的核心问题是：用户能不能访问、修改、删除不属于自己的资源，或执行不属于自己角色的动作。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;两类越权&#34;&gt;两类越权
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;类型&lt;/th&gt;
+					&lt;th&gt;含义&lt;/th&gt;
+					&lt;th&gt;例子&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;水平越权&lt;/td&gt;
+					&lt;td&gt;同级用户访问彼此资源&lt;/td&gt;
+					&lt;td&gt;A 用户查看 B 用户订单&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;垂直越权&lt;/td&gt;
+					&lt;td&gt;低权限用户执行高权限动作&lt;/td&gt;
+					&lt;td&gt;普通用户调用管理员接口&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;越权通常出现在对象 ID、订单号、用户 ID、文件 ID、组织 ID、角色参数、接口路径和前端隐藏功能中。&lt;/p&gt;</description>
+        </item>
+        <item>
         <title>Web安全总览</title>
         <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/00-web%E5%AE%89%E5%85%A8%E6%80%BB%E8%A7%88/</link>
         <pubDate>Tue, 16 Jun 2026 18:41:55 +0800</pubDate>

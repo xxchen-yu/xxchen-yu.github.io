@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="认证与会话 认证回答“你是谁”，会话回答“服务器如何持续记住你”。这两件事一旦薄弱，后面的权限控制都会变得不可靠。\n关键概念 概念 说明 账号身份 用户名、手机号、邮箱、第三方登录身份 凭据 密码、验证码、MFA、OAuth 授权结果 会话 Cookie、Session ID、JWT、访问令牌 生命周期 创建、刷新、失效、退出、设备管理 好的认证系统不只检查密码是否正确，还要考虑注册、登录、找回密码、修改密码、绑定手机、注销账号、多设备登录等完整链路。\n">
 <title>认证与会话</title>
 
 <link rel='canonical' href='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/05-%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%BC%9A%E8%AF%9D/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="认证与会话">
-<meta property='og:description' content="">
+<meta property='og:description' content="认证与会话 认证回答“你是谁”，会话回答“服务器如何持续记住你”。这两件事一旦薄弱，后面的权限控制都会变得不可靠。\n关键概念 概念 说明 账号身份 用户名、手机号、邮箱、第三方登录身份 凭据 密码、验证码、MFA、OAuth 授权结果 会话 Cookie、Session ID、JWT、访问令牌 生命周期 创建、刷新、失效、退出、设备管理 好的认证系统不只检查密码是否正确，还要考虑注册、登录、找回密码、修改密码、绑定手机、注销账号、多设备登录等完整链路。\n">
 <meta property='og:url' content='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/05-%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%BC%9A%E8%AF%9D/'>
 <meta property='og:site_name' content='ChenOvo'>
-<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-16T18:56:20&#43;08:00'/><meta property='article:modified_time' content='2026-06-16T18:56:20&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-21T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-06-21T00:00:00&#43;08:00'/>
 <meta name="twitter:title" content="认证与会话">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="认证与会话 认证回答“你是谁”，会话回答“服务器如何持续记住你”。这两件事一旦薄弱，后面的权限控制都会变得不可靠。\n关键概念 概念 说明 账号身份 用户名、手机号、邮箱、第三方登录身份 凭据 密码、验证码、MFA、OAuth 授权结果 会话 Cookie、Session ID、JWT、访问令牌 生命周期 创建、刷新、失效、退出、设备管理 好的认证系统不只检查密码是否正确，还要考虑注册、登录、找回密码、修改密码、绑定手机、注销账号、多设备登录等完整链路。\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
 
@@ -267,7 +267,94 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc collapsible-toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#关键概念">关键概念</a></li>
+    <li><a href="#常见问题">常见问题</a></li>
+    <li><a href="#防护要点">防护要点</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+    <style>
+     
+    .collapsible-toc nav > ol > li {
+        position: relative;
+        margin: 6px 0;
+        list-style: none;
+    }
+
+    .collapsible-toc nav > ol > li > a {
+        display: inline-flex;
+        align-items: center;
+    }
+
+     
+    .collapsible-toc nav > ol > li > a::after {
+        content: '▶';
+        margin-left: 6px;
+        font-size: 10px;
+        opacity: 0.5;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .collapsible-toc nav > ol > li:hover > a::after {
+        transform: rotate(90deg);
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin-left: 16px;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+     
+    .collapsible-toc nav > ol > li:hover > ol {
+        max-height: 2000px;
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol > li {
+        list-style: none;
+        margin: 4px 0;
+    }
+
+     
+    .collapsible-toc nav > ol > li:not(:has(> ol)) > a::after {
+        display: none;
+    }
+    </style>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -301,7 +388,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published" datetime='2026-06-16T18:56:20&#43;08:00'>Jun 16, 2026</time>
+                <time class="article-time--published" datetime='2026-06-21T00:00:00&#43;08:00'>Jun 21, 2026</time>
             </div>
         
 
@@ -316,11 +403,25 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 0 分钟
+                    阅读时长: 1 分钟
                 </time>
             </div>
         
 
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                <span class="article-time--wordcount">446 字</span>
+            </div>
         
     </footer>
     
@@ -333,7 +434,50 @@
     <section class="article-content">
     
     
-    
+    <h1 id="认证与会话">认证与会话
+</h1><blockquote>
+<p>认证回答“你是谁”，会话回答“服务器如何持续记住你”。这两件事一旦薄弱，后面的权限控制都会变得不可靠。</p>
+</blockquote>
+<h2 id="关键概念">关键概念
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>概念</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>账号身份</td>
+					<td>用户名、手机号、邮箱、第三方登录身份</td>
+			</tr>
+			<tr>
+					<td>凭据</td>
+					<td>密码、验证码、MFA、OAuth 授权结果</td>
+			</tr>
+			<tr>
+					<td>会话</td>
+					<td>Cookie、Session ID、JWT、访问令牌</td>
+			</tr>
+			<tr>
+					<td>生命周期</td>
+					<td>创建、刷新、失效、退出、设备管理</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>好的认证系统不只检查密码是否正确，还要考虑注册、登录、找回密码、修改密码、绑定手机、注销账号、多设备登录等完整链路。</p>
+<h2 id="常见问题">常见问题
+</h2><ul>
+<li>验证码无频率限制、可重复使用、绑定对象不严格。</li>
+<li>找回密码 Token 不失效，或者能替换用户标识。</li>
+<li>登录失败提示过细，帮助枚举账号是否存在。</li>
+<li>Session 退出后仍可使用，密码修改后旧设备仍在线。</li>
+<li>JWT 密钥弱、过期时间过长，或服务端不校验签名和算法。</li>
+<li>Cookie 缺少 <code>HttpOnly</code>、<code>Secure</code>、<code>SameSite</code> 等安全属性。</li>
+</ul>
+<h2 id="防护要点">防护要点
+</h2><p>认证流程要把“凭据正确、对象正确、时效正确、次数合理”同时满足。会话令牌应随机、不可预测、可失效，敏感操作要二次确认，并保留登录历史、异常地理位置、设备变更等审计线索。</p>
+
 </section>
 
 

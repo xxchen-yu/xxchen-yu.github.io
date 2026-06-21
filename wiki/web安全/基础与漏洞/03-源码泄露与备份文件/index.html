@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="源码泄露与备份文件 源码和备份文件一旦暴露，攻击者看到的就不只是页面，而是业务逻辑、配置习惯、密钥线索和真实目录结构。\n为什么会泄露 常见原因不是“黑客很厉害”，而是发布流程粗糙：临时压缩包留在 Web 目录、编辑器备份文件被同步、.git 目录被直接部署、日志和配置文件没有隔离、测试环境复用了生产数据。\n">
 <title>源码泄露与备份文件</title>
 
 <link rel='canonical' href='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/03-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="源码泄露与备份文件">
-<meta property='og:description' content="">
+<meta property='og:description' content="源码泄露与备份文件 源码和备份文件一旦暴露，攻击者看到的就不只是页面，而是业务逻辑、配置习惯、密钥线索和真实目录结构。\n为什么会泄露 常见原因不是“黑客很厉害”，而是发布流程粗糙：临时压缩包留在 Web 目录、编辑器备份文件被同步、.git 目录被直接部署、日志和配置文件没有隔离、测试环境复用了生产数据。\n">
 <meta property='og:url' content='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/03-%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/'>
 <meta property='og:site_name' content='ChenOvo'>
-<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-16T18:56:20&#43;08:00'/><meta property='article:modified_time' content='2026-06-16T18:56:20&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-21T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-06-21T00:00:00&#43;08:00'/>
 <meta name="twitter:title" content="源码泄露与备份文件">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="源码泄露与备份文件 源码和备份文件一旦暴露，攻击者看到的就不只是页面，而是业务逻辑、配置习惯、密钥线索和真实目录结构。\n为什么会泄露 常见原因不是“黑客很厉害”，而是发布流程粗糙：临时压缩包留在 Web 目录、编辑器备份文件被同步、.git 目录被直接部署、日志和配置文件没有隔离、测试环境复用了生产数据。\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
 
@@ -267,7 +267,94 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc collapsible-toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#为什么会泄露">为什么会泄露</a></li>
+    <li><a href="#怎么识别风险">怎么识别风险</a></li>
+    <li><a href="#防护要点">防护要点</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+    <style>
+     
+    .collapsible-toc nav > ol > li {
+        position: relative;
+        margin: 6px 0;
+        list-style: none;
+    }
+
+    .collapsible-toc nav > ol > li > a {
+        display: inline-flex;
+        align-items: center;
+    }
+
+     
+    .collapsible-toc nav > ol > li > a::after {
+        content: '▶';
+        margin-left: 6px;
+        font-size: 10px;
+        opacity: 0.5;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .collapsible-toc nav > ol > li:hover > a::after {
+        transform: rotate(90deg);
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin-left: 16px;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+     
+    .collapsible-toc nav > ol > li:hover > ol {
+        max-height: 2000px;
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol > li {
+        list-style: none;
+        margin: 4px 0;
+    }
+
+     
+    .collapsible-toc nav > ol > li:not(:has(> ol)) > a::after {
+        display: none;
+    }
+    </style>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -301,7 +388,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published" datetime='2026-06-16T18:56:20&#43;08:00'>Jun 16, 2026</time>
+                <time class="article-time--published" datetime='2026-06-21T00:00:00&#43;08:00'>Jun 21, 2026</time>
             </div>
         
 
@@ -316,11 +403,25 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 0 分钟
+                    阅读时长: 1 分钟
                 </time>
             </div>
         
 
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                <span class="article-time--wordcount">466 字</span>
+            </div>
         
     </footer>
     
@@ -333,7 +434,52 @@
     <section class="article-content">
     
     
-    
+    <h1 id="源码泄露与备份文件">源码泄露与备份文件
+</h1><blockquote>
+<p>源码和备份文件一旦暴露，攻击者看到的就不只是页面，而是业务逻辑、配置习惯、密钥线索和真实目录结构。</p>
+</blockquote>
+<h2 id="为什么会泄露">为什么会泄露
+</h2><p>常见原因不是“黑客很厉害”，而是发布流程粗糙：临时压缩包留在 Web 目录、编辑器备份文件被同步、<code>.git</code> 目录被直接部署、日志和配置文件没有隔离、测试环境复用了生产数据。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>泄露对象</th>
+					<th>可能包含</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>源码文件</td>
+					<td>路由、接口、权限判断、数据库查询</td>
+			</tr>
+			<tr>
+					<td>配置文件</td>
+					<td>数据库地址、账号、密钥、第三方服务凭据</td>
+			</tr>
+			<tr>
+					<td>备份压缩包</td>
+					<td>历史代码、旧漏洞、测试数据</td>
+			</tr>
+			<tr>
+					<td>版本控制目录</td>
+					<td>提交历史、删除过的敏感信息</td>
+			</tr>
+			<tr>
+					<td>日志文件</td>
+					<td>用户数据、Token、错误栈</td>
+			</tr>
+	</tbody>
+</table></div>
+<h2 id="怎么识别风险">怎么识别风险
+</h2><ul>
+<li>页面或目录中出现 <code>.zip</code>、<code>.tar.gz</code>、<code>.bak</code>、<code>.old</code>、<code>.swp</code> 等文件。</li>
+<li>访问异常路径时返回了目录列表、源码文本或下载响应。</li>
+<li>JS、HTML 注释、报错信息里出现真实路径、仓库名、版本号。</li>
+<li>公开仓库或搜索引擎中能搜到域名、接口地址、密钥片段。</li>
+</ul>
+<h2 id="防护要点">防护要点
+</h2><p>发布目录只放运行所需文件，源码仓库、备份包、日志和配置放到 Web 根目录之外。上线流程中加入敏感文件检查，服务器关闭目录列表，访问控制默认拒绝，并对密钥进行轮换和最小权限管理。</p>
+
 </section>
 
 

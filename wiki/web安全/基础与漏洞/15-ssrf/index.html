@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="SSRF（服务器端请求伪造） 摘要 本文详细讲解了服务器端请求伪造（SSRF）漏洞的原理，即攻击者诱导服务器向任意内网或本地地址发起请求。 涵盖了SSRF的主要应用场景，包括内网服务探测与攻击、读取本地文件、配合Redis/云元数据服务实现RCE、突破网络访问控制等。 按照回显类型（有回显/盲SSRF）、利用协议（HTTP/File/Dict/Gopher等）和触发点（参数型/头字段注入型）对SSRF漏洞进行了分类。 SSRF（Server-Side Request Forgery）漏洞利用原理 SSRF 是一种网络安全漏洞，攻击者能够诱导服务器端应用程序向攻击者指定的任意域名或IP地址发送HTTP请求。该请求由服务器发起，因此可以访问服务器所在内网或本地系统中的资源。\n">
-<title>SSRF（服务器端请求伪造）</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="SSRF SSRF 是服务器端请求伪造：攻击者让目标服务器代替自己去访问某个地址。危险点在于，请求从服务器内部发出，可能碰到外部用户碰不到的资源。\n常见入口 图片抓取、URL 预览、Webhook、远程导入、在线翻译、文件下载、PDF 生成、代理转发、开放接口测试等功能，都可能接收一个 URL 并由服务端发起请求。\n">
+<title>SSRF</title>
 
 <link rel='canonical' href='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/'>
 
-<link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="SSRF（服务器端请求伪造）">
-<meta property='og:description' content="SSRF（服务器端请求伪造） 摘要 本文详细讲解了服务器端请求伪造（SSRF）漏洞的原理，即攻击者诱导服务器向任意内网或本地地址发起请求。 涵盖了SSRF的主要应用场景，包括内网服务探测与攻击、读取本地文件、配合Redis/云元数据服务实现RCE、突破网络访问控制等。 按照回显类型（有回显/盲SSRF）、利用协议（HTTP/File/Dict/Gopher等）和触发点（参数型/头字段注入型）对SSRF漏洞进行了分类。 SSRF（Server-Side Request Forgery）漏洞利用原理 SSRF 是一种网络安全漏洞，攻击者能够诱导服务器端应用程序向攻击者指定的任意域名或IP地址发送HTTP请求。该请求由服务器发起，因此可以访问服务器所在内网或本地系统中的资源。\n">
+<link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="SSRF">
+<meta property='og:description' content="SSRF SSRF 是服务器端请求伪造：攻击者让目标服务器代替自己去访问某个地址。危险点在于，请求从服务器内部发出，可能碰到外部用户碰不到的资源。\n常见入口 图片抓取、URL 预览、Webhook、远程导入、在线翻译、文件下载、PDF 生成、代理转发、开放接口测试等功能，都可能接收一个 URL 并由服务端发起请求。\n">
 <meta property='og:url' content='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/'>
 <meta property='og:site_name' content='ChenOvo'>
-<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-21T14:22:31&#43;08:00'/><meta property='article:modified_time' content='2026-06-21T14:22:31&#43;08:00'/>
-<meta name="twitter:title" content="SSRF（服务器端请求伪造）">
-<meta name="twitter:description" content="SSRF（服务器端请求伪造） 摘要 本文详细讲解了服务器端请求伪造（SSRF）漏洞的原理，即攻击者诱导服务器向任意内网或本地地址发起请求。 涵盖了SSRF的主要应用场景，包括内网服务探测与攻击、读取本地文件、配合Redis/云元数据服务实现RCE、突破网络访问控制等。 按照回显类型（有回显/盲SSRF）、利用协议（HTTP/File/Dict/Gopher等）和触发点（参数型/头字段注入型）对SSRF漏洞进行了分类。 SSRF（Server-Side Request Forgery）漏洞利用原理 SSRF 是一种网络安全漏洞，攻击者能够诱导服务器端应用程序向攻击者指定的任意域名或IP地址发送HTTP请求。该请求由服务器发起，因此可以访问服务器所在内网或本地系统中的资源。\n">
+<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-21T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-06-21T00:00:00&#43;08:00'/>
+<meta name="twitter:title" content="SSRF">
+<meta name="twitter:description" content="SSRF SSRF 是服务器端请求伪造：攻击者让目标服务器代替自己去访问某个地址。危险点在于，请求从服务器内部发出，可能碰到外部用户碰不到的资源。\n常见入口 图片抓取、URL 预览、Webhook、远程导入、在线翻译、文件下载、PDF 生成、代理转发、开放接口测试等功能，都可能接收一个 URL 并由服务端发起请求。\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
 
@@ -289,10 +289,9 @@
         <div class="widget--toc collapsible-toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#摘要">摘要</a></li>
-    <li><a href="#ssrfserver-side-request-forgery漏洞利用原理">SSRF（Server-Side Request Forgery）漏洞利用原理</a></li>
-    <li><a href="#主要应用场景危害">主要应用场景（危害）</a></li>
-    <li><a href="#主要种类">主要种类</a></li>
+    <li><a href="#常见入口">常见入口</a></li>
+    <li><a href="#判断思路">判断思路</a></li>
+    <li><a href="#防护要点">防护要点</a></li>
   </ol>
 </nav>
         </div>
@@ -366,7 +365,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/">SSRF（服务器端请求伪造）</a>
+            <a href="/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/">SSRF</a>
         </h2>
 
         
@@ -389,7 +388,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published" datetime='2026-06-21T14:22:31&#43;08:00'>Jun 21, 2026</time>
+                <time class="article-time--published" datetime='2026-06-21T00:00:00&#43;08:00'>Jun 21, 2026</time>
             </div>
         
 
@@ -404,7 +403,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 4 分钟
+                    阅读时长: 1 分钟
                 </time>
             </div>
         
@@ -421,7 +420,7 @@
 
 
 
-                <span class="article-time--wordcount">1644 字</span>
+                <span class="article-time--wordcount">404 字</span>
             </div>
         
     </footer>
@@ -435,81 +434,42 @@
     <section class="article-content">
     
     
-    <h1 id="ssrf服务器端请求伪造">SSRF（服务器端请求伪造）
-</h1><h2 id="摘要">摘要
-</h2><ul>
-<li>本文详细讲解了服务器端请求伪造（SSRF）漏洞的原理，即攻击者诱导服务器向任意内网或本地地址发起请求。</li>
-<li>涵盖了SSRF的主要应用场景，包括内网服务探测与攻击、读取本地文件、配合Redis/云元数据服务实现RCE、突破网络访问控制等。</li>
-<li>按照回显类型（有回显/盲SSRF）、利用协议（HTTP/File/Dict/Gopher等）和触发点（参数型/头字段注入型）对SSRF漏洞进行了分类。</li>
-</ul>
-<h2 id="ssrfserver-side-request-forgery漏洞利用原理">SSRF（Server-Side Request Forgery）漏洞利用原理
-</h2><p>SSRF 是一种网络安全漏洞，攻击者能够<strong>诱导服务器端应用程序向攻击者指定的任意域名或IP地址发送HTTP请求</strong>。该请求由服务器发起，因此可以访问服务器所在内网或本地系统中的资源。</p>
-<p><strong>核心原理</strong>：应用程序存在一个接收URL、IP或域名等参数的功能，且<strong>未对目标地址进行充分的校验和限制</strong>。攻击者通过篡改该参数，使服务器成为代理，替攻击者发起请求，从而绕过网络隔离（如防火墙），探测或攻击内部系统。</p>
-<p><strong>关键点</strong>：</p>
-<ul>
-<li><strong>请求由服务器发起</strong>：目标服务器看到的请求来源是受信任的内部服务器，而非攻击者。</li>
-<li><strong>可访问内网</strong>：能够探测或攻击服务器本地服务（如<code>127.0.0.1</code>、<code>localhost</code>）或内网其他主机。</li>
-<li><strong>可读取本地文件</strong>：通过使用<code>file://</code>等协议，可能读取服务器上的敏感文件。</li>
-</ul>
-<h2 id="主要应用场景危害">主要应用场景（危害）
-</h2><ol>
-<li>
-<p><strong>内网服务探测与攻击</strong>：</p>
-<ul>
-<li>扫描内网存活主机和端口（如Redis、Elasticsearch、数据库）。</li>
-<li>利用内网服务的漏洞（如未授权的Redis、未授权的Elasticsearch RCE）。</li>
-<li>攻击运行在内网或本地、且对来源地址信任的服务（如元数据服务）。</li>
-</ul>
-</li>
-<li>
-<p><strong>读取服务器本地文件</strong>：</p>
-<ul>
-<li>利用<code>file://</code>协议读取<code>/etc/passwd</code>、<code>/proc/self/environ</code>等敏感文件。</li>
-</ul>
-</li>
-<li>
-<p><strong>结合其他漏洞利用</strong>：</p>
-<ul>
-<li><strong>配合Redis实现RCE</strong>：通过向Redis写入计划任务或WebShell，实现远程代码执行。</li>
-<li><strong>配合云平台元数据服务</strong>：在AWS、GCP、Azure等云环境中，访问<code>http://169.254.169.254/</code>获取临时凭证、用户数据，导致云环境被接管。</li>
-</ul>
-</li>
-<li>
-<p><strong>突破网络访问控制</strong>：</p>
-<ul>
-<li>访问因策略限制而无法直接从外部访问的内部Web应用或API。</li>
-</ul>
-</li>
-<li>
-<p><strong>发起拒绝服务攻击</strong>：</p>
-<ul>
-<li>向内部或外部的网络服务发送大量请求。</li>
-</ul>
-</li>
-</ol>
-<h2 id="主要种类">主要种类
-</h2><p>SSRF漏洞根据<strong>返回数据是否回显给攻击者</strong>和<strong>利用协议的不同</strong>进行分类：</p>
-<p><strong>1. 按回显分类：</strong></p>
-<ul>
-<li><strong>有回显的SSRF</strong>：服务器会将请求的响应内容（如文件内容、HTTP页面）返回给攻击者。这是最易于利用的一种。</li>
-<li><strong>无回显的SSRF</strong>：也称为“盲SSRF”。服务器不会直接返回请求的响应。攻击者只能通过<strong>时间延迟、DNS查询日志或引发错误页面的变化</strong>来推断内网信息或确认漏洞存在。</li>
-</ul>
-<p><strong>2. 按利用协议分类：</strong>
-攻击者可以通过构造不同的协议头来触发不同类型的服务请求：</p>
-<ul>
-<li><strong>HTTP/HTTPS协议</strong>：<code>http://</code> 或 <code>https://</code>，最常见。</li>
-<li><strong>File协议</strong>：<code>file:///etc/passwd</code>，用于读取本地文件。</li>
-<li><strong>Dict协议</strong>：<code>dict://ip:port/command</code>，可用于向端口发送命令，如攻击Redis。</li>
-<li><strong>Gopher协议</strong>：<code>gopher://ip:port/_数据流</code>。这是最强大和灵活的协议，可以构造任意TCP数据包，用于攻击各种内网服务（如Redis、FastCGI、内网Web应用）。</li>
-<li><strong>其他协议</strong>：如<code>ftp://</code>、<code>tftp://</code>等，但不如上述协议常用。</li>
-</ul>
-<p><strong>3. 按触发点分类：</strong></p>
-<ul>
-<li><strong>常规参数型</strong>：漏洞点在明显的URL参数中（如<code>url=http://example.com</code>）。</li>
-<li><strong>头字段注入型</strong>：漏洞点在HTTP请求头中（如<code>X-Forwarded-For</code>、<code>Referer</code>等），可能被用于探测内网。</li>
-<li><strong>远程文件包含型</strong>：当应用存在RFI漏洞时，通常也伴随着SSRF。</li>
-</ul>
-<p><strong>总结</strong>：SSRF漏洞的核心是<strong>服务器成为了一个被利用的“跳板”</strong>。其危害严重性在于它能突破网络边界，直接威胁到看似安全的内网资产。在安全评估中，对所有接受外部输入并作为URL进行处理的功能点，都应进行严格的SSF测试。</p>
+    <h1 id="ssrf">SSRF
+</h1><blockquote>
+<p>SSRF 是服务器端请求伪造：攻击者让目标服务器代替自己去访问某个地址。危险点在于，请求从服务器内部发出，可能碰到外部用户碰不到的资源。</p>
+</blockquote>
+<h2 id="常见入口">常见入口
+</h2><p>图片抓取、URL 预览、Webhook、远程导入、在线翻译、文件下载、PDF 生成、代理转发、开放接口测试等功能，都可能接收一个 URL 并由服务端发起请求。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>可被触达的目标</th>
+					<th>风险</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>本机服务</td>
+					<td>访问只监听本地的管理接口</td>
+			</tr>
+			<tr>
+					<td>内网服务</td>
+					<td>探测内部系统、缓存、数据库、面板</td>
+			</tr>
+			<tr>
+					<td>云元数据服务</td>
+					<td>读取临时凭据和实例信息</td>
+			</tr>
+			<tr>
+					<td>外部地址</td>
+					<td>被滥用为代理、扫描或回调通道</td>
+			</tr>
+	</tbody>
+</table></div>
+<h2 id="判断思路">判断思路
+</h2><p>看到服务端“帮用户访问 URL”的功能，就要看它是否限制协议、域名、IP、端口、跳转和 DNS 解析结果。无回显场景下，响应时间、错误信息和外部回调日志也能帮助确认请求是否被发出。</p>
+<h2 id="防护要点">防护要点
+</h2><p>使用明确的目标白名单，禁止访问内网、环回地址、链路本地地址和云元数据地址。限制协议和端口，处理重定向前后都重新校验，解析域名后校验最终 IP，并为请求设置超时、大小限制和审计日志。</p>
 
 </section>
 

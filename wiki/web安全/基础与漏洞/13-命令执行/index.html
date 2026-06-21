@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="命令执行 命令执行是应用把用户输入交给操作系统命令解释器处理，导致攻击者影响服务器执行的系统命令。\n常见入口 图片处理、压缩解压、PDF 转换、网络诊断、备份恢复、Git 操作、系统管理面板、插件执行器等功能，都可能在后端调用系统命令。\n">
 <title>命令执行</title>
 
 <link rel='canonical' href='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/13-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/'>
 
 <link rel="stylesheet" href="/scss/style.min.792c36f70fdd2d82eb85abdd638d265195c5df1693f8163637a98cf447af6d36.css"><meta property='og:title' content="命令执行">
-<meta property='og:description' content="">
+<meta property='og:description' content="命令执行 命令执行是应用把用户输入交给操作系统命令解释器处理，导致攻击者影响服务器执行的系统命令。\n常见入口 图片处理、压缩解压、PDF 转换、网络诊断、备份恢复、Git 操作、系统管理面板、插件执行器等功能，都可能在后端调用系统命令。\n">
 <meta property='og:url' content='https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/13-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/'>
 <meta property='og:site_name' content='ChenOvo'>
-<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-16T18:58:11&#43;08:00'/><meta property='article:modified_time' content='2026-06-16T18:58:11&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Wiki' /><meta property='article:published_time' content='2026-06-21T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-06-21T00:00:00&#43;08:00'/>
 <meta name="twitter:title" content="命令执行">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="命令执行 命令执行是应用把用户输入交给操作系统命令解释器处理，导致攻击者影响服务器执行的系统命令。\n常见入口 图片处理、压缩解压、PDF 转换、网络诊断、备份恢复、Git 操作、系统管理面板、插件执行器等功能，都可能在后端调用系统命令。\n">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="/css/custom.css">
 
@@ -267,7 +267,94 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc collapsible-toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#常见入口">常见入口</a></li>
+    <li><a href="#风险影响">风险影响</a></li>
+    <li><a href="#防护要点">防护要点</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+    <style>
+     
+    .collapsible-toc nav > ol > li {
+        position: relative;
+        margin: 6px 0;
+        list-style: none;
+    }
+
+    .collapsible-toc nav > ol > li > a {
+        display: inline-flex;
+        align-items: center;
+    }
+
+     
+    .collapsible-toc nav > ol > li > a::after {
+        content: '▶';
+        margin-left: 6px;
+        font-size: 10px;
+        opacity: 0.5;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .collapsible-toc nav > ol > li:hover > a::after {
+        transform: rotate(90deg);
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin-left: 16px;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+     
+    .collapsible-toc nav > ol > li:hover > ol {
+        max-height: 2000px;
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol > li {
+        list-style: none;
+        margin: 4px 0;
+    }
+
+     
+    .collapsible-toc nav > ol > li:not(:has(> ol)) > a::after {
+        display: none;
+    }
+    </style>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -301,7 +388,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published" datetime='2026-06-16T18:58:11&#43;08:00'>Jun 16, 2026</time>
+                <time class="article-time--published" datetime='2026-06-21T00:00:00&#43;08:00'>Jun 21, 2026</time>
             </div>
         
 
@@ -316,11 +403,25 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 0 分钟
+                    阅读时长: 1 分钟
                 </time>
             </div>
         
 
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                <span class="article-time--wordcount">375 字</span>
+            </div>
         
     </footer>
     
@@ -333,7 +434,43 @@
     <section class="article-content">
     
     
-    
+    <h1 id="命令执行">命令执行
+</h1><blockquote>
+<p>命令执行是应用把用户输入交给操作系统命令解释器处理，导致攻击者影响服务器执行的系统命令。</p>
+</blockquote>
+<h2 id="常见入口">常见入口
+</h2><p>图片处理、压缩解压、PDF 转换、网络诊断、备份恢复、Git 操作、系统管理面板、插件执行器等功能，都可能在后端调用系统命令。</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>危险信号</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>参数进入命令行</td>
+					<td>文件名、地址、选项由用户控制</td>
+			</tr>
+			<tr>
+					<td>使用 Shell 拼接</td>
+					<td>字符串拼接后交给解释器</td>
+			</tr>
+			<tr>
+					<td>回显系统信息</td>
+					<td>返回命令输出、路径、用户、环境变量</td>
+			</tr>
+			<tr>
+					<td>权限过高</td>
+					<td>Web 进程拥有过多系统权限</td>
+			</tr>
+	</tbody>
+</table></div>
+<h2 id="风险影响">风险影响
+</h2><p>命令执行的影响通常很高，可能读取服务器文件、控制业务数据、横向访问内网、植入持久化任务，甚至完全接管服务器。它往往由一个“小功能”引出，比如在线 ping、图片裁剪或文档预览。</p>
+<h2 id="防护要点">防护要点
+</h2><p>优先使用语言内置库完成任务，避免调用 Shell。必须调用外部程序时，使用参数数组而不是字符串拼接，对可选参数做白名单，并用低权限用户、容器隔离、超时限制和审计日志降低影响。</p>
+
 </section>
 
 
