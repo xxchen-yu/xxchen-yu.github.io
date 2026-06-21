@@ -214,10 +214,10 @@ code, pre, kbd {
 @media (min-width: 1024px) {
     .main-container.extended {
         display: grid;
-        grid-template-columns: minmax(170px, 220px) minmax(0, 1fr) minmax(260px, 320px);
+        grid-template-columns: minmax(180px, 220px) minmax(0, 1fr) minmax(260px, 320px);
         align-items: start;
-        column-gap: clamp(36px, 4vw, 88px);
-        max-width: min(1800px, calc(100vw - 48px));
+        column-gap: clamp(44px, 4.8vw, 104px);
+        max-width: min(1880px, calc(100vw - 56px));
         width: 100%;
     }
 
@@ -226,6 +226,27 @@ code, pre, kbd {
         max-width: none;
         justify-self: start;
         transform: none;
+        padding-top: 10px;
+        gap: 14px;
+    }
+
+    .main-container.extended .left-sidebar header {
+        gap: 14px;
+    }
+
+    .main-container.extended .menu-social {
+        margin-top: 2px;
+        margin-bottom: 4px;
+    }
+
+    .main-container.extended #main-menu {
+        padding-top: 0;
+        margin-top: -8px;
+    }
+
+    .main-container.extended #main-menu,
+    .main-container.extended #main-menu .menu-bottom-section ol {
+        gap: 18px;
     }
 
     .main-container.extended .right-sidebar {
@@ -237,18 +258,22 @@ code, pre, kbd {
 
     .main-container.extended main.main {
         width: 100%;
-        max-width: 980px;
-        justify-self: center;
+        max-width: 1000px;
+        justify-self: start;
+        margin-top: 24px;
+        margin-left: -36px;
     }
 }
 
 @media (min-width: 1536px) {
     .main-container.extended {
-        column-gap: clamp(56px, 6vw, 144px);
-        max-width: min(1960px, calc(100vw - 40px));
+        column-gap: clamp(72px, 6.8vw, 156px);
+        max-width: min(2040px, calc(100vw - 48px));
     }
 
     .main-container.extended main.main {
-        max-width: 1024px;
+        max-width: 1040px;
+        margin-top: 32px;
+        margin-left: -54px;
     }
 }
