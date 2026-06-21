@@ -227,26 +227,42 @@ code, pre, kbd {
         justify-self: start;
         transform: none;
         padding-top: 10px;
-        gap: 14px;
+        padding-bottom: 88px;
+        gap: 16px;
     }
 
-    .main-container.extended .left-sidebar header {
-        gap: 14px;
-    }
-
-    .main-container.extended .menu-social {
-        margin-top: 2px;
-        margin-bottom: 4px;
-    }
-
-    .main-container.extended #main-menu {
+    .main-container.extended .left-sidebar > #main-menu {
+        order: 1;
+        width: 100%;
+        flex-grow: 0;
+        align-items: flex-start;
         padding-top: 0;
-        margin-top: -8px;
+        margin-top: 0;
     }
 
-    .main-container.extended #main-menu,
-    .main-container.extended #main-menu .menu-bottom-section ol {
+    .main-container.extended .left-sidebar > header {
+        order: 2;
+        gap: 14px;
+        margin-top: 22px;
+    }
+
+    .main-container.extended .left-sidebar > .menu-social {
+        order: 3;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .main-container.extended .left-sidebar > #main-menu,
+    .main-container.extended .left-sidebar > #main-menu .menu-bottom-section ol {
         gap: 18px;
+    }
+
+    .main-container.extended .left-sidebar > #main-menu .menu-bottom-section {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin-top: 0;
     }
 
     .main-container.extended .right-sidebar {
