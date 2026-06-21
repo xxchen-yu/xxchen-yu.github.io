@@ -7,7 +7,23 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>ChenOvo</copyright>
-        <lastBuildDate>Fri, 19 Jun 2026 16:27:55 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 21 Jun 2026 14:22:31 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>SSRF（服务器端请求伪造）</title>
+        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</link>
+        <pubDate>Sun, 21 Jun 2026 14:22:31 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</guid>
+        <description>&lt;h1 id=&#34;ssrf服务器端请求伪造&#34;&gt;SSRF（服务器端请求伪造）
+&lt;/h1&gt;&lt;h2 id=&#34;摘要&#34;&gt;摘要
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;本文详细讲解了服务器端请求伪造（SSRF）漏洞的原理，即攻击者诱导服务器向任意内网或本地地址发起请求。&lt;/li&gt;
+&lt;li&gt;涵盖了SSRF的主要应用场景，包括内网服务探测与攻击、读取本地文件、配合Redis/云元数据服务实现RCE、突破网络访问控制等。&lt;/li&gt;
+&lt;li&gt;按照回显类型（有回显/盲SSRF）、利用协议（HTTP/File/Dict/Gopher等）和触发点（参数型/头字段注入型）对SSRF漏洞进行了分类。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ssrfserver-side-request-forgery漏洞利用原理&#34;&gt;SSRF（Server-Side Request Forgery）漏洞利用原理
+&lt;/h2&gt;&lt;p&gt;SSRF 是一种网络安全漏洞，攻击者能够&lt;strong&gt;诱导服务器端应用程序向攻击者指定的任意域名或IP地址发送HTTP请求&lt;/strong&gt;。该请求由服务器发起，因此可以访问服务器所在内网或本地系统中的资源。&lt;/p&gt;</description>
+        </item>
+        <item>
         <title>SQL注入详解：种类、Payload与数据库变化</title>
         <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</link>
         <pubDate>Fri, 19 Jun 2026 16:27:55 +0800</pubDate>
@@ -33,14 +49,6 @@
         <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
         
         <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>SSRF</title>
-        <link>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</link>
-        <pubDate>Tue, 16 Jun 2026 18:58:11 +0800</pubDate>
-        
-        <guid>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</guid>
         <description></description>
         </item>
         <item>

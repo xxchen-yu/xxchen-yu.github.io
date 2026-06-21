@@ -3,7 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.xxchenchen.top/</loc>
-    <lastmod>2026-06-19T16:27:55+08:00</lastmod>
+    <lastmod>2026-06-21T14:22:31+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</loc>
+    <lastmod>2026-06-21T14:22:31+08:00</lastmod>
   </url><url>
     <loc>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/12-sql%E6%B3%A8%E5%85%A5/</loc>
     <lastmod>2026-06-19T16:27:55+08:00</lastmod>
@@ -99,9 +102,6 @@
     <lastmod>2026-06-17T11:20:53+08:00</lastmod>
   </url><url>
     <loc>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/02-http%E8%AF%B7%E6%B1%82/</loc>
-    <lastmod>2026-06-16T18:58:11+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/15-ssrf/</loc>
     <lastmod>2026-06-16T18:58:11+08:00</lastmod>
   </url><url>
     <loc>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/14-waf/</loc>
