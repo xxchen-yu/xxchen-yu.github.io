@@ -210,3 +210,33 @@ code, pre, kbd {
 [data-scheme="dark"] .runtime-status-fill {
     background: #6a79ff;
 }
+
+@media (min-width: 1024px) {
+    .main-container.extended .left-sidebar {
+        transform: translateX(-24px);
+    }
+
+    .main-container.extended .right-sidebar {
+        transform: translateX(24px);
+    }
+}
+
+@media (min-width: 1280px) {
+    .main-container.extended .left-sidebar {
+        transform: translateX(-40px);
+    }
+
+    .main-container.extended .right-sidebar {
+        transform: translateX(40px);
+    }
+}
+
+@media (min-width: 1536px) {
+    .main-container.extended .left-sidebar {
+        transform: translateX(-56px);
+    }
+
+    .main-container.extended .right-sidebar {
+        transform: translateX(56px);
+    }
+}
