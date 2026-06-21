@@ -1104,47 +1104,6 @@
         </div>
         <script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 
-<div id="particles-js"></div>
-
-<script>
-  (function () {
-    var particleHost = document.getElementById('particles-js');
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var saveData = navigator.connection && navigator.connection.saveData;
-
-    if (!particleHost || reduceMotion || saveData) {
-      return;
-    }
-
-    function loadParticles() {
-      var script = document.createElement('script');
-      script.src = "/background/particles.min.js";
-      script.defer = true;
-      script.onload = function () {
-        if (window.particlesJS) {
-          window.particlesJS.load('particles-js', "/background/particlesjs-config.json");
-        }
-      };
-      document.body.appendChild(script);
-    }
-
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadParticles, { timeout: 2000 });
-    } else {
-      window.addEventListener('load', loadParticles, { once: true });
-    }
-  })();
-</script>
-
-<style>
-  #particles-js {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: -1;
-  }
-</style>
 <script>
 function initCollapsibleToc() {
     
