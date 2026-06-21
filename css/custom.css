@@ -228,6 +228,8 @@ code, pre, kbd {
     .desktop-top-nav {
         display: block;
         width: 100%;
+        margin-top: -14px;
+        margin-bottom: 10px;
     }
 
     .desktop-top-nav__list {
@@ -237,7 +239,7 @@ code, pre, kbd {
         align-items: center;
         gap: 12px;
         margin: 0;
-        padding: 10px 0 8px;
+        padding: 0 0 6px;
     }
 
     .desktop-top-nav__item {
@@ -282,18 +284,18 @@ code, pre, kbd {
         max-width: none;
         justify-self: start;
         transform: none;
-        padding-top: 10px;
-        padding-bottom: 88px;
-        gap: 16px;
+        padding-top: 6px;
+        padding-bottom: 96px;
+        gap: 18px;
     }
 
     .main-container.extended .left-sidebar > header {
         gap: 14px;
-        margin-top: 0;
+        margin-top: 26px;
     }
 
     .main-container.extended .left-sidebar > .menu-social {
-        margin-top: 0;
+        margin-top: 4px;
         margin-bottom: 0;
     }
 
@@ -302,6 +304,7 @@ code, pre, kbd {
         padding: 0;
         width: 100%;
         gap: 0;
+        align-items: flex-start;
     }
 
     .main-container.extended .left-sidebar > #main-menu > li:not(.menu-bottom-section) {
@@ -310,10 +313,15 @@ code, pre, kbd {
 
     .main-container.extended .left-sidebar > #main-menu .menu-bottom-section {
         margin-top: 0;
+        width: 100%;
     }
 
     .main-container.extended .left-sidebar > #main-menu .menu-bottom-section ol {
         gap: 0;
+    }
+
+    .main-container.extended .left-sidebar #dark-mode-toggle {
+        justify-content: flex-start;
     }
 
     .main-container.extended .right-sidebar {
@@ -336,6 +344,10 @@ code, pre, kbd {
     .main-container.extended {
         column-gap: clamp(72px, 6.8vw, 156px);
         max-width: min(2040px, calc(100vw - 48px));
+    }
+
+    .desktop-top-nav {
+        margin-top: -18px;
     }
 
     .main-container.extended main.main {
