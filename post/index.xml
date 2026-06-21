@@ -7,7 +7,15 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>ChenOvo</copyright>
-        <lastBuildDate>Tue, 28 Apr 2026 15:34:32 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 21 Jun 2026 18:45:25 +0800</lastBuildDate><atom:link href="https://blog.xxchenchen.top/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>DVWA靶场的部署及练习</title>
+        <link>https://blog.xxchenchen.top/p/dvwa%E9%9D%B6%E5%9C%BA%E7%9A%84%E9%83%A8%E7%BD%B2%E5%8F%8A%E7%BB%83%E4%B9%A0/</link>
+        <pubDate>Sun, 21 Jun 2026 18:45:25 +0800</pubDate>
+        
+        <guid>https://blog.xxchenchen.top/p/dvwa%E9%9D%B6%E5%9C%BA%E7%9A%84%E9%83%A8%E7%BD%B2%E5%8F%8A%E7%BB%83%E4%B9%A0/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>QingCen靶场Web入门wp 下</title>
         <link>https://blog.xxchenchen.top/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8B/</link>
         <pubDate>Tue, 28 Apr 2026 15:34:32 +0800</pubDate>
