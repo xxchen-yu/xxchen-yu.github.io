@@ -15,7 +15,7 @@
 <meta name="twitter:description" content="前言 到最后了，/(ㄒoㄒ)/~~\nEZXSS EZXSS（存储型 XSS） 漏洞类型： 存储型 XSS（Stored Cross-Site Scripting）\n题目分析：\n目标是一个技术博客网站，包含搜索框和留言板功能。经测试：\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://blog.xxchenchen.top/img/qingcenctf-cover.svg' />
     <link rel="shortcut icon" href="/favicon.png" />
-<link rel="stylesheet" href='/css/custom.css?v=1782313209'>
+<link rel="stylesheet" href='/css/custom.css?v=1782313594'>
 
     </head>
     <body class="
@@ -2596,7 +2596,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -s -G --data-urlencode <span class="s1">&#39;data=O:8:&#34;ShowFlag&#34;:1:{s:4:&#34;show&#34;;b:1;}&#39;</span> <span class="s2">&#34;http://target/&#34;</span> <span class="p">|</span> grep -oP <span class="s1">&#39;flag\{[^}]+\}&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>Flag：</strong> <code>flag{f94fa85e-7281-44de-ab33-fd8c99662f0a}</code></p>
+</div><p><strong>Flag：</strong> <code>flag{f94fa85e-7281-44de-ab33-fd8c99662f0a}</code>1</p>
 <h3 id="ezpop_1">EZPOP_1
 </h3><h3 id="ezpop_2">EZPOP_2
 </h3><h3 id="ezpop_3">EZPOP_3
