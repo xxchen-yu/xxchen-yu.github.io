@@ -15,7 +15,7 @@
 <meta name="twitter:description" content="前言 到最后了，/(ㄒoㄒ)/~~\nEZXSS EZXSS（存储型 XSS） 漏洞类型： 存储型 XSS（Stored Cross-Site Scripting）\n题目分析：\n目标是一个技术博客网站，包含搜索框和留言板功能。经测试：\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://blog.xxchenchen.top/img/qingcenctf-cover.svg' />
     <link rel="shortcut icon" href="/favicon.png" />
-<link rel="stylesheet" href='/css/custom.css?v=1782313594'>
+<link rel="stylesheet" href='/css/custom.css?v=1782314528'>
 
     </head>
     <body class="
@@ -599,7 +599,7 @@
 
 
 
-                <span class="article-time--wordcount">11890 字</span>
+                <span class="article-time--wordcount">11891 字</span>
             </div>
         
     </footer>
@@ -625,9 +625,10 @@
 <li>留言板（<code>/guestbook</code>）直接将用户输入渲染到 HTML 中，<strong>无任何过滤和转义</strong></li>
 <li>页面无 CSP 头，XSS 可自由执行</li>
 <li><code>/flag</code> 端点返回 404，说明 flag 在 admin 的 cookie 中</li>
-<li>主页有清除 cookie 的 JS 脚本，但留言板页面没有</li>
+<li>主页有清除 cookie 的 JS 脚本，但留言板页面没有
+1
+<strong>攻击思路：</strong> 提交 XSS payload → admin bot 访问留言板审核 → XSS 在 admin 浏览器中执行 → 窃取 admin cookie → 回传到留言板</li>
 </ul>
-<p><strong>攻击思路：</strong> 提交 XSS payload → admin bot 访问留言板审核 → XSS 在 admin 浏览器中执行 → 窃取 admin cookie → 回传到留言板</p>
 <p><strong>关键发现：</strong> <code>&lt;script&gt;</code> 标签在 innerHTML 插入的 HTML 中<strong>不会执行</strong>，必须使用 <code>&lt;img onerror&gt;</code> 等事件处理器触发 JS。</p>
 <p><strong>Step 1：测试搜索框（反射型 XSS 不可行）</strong></p>
 <div class="highlight"><div class="chroma">
