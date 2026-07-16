@@ -3,13 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.xxchenchen.top/</loc>
-    <lastmod>2026-06-21T18:45:25+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.xxchenchen.top/p/dvwa%E9%9D%B6%E5%9C%BA%E7%9A%84%E9%83%A8%E7%BD%B2%E5%8F%8A%E7%BB%83%E4%B9%A0/</loc>
-    <lastmod>2026-06-21T18:45:25+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.xxchenchen.top/post/</loc>
-    <lastmod>2026-06-21T18:45:25+08:00</lastmod>
+    <lastmod>2026-06-21T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://blog.xxchenchen.top/wiki/web%E5%AE%89%E5%85%A8/%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%BC%8F%E6%B4%9E/07-csrf/</loc>
     <lastmod>2026-06-21T00:00:00+08:00</lastmod>
@@ -123,6 +117,9 @@
     <lastmod>2026-05-20T12:28:39+08:00</lastmod>
   </url><url>
     <loc>https://blog.xxchenchen.top/categories/</loc>
+    <lastmod>2026-04-28T15:34:32+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.xxchenchen.top/post/</loc>
     <lastmod>2026-04-28T15:34:32+08:00</lastmod>
   </url><url>
     <loc>https://blog.xxchenchen.top/p/qingcen%E9%9D%B6%E5%9C%BAweb%E5%85%A5%E9%97%A8wp-%E4%B8%8B/</loc>
