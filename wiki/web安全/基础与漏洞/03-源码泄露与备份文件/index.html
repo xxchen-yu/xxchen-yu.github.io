@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="源码泄露与备份文件">
 <meta name="twitter:description" content="源码泄露与备份文件 源码和备份文件一旦暴露，攻击者看到的就不只是页面，而是业务逻辑、配置习惯、密钥线索和真实目录结构。\n为什么会泄露 常见原因不是“黑客很厉害”，而是发布流程粗糙：临时压缩包留在 Web 目录、编辑器备份文件被同步、.git 目录被直接部署、日志和配置文件没有隔离、测试环境复用了生产数据。\n">
     <link rel="shortcut icon" href="/favicon.png" />
-<link rel="stylesheet" href='/css/custom.css?v=1784169685'>
+<link rel="stylesheet" href='/css/custom.css?v=1785849442'>
 
     </head>
     <body class="
@@ -358,7 +358,11 @@
 
             <main class="main full-width">
                 <nav class="desktop-top-nav" aria-label="Primary">
-        <ol class="desktop-top-nav__list">
+        <div class="desktop-top-nav__inner">
+            <a class="desktop-top-nav__brand" href="/" aria-label="ChenOvo"><img src="/img/avatar_hu_530b2b16f6a7682f.png" width="32" height="32" class="desktop-top-nav__avatar" loading="lazy" alt=""><span class="desktop-top-nav__title">ChenOvo</span>
+            </a>
+
+            <ol class="desktop-top-nav__list">
             
                 
                 <li class="desktop-top-nav__item">
@@ -472,7 +476,8 @@
                     </a>
                 </li>
             
-        </ol>
+            </ol>
+        </div>
     </nav>
     <article class="main-article">
     <header class="article-header">

@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="越权与访问控制">
 <meta name="twitter:description" content="越权与访问控制 越权的核心问题是：用户能不能访问、修改、删除不属于自己的资源，或执行不属于自己角色的动作。\n两类越权 类型 含义 例子 水平越权 同级用户访问彼此资源 A 用户查看 B 用户订单 垂直越权 低权限用户执行高权限动作 普通用户调用管理员接口 越权通常出现在对象 ID、订单号、用户 ID、文件 ID、组织 ID、角色参数、接口路径和前端隐藏功能中。\n">
     <link rel="shortcut icon" href="/favicon.png" />
-<link rel="stylesheet" href='/css/custom.css?v=1784169685'>
+<link rel="stylesheet" href='/css/custom.css?v=1785849442'>
 
     </head>
     <body class="
@@ -358,7 +358,11 @@
 
             <main class="main full-width">
                 <nav class="desktop-top-nav" aria-label="Primary">
-        <ol class="desktop-top-nav__list">
+        <div class="desktop-top-nav__inner">
+            <a class="desktop-top-nav__brand" href="/" aria-label="ChenOvo"><img src="/img/avatar_hu_530b2b16f6a7682f.png" width="32" height="32" class="desktop-top-nav__avatar" loading="lazy" alt=""><span class="desktop-top-nav__title">ChenOvo</span>
+            </a>
+
+            <ol class="desktop-top-nav__list">
             
                 
                 <li class="desktop-top-nav__item">
@@ -472,7 +476,8 @@
                     </a>
                 </li>
             
-        </ol>
+            </ol>
+        </div>
     </nav>
     <article class="main-article">
     <header class="article-header">
