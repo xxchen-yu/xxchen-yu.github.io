@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="SSRF">
 <meta name="twitter:description" content="SSRF SSRF 是服务器端请求伪造：攻击者让目标服务器代替自己去访问某个地址。危险点在于，请求从服务器内部发出，可能碰到外部用户碰不到的资源。\n常见入口 图片抓取、URL 预览、Webhook、远程导入、在线翻译、文件下载、PDF 生成、代理转发、开放接口测试等功能，都可能接收一个 URL 并由服务端发起请求。\n">
     <link rel="shortcut icon" href="/favicon.png" />
-<link rel="stylesheet" href='/css/custom.css?v=1785850825'>
+<link rel="stylesheet" href='/css/custom.css?v=1785852523'>
 
     </head>
     <body class="
@@ -476,8 +476,20 @@
                     </a>
                 </li>
             
-            </ol>
-        </div>
+            </ol><form action="/search/" class="desktop-top-nav__search" role="search">
+                    <label for="desktop-top-nav-search">搜索</label>
+                    <input id="desktop-top-nav-search" name="keyword" required placeholder="输入关键词..." />
+                    <button type="submit" title="搜索" aria-label="搜索">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                    </button>
+                </form></div>
     </nav>
     <article class="main-article">
     <header class="article-header">

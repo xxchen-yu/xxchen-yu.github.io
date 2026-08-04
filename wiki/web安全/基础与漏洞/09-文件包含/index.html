@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="文件包含">
 <meta name="twitter:description" content="文件包含 文件包含是应用把某个文件加载进程序执行或渲染。若文件名可控，就可能从“读取文件”升级到“执行不该执行的内容”。\n基本类型 类型 说明 本地文件包含 包含服务器本地文件，如模板、日志、上传文件 远程文件包含 从外部地址加载文件，风险更高 模板包含 根据参数选择页面片段或主题文件 文件包含常见于 PHP、模板引擎、插件系统、多语言页面、主题切换和老旧 CMS 中。\n">
     <link rel="shortcut icon" href="/favicon.png" />
-<link rel="stylesheet" href='/css/custom.css?v=1785850825'>
+<link rel="stylesheet" href='/css/custom.css?v=1785852523'>
 
     </head>
     <body class="
@@ -476,8 +476,20 @@
                     </a>
                 </li>
             
-            </ol>
-        </div>
+            </ol><form action="/search/" class="desktop-top-nav__search" role="search">
+                    <label for="desktop-top-nav-search">搜索</label>
+                    <input id="desktop-top-nav-search" name="keyword" required placeholder="输入关键词..." />
+                    <button type="submit" title="搜索" aria-label="搜索">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                    </button>
+                </form></div>
     </nav>
     <article class="main-article">
     <header class="article-header">

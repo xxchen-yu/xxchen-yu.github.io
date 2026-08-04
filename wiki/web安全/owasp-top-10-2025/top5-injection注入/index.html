@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="TOP5-Injection（注入）">
 <meta name="twitter:description" content="在 OWASP Top 10:2025 里，Injection 排在 A05，也就是第 5 位。它从 2021 年的第 3 位下降到了第 5 位，但依然是最经典、最常见、也最容易造成高危后果的一类漏洞。它的核心很简单：不可信输入进入了解释器，并被当成命令、语句或结构的一部分执行了。\n来源：OWASP Top 10:2025 Introduction\n来源：A05:2025 Injection\n">
     <link rel="shortcut icon" href="/favicon.png" />
-<link rel="stylesheet" href='/css/custom.css?v=1785850825'>
+<link rel="stylesheet" href='/css/custom.css?v=1785852523'>
 
     </head>
     <body class="
@@ -389,8 +389,20 @@
                     </a>
                 </li>
             
-            </ol>
-        </div>
+            </ol><form action="/search/" class="desktop-top-nav__search" role="search">
+                    <label for="desktop-top-nav-search">搜索</label>
+                    <input id="desktop-top-nav-search" name="keyword" required placeholder="输入关键词..." />
+                    <button type="submit" title="搜索" aria-label="搜索">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                    </button>
+                </form></div>
     </nav>
     <article class="main-article">
     <header class="article-header">

@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="SQL注入">
 <meta name="twitter:description" content="SQL注入 SQL 注入的核心是把用户输入拼进数据库语句，使数据被当成 SQL 代码解释。它是“数据和指令混在一起”的典型问题。\n会出现在哪里 登录、搜索、筛选、排序、分页、详情查询、后台报表、导出接口都可能接触数据库。除了表单字段，URL 参数、JSON 字段、Header、Cookie 中的值也可能被带入查询。\n">
     <link rel="shortcut icon" href="/favicon.png" />
-<link rel="stylesheet" href='/css/custom.css?v=1785850825'>
+<link rel="stylesheet" href='/css/custom.css?v=1785852523'>
 
     </head>
     <body class="
@@ -476,8 +476,20 @@
                     </a>
                 </li>
             
-            </ol>
-        </div>
+            </ol><form action="/search/" class="desktop-top-nav__search" role="search">
+                    <label for="desktop-top-nav-search">搜索</label>
+                    <input id="desktop-top-nav-search" name="keyword" required placeholder="输入关键词..." />
+                    <button type="submit" title="搜索" aria-label="搜索">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                    </button>
+                </form></div>
     </nav>
     <article class="main-article">
     <header class="article-header">
