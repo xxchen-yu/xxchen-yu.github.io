@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="NepCTFweb部分wp">
 <meta name="twitter:description" content="挂钩都在干什么呢？ Summary 题目是一个暴露在网络上的 Vite 开发服务器。版本为 6.4.1，其 HMR WebSocket 的 fetchModule 方法没有复用 HTTP 层的文件系统访问控制，可以通过 file:// URL 读取任意文件。\nSolution Step 1: 分析附件 Dockerfile 使用 Vite 开发服务器，并通过 --host 0.0.0.0 对外监听。docker-entrypoint.sh 启动时将环境变量 FLAG 写入 /flag，随后清除环境变量：\n">
     <link rel="shortcut icon" href="/favicon.png" />
-<link rel="stylesheet" href='/css/custom.css?v=1787038796'>
+<link rel="stylesheet" href='/css/custom.css?v=1788137079'>
 
     </head>
     <body class="
@@ -296,7 +296,6 @@
         <li><a href="#step-2-利用-vite-hmr-websocket-读取-flag">Step 2: 利用 Vite HMR WebSocket 读取 <code>/flag</code></a></li>
       </ol>
     </li>
-    <li><a href="#flag">Flag</a></li>
   </ol>
 
   <ol>
@@ -308,7 +307,6 @@
         <li><a href="#3-普通用户读取文件">3. 普通用户读取文件</a></li>
       </ol>
     </li>
-    <li><a href="#flag-1">Flag</a></li>
   </ol>
 </nav>
         </div>
@@ -579,7 +577,7 @@
 
 
 
-                <span class="article-time--wordcount">1329 字</span>
+                <span class="article-time--wordcount">1323 字</span>
             </div>
         
     </footer>
@@ -858,15 +856,6 @@
 <pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">flag{analYZlNg_p3RfecT-Bo0k_cIUb_expeRIEnCe22b5}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="flag">Flag
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">flag{analYZlNg_p3RfecT-Bo0k_cIUb_expeRIEnCe22b5}
-</span></span></code></pre></td></tr></table>
-</div>
 </div><h1 id="文件编辑系统">文件编辑系统
 </h1><h2 id="summary-1">Summary
 </h2><p>题目是一个 Java 文档编辑系统。管理员密码存在弱口令，管理员保存文档的接口使用低版本 Fastjson 解析 JSON，并开启了 AutoType。利用 <code>TemplatesImpl</code> 触发本地命令执行，将环境变量写入 <code>upload</code> 目录，最后由普通用户的文档预览接口读取。</p>
@@ -1023,15 +1012,6 @@
 <pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">FLAG=NepCTF{e90179ee-f530-2b34-7d47-164fd7bbd281}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="flag-1">Flag
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">NepCTF{e90179ee-f530-2b34-7d47-164fd7bbd281}
-</span></span></code></pre></td></tr></table>
-</div>
 </div>
 </section>
 
@@ -1073,6 +1053,19 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E5%A5%BD%E9%9D%B6%E5%9C%BA8.29%E6%9C%88%E8%B5%9Bwp/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">好靶场8.29月赛wp</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">

